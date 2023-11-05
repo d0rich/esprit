@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const appConfig = useAppConfig()
+const route = useRoute()
 useHead({
   titleTemplate: `%s • ${appConfig.d0xigen.title}`,
   meta: [
     {
       name: 'keywords',
-      content: appConfig.d0xigen.seo.keywords.join(', ')
+      content: appConfig.d0xigen?.seo?.keywords?.join(', ')
     }
   ]
 })
@@ -16,7 +17,7 @@ useSeoMeta({
   generator: 'Nuxt 3',
   ogSiteName: appConfig.d0xigen.title,
   ogImage: appConfig.d0xigen.url + appConfig.d0xigen.og.image,
-  ogUrl: computed(() => appConfig.d0xigen.url + useRoute().path)
+  ogUrl: computed(() => appConfig.d0xigen.url + route.path)
 })
 </script>
 
