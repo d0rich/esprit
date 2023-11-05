@@ -13,7 +13,8 @@
     "tailwindcss",
     "front-end"
   ],
-  "repository": "https://github.com/d0rich/d0xigen.git",
+  "repository": "https://github.com/d0rich/esprit.git",
+  "homepage": "https://d0xigen.d0rich.me",
   "author": {
     "name": "Nikolay Dorofeev",
     "email": "dorich2000@gmail.com",
