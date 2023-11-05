@@ -1,0 +1,15 @@
+{
+  "name": "d0xigen-docs",
+  "private": true,
+  "scripts": {
+    "prepare": "nuxi prepare",
+    "typecheck": "nuxi typecheck",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "d0xigen": "*"
+  }
+}
