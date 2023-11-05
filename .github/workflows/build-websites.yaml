@@ -1,0 +1,43 @@
+name: Build Websites
+
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: '0 3 * * *' # every day at 3am UTC
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  NUXT_PUBLIC_STUDIO_TOKENS: ${{secrets.D0RICH_ME_NUXT_PUBLIC_STUDIO_TOKENS}}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        websites: [d0rich.me, design.d0rich.me, d0xigen.d0rich.me]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Installing packages
+        run: npm ci
+
+      - name: Build Nuxt 3 static site
+        run: npm run generate
+
+      - name: Publish ${{ matrix.websites }}
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          publish_branch: netlify/${{ matrix.websites }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/${{ matrix.websites }}/dist
+          commit_message: 'Automatic deploy: ${{ github.event.head_commit.message }}'
