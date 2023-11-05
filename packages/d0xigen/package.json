@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
-    "@d0rich/nuxt-content-mermaid": "^0.1.2",
-    "@d0rich/nuxt-design-system": "^0.7.5",
+    "@d0rich/nuxt-content-mermaid": "*",
+    "@d0rich/nuxt-design-system": "*",
     "@nuxt-themes/typography": "^0.11.0",
     "@nuxt/content": "^2.6.0",
     "@vueuse/core": "^9.13.0",
