@@ -1,0 +1,10 @@
+# d0xigen
+
+## 0.2.7
+
+### Patch Changes
+
+- 4b24f9e: Update package meta info
+- Updated dependencies [4b24f9e]
+  - @d0rich/nuxt-content-mermaid@0.1.3
+  - @d0rich/nuxt-design-system@0.8.1
