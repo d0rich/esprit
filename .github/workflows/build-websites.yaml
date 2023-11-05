@@ -55,4 +55,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./apps/d0xigen.d0rich.me/dist
           commit_message: 'Automatic deploy: ${{ github.event.head_commit.message }}'
-
