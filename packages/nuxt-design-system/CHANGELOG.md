@@ -1,5 +1,11 @@
 # @d0rich/nuxt-design-system
 
+## 0.8.3
+
+### Patch Changes
+
+- 068716a: Specify publish config
+
 ## 0.8.2
 
 ### Patch Changes
