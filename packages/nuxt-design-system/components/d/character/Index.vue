@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { CSSProperties } from 'vue'
 import idle from '../../../assets/img/character/idle.webp'
 import idleColor from '../../../assets/img/character/idle-color.webp'
 import idleOutline from '../../../assets/img/character/idle-outline.webp'
@@ -11,7 +12,6 @@ import profi from '../../../assets/img/character/profi.webp'
 import profiColor from '../../../assets/img/character/profi-color.webp'
 import profiOutline from '../../../assets/img/character/profi-outline.webp'
 import profiOutlineColor from '../../../assets/img/character/profi-outline-color.webp'
-import type { CSSProperties } from 'vue'
 
 export type CharacterPose = 'idle' | 'action' | 'profi'
 
@@ -66,7 +66,7 @@ watch(
     if (props.noShape) return
     useStyle.transform = 'scale(0.5)'
     useStyle.filter = 'blur(10px)'
-    await new Promise(resolve => setTimeout(resolve, 150))
+    await new Promise((resolve) => setTimeout(resolve, 150))
     useHref.value = `#${newPose}-shape`
     useStyle.transform = undefined
     useStyle.filter = undefined

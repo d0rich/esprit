@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import type { CharacterPose, ActionFanItem, ActionListItem } from '@d0rich/nuxt-design-system/types'
+import type {
+  CharacterPose,
+  ActionFanItem,
+  ActionListItem
+} from '@d0rich/nuxt-design-system/types'
 const pose = ref<CharacterPose>('action')
 const listItems = ref<ActionListItem<CharacterPose>[]>([
   { title: 'Idle', emit: 'idle' },

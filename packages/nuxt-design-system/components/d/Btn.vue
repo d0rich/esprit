@@ -37,7 +37,10 @@ const props = defineProps({
     type: String as () => HighlightVariant,
     default: undefined
   },
-  colorClass: [String, Object as () => Record<string, boolean>],
+  colorClass: {
+    type: [String, Object as () => Record<string, boolean>],
+    default: ''
+  },
   textTransform: {
     type: String as () => 'uppercase' | 'capitalize' | 'lowercase' | 'none',
     default: 'uppercase'

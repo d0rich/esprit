@@ -10,20 +10,22 @@
       <div class="p-10 text-xl font-serif text-center prose prose-invert">
         <h1>d0rich design system</h1>
         <p>Design system inspired by Persona 5 UI</p>
-        <p>
-          References:
-          <ul>
-            <li>
-              <a href="https://ridwankhan.com/the-ui-and-ux-of-persona-5-183180eb7cce">The UI and UX of Persona 5</a>
-            </li>
-            <li>
-              <a href="https://www.reddit.com/r/Persona5/comments/gmw6hz/persona_5_royal_fonts_if_i_find_more_about_the/">Persona 5 Royal Fonts</a>
-            </li>
-          </ul>
-        </p>
-        <p class="italic">
-          Authored by <a href="https://d0rich.me">d0rich</a>
-        </p>
+        <p>References:</p>
+        <ul>
+          <li>
+            <a
+              href="https://ridwankhan.com/the-ui-and-ux-of-persona-5-183180eb7cce"
+              >The UI and UX of Persona 5</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.reddit.com/r/Persona5/comments/gmw6hz/persona_5_royal_fonts_if_i_find_more_about_the/"
+              >Persona 5 Royal Fonts</a
+            >
+          </li>
+        </ul>
+        <p class="italic">Authored by <a href="https://d0rich.me">d0rich</a></p>
       </div>
     </DWrapShape>
   </div>
