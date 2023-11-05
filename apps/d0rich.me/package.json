@@ -1,7 +1,8 @@
 {
+  "name": "d0rich.me",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "prepare": "nuxt prepare",
     "dev": "nuxt dev",
     "typecheck": "nuxi typecheck",
     "generate": "nuxt generate",

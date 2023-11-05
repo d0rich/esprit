@@ -2,14 +2,18 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+    "generate": {
+      "dependsOn": ["^generate"],
+      "outputs": ["dist"]
     },
-    "lint": {},
+    "typecheck": {},
     "dev": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "d0rich.me#dev": {},
+    "d0xigen.d0rich.me#dev": {},
+    "design.d0rich.me#dev": {},
+    "nuxt-content-mermaid-playground#dev": {}
   }
 }
