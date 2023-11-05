@@ -27,7 +27,6 @@
     "@types/dateformat": "^5.0.0"
   },
   "dependencies": {
-    "@akebifiky/remark-simple-plantuml": "^1.0.2",
     "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "@nuxt-themes/typography": "^0.11.0",
@@ -39,6 +38,7 @@
     "nuxt": "^3.5.2",
     "png-to-ico": "^2.1.8",
     "rehype-external-links": "^2.0.1",
+    "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
     "sitemap": "^7.1.1",
     "unist-util-visit": "^4.1.2",
     "vue-gtag": "^2.0.1"

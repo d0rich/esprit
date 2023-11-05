@@ -61,7 +61,7 @@ export default defineNuxtConfig({
     //   }
     // },
     markdown: {
-      remarkPlugins: ['@akebifiky/remark-simple-plantuml'],
+      remarkPlugins: ['remark-simple-plantuml'],
       rehypePlugins: {
         'rehype-external-links': {
           target: '_blank'
