@@ -1,6 +1,6 @@
 {
   "name": "d0xigen",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "private": false,
   "main": "./nuxt.config.ts",
   "description": "🌬🕮 Documentation theme created to breathe life into d0rich's projects. Based on Nuxt 3 and Tailwind CSS.",
