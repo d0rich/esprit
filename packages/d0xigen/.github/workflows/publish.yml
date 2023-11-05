@@ -1,0 +1,48 @@
+name: Publish Package
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  publish-npm:
+    name: Publish to NPM
+    runs-on: ubuntu-20.04
+    if: github.repository_owner == 'd0rich'
+    outputs:
+      version: ${{ steps.publish.outputs.version }}
+      type: ${{ steps.publish.outputs.type }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - run: npm ci
+      # - name: Check types
+      #   run: npm run check
+
+      - uses: JS-DevTools/npm-publish@v1
+        id: publish
+        with:
+          access: public
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+  release:
+    runs-on: ubuntu-20.04
+    needs: [publish-npm]
+    if: needs.publish-npm.outputs.type != 'none'
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: 'v${{ needs.publish-npm.outputs.version }}'
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: 'v${{ needs.publish-npm.outputs.version }}'
+          generateReleaseNotes: true
+          draft: false
