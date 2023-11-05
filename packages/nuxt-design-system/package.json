@@ -21,8 +21,7 @@
     "url": "https://d0rich.me"
   },
   "scripts": {
-    "postinstall": "node fallbackDependencies.mjs",
-    "prepare": "nuxi prepare && nuxi prepare .playground/",
+    "prepare": "nuxi prepare",
     "typecheck": "nuxi typecheck",
     "test": "vitest"
   },

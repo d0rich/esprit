@@ -16,7 +16,7 @@
     "url": "https://d0rich.me"
   },
   "scripts": {
-    "prepare": "nuxi prepare && nuxi prepare .playground",
+    "prepare": "nuxi prepare",
     "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
