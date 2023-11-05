@@ -1,6 +1,7 @@
 <script setup lang="ts">
 useFaviconAnimation()
 const { key } = useTransitionAnimationWorkaround()
+const route = useRoute()
 
 const description = 'Small web portal of an experienced IT specialist.'
 
@@ -35,7 +36,7 @@ useSeoMeta({
   // colorScheme: 'dark',
   ogSiteName: 'd0rich',
   ogImage: 'https://d0rich.me/og/image.jpg',
-  ogUrl: computed(() => 'https://d0rich.me' + useRoute().path),
+  ogUrl: computed(() => 'https://d0rich.me' + route.path),
   twitterCard: 'summary_large_image',
   twitterSite: '@d0rich',
   twitterCreator: '@d0rich',
