@@ -21,11 +21,7 @@
   },
   "scripts": {
     "prepare": "nuxi prepare && nuxi prepare .docs",
-    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
-    "lint:prettier": "prettier --check .",
-    "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore . --fix",
-    "check": "nuxi typecheck",
+    "typecheck": "nuxi typecheck",
     "build": "nuxt build .docs/",
     "dev": "nuxt dev .docs/",
     "generate": "nuxt generate .docs/",
