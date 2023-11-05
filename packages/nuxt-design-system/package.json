@@ -22,8 +22,7 @@
   },
   "scripts": {
     "prepare": "nuxi prepare",
-    "typecheck": "nuxi typecheck",
-    "test": "vitest"
+    "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
