@@ -4,6 +4,7 @@ import { savePdf } from '~~/server/utils/puppeteer'
 // Add required routes to prerender in nuxt.config.ts
 export default defineEventHandler(async (event) => {
   const fileName = getRouterParam(event, 'type.pdf')
+  if (!fileName) throw new Error('File name not found')
   const spec = fileName
     .replace('.pdf', '')
     .replace('Nikolai_Dorofeev-', '')

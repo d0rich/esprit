@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
-import { BlogContent } from '@/components/blog/Tile.vue'
+import type { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
+import type { BlogContent } from '@/components/blog/Tile.vue'
 
 definePageMeta({
   path: '/blog/:page(\\d+)?'

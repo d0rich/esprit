@@ -1,5 +1,5 @@
 <script lang="ts">
-import { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue'
 
 export type ActionFanItem<TEmit = any> = {
   title: string

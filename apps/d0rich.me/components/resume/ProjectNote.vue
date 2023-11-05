@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { D0xigenProjectMeta } from '~~/server/utils/types'
+import type { D0xigenProjectMeta } from '~~/server/utils/types'
 
 defineProps<{
   project: D0xigenProjectMeta

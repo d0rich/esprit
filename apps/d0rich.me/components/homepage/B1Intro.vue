@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CharacterPose, ActionFanItem } from '@d0rich/nuxt-design-system/types'
+import type { CharacterPose, ActionFanItem } from '@d0rich/nuxt-design-system/types'
 import * as introAnimations from '~~/utils/homepage/intro'
 
 const { data } = useAsyncData(() => queryContent('/homepage/intro').findOne())

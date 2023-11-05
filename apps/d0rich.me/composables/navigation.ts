@@ -1,4 +1,4 @@
-import { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
+import type { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
 
 export const useBlogNavigationConfig = () => {
   const config = useRuntimeConfig()

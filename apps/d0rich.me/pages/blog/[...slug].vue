@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Disqus } from 'vue-disqus'
-import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
 
 interface Document extends MarkdownParsedContent {
   date?: Date

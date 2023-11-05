@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { CharacterPose, ActionFanItem, ActionListItem } from '../../types'
-
 definePageMeta({
   colorMode: 'light'
 })

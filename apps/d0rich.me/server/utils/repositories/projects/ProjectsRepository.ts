@@ -1,4 +1,4 @@
-import { D0xigenProjectMeta } from '../../types'
+import type { D0xigenProjectMeta } from '../../types'
 import { GithubRepository } from '../github'
 
 export class ProjectsRepository {

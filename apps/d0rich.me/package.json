@@ -10,11 +10,8 @@
   },
   "devDependencies": {
     "@nuxt-themes/typography": "^1.0.1",
-    "@nuxt/content": "^2.8.3",
-    "@nuxthq/studio": "^0.14.1",
     "@types/dateformat": "^5.0.0",
-    "@vueuse/core": "^10.1.0",
-    "nuxt": "3.6"
+    "@vueuse/core": "^10.1.0"
   },
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "*",

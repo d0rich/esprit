@@ -1,10 +1,10 @@
-import {
+import { ProjectsRepository } from '~~/server/utils/repositories/projects'
+import type {
   ParsedContent,
   QueryBuilderWhere
 } from '@nuxt/content/dist/runtime/types'
-import { TimeNote } from '~~/components/resume/TimeNote.vue'
-import { ProjectsRepository } from '~~/server/utils/repositories/projects'
-import { D0xigenProjectMeta } from '~~/server/utils/types'
+import type { TimeNote } from '~~/components/resume/TimeNote.vue'
+import type { D0xigenProjectMeta } from '~~/server/utils/types'
 import { serverQueryContent } from '#content/server'
 
 interface TaggedParsedContent extends ParsedContent {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
-import { ResumeData } from '~~/server/routes/api/resume/data'
+import type { ResumeData } from '~~/server/routes/api/resume/data'
 
 definePageMeta({
   path: '/resume/:type?'

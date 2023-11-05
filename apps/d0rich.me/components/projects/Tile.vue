@@ -1,5 +1,5 @@
 <script lang="ts">
-import { D0xigenProjectMeta } from '~~/server/utils/types'
+import type { D0xigenProjectMeta } from '~~/server/utils/types'
 export default {
   name: 'ProjectsTile'
 }
