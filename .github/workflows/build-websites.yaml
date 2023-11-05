@@ -1,4 +1,4 @@
-name: Build Websites
+name: Build & Deploy
 
 on:
   workflow_dispatch:
@@ -13,10 +13,6 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        websites: [d0rich.me, design.d0rich.me, d0xigen.d0rich.me]
 
     steps:
       - name: Checkout
@@ -33,11 +29,30 @@ jobs:
       - name: Build Nuxt 3 static site
         run: npm run generate
 
-      - name: Publish ${{ matrix.websites }}
+      - name: Publish d0rich.me
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          publish_branch: netlify/${{ matrix.websites }}
+          publish_branch: netlify/d0rich.me
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/${{ matrix.websites }}/dist
+          publish_dir: ./apps/d0rich.me/dist
           commit_message: 'Automatic deploy: ${{ github.event.head_commit.message }}'
+
+      - name: Publish design.d0rich.me
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          publish_branch: netlify/design.d0rich.me
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/design.d0rich.me/dist
+          commit_message: 'Automatic deploy: ${{ github.event.head_commit.message }}'
+
+      - name: Publish d0xigen.d0rich.me
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          publish_branch: netlify/d0xigen.d0rich.me
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./apps/d0xigen.d0rich.me/dist
+          commit_message: 'Automatic deploy: ${{ github.event.head_commit.message }}'
+
