@@ -1,6 +1,6 @@
 {
   "name": "@d0rich/nuxt-content-mermaid",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "./nuxt.config.ts",
   "description": "Add mermaid support to @nuxt/content",
   "keywords": [
