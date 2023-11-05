@@ -24,14 +24,9 @@
     "postinstall": "node fallbackDependencies.mjs",
     "prepare": "nuxi prepare && nuxi prepare .playground/",
     "typecheck": "nuxi typecheck",
-    "test": "vitest",
-    "build": "nuxt build .playground/",
-    "dev": "nuxt dev .playground/",
-    "generate": "nuxt generate .playground/",
-    "preview": "nuxt preview .playground/"
+    "test": "vitest"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@vitejs/plugin-vue": "^4.1.0",
     "nuxt": "^3.3.1",
     "vue-gtag": "^2.0.1"
