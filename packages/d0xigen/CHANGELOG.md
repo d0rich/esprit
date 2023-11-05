@@ -1,5 +1,14 @@
 # d0xigen
 
+## 0.2.9
+
+### Patch Changes
+
+- 068716a: Specify publish config
+- Updated dependencies [068716a]
+  - @d0rich/nuxt-content-mermaid@0.1.5
+  - @d0rich/nuxt-design-system@0.8.3
+
 ## 0.2.8
 
 ### Patch Changes

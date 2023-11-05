@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 0.1.5
+
+### Patch Changes
+
+- 068716a: Specify publish config
+
 ## 0.1.4
 
 ### Patch Changes
