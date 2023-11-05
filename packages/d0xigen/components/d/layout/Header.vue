@@ -35,7 +35,7 @@ const appConfig = useAppConfig()
       <div class="flex items-center gap-2 text-xl float-right">
         <DLayoutThemeSwitch />
         <DBtn
-          v-if="appConfig.d0xigen.social.github"
+          v-if="appConfig.d0xigen.social?.github"
           :href="appConfig.d0xigen.social.github"
           target="_blank"
           no-rotate

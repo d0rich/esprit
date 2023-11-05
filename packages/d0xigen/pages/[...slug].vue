@@ -1,4 +1,10 @@
 <script lang="ts">
+import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+
+interface DocPage extends ParsedContent {
+  description?: string
+}
+
 export default {
   name: 'DocPage'
 }
@@ -10,7 +16,7 @@ definePageMeta({
 })
 const route = useRoute()
 const { tableOfContents } = useDocsLayoutState()
-const { data: doc, error } = useAsyncData(
+const { data: doc, error } = useAsyncData<DocPage>(
   'page-data' + route.path,
   async () => {
     const docPromise = queryContent(route.path).findOne()

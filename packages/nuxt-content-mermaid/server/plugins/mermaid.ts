@@ -1,5 +1,6 @@
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook(
+    // @ts-ignore
     'content:file:beforeParse',
     (file: { _id: string; body: string }) => {
       if (!useAppConfig().contentMermaid.enabled) return

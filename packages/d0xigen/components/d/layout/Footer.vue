@@ -32,7 +32,7 @@ const appConfig = useAppConfig()
         </NuxtLink>
         <div class="flex items-center gap-2 text-xl">
           <DBtn
-            v-if="appConfig.d0xigen.social.github"
+            v-if="appConfig.d0xigen.social?.github"
             :href="appConfig.d0xigen.social.github"
             target="_blank"
             no-rotate
