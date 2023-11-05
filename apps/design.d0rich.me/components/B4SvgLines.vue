@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LineEdge } from '~~/../types'
+import type { LineEdge } from '@d0rich/nuxt-design-system/types'
 
 type ScrollTrigger = gsap.TweenVars['scrollTrigger']
 

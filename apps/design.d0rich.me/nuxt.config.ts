@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  extends: '../',
+  extends: ['@d0rich/nuxt-design-system'],
   colorMode: {
     preference: 'light'
   },

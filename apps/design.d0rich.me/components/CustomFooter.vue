@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Dialog from '../../components/content/ProseBlockquote.vue'
+import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquote.vue'
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { HighlightVariant } from '../wrap/FocusHighlight.vue'
+import type { HighlightVariant } from '../wrap/FocusHighlight.vue'
 export default {
   name: 'DActionsList'
 }

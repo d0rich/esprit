@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CharacterPose, MaskType } from '~~/../types'
+import type { CharacterPose, MaskType } from '@d0rich/nuxt-design-system/types'
 
 const pose = ref<CharacterPose>('idle')
 const characterImage = ref<boolean>(true)
