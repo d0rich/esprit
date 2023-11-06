@@ -14,5 +14,11 @@ export const externalRepos: GithubExternalRepo[] = [
     repo: 'BigFiles',
     tags: ['TON', 'blockchain', 'storage', 'front-end', 'back-end'],
     complexity: 4
+  },
+  {
+    owner: 'ton-developers',
+    repo: 'ton-validators-map',
+    tags: ['TON', 'front-end', 'geoJSON', 'SVG', 'animations'],
+    complexity: 3
   }
 ]
