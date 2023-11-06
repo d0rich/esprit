@@ -6,10 +6,10 @@ export class ProjectsRepository {
   async getProjects() {
     const pages = await GithubRepository.getMyGithubReposPagesMeta()
     const netlifySites = await NetlifyRepository.getNetlifySites()
-    const allSitesUrls = [
+    const allSitesUrls = Array.from(new Set(
       ...netlifySites.map((site) => site.url),
       ...pages.map((page) => page.html_url)
-    ]
+    ))
     const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
       try {
         return await $fetch<D0xigenProjectMeta>(
