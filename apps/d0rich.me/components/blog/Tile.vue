@@ -15,8 +15,12 @@ defineProps<{
 <template>
   <DWrapShape class="blog-tile" shape-class="blog-tile__shape">
     <template #shape-content>
-      <div class="relative w-full h-full overflow-hidden">
-        <img class="blog-tile__image" :src="article.image" />
+      <div v-if="article.image" class="relative w-full h-full overflow-hidden">
+        <img
+          class="blog-tile__image"
+          :src="article.image"
+          :alt="`Cover for the blog post ${article.title}`"
+        />
       </div>
     </template>
     <NuxtLink
