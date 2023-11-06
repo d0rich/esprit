@@ -39,6 +39,7 @@ const visiblePages = computed(() => {
       v-if="currentPage > 1"
       class="inline-block mx-1"
       :to="getLinkToPage(currentPage - 1)"
+      aria-label="Previous page"
     >
       <Icon name="ic:baseline-arrow-back-ios" />
     </DBtn>
@@ -46,6 +47,7 @@ const visiblePages = computed(() => {
       v-if="!visiblePages.includes(1)"
       class="inline-block mx-1"
       :to="getLinkToPage(1)"
+      aria-label="First page"
     >
       1
     </DBtn>
@@ -55,6 +57,7 @@ const visiblePages = computed(() => {
       :key="number"
       class="inline-block mx-1"
       :to="getLinkToPage(number)"
+      :aria-label="`Page ${number}`"
     >
       {{ number }}
     </DBtn>
@@ -63,6 +66,7 @@ const visiblePages = computed(() => {
       v-if="!visiblePages.includes(allPages)"
       class="inline-block mx-1"
       :to="getLinkToPage(allPages)"
+      :aria-label="`Last page (${allPages})`"
     >
       {{ allPages }}
     </DBtn>
@@ -70,6 +74,7 @@ const visiblePages = computed(() => {
       v-if="currentPage < allPages"
       class="inline-block mx-1"
       :to="getLinkToPage(currentPage + 1)"
+      aria-label="Next page"
     >
       <Icon name="ic:baseline-arrow-forward-ios" />
     </DBtn>
