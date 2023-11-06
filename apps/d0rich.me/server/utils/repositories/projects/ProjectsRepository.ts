@@ -1,26 +1,13 @@
+import { normalizeURL, withTrailingSlash, joinURL } from 'ufo'
 import type { D0xigenProjectMeta } from '../../types'
 import { GithubRepository } from '../github'
 import { NetlifyRepository } from '../netlify'
 
 export class ProjectsRepository {
   async getProjects() {
-    const pages = await GithubRepository.getMyGithubReposPagesMeta()
-    const netlifySites = await NetlifyRepository.getNetlifySites()
-    const allSitesUrls = Array.from(
-      new Set(
-        ...netlifySites.map((site) => site.url),
-        ...pages.map((page) => page.html_url)
-      )
-    )
-    const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
-      try {
-        return await $fetch<D0xigenProjectMeta>(url + '/_d0rich/meta.json')
-      } catch (e) {}
-    })
-    const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
-    return d0xigenProjectsWithEmpty.filter(
-      (project) => !!project
-    ) as D0xigenProjectMeta[]
+    const parsedProjects = await this.parseProjects()
+    const externalProjects = await GithubRepository.getExternalReposPagesMeta()
+    return [...parsedProjects, ...externalProjects]
   }
 
   async getProjectsSortedByDate() {
@@ -56,5 +43,29 @@ export class ProjectsRepository {
       itemsOnPage,
       pagesCount
     }
+  }
+
+  private async parseProjects() {
+    const pages = await GithubRepository.getMyGithubReposPagesMeta()
+    const netlifySites = await NetlifyRepository.getNetlifySites()
+    const allSitesUrls = Array.from(
+      new Set(
+        [
+          ...netlifySites.map((site) => site.url),
+          ...pages.map((page) => page.html_url || '')
+        ].map((url) => withTrailingSlash(normalizeURL(url)))
+      )
+    )
+    const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
+      try {
+        return await $fetch<D0xigenProjectMeta>(
+          joinURL(url, '_d0rich/meta.json')
+        )
+      } catch (e) {}
+    })
+    const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
+    return d0xigenProjectsWithEmpty.filter(
+      (project) => !!project
+    ) as D0xigenProjectMeta[]
   }
 }

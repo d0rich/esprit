@@ -1,6 +1,8 @@
 import type { Octokit } from 'octokit'
 import type { EndpointOptions } from '@octokit/types'
 import { createStorage } from 'unstorage'
+import type { D0xigenProjectMeta } from '../../types'
+import { externalRepos, type GithubExternalRepo } from './externalRepos'
 
 export class GithubRepository {
   constructor(public readonly octokit: Octokit) {
@@ -17,6 +19,42 @@ export class GithubRepository {
       return response.data
     })
     return Promise.all(pagesPromises)
+  }
+
+  getExternalReposPagesMeta() {
+    const pagesPromises = externalRepos.map((repo) =>
+      this.externalReposToD0xigenProjectsMeta(repo)
+    )
+    return Promise.all(pagesPromises)
+  }
+
+  private async externalReposToD0xigenProjectsMeta(
+    repo: GithubExternalRepo
+  ): Promise<D0xigenProjectMeta> {
+    const { owner, repo: repoName } = repo
+    const { hash, date } = await this.getRepoLastCommitDateAndHash(
+      owner,
+      repoName
+    )
+    const repoMeta = await this.getRepoMeta(owner, repoName)
+    return {
+      title: repoMeta.title,
+      description: repoMeta.description,
+      image: this.getRepoCoverImageUrl(owner, repoName, hash),
+      url: repoMeta.url,
+      last_updated: date.toISOString(),
+      tags: repo.tags,
+      complexity: repo.complexity
+    }
+  }
+
+  private async getRepoMeta(owner: string, repo: string) {
+    const { data } = await this.octokit.rest.repos.get({ owner, repo })
+    return {
+      title: data.name,
+      description: data.description ?? '',
+      url: data.html_url
+    }
   }
 
   private getRepoCoverImageUrl(owner: string, repo: string, hash: string) {
