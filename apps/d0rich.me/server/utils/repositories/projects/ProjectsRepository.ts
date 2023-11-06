@@ -6,15 +6,15 @@ export class ProjectsRepository {
   async getProjects() {
     const pages = await GithubRepository.getMyGithubReposPagesMeta()
     const netlifySites = await NetlifyRepository.getNetlifySites()
-    const allSitesUrls = Array.from(new Set(
-      ...netlifySites.map((site) => site.url),
-      ...pages.map((page) => page.html_url)
-    ))
+    const allSitesUrls = Array.from(
+      new Set(
+        ...netlifySites.map((site) => site.url),
+        ...pages.map((page) => page.html_url)
+      )
+    )
     const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
       try {
-        return await $fetch<D0xigenProjectMeta>(
-          url + '/_d0rich/meta.json'
-        )
+        return await $fetch<D0xigenProjectMeta>(url + '/_d0rich/meta.json')
       } catch (e) {}
     })
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)

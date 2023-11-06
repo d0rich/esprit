@@ -1,3 +1,3 @@
-import {NetlifyRepository as NetlifyRepositorySource} from './NetlifyRepository';
+import { NetlifyRepository as NetlifyRepositorySource } from './NetlifyRepository'
 
-export const NetlifyRepository = new NetlifyRepositorySource();
+export const NetlifyRepository = new NetlifyRepositorySource()
