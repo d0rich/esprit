@@ -19,14 +19,21 @@ export class GithubRepository {
     return Promise.all(pagesPromises)
   }
 
-  private async getRepoLastCommitDate(owner: string, repo: string) {
+  private async getRepoCoverImage(owner: string, repo: string, hash: string) {
+    return `https://opengraph.githubassets.com/${hash}/${owner}/${repo}`
+  }
+
+  private async getRepoLastCommitDateAndHash(owner: string, repo: string) {
     const { data: commits } = await this.octokit.rest.repos.listCommits({
       owner,
       repo,
       per_page: 1
     })
     const lastCommit = commits[0]
-    return new Date(lastCommit.commit.author?.date ?? '')
+    return {
+      hash: lastCommit.sha,
+      date: new Date(lastCommit.commit.author?.date ?? '')
+    }
   }
 
   private async getMyGithubRepos() {
