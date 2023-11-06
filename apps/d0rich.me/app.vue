@@ -25,7 +25,10 @@ useHead({
         'system analyst'
       ].join(', ')
     }
-  ]
+  ],
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 
 useSeoMeta({

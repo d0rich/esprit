@@ -94,9 +94,21 @@ watch(
         </g>
       </svg>
       <Transition v-if="!noImage" name="character" mode="out-in">
-        <img v-if="pose === 'idle'" :src="getAsset('idle')" />
-        <img v-else-if="pose === 'action'" :src="getAsset('action')" />
-        <img v-else-if="pose === 'profi'" :src="getAsset('profi')" />
+        <img
+          v-if="pose === 'idle'"
+          :src="getAsset('idle')"
+          alt="Character in the idle pose"
+        />
+        <img
+          v-else-if="pose === 'action'"
+          :src="getAsset('action')"
+          alt="Character in the action pose"
+        />
+        <img
+          v-else-if="pose === 'profi'"
+          :src="getAsset('profi')"
+          alt="Character in the profi pose"
+        />
       </Transition>
     </div>
   </div>

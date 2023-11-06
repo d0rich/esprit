@@ -54,9 +54,17 @@ function getAsset(mask: MaskType) {
 <template>
   <div>
     <Transition name="mask" mode="out-in">
-      <img v-if="mask === 'spider'" :src="getAsset('spider')" />
-      <img v-else-if="mask === 'owl'" :src="getAsset('owl')" />
-      <img v-else-if="mask === 'wolf'" :src="getAsset('wolf')" />
+      <img
+        v-if="mask === 'spider'"
+        :src="getAsset('spider')"
+        alt="Spider mask"
+      />
+      <img v-else-if="mask === 'owl'" :src="getAsset('owl')" alt="Owl mask" />
+      <img
+        v-else-if="mask === 'wolf'"
+        :src="getAsset('wolf')"
+        alt="Wolf mask"
+      />
     </Transition>
   </div>
 </template>

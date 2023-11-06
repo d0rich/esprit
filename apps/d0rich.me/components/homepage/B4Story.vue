@@ -52,6 +52,7 @@ useSafeOnMounted(root, () => {
         <img
           src="~/assets/img/avatar-transparent-frame.webp"
           class="character"
+          alt="Nikolai Dorofeev avatar"
         />
         <DWrapShape class="bubble-1" shape-class="bubble-1__shape">
           <template #bg-overlay>

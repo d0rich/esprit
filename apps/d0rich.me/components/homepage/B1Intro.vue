@@ -10,10 +10,26 @@ const { data } = useAsyncData(() => queryContent('/homepage/intro').findOne())
 const currentPose = ref<CharacterPose>('idle')
 
 const socialLinks = ref([
-  { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
-  { icon: 'fa6-brands:github', link: 'https://github.com/d0rich' },
-  { icon: 'fa6-brands:telegram', link: 'https://d0rich.t.me/' }
+  {
+    icon: 'ic:sharp-mail',
+    alt: 'Email link',
+    link: 'mailto:dorich2000@gmail.com'
+  },
+  {
+    icon: 'fa6-brands:linkedin',
+    alt: 'Linkedin link',
+    link: 'https://www.linkedin.com/in/d0rich/'
+  },
+  {
+    icon: 'fa6-brands:github',
+    alt: 'Github link',
+    link: 'https://github.com/d0rich'
+  },
+  {
+    icon: 'fa6-brands:telegram',
+    alt: 'Telegram link',
+    link: 'https://d0rich.t.me/'
+  }
 ])
 
 const actions: ActionFanItem<CharacterPose>[] = [
@@ -146,7 +162,11 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
                 shape-class="d-chip bg-black"
                 filter-class="sharp-shadow ss-br-2 ss-white"
               >
-                <DBtn :href="socialLink.link" target="_blank">
+                <DBtn
+                  :href="socialLink.link"
+                  target="_blank"
+                  :aria-label="socialLink.alt"
+                >
                   <Icon :name="socialLink.icon" class="m-[0.4em]" />
                 </DBtn>
               </DWrapShape>
