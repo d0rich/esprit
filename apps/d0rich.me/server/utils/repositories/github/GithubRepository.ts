@@ -7,19 +7,6 @@ export class GithubRepository {
     this.initCaching(octokit)
   }
 
-  async getMyGithubRepos() {
-    return await this.octokit.rest.repos.listForUser({
-      username: 'd0rich',
-      type: 'owner',
-      per_page: 100
-    })
-  }
-
-  async getMyGithubReposWithPages() {
-    const repos = await this.getMyGithubRepos()
-    return repos.data.filter((repo) => repo.has_pages)
-  }
-
   async getMyGithubReposPagesMeta() {
     const reposWithPages = await this.getMyGithubReposWithPages()
     const pagesPromises = reposWithPages.map(async (repo) => {
@@ -30,6 +17,29 @@ export class GithubRepository {
       return response.data
     })
     return Promise.all(pagesPromises)
+  }
+
+  private async getRepoLastCommitDate(owner: string, repo: string) {
+    const { data: commits } = await this.octokit.rest.repos.listCommits({
+      owner,
+      repo,
+      per_page: 1
+    })
+    const lastCommit = commits[0]
+    return new Date(lastCommit.commit.author?.date ?? '')
+  }
+
+  private async getMyGithubRepos() {
+    return await this.octokit.rest.repos.listForUser({
+      username: 'd0rich',
+      type: 'owner',
+      per_page: 100
+    })
+  }
+
+  private async getMyGithubReposWithPages() {
+    const repos = await this.getMyGithubRepos()
+    return repos.data.filter((repo) => repo.has_pages)
   }
 
   private initCaching(octokit: Octokit) {
