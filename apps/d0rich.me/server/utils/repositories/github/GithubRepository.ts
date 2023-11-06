@@ -19,7 +19,7 @@ export class GithubRepository {
     return Promise.all(pagesPromises)
   }
 
-  private async getRepoCoverImage(owner: string, repo: string, hash: string) {
+  private getRepoCoverImageUrl(owner: string, repo: string, hash: string) {
     return `https://opengraph.githubassets.com/${hash}/${owner}/${repo}`
   }
 
