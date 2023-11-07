@@ -1,4 +1,4 @@
 <script lang="ts">
-import DWrapBackground from '@d0rich/esprit-design/src/components/utils/DWrapBackground.vue'
+import {DWrapBackground} from '@d0rich/esprit-design'
 export default DWrapBackground
 </script>

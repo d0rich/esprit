@@ -1,4 +1,4 @@
 <script lang="ts">
-import DCard from '@d0rich/esprit-design/src/components/cards/DCard.vue'
+import {DCard} from '@d0rich/esprit-design'
 export default DCard
 </script>

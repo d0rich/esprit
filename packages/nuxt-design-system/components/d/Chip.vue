@@ -1,4 +1,4 @@
 <script lang="ts">
-import DChip from '@d0rich/esprit-design/src/components/DChip.vue'
+import {DChip} from '@d0rich/esprit-design'
 export default DChip
 </script>

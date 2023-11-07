@@ -1,4 +1,4 @@
 <script lang="ts">
-import DPagination from '@d0rich/esprit-design/src/components/DPagination.vue'
+import {DPagination} from '@d0rich/esprit-design'
 export default DPagination
 </script>

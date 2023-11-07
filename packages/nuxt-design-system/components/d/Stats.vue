@@ -1,4 +1,4 @@
 <script lang="ts">
-import DStats from '@d0rich/esprit-design/src/components/DStats.vue'
+import {DStats} from '@d0rich/esprit-design'
 export default DStats
 </script>

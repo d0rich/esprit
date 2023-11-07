@@ -1,5 +1,5 @@
 <script lang="ts">
-import { DQuote } from '../../../esprit-design/src/components'
+import { DQuote } from '@d0rich/esprit-design'
 
 export default DQuote
 </script>

@@ -1,4 +1,4 @@
 <script lang="ts">
-import DAnimationAccordion from '@d0rich/esprit-design/src/components/animations/DAnimationAccordion.vue'
+import {DAnimationAccordion} from '@d0rich/esprit-design'
 export default DAnimationAccordion
 </script>

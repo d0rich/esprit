@@ -1,4 +1,4 @@
 <script lang="ts">
-import DAnimationSpinner from '@d0rich/esprit-design/src/components/animations/DAnimationSpinner.vue'
+import {DAnimationSpinner} from '@d0rich/esprit-design'
 export default DAnimationSpinner
 </script>

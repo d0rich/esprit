@@ -1,5 +1,5 @@
 <script lang="ts">
-import DActionsList from '@d0rich/esprit-design/src/components/lists/DActionsList.vue'
+import {DActionsList} from '@d0rich/esprit-design'
 
 export default DActionsList
 </script>

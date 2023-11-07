@@ -1,4 +1,4 @@
 <script lang="ts">
-import DBtn from '@d0rich/esprit-design/src/components/buttons/DBtn.vue'
+import {DBtn} from '@d0rich/esprit-design'
 export default DBtn
 </script>
