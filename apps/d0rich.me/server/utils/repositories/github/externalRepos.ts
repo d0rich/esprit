@@ -12,7 +12,7 @@ export const externalRepos: GithubExternalRepo[] = [
   {
     owner: 'alefmanvladimir',
     repo: 'BigFiles',
-    tags: ['TON', 'blockchain', 'storage', 'front-end', 'back-end'],
+    tags: ['web3', 'TON', 'storage', 'front-end', 'back-end'],
     complexity: 4
   },
   {
