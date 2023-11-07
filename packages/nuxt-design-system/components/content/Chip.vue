@@ -1,5 +1,5 @@
 <script lang="ts">
-import Chip from '../d/Chip.vue'
+import Chip from '../../../esprit-design/src/components/DChip.vue'
 
 export default Chip
 </script>

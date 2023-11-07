@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
 import DWrapShape from '../utils/DWrapShape.vue'
-import DBtn from '../DBtn.vue'
+import DBtn from '../buttons/DBtn.vue'
 
 export type ActionFanItem<TEmit = any> = {
   title: string

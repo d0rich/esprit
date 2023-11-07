@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed } from 'vue';
-import DBtn from './DBtn.vue';
+import DBtn from './buttons/DBtn.vue';
 import { Icon } from '@iconify/vue';
 import { useDPaginationUtils } from '../composables/utils';
 
