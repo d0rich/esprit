@@ -1,4 +1,6 @@
 <script lang="ts">
+import { computed } from 'vue';
+
 export default {
   name: 'DWrapFocusHighlight'
 }
