@@ -33,11 +33,14 @@
     "nuxt": "3.6"
   },
   "dependencies": {
+    "@d0rich/esprit-design": "*",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/google-fonts": "^3.0.0-1",
     "@nuxtjs/tailwindcss": "^6.6.0",
     "@tailwindcss/typography": "^0.5.8",
-    "gsap": "^3.12.2",
     "nuxt-icon": "^0.4.0"
-  }
+  },
+  "bundledDependencies": [
+    "@d0rich/esprit-design"
+  ]
 }
