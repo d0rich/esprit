@@ -1,4 +1,4 @@
 import DCharacter, { type CharacterPose } from './DCharacter.vue'
-import DMask from './DMask.vue'
+import DMask, { type MaskType } from './DMask.vue'
 
-export { DMask, DCharacter, CharacterPose }
+export { DMask, MaskType, DCharacter, CharacterPose }
