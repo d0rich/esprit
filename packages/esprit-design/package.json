@@ -3,10 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/esprit-design-lib.umd.cjs",
+  "module": "./dist/esprit-design-lib.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esprit-design-lib.js",
+      "require": "./dist/esprit-design-lib.umd.cjs"
+    },
+    "./style.css": "./dist/style.css"
   },
   "dependencies": {
     "vue": "^3.3.4"
