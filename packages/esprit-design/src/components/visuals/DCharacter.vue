@@ -1,5 +1,6 @@
 <script lang="ts">
 import { watch, ref, reactive, type CSSProperties } from 'vue'
+
 import idle from '../../assets/img/character/idle.webp'
 import idleColor from '../../assets/img/character/idle-color.webp'
 import idleOutline from '../../assets/img/character/idle-outline.webp'
@@ -12,6 +13,9 @@ import profi from '../../assets/img/character/profi.webp'
 import profiColor from '../../assets/img/character/profi-color.webp'
 import profiOutline from '../../assets/img/character/profi-outline.webp'
 import profiOutlineColor from '../../assets/img/character/profi-outline-color.webp'
+import DCharacterShapeProfi from './DCharacterShapeProfi.vue'
+import DCharacterShapeIdle from './DCharacterShapeIdle.vue'
+import DCharacterShapeAction from './DCharacterShapeAction.vue'
 
 export type CharacterPose = 'idle' | 'action' | 'profi'
 
