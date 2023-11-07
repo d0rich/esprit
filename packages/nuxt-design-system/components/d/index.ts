@@ -1,5 +1,5 @@
 export * from './actions'
 export * from './character'
 export * from './wrap'
-export { type MaskType } from '@d0rich/esprit-design/src/components/visuals/DMask.vue'
+export { type MaskType } from './Mask.vue'
 export { type StatsProps } from '@d0rich/esprit-design/src/components/DStats.vue'

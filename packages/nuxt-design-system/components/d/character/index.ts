@@ -1,1 +1,1 @@
-export { type CharacterPose } from '@d0rich/esprit-design/src/components/visuals'
+export { type CharacterPose } from './Index.vue'
