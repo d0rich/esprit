@@ -9,6 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@d0rich/nuxt-design-system": "*"
+    "@d0rich/nuxt-design-system": "*",
+    "vue-gtag": "^2.0.1"
   }
 }
