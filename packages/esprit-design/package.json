@@ -14,13 +14,6 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/esprit-design-lib.js",
-      "require": "./dist/esprit-design-lib.umd.cjs"
-    },
-    "./style.css": "./dist/style.css"
-  },
   "dependencies": {
     "@iconify/vue": "^4.1.1",
     "gsap": "^3.12.2",
