@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed } from 'vue';
 import DBtn from './DBtn.vue';
+import { Icon } from '@iconify/vue';
 import { useDPaginationUtils } from '../composables/utils';
 
 export default {
@@ -45,7 +46,7 @@ const visiblePages = computed(() => {
       :to="getLinkToPage(currentPage - 1)"
       aria-label="Previous page"
     >
-      <Icon name="ic:baseline-arrow-back-ios" />
+      <Icon icon="ic:baseline-arrow-back-ios" />
     </DBtn>
     <DBtn
       v-if="!visiblePages.includes(1)"
@@ -80,7 +81,7 @@ const visiblePages = computed(() => {
       :to="getLinkToPage(currentPage + 1)"
       aria-label="Next page"
     >
-      <Icon name="ic:baseline-arrow-forward-ios" />
+      <Icon icon="ic:baseline-arrow-forward-ios" />
     </DBtn>
   </nav>
 </template>

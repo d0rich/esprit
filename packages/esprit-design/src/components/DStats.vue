@@ -1,5 +1,6 @@
 <script lang="ts">
 import { ref, computed } from 'vue'
+import { Icon } from '@iconify/vue'
 
 export default {
   name: 'DStats'
@@ -83,11 +84,11 @@ const fifthStat = computed(() => statFromIndex(4))
         >
           <div>{{ skill }}</div>
           <div>
-            <Icon v-for="n in values[index]" :key="n" name="ic:sharp-star" />
+            <Icon v-for="n in values[index]" :key="n" icon="ic:sharp-star" />
             <Icon
               v-for="n in 5 - values[index]"
               :key="n"
-              name="ic:sharp-star-border"
+              icon="ic:sharp-star-border"
             />
           </div>
         </div>
