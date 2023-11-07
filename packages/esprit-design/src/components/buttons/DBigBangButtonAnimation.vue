@@ -1,7 +1,7 @@
 <script lang="ts">
 import gsap from 'gsap'
-import { watch, computed } from 'vue';
-import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils';
+import { watch, computed } from 'vue'
+import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils'
 
 export default {
   name: 'DBigBangButtonAnimation'

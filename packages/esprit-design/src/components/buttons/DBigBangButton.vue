@@ -1,6 +1,6 @@
 <script lang="ts">
-import { resolveComponent, computed } from 'vue';
-import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils';
+import { resolveComponent, computed } from 'vue'
+import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils'
 
 export default {
   name: 'DBigBangButton'

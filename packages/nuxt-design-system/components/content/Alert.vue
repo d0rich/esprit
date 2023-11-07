@@ -1,6 +1,5 @@
 <script lang="ts">
-import DAlert from '../../../esprit-design/src/components/content/DAlert.vue';
+import DAlert from '../../../esprit-design/src/components/content/DAlert.vue'
 
-export default DAlert;
+export default DAlert
 </script>
-

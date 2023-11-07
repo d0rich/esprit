@@ -1,6 +1,8 @@
 <script lang="ts">
-import DWrapFocusHighlight, { type HighlightVariant } from '../utils/DWrapFocusHighlight.vue';
-import DWrapShape from '../utils/DWrapShape.vue';
+import DWrapFocusHighlight, {
+  type HighlightVariant
+} from '../utils/DWrapFocusHighlight.vue'
+import DWrapShape from '../utils/DWrapShape.vue'
 
 export default {
   name: 'DActionsList'

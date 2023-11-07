@@ -4,9 +4,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [
-    "./src/**/*.{vue,js,ts,jsx,tsx}"
-  ],
+  content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
       sans: ['Roboto', ...defaultTheme.fontFamily.sans],
@@ -20,7 +18,5 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('./plugins/shadows')
-  ]
+  plugins: [require('./plugins/shadows')]
 }

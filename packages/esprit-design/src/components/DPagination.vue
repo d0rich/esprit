@@ -1,8 +1,8 @@
 <script lang="ts">
-import { computed } from 'vue';
-import DBtn from './buttons/DBtn.vue';
-import { Icon } from '@iconify/vue';
-import { useDPaginationUtils } from '../composables/utils';
+import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
+import { useDPaginationUtils } from '../composables/utils'
+import DBtn from './buttons/DBtn.vue'
 
 export default {
   name: 'DPagination'

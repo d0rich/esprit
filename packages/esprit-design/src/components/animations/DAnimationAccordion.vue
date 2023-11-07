@@ -1,5 +1,5 @@
 <script lang="ts">
-import DAnimationDefLetterD from './DAnimationDefLetterD.vue';
+import DAnimationDefLetterD from './DAnimationDefLetterD.vue'
 
 export default {
   name: 'DAnimationAccordion'
