@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { HighlightVariant } from './utils/index'
+import type { HighlightVariant } from '../utils/index'
 import { computed, resolveComponent } from 'vue';
-import DWrapFocusHighlight from './utils/DWrapFocusHighlight.vue';
+import DWrapFocusHighlight from '../utils/DWrapFocusHighlight.vue';
 
 export default {
   name: 'DBtn'
