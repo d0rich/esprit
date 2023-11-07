@@ -1,3 +1,1 @@
-export * from './DWrapFocusHighlight.vue'
-export * from './DWrapBackground.vue'
-export * from './DWrapShape.vue'
+export type { HighlightVariant } from './DWrapFocusHighlight.vue'
