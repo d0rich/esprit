@@ -50,6 +50,7 @@ const props = defineProps({
 })
 
 const currentComponent = computed(() => {
+  // TODO: Change NuxtLink to VueRouterLink
   if (props.to || props.href) return resolveComponent('NuxtLink')
   return props.tag
 })
