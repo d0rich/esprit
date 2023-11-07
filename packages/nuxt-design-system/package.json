@@ -29,7 +29,8 @@
     "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0"
+    "@vitejs/plugin-vue": "^4.1.0",
+    "nuxt": "3.6"
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.2.0",
