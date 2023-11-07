@@ -3,7 +3,10 @@ import { computed } from 'vue'
 import DWrapShape from './DWrapShape.vue'
 
 export default {
-  name: 'DWrapFocusHighlight'
+  name: 'DWrapFocusHighlight',
+  components: {
+    DWrapShape
+  }
 }
 </script>
 

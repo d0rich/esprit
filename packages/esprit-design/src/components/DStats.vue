@@ -3,7 +3,10 @@ import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
 export default {
-  name: 'DStats'
+  name: 'DStats',
+  components: {
+    Icon
+  }
 }
 </script>
 

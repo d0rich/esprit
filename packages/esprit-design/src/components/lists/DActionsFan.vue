@@ -19,7 +19,11 @@ export type ActionFanItem<TEmit = any> = {
 }
 
 export default {
-  name: 'DActionsFan'
+  name: 'DActionsFan',
+  components: {
+    DWrapShape,
+    DBtn
+  }
 }
 </script>
 

@@ -2,7 +2,10 @@
 import DAnimationDefLetterD from './DAnimationDefLetterD.vue'
 
 export default {
-  name: 'DAnimationSpinner'
+  name: 'DAnimationSpinner',
+  components: {
+    DAnimationDefLetterD
+  }
 }
 </script>
 

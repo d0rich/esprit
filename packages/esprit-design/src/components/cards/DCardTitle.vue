@@ -2,11 +2,12 @@
 import DWrapShape from '../utils/DWrapShape.vue'
 
 export default {
-  name: 'DCardTitle'
+  name: 'DCardTitle',
+  components: {
+    DWrapShape
+  }
 }
 </script>
-
-<script setup lang="ts"></script>
 
 <template>
   <div class="card__title">

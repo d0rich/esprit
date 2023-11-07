@@ -2,7 +2,10 @@
 import DAnimationDefLetterD from './DAnimationDefLetterD.vue'
 
 export default {
-  name: 'DAnimationAccordion'
+  name: 'DAnimationAccordion',
+  components: {
+    DAnimationDefLetterD
+  }
 }
 </script>
 

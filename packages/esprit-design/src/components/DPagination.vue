@@ -5,7 +5,11 @@ import { useDPaginationUtils } from '../composables/utils'
 import DBtn from './buttons/DBtn.vue'
 
 export default {
-  name: 'DPagination'
+  name: 'DPagination',
+  components: {
+    DBtn,
+    Icon
+  }
 }
 </script>
 

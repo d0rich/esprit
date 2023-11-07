@@ -1,1 +1,1 @@
-export { type HighlightVariant } from '@d0rich/esprit-design'
+export type { HighlightVariant } from '@d0rich/esprit-design'

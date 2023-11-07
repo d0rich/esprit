@@ -4,7 +4,10 @@ import type { HighlightVariant } from '../utils/index'
 import DWrapFocusHighlight from '../utils/DWrapFocusHighlight.vue'
 
 export default {
-  name: 'DBtn'
+  name: 'DBtn',
+  components: {
+    DWrapFocusHighlight
+  }
 }
 </script>
 

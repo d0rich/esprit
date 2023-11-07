@@ -5,7 +5,11 @@ import DWrapFocusHighlight, {
 import DWrapShape from '../utils/DWrapShape.vue'
 
 export default {
-  name: 'DActionsList'
+  name: 'DActionsList',
+  components: {
+    DWrapFocusHighlight,
+    DWrapShape
+  }
 }
 
 export type ActionListItem<TEmit = any> = {

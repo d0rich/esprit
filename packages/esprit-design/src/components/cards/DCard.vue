@@ -2,7 +2,10 @@
 import DWrapShape from '../utils/DWrapShape.vue'
 
 export default {
-  name: 'DCard'
+  name: 'DCard',
+  components: {
+    DWrapShape
+  }
 }
 </script>
 

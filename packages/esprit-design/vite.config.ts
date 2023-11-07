@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
-import dts from "vite-plugin-dts";
+import dts from 'vite-plugin-dts'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/

@@ -2,7 +2,10 @@
 import DAnimationDefLetterD from './DAnimationDefLetterD.vue'
 
 export default {
-  name: 'DAnimationFloatingLetter'
+  name: 'DAnimationFloatingLetter',
+  components: {
+    DAnimationDefLetterD
+  }
 }
 </script>
 

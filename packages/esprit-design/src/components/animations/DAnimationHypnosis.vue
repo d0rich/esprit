@@ -2,7 +2,10 @@
 import DAnimationDefLetterD from './DAnimationDefLetterD.vue'
 
 export default {
-  name: 'DAnimationHypnosis'
+  name: 'DAnimationHypnosis',
+  components: {
+    DAnimationDefLetterD
+  }
 }
 </script>
 
