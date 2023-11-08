@@ -46,12 +46,7 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
 </script>
 
 <template>
-  <DWrapShape
-    shape-class="dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur"
-    :shape-style="{
-      clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
-    }"
-  >
+  <DWrapShape shape-class="d-actions-list__shape">
     <div class="p-7">
       <div class="mb-4 font-serif text-lg">
         <slot name="header" />
@@ -60,7 +55,7 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
       <TransitionGroup
         name="actions"
         tag="ul"
-        class="relative [&_button]:font-sans [&_button]:font-bold [&_button]:text-left font-sans font-bold"
+        class="d-actions-list__list"
         :class="listClass"
       >
         <li v-for="action in actions" :key="action.title">
@@ -85,4 +80,13 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
   </DWrapShape>
 </template>
 
-<style></style>
+<style>
+.d-actions-list__shape {
+  @apply dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur;
+  clip-path: polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px);
+}
+
+.d-actions-list__list {
+  @apply relative [&_button]:font-sans [&_button]:font-bold [&_button]:text-left font-sans font-bold;
+}
+</style>
