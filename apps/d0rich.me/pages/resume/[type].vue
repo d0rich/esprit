@@ -80,8 +80,10 @@ const { data: resumeList } = useAsyncData(
               class="print:!hidden ml-6 pb-2"
               :href="printResumeLink"
               target="_blank"
-              >Print</DBtn
+              no-passive-highlight
             >
+              Print
+            </DBtn>
           </div>
           <ContentRenderer
             class="resume-page__prose-content"

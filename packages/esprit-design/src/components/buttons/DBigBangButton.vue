@@ -1,6 +1,7 @@
 <script lang="ts">
-import { resolveComponent, computed } from 'vue'
+import { computed } from 'vue'
 import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils'
+import { useLink } from '../../composables/router'
 
 export default {
   name: 'DBigBangButton'
@@ -20,18 +21,13 @@ const props = defineProps({
   },
   to: {
     type: String,
-    default: undefined
+    default: ''
   }
 })
 
-// TODO: Change NuxtLink to VueRouterLink
-const NuxtLink = resolveComponent('NuxtLink')
-
 const { text: animationText } = useDBigBangButtonUtils()
 
-const currentTag = computed(() => {
-  return props.to ? NuxtLink : props.tag
-})
+const { linkComponent: currentTag } = useLink(props)
 
 const symbols = computed(() => props.text.split(''))
 
@@ -49,7 +45,7 @@ function onClick(event: MouseEvent) {
 
 <style>
 .big-bang-button {
-  @apply text-3xl font-bold uppercase;
+  @apply text-3xl font-bold uppercase cursor-pointer;
 }
 
 .big-bang-button:hover > span {

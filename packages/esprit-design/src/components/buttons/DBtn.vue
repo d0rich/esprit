@@ -1,7 +1,7 @@
 <script lang="ts">
-import { computed, resolveComponent } from 'vue'
 import type { HighlightVariant } from '../utils/index'
 import DWrapFocusHighlight from '../utils/DWrapFocusHighlight.vue'
+import { useLink } from '../../composables/router'
 
 export default {
   name: 'DBtn',
@@ -15,7 +15,7 @@ export default {
 const props = defineProps({
   to: {
     type: String,
-    default: undefined
+    default: ''
   },
   href: {
     type: String,
@@ -52,11 +52,7 @@ const props = defineProps({
   }
 })
 
-const currentComponent = computed(() => {
-  // TODO: Change NuxtLink to VueRouterLink
-  if (props.to || props.href) return resolveComponent('NuxtLink')
-  return props.tag
-})
+const { linkComponent: currentComponent } = useLink(props)
 </script>
 
 <template>
@@ -85,7 +81,7 @@ const currentComponent = computed(() => {
 
 <style>
 .d-btn {
-  @apply font-extrabold select-none relative inline-block;
+  @apply font-extrabold select-none relative inline-block cursor-pointer;
 }
 
 .d-btn--rotated {
