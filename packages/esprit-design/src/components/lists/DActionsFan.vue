@@ -44,15 +44,6 @@ defineProps({
 })
 
 defineEmits(['actionFocus', 'actionUnfocus', 'actionChoose'])
-
-const shapeStyles: Record<string, CSSProperties> = {
-  left: {
-    clipPath: 'polygon(10px 0, 0 100%, 100% 40%)'
-  },
-  right: {
-    clipPath: 'polygon(calc(100% - 10px) 0, 100% 100%, 0 40%)'
-  }
-}
 </script>
 
 <template>
@@ -71,12 +62,12 @@ const shapeStyles: Record<string, CSSProperties> = {
       v-for="(action, index) in actions"
       :key="action.title"
       tag="li"
-      class="w-full transform -my-8"
+      class="d-actions-fan__list-item"
       :filter-class="filterClass"
       :class="{
         [action.class ?? '']: true,
-        'origin-left': side === 'right',
-        'origin-right': side === 'left'
+        'd-actions-fan--right__list-item': side === 'right',
+        'd-actions-fan--left__list-item': side === 'left'
       }"
       :style="{
         ...action.style,
@@ -85,18 +76,17 @@ const shapeStyles: Record<string, CSSProperties> = {
         }deg`
       }"
       :shape-class="{
-        'dark:bg-neutral-900': true,
-        [action.shapeClass ?? '']: true
+        'd-actions-fan__list-item__shape': true,
+        [action.shapeClass ?? '']: true,
+        'd-actions-fan--right__list-item__shape': side === 'right',
+        'd-actions-fan--left__list-item__shape': side === 'left'
       }"
-      :shape-style="{
-        ...action.shapeStyle,
-        ...(side === 'right' ? shapeStyles.right : shapeStyles.left)
-      }"
+      :shape-style="action.shapeStyle"
     >
       <div
-        class="px-3 py-2"
+        class="d-actions-fan__list-item__body"
         :class="{
-          'flex justify-end': side === 'right'
+          'd-actions-fan--right__list-item__body': side === 'right'
         }"
       >
         <DBtn
@@ -118,6 +108,35 @@ const shapeStyles: Record<string, CSSProperties> = {
   </TransitionGroup>
 </template>
 
+<style>
+.d-actions-fan__list-item__shape {
+  @apply dark:bg-neutral-900;
+}
+.d-actions-fan--right__list-item__shape {
+  clip-path: polygon(calc(100% - 10px) 0, 100% 100%, 0 40%);
+}
+.d-actions-fan--left__list-item__shape {
+  clip-path: polygon(10px 0, 0 100%, 100% 40%);
+}
+
+.d-actions-fan__list-item {
+  @apply w-full transform -my-8;
+}
+.d-actions-fan--right__list-item {
+  @apply origin-left;
+}
+.d-actions-fan--left__list-item {
+  @apply origin-right;
+}
+.d-actions-fan__list-item__body {
+  @apply px-3 py-2;
+}
+.d-actions-fan--right__list-item__body {
+  @apply flex justify-end;
+}
+</style>
+
+<!-- Transition -->
 <style>
 .actions-enter-active,
 .actions-leave-active {
