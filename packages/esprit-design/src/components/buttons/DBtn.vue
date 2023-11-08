@@ -64,10 +64,10 @@ const currentComponent = computed(() => {
     :is="currentComponent"
     class="d-btn"
     :class="{
-      '-rotate-6': !noRotate,
-      uppercase: textTransform === 'uppercase',
-      capitalize: textTransform === 'capitalize',
-      lowercase: textTransform === 'lowercase'
+      'd-btn--rotated': !noRotate,
+      'd-btn--uppercase': textTransform === 'uppercase',
+      'd-btn--capitalize': textTransform === 'capitalize',
+      'd-btn--lowercase': textTransform === 'lowercase'
     }"
     v-bind="props"
   >
@@ -86,5 +86,21 @@ const currentComponent = computed(() => {
 <style>
 .d-btn {
   @apply font-extrabold select-none relative inline-block;
+}
+
+.d-btn--rotated {
+  @apply -rotate-6;
+}
+
+.d-btn--uppercase {
+  @apply uppercase;
+}
+
+.d-btn--capitalize {
+  @apply capitalize;
+}
+
+.d-btn--lowercase {
+  @apply lowercase;
 }
 </style>
