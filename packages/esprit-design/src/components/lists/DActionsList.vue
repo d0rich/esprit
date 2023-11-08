@@ -47,8 +47,8 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
 
 <template>
   <DWrapShape shape-class="d-actions-list__shape">
-    <div class="p-7">
-      <div class="mb-4 font-serif text-lg">
+    <div class="d-actions-list__body">
+      <div class="d-actions-list__header">
         <slot name="header" />
       </div>
 
@@ -84,6 +84,14 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
 .d-actions-list__shape {
   @apply dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur;
   clip-path: polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px);
+}
+
+.d-actions-list__body {
+  @apply p-7;
+}
+
+.d-actions-list__header {
+  @apply mb-4 font-serif text-lg;
 }
 
 .d-actions-list__list {
