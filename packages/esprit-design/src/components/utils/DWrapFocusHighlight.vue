@@ -40,7 +40,7 @@ const props = defineProps({
   },
   colorClass: {
     type: [String, Object as () => Record<string, boolean>],
-    default: 'bg-red-600'
+    default: 'd-focus-hl--default-color'
   }
 })
 
@@ -90,6 +90,9 @@ const currentComponent = computed(() => {
 <style>
 .d-focus-hl {
   @apply relative;
+}
+.d-focus-hl--default-color {
+  @apply bg-red-600;
 }
 </style>
 
