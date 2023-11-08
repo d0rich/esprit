@@ -66,18 +66,24 @@ defineProps({
     <use
       href="#spinner"
       transform="translate( -20 20 )"
-      class="fill-black"
+      class="d-animation-spinner__background"
       :transform-origin="transformOrigin"
     />
     <use
       href="#spinner"
-      class="fill-white"
+      class="d-animation-spinner__foreground"
       :transform-origin="transformOrigin"
     />
   </svg>
 </template>
 
 <style>
+.d-animation-spinner__foreground {
+  @apply fill-white;
+}
+.d-animation-spinner__background {
+  @apply fill-black;
+}
 .d-animation-spinner__blade {
   --transform-static: scale(0.5) rotate(220deg);
   animation: d-spinner-blade-wiggle var(--d-spinner-blade-wiggle-period)
