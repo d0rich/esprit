@@ -78,12 +78,12 @@ const fifthStat = computed(() => statFromIndex(4))
 <template>
   <figure class="max-w-full">
     <div class="stats__print-value">
-      <div class="text-lg font-bold">{{ groupTitle }}</div>
+      <div class="stats__print-value__group-title">{{ groupTitle }}</div>
       <div>
         <div
           v-for="(skill, index) in titles"
           :key="skill"
-          class="grid grid-cols-[1fr_auto] items-center gap-x-4 gapy-1"
+          class="stats__print-value__skill"
         >
           <div>{{ skill }}</div>
           <div>
@@ -101,26 +101,26 @@ const fifthStat = computed(() => statFromIndex(4))
       <span
         v-for="(skill, index) in titles"
         :key="skill"
-        class="rounded text-white p-[.3em]"
+        class="stats__print-value--small__skill"
         :class="{
-          hidden: values[index] < 3,
-          'bg-blue-500 text-xs': values[index] === 3,
-          'bg-blue-600 text-sm': values[index] === 4,
-          'bg-blue-700 text-base': values[index] === 5
+          'stats__print-value--small__skill--hidden': values[index] < 3,
+          'stats__print-value--small__skill--3': values[index] === 3,
+          'stats__print-value--small__skill--4': values[index] === 4,
+          'stats__print-value--small__skill--5': values[index] === 5
         }"
       >
         {{ skill }}
       </span>
     </div>
-    <div class="relative print:hidden">
+    <div class="stats">
       <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
         <polygon
           points="100,-350 1500,-500 1000,1350 -500,1500"
-          class="fill-neutral-900"
+          class="stats__bg"
         />
         <polygon
           :points="pointsToString(shrinkStar(fullStarPoints, 2))"
-          class="fill-neutral-500"
+          class="stats__bg-star--odd"
         />
         <!-- Stats bg -->
         <g>
@@ -129,8 +129,8 @@ const fifthStat = computed(() => statFromIndex(4))
             :key="index"
             :points="pointsToString(star)"
             :class="{
-              'fill-neutral-500': index % 2,
-              'fill-neutral-800': !(index % 2)
+              'stats__bg-star--odd': index % 2,
+              'stats__bg-star--even': !(index % 2)
             }"
           />
         </g>
@@ -283,7 +283,7 @@ const fifthStat = computed(() => statFromIndex(4))
       <svg
         viewBox="-500 -500 2000 2000"
         xmlns="http://www.w3.org/2000/svg"
-        class="absolute inset-0 pointer-events-none"
+        class="stats_titles-layer"
       >
         <text x="-500" y="-300" class="stats__group-title">
           {{ groupTitle }}
@@ -353,6 +353,23 @@ const fifthStat = computed(() => statFromIndex(4))
 </template>
 
 <style>
+.stats {
+  @apply relative print:hidden;
+}
+
+.stats__bg {
+  @apply fill-neutral-900;
+}
+
+.stats__bg-star--odd {
+  @apply fill-neutral-500;
+}
+
+.stats__bg-star--even {
+  @apply fill-neutral-800;
+}
+
+
 .stats__single-stat:hover {
   animation: single-stat-hover 1.5s ease-in-out infinite;
 }
@@ -410,6 +427,10 @@ const fifthStat = computed(() => statFromIndex(4))
   left: 6%;
 }
 
+.stats_titles-layer {
+  @apply absolute inset-0 pointer-events-none;
+}
+
 .stats__group-title {
   font-size: 150px;
   paint-order: stroke;
@@ -442,8 +463,34 @@ const fifthStat = computed(() => statFromIndex(4))
 .stats__print-value {
   @apply hidden print:block;
 }
+.stats__print-value__group-title {
+  @apply text-lg font-bold;
+}
+.stats__print-value__skill {
+  @apply grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1;
+}
 .stats__print-value--small {
   @apply hidden flex-wrap gap-2 items-center;
+}
+
+.stats__print-value--small__skill {
+  @apply rounded text-white p-[.3em];
+}
+
+.stats__print-value--small__skill--hidden {
+  @apply hidden;
+}
+
+.stats__print-value--small__skill--3 {
+  @apply bg-blue-500 text-xs;
+}
+
+.stats__print-value--small__skill--4 {
+  @apply bg-blue-600 text-sm;
+}
+
+.stats__print-value--small__skill--5 {
+  @apply bg-blue-700 text-base;
 }
 
 .small-print-stats .stats__print-value {

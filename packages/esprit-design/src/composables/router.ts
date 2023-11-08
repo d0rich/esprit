@@ -1,8 +1,5 @@
 import { resolveDynamicComponent, computed } from 'vue'
-import type {
-  RouterLink as _RouterLink,
-  RouteLocationRaw
-} from 'vue-router'
+import type { RouterLink as _RouterLink, RouteLocationRaw } from 'vue-router'
 
 export interface LinkProps {
   readonly href?: string
