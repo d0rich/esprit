@@ -369,7 +369,6 @@ const fifthStat = computed(() => statFromIndex(4))
   @apply fill-neutral-800;
 }
 
-
 .stats__single-stat:hover {
   animation: single-stat-hover 1.5s ease-in-out infinite;
 }
