@@ -1,1 +1,1 @@
-export * from '../build/DSocialNetworkPost/tact_DSocialNetworkPost';
+export * from '../build/DSocialNetworkPost/tact_DSocialNetworkPost'

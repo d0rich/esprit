@@ -1,1 +1,1 @@
-export * from '../build/DSocialNetworkAccount/tact_DSocialNetworkAccount';
+export * from '../build/DSocialNetworkAccount/tact_DSocialNetworkAccount'
