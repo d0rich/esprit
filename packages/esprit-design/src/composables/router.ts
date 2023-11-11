@@ -15,8 +15,8 @@ export function useLink(props: LinkProps) {
   const NuxtLink =
     // @ts-ignore
     typeof defineNuxtLink === 'function'
-      // @ts-ignore
-      ? (defineNuxtLink({
+      ? // @ts-ignore
+        (defineNuxtLink({
           componentName: 'DNuxtLink'
         }) as typeof _RouterLink)
       : undefined
