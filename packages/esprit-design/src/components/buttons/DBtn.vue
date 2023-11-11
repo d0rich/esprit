@@ -52,7 +52,11 @@ const props = defineProps({
   }
 })
 
-const { linkComponent: currentComponent } = useLink(props)
+const {
+  linkComponent: currentComponent,
+  isLink,
+  isExternalLink
+} = useLink(props)
 </script>
 
 <template>
@@ -70,7 +74,7 @@ const { linkComponent: currentComponent } = useLink(props)
     <DWrapFocusHighlight
       :variant="highlight"
       :link-exact="exact"
-      :no-passive-link="noPassiveHighlight"
+      :no-passive-link="noPassiveHighlight || !isLink || isExternalLink"
       :color-class="colorClass"
       :active="active"
     >

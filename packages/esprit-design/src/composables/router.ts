@@ -17,10 +17,21 @@ export function useLink(props: LinkProps) {
     | string
 
   const isLink = computed(() => !!(props.href || props.to))
+  const isExternalLink = computed(() => {
+    if (!props.href) return false
+    const href = props.href
+    return (
+      href.startsWith('http') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('#')
+    )
+  })
 
   if (typeof NuxtLink !== 'string') {
     return {
       isLink,
+      isExternalLink,
       linkComponent: NuxtLink
     }
   }
@@ -28,12 +39,14 @@ export function useLink(props: LinkProps) {
   if (typeof RouterLink !== 'string') {
     return {
       isLink,
+      isExternalLink,
       linkComponent: RouterLink
     }
   }
 
   return {
     isLink,
+    isExternalLink,
     linkComponent: 'a'
   }
 }
