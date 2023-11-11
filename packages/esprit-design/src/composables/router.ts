@@ -12,9 +12,14 @@ export function useLink(props: LinkProps) {
   const RouterLink = resolveDynamicComponent('RouterLink') as
     | typeof _RouterLink
     | string
-  const NuxtLink = resolveDynamicComponent('NuxtLink') as
-    | typeof _RouterLink
-    | string
+  const NuxtLink =
+    // @ts-ignore
+    typeof defineNuxtLink === 'function'
+      // @ts-ignore
+      ? (defineNuxtLink({
+          componentName: 'DNuxtLink'
+        }) as typeof _RouterLink)
+      : undefined
 
   const isLink = computed(() => !!(props.href || props.to))
   const isExternalLink = computed(() => {
@@ -28,7 +33,7 @@ export function useLink(props: LinkProps) {
     )
   })
 
-  if (typeof NuxtLink !== 'string') {
+  if (typeof NuxtLink !== 'undefined') {
     return {
       isLink,
       isExternalLink,
