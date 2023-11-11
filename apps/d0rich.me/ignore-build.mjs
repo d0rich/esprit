@@ -16,9 +16,12 @@ const isNuxtDesignSystemChanged = changesList.includes(
   'packages/nuxt-design-system'
 )
 
+const isEspritDesignChanged = changesList.includes('packages/esprit-design')
+
 const ignoreBuild =
   !isD0richMeChanged &&
   !isNuxtContentMermaidChanged &&
-  !isNuxtDesignSystemChanged
+  !isNuxtDesignSystemChanged &&
+  !isEspritDesignChanged
 
 process.exit(ignoreBuild ? 0 : 1)

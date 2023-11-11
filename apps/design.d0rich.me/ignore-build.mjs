@@ -12,7 +12,11 @@ const isDesignD0richMeChanged = changesList.includes('apps/design.d0rich.me')
 const isNuxtDesignSystemChanged = changesList.includes(
   'packages/nuxt-design-system'
 )
+const isEspritDesignChanged = changesList.includes('packages/esprit-design')
 
-const ignoreBuild = !isDesignD0richMeChanged && !isNuxtDesignSystemChanged
+const ignoreBuild =
+  !isDesignD0richMeChanged &&
+  !isNuxtDesignSystemChanged &&
+  !isEspritDesignChanged
 
 process.exit(ignoreBuild ? 0 : 1)
