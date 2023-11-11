@@ -4,6 +4,8 @@
     "vue.volar",
     "nuxt.mdc",
     "bradlc.vscode-tailwindcss",
-    "antfu.iconify"
+    "antfu.iconify",
+    "tonwhales.func-vscode",
+    "ton-community.tact-vscode"
   ]
 }
