@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 0.2.0
+
+### Minor Changes
+
+- c3d11c9: Extract components from Nuxt design system to the general Vue package
+
 ## 0.1.5
 
 ### Patch Changes
