@@ -1,2 +1,4 @@
-export { type ActionFanItem } from './Fan.vue'
-export { type ActionListItem } from './List.vue'
+export type {
+  ActionFanItem,
+  ActionListItem
+} from '@d0rich/esprit-design/src/components/lists'

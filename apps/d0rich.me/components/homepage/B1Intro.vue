@@ -96,7 +96,7 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
         <DWrapShape
           :ref="
             (el) => {
-              textContainer = componentFromNodeRef(el)
+              textContainer = el as ComponentPublicInstance
             }
           "
           class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]"
@@ -165,6 +165,7 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
                 <DBtn
                   :href="socialLink.link"
                   target="_blank"
+                  no-passive-highlight
                   :aria-label="socialLink.alt"
                 >
                   <Icon :name="socialLink.icon" class="m-[0.4em]" />

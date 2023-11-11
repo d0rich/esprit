@@ -5,6 +5,9 @@
     "prepare": {
       "outputs": [".nuxt"]
     },
+    "@d0rich/esprit-design#build": {
+      "outputs": ["dist"]
+    },
     "generate": {
       "dependsOn": ["^generate"],
       "outputs": ["dist"]

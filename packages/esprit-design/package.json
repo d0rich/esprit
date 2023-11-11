@@ -1,0 +1,42 @@
+{
+  "name": "@d0rich/esprit-design",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/esprit-design.umd.cjs",
+  "module": "./dist/esprit-design.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esprit-design.js",
+      "require": "./dist/esprit-design.umd.cjs"
+    },
+    "./style.css": "./dist/style.css",
+    "./tailwind.config": "./tailwind.config.js",
+    "./src/": "./src/"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@iconify/vue": "^4.1.1",
+    "gsap": "^3.12.2",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.6.3",
+    "vue-router": "^4.2.5",
+    "vue-tsc": "^1.8.5"
+  }
+}

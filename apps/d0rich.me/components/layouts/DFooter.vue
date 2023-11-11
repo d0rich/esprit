@@ -25,6 +25,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
                 target="_blank"
                 text-transform="none"
                 no-rotate
+                no-passive-highlight
               >
                 <div class="flex items-center gap-2">
                   <Icon name="ic:sharp-mail" class="text-xl" />
@@ -38,6 +39,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
                 target="_blank"
                 text-transform="none"
                 no-rotate
+                no-passive-highlight
               >
                 <div class="flex items-center gap-2">
                   <Icon name="fa6-brands:github" class="text-xl" /> GitHub
@@ -50,6 +52,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
                 target="_blank"
                 text-transform="none"
                 no-rotate
+                no-passive-highlight
               >
                 <div class="flex items-center gap-2">
                   <Icon name="fa6-brands:linkedin" class="text-xl" /> LinkedIn
@@ -62,6 +65,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
                 target="_blank"
                 text-transform="none"
                 no-rotate
+                no-passive-highlight
               >
                 <div class="flex items-center gap-2">
                   <Icon name="fa6-brands:telegram" class="text-xl" /> Telegram

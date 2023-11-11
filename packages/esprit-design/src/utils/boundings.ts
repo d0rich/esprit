@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export function getAbsoluteBoundingsGetters(
   el: Ref<Element | null>,
   correlations: { x?: () => number; y?: () => number } = {}
