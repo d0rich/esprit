@@ -15,7 +15,8 @@
       "require": "./dist/esprit-design.umd.cjs"
     },
     "./style.css": "./dist/style.css",
-    "./tailwind.config.js": "./tailwind.config.js"
+    "./tailwind.config": "./tailwind.config.js",
+    "./src/": "./src/"
   },
   "scripts": {
     "dev": "vite",

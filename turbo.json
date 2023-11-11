@@ -5,9 +5,6 @@
     "prepare": {
       "outputs": [".nuxt"]
     },
-    "@d0rich/nuxt-design-system#prepare": {
-      "dependsOn": ["@d0rich/esprit-design#build"]
-    },
     "@d0rich/esprit-design#build": {
       "outputs": ["dist"]
     },
