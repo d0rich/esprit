@@ -9,6 +9,14 @@ trait NftCollection with Deployable, Accounting {
 
     // ===== Customizable functions ===== //
 
+    virtual fun getNftCollectionContent(): Cell {
+        let b: StringBuilder = beginString();
+        let collectionDataString: String = self.collection_content.asSlice().asString();
+        b.append(collectionDataString);
+        b.append("meta.json");
+        return b.toCell();
+    }
+
     virtual fun getNftItemInit(item_index: Int): StateInit {
         require(false, "Not implemented");
     }
@@ -20,13 +28,9 @@ trait NftCollection with Deployable, Accounting {
     // https://github.com/ton-blockchain/TEPs/blob/master/text/0062-nft-standard.md#get-methods-1
 
     get fun get_collection_data(): CollectionData {
-        let b: StringBuilder = beginString();
-        let collectionDataString: String = self.collection_content.asSlice().asString();
-        b.append(collectionDataString);
-        b.append("meta.json"); // You can changed this your self.
         return CollectionData{
             next_item_index: self.next_item_index,
-            collection_content: b.toCell(),
+            collection_content: self.getNftCollectionContent(),
             owner_address: self.owner_address
         };
     }
