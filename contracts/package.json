@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "blueprint build --all",
+    "test": "jest",
     "bp:start": "blueprint run",
-    "bp:build": "blueprint build",
-    "test": "jest"
+    "bp:build": "blueprint build"
   },
   "devDependencies": {
     "@ton-community/blueprint": "^0.12.0",
