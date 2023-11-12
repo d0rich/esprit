@@ -3,7 +3,7 @@ import "./messages_nft.tact";
 
 trait NftCollectionRoyaltyExtention {
     royalty_params: RoyaltyParams;
-    owner_address: Address;
+    owner: Address;
 
     // ===== Customizable functions ===== //
 
@@ -33,7 +33,7 @@ trait NftCollectionRoyaltyExtention {
                 query_id: msg.query_id,
                 numerator:  self.royalty_params.numerator,
                 denominator: self.royalty_params.denominator,
-                destination: self.owner_address
+                destination: self.owner
             }.toCell()
         });
     }

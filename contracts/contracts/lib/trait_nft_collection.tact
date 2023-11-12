@@ -4,7 +4,7 @@ import "./trait_accounting.tact";
 
 trait NftCollection with Deployable, Accounting {
     next_item_index: Int;
-    owner_address: Address;
+    owner: Address;
     collection_content: Cell;
 
     // ===== Customizable functions ===== //
@@ -38,7 +38,7 @@ trait NftCollection with Deployable, Accounting {
         return CollectionData{
             next_item_index: self.next_item_index,
             collection_content: self.getNftCollectionContent(),
-            owner_address: self.owner_address
+            owner_address: self.owner
         };
     }
 
@@ -69,7 +69,7 @@ trait NftCollection with Deployable, Accounting {
                 body: Transfer {
                     query_id: 0,
                     new_owner: ctx.sender,
-                    response_destination: self.owner_address,
+                    response_destination: self.owner,
                     custom_payload: emptyCell(),
                     forward_amount: 0,
                     forward_payload: emptySlice()
