@@ -25,7 +25,7 @@ trait NftCollection with Deployable, Accounting {
     }
 
     virtual fun calculateNftItemInitalBalance(): Int {
-        return self.calculateFullAmountForSending()
+        return self.calculateFullAmountForSending();
     }
 
     // ------------------ Get Function  ------------------ //
