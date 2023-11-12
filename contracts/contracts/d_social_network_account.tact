@@ -1,8 +1,9 @@
 import "@stdlib/deploy";
 import "./lib/trait_nft_collection.tact";
+import "./lib/trait_nft_collection_royalty_extention.tact";
 import "./d_social_network_post.tact";
 
-contract DSocialNetworkAccount with NftCollection {
+contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention {
     next_item_index: Int as uint32 = 0;
     owner_address: Address;
     royalty_params: RoyaltyParams;

@@ -5,7 +5,6 @@ import "./trait_accounting.tact";
 trait NftCollection with Deployable, Accounting {
     next_item_index: Int;
     owner_address: Address;
-    royalty_params: RoyaltyParams;
     collection_content: Cell;
 
     // ===== Customizable functions ===== //
@@ -18,37 +17,16 @@ trait NftCollection with Deployable, Accounting {
 
     receive("Mint"){
         let ctx: Context = context();
-        self.mint(ctx.sender, self.getFullAmountForSending());
-    }
-
-    receive(msg: GetRoyaltyParams) {
-        let ctx: Context = context(); // get sender Info
-        send(SendParameters{
-            to: ctx.sender,
-            value: 0,
-            mode: 64,
-            bounce: false,
-            body: ReportRoyaltyParams {
-                query_id: msg.query_id,
-                numerator:  self.royalty_params.numerator,
-                denominator: self.royalty_params.denominator,
-                destination: self.owner_address
-            }.toCell()
-        });
-    }
-
-    // ===== Private Methods ===== //
-    fun mint(sender: Address, msgValue: Int) {
         require(self.next_item_index >= 0, "non-sequential NFTs");
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         send(SendParameters{
                 to: contractAddress(nft_init),
-                value: msgValue,
+                value: self.getFullAmountForSending(),
                 bounce: false,
                 mode: SendIgnoreErrors,
                 body: Transfer {
                     query_id: 0,
-                    new_owner: sender,
+                    new_owner: ctx.sender,
                     response_destination: self.owner_address,
                     custom_payload: emptyCell(),
                     forward_amount: 0,
@@ -59,6 +37,9 @@ trait NftCollection with Deployable, Accounting {
             });
         self.next_item_index = self.next_item_index + 1;
     }
+
+    // ===== Private Methods ===== //
+
 
     // ------------------ Get Function  ------------------ //
 
@@ -88,9 +69,5 @@ trait NftCollection with Deployable, Accounting {
         let ic: String = individual_content.asSlice().asString();
         b.append(ic);
         return b.toCell();
-    }
-
-    get fun royalty_params(): RoyaltyParams {
-        return self.royalty_params;
     }
 }
