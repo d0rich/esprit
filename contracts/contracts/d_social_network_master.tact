@@ -1,8 +1,10 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
+import "./lib/trait_accounting.tact";
+import "./messages/d.tact";
 import "./d_social_network_account.tact";
 
-contract DSocialNetworkMaster with Deployable, OwnableTransferable  {
+contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
     version: String = "v0.0.1";
     owner: Address;
     next_account_index: Int as uint32 = 0;
@@ -14,12 +16,11 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable  {
 
     receive(msg: RegisterAccount) {
         require(self.next_account_index >= 0, "non-sequential NFTs");
-        self.requireEnoughTonForMinting();
         let ctx: Context = context();
         let account_init: StateInit = self.getAccountInit(self.next_account_index);
         send(SendParameters{
                 to: contractAddress(account_init),
-                value: self.calculateNftItemInitalBalance(),
+                value: self.calculateFullAmountForSending(),
                 bounce: false,
                 mode: SendIgnoreErrors,
                 body: Transfer {
@@ -39,17 +40,23 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable  {
     fun getAccountInit(account_id: Int): StateInit {
         return initOf DSocialNetworkAccount(
             account_id,
-            sender,
-            self.generateAccountCollectionContent(sender),
-            self.generateAccountRoyaltyParams(sender)
+            myAddress(),
+            self.generateAccountCollectionContent(),
+            self.generateAccountRoyaltyParams()
         );
     }
 
-    fun generateAccountCollectionContent(sender: Address): Cell {
-        require(false, "not implemented")
+    fun generateAccountCollectionContent(): Cell {
+        require(false, "not implemented");
+        return emptyCell();
     }
 
-    fun generateAccountRoyaltyParams(sender: Address): RoyaltyParams {
-        require(false, "not implemented")
+    fun generateAccountRoyaltyParams(): RoyaltyParams {
+        require(false, "not implemented");
+        return RoyaltyParams{
+            numerator: 0,
+            denominator: 0,
+            destination: myAddress()
+        };
     }
 }
