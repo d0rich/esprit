@@ -12,6 +12,10 @@
       "dependsOn": ["^generate"],
       "outputs": ["dist"]
     },
+    "build": {
+      "dependsOn": ["prepare"],
+      "outputs": ["dist"]
+    },
     "@d0rich/contracts#build": {
       "outputs": ["dist"]
     },
