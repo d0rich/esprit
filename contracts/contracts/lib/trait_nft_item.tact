@@ -13,48 +13,14 @@ trait NftItem with Deployable, Ownable, Accounting {
     // ===== Recievers ===== //
 
     receive(msg: Transfer){
-        let ctx: Context = context();
-
         // Only Owner of the this NFT Item can transfer it.
         self.requireOwner();
 
-        let msgValue: Int = self.getFullAmountForSending();
-
-        if (self.is_initialized == false) {  // Initial Transfer, aka the "Minting" of the NFT
-            self.is_initialized = true;
-            self.owner = msg.new_owner;
-            send(SendParameters{
-                to: msg.response_destination,
-                value: 0,
-                mode:  SendIgnoreErrors + SendRemainingValue,
-                body: Excesses { query_id: msg.query_id }.toCell()
-            });
+        if (self.is_initialized == false) {
+            // Initial Transfer, aka the "Minting" of the NFT
+            self.initializeNftItem(msg);
         } else {
-
-            self.owner = msg.new_owner;  // change current owner to the new_owner
-            if (msg.forward_amount > 0) {
-                send(SendParameters{
-                    to: msg.new_owner,
-                    value: msg.forward_amount,
-                    mode: SendIgnoreErrors,
-                    bounce: false,
-                    body: OwnershipAssigned{
-                        query_id: msg.query_id,
-                        prev_owner: ctx.sender,
-                        forward_payload: msg.forward_payload
-                    }.toCell()
-                });
-            }
-
-            msgValue = msgValue - ctx.readForwardFee();
-            if (msg.response_destination != null) {
-                send(SendParameters{
-                    to: msg.response_destination,
-                    value: msgValue - msg.forward_amount,
-                    mode: SendPayGasSeparately,
-                    body: Excesses { query_id: msg.query_id }.toCell()
-                });
-            }
+            self.transferNftItem(msg);
         }
     }
 
@@ -92,5 +58,49 @@ trait NftItem with Deployable, Ownable, Accounting {
             owner_address: self.owner,
             individual_content: b.toCell()
         };
+    }
+
+    // ===== Private Methods ===== //
+    fun initializeNftItem(msg: Transfer) {
+        self.requireOwner();
+        require(self.is_initialized == false, "NFT Item is already initialized");
+        self.is_initialized = true;
+        self.owner = msg.new_owner;
+        send(SendParameters{
+            to: msg.response_destination,
+            value: 0,
+            mode:  SendIgnoreErrors + SendRemainingValue,
+            body: Excesses { query_id: msg.query_id }.toCell()
+        });
+    }
+
+    fun transferNftItem(msg: Transfer) {
+        self.requireOwner();
+        let msgValue: Int = self.getFullAmountForSending();
+        let ctx: Context = context();
+        self.owner = msg.new_owner;  // change current owner to the new_owner
+        if (msg.forward_amount > 0) {
+            send(SendParameters{
+                to: msg.new_owner,
+                value: msg.forward_amount,
+                mode: SendIgnoreErrors,
+                bounce: false,
+                body: OwnershipAssigned{
+                    query_id: msg.query_id,
+                    prev_owner: ctx.sender,
+                    forward_payload: msg.forward_payload
+                }.toCell()
+            });
+        }
+
+        msgValue = msgValue - ctx.readForwardFee();
+        if (msg.response_destination != null) {
+            send(SendParameters{
+                to: msg.response_destination,
+                value: msgValue - msg.forward_amount,
+                mode: SendPayGasSeparately,
+                body: Excesses { query_id: msg.query_id }.toCell()
+            });
+        }
     }
 }
