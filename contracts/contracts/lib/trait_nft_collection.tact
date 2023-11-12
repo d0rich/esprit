@@ -1,8 +1,9 @@
 import "@stdlib/deploy";
+import "@stdlib/ownable";
 import "./messages_nft.tact";
 import "./trait_accounting.tact";
 
-trait NftCollection with Deployable, Accounting {
+trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
     owner: Address;
     collection_content: Cell;

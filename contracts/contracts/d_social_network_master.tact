@@ -1,7 +1,7 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./lib/trait_accounting.tact";
-import "./messages/d.tact";
+import "./messages_d.tact";
 import "./d_social_network_account.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
@@ -38,12 +38,7 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
     }
 
     fun getAccountInit(account_id: Int): StateInit {
-        return initOf DSocialNetworkAccount(
-            account_id,
-            myAddress(),
-            self.generateAccountCollectionContent(),
-            self.generateAccountRoyaltyParams()
-        );
+        return initOf DSocialNetworkAccount(account_id, myAddress());
     }
 
     fun generateAccountCollectionContent(): Cell {
