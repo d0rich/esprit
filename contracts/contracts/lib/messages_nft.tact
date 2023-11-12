@@ -1,3 +1,18 @@
+// NFT collection
+
+struct CollectionData {
+    next_item_index: Int;
+    collection_content: Cell;
+    owner_address: Address;
+}
+
+message MintNft {
+    query_id: Int as uint64;
+    individual_content: Cell;
+}
+
+// NFT collection: Royalty exntention
+
 message(0x693d3950) GetRoyaltyParams {
     query_id: Int as uint64;
 }
@@ -9,22 +24,13 @@ message(0xa8cb00ad) ReportRoyaltyParams {
     destination: Address;
 }
 
-struct CollectionData {
-    next_item_index: Int;
-    collection_content: Cell;
-    owner_address: Address;
-}
-
 struct RoyaltyParams {
     numerator: Int;
     denominator: Int;
     destination: Address;
 }
 
-message MintNft {
-    query_id: Int as uint64;
-    individual_content: Cell;
-}
+// NFT item
 
 message InitializeNft {
     query_id: Int as uint64;
