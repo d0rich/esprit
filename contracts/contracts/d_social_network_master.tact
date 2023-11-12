@@ -23,13 +23,11 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
                 value: self.calculateFullAmountForSending(),
                 bounce: false,
                 mode: SendIgnoreErrors,
-                body: Transfer {
+                body: InitializeAccount {
                     query_id: 0,
-                    new_owner: ctx.sender,
-                    response_destination: self.owner,
-                    custom_payload: emptyCell(),
-                    forward_amount: 0,
-                    forward_payload: emptySlice()
+                    owner: ctx.sender,
+                    collection_content: self.generateAccountCollectionContent(ctx.sender),
+                    royalty_params: self.generateAccountRoyaltyParams(ctx.sender)
                 }.toCell(),
                 code: account_init.code,
                 data: account_init.data
@@ -41,12 +39,12 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         return initOf DSocialNetworkAccount(account_id, myAddress());
     }
 
-    fun generateAccountCollectionContent(): Cell {
+    fun generateAccountCollectionContent(owner: Address): Cell {
         require(false, "not implemented");
         return emptyCell();
     }
 
-    fun generateAccountRoyaltyParams(): RoyaltyParams {
+    fun generateAccountRoyaltyParams(owner: Address): RoyaltyParams {
         require(false, "not implemented");
         return RoyaltyParams{
             numerator: 0,

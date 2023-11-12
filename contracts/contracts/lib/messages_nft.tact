@@ -22,6 +22,7 @@ struct RoyaltyParams {
 }
 
 message MintNft {
+    query_id: Int as uint64;
     individual_content: Cell;
 }
 
