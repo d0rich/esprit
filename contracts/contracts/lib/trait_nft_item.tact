@@ -81,6 +81,7 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     fun transferNftItem(msg: Transfer) {
         self.requireOwner();
+        require(self.is_initialized == true, "NFT Item is not initialized");
         let msgValue: Int = self.calculateFullAmountForSending();
         let ctx: Context = context();
         self.owner = msg.new_owner;  // change current owner to the new_owner

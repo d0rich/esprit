@@ -21,6 +21,13 @@ trait NftCollection with Deployable, Accounting {
         require(false, "Not implemented");
     }
 
+    virtual fun getNftItemIndividualContent(index: Int, individual_content: Cell): Cell {
+        let b: StringBuilder = beginString();
+        let ic: String = individual_content.asSlice().asString();
+        b.append(ic);
+        return b.toCell();
+    }
+
     virtual fun requireEnoughTonForMinting() {
     }
 
@@ -48,10 +55,7 @@ trait NftCollection with Deployable, Accounting {
     }
 
     get fun get_nft_content(index: Int, individual_content: Cell): Cell {
-        let b: StringBuilder = beginString();
-        let ic: String = individual_content.asSlice().asString();
-        b.append(ic);
-        return b.toCell();
+        return self.getNftItemIndividualContent(index, individual_content);
     }
 
     // ===== Recievers ===== //
