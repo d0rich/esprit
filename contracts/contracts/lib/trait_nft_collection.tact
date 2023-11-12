@@ -21,6 +21,10 @@ trait NftCollection with Deployable, Accounting {
         require(false, "Not implemented");
     }
 
+    virtual fun calculateNftItemInitalBalance(): Int {
+        return self.calculateFullAmountForSending()
+    }
+
     // ------------------ Get Function  ------------------ //
 
 
@@ -55,7 +59,7 @@ trait NftCollection with Deployable, Accounting {
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         send(SendParameters{
                 to: contractAddress(nft_init),
-                value: self.calculateFullAmountForSending(),
+                value: self.calculateNftItemInitalBalance(),
                 bounce: false,
                 mode: SendIgnoreErrors,
                 body: Transfer {
