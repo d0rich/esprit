@@ -1,14 +1,20 @@
 import "@stdlib/deploy";
 import "./messages.tact";
-
-const minTonsForStorage: Int = ton("0.03");
-const gasConsumption: Int = ton("0.03");
+import "./constants.tact";
 
 trait NftCollection with Deployable {
-    next_item_index: Int as uint32 = 0;
+    next_item_index: Int;
     owner_address: Address;
     royalty_params: RoyaltyParams;
     collection_content: Cell;
+
+    // ===== Customizable functions ===== //
+
+    virtual fun getNftItemInitInternal(item_index: Int): StateInit {
+        require(false, "Not implemented");
+    }
+
+    // ===== Recievers ===== //
 
     receive("Mint"){
         let ctx: Context = context(); // get sender Info
@@ -17,6 +23,22 @@ trait NftCollection with Deployable {
         let storageFee: Int = minTonsForStorage - min(tonBalanceBeforeMsg, minTonsForStorage);
         msgValue = msgValue - (storageFee + gasConsumption);
         self.mint(ctx.sender, msgValue);
+    }
+
+    receive(msg: GetRoyaltyParams) {
+        let ctx: Context = context(); // get sender Info
+        send(SendParameters{
+            to: ctx.sender,
+            value: 0,
+            mode: 64,
+            bounce: false,
+            body: ReportRoyaltyParams {
+                query_id: msg.query_id,
+                numerator:  self.royalty_params.numerator,
+                denominator: self.royalty_params.denominator,
+                destination: self.owner_address
+            }.toCell()
+        });
     }
 
     // ===== Private Methods ===== //
@@ -42,22 +64,6 @@ trait NftCollection with Deployable {
         self.next_item_index = self.next_item_index + 1;
     }
 
-    receive(msg: GetRoyaltyParams) {
-        let ctx: Context = context(); // get sender Info
-        send(SendParameters{
-            to: ctx.sender,
-            value: 0,
-            mode: 64,
-            bounce: false,
-            body: ReportRoyaltyParams {
-                query_id: msg.query_id,
-                numerator:  self.royalty_params.numerator,
-                denominator: self.royalty_params.denominator,
-                destination: self.owner_address
-            }.toCell()
-        });
-    }
-
     // ------------------ Get Function  ------------------ //
     get fun get_collection_data(): CollectionData {
         let b: StringBuilder = beginString();
@@ -77,7 +83,7 @@ trait NftCollection with Deployable {
     }
 
     get fun getNftItemInit(item_index: Int): StateInit {
-        return initOf NftItem(myAddress(), item_index, self.owner_address, self.collection_content);
+        return self.getNftItemInitInternal(item_index);
     }
 
     get fun get_nft_content(index: Int, individual_content: Cell): Cell {

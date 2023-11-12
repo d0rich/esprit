@@ -1,8 +1,6 @@
 import "@stdlib/deploy";
 import "./nft_lib/trait_collection.tact";
-
-const minTonsForStorage: Int = ton("0.03");
-const gasConsumption: Int = ton("0.03");
+import "./d_social_network_post.tact";
 
 contract DSocialNetworkAccount with NftCollection {
     next_item_index: Int as uint32 = 0;
@@ -14,5 +12,9 @@ contract DSocialNetworkAccount with NftCollection {
         self.owner_address = owner_address;
         self.collection_content = collection_content;
         self.royalty_params = royalty_params;
+    }
+
+    override fun getNftItemInitInternal(item_index: Int): StateInit {
+        return initOf DSocialNetworkPost(myAddress(), item_index, self.owner_address, self.collection_content);
     }
 }

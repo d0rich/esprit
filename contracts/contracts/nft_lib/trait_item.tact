@@ -1,9 +1,7 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages.tact";
-
-const minTonsForStorage: Int = ton("0.03");
-const gasConsumption: Int = ton("0.03");
+import "./constants.tact";
 
 trait NftItem with Deployable, Ownable {
     collection_address: Address;
