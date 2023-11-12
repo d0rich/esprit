@@ -21,6 +21,9 @@ trait NftCollection with Deployable, Accounting {
         require(false, "Not implemented");
     }
 
+    virtual fun requireEnoughTonForMinting() {
+    }
+
     virtual fun calculateNftItemInitalBalance(): Int {
         return self.calculateFullAmountForSending()
     }
@@ -54,8 +57,9 @@ trait NftCollection with Deployable, Accounting {
     // ===== Recievers ===== //
 
     receive("Mint"){
-        let ctx: Context = context();
         require(self.next_item_index >= 0, "non-sequential NFTs");
+        self.requireEnoughTonForMinting();
+        let ctx: Context = context();
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         send(SendParameters{
                 to: contractAddress(nft_init),
