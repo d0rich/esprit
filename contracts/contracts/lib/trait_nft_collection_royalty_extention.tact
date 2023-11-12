@@ -7,6 +7,16 @@ trait NftCollectionRoyaltyExtention {
 
     // ===== Customizable functions ===== //
 
+    // ------------------ Get Function  ------------------ //
+
+
+    // ------------------ NFT standard getters  ------------------ //
+    // https://github.com/ton-blockchain/TEPs/blob/master/text/0066-nft-royalty-standard.md#get-methods
+
+    get fun royalty_params(): RoyaltyParams {
+        return self.royalty_params;
+    }
+
     // ===== Recievers ===== //
 
     // ------------------ NFT standard recievers  ------------------ //
@@ -29,14 +39,4 @@ trait NftCollectionRoyaltyExtention {
     }
 
     // ===== Private Methods ===== //
-
-    // ------------------ Get Function  ------------------ //
-
-
-    // ------------------ NFT standard getters  ------------------ //
-    // https://github.com/ton-blockchain/TEPs/blob/master/text/0066-nft-royalty-standard.md#get-methods
-
-    get fun royalty_params(): RoyaltyParams {
-        return self.royalty_params;
-    }
 }

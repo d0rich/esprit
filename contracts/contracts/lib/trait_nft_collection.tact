@@ -13,34 +13,6 @@ trait NftCollection with Deployable, Accounting {
         require(false, "Not implemented");
     }
 
-    // ===== Recievers ===== //
-
-    receive("Mint"){
-        let ctx: Context = context();
-        require(self.next_item_index >= 0, "non-sequential NFTs");
-        let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
-        send(SendParameters{
-                to: contractAddress(nft_init),
-                value: self.getFullAmountForSending(),
-                bounce: false,
-                mode: SendIgnoreErrors,
-                body: Transfer {
-                    query_id: 0,
-                    new_owner: ctx.sender,
-                    response_destination: self.owner_address,
-                    custom_payload: emptyCell(),
-                    forward_amount: 0,
-                    forward_payload: emptySlice()
-                }.toCell(),
-                code: nft_init.code,
-                data: nft_init.data
-            });
-        self.next_item_index = self.next_item_index + 1;
-    }
-
-    // ===== Private Methods ===== //
-
-
     // ------------------ Get Function  ------------------ //
 
 
@@ -70,4 +42,32 @@ trait NftCollection with Deployable, Accounting {
         b.append(ic);
         return b.toCell();
     }
+
+    // ===== Recievers ===== //
+
+    receive("Mint"){
+        let ctx: Context = context();
+        require(self.next_item_index >= 0, "non-sequential NFTs");
+        let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
+        send(SendParameters{
+                to: contractAddress(nft_init),
+                value: self.getFullAmountForSending(),
+                bounce: false,
+                mode: SendIgnoreErrors,
+                body: Transfer {
+                    query_id: 0,
+                    new_owner: ctx.sender,
+                    response_destination: self.owner_address,
+                    custom_payload: emptyCell(),
+                    forward_amount: 0,
+                    forward_payload: emptySlice()
+                }.toCell(),
+                code: nft_init.code,
+                data: nft_init.data
+            });
+        self.next_item_index = self.next_item_index + 1;
+    }
+
+    // ===== Private Methods ===== //
+
 }
