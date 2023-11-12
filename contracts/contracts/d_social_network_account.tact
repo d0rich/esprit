@@ -1,5 +1,5 @@
 import "@stdlib/deploy";
-import "./nft_lib/trait_collection.tact";
+import "./lib/trait_nft_collection.tact";
 import "./d_social_network_post.tact";
 
 contract DSocialNetworkAccount with NftCollection {

@@ -1,6 +1,6 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
-import "./nft_lib/trait_item.tact";
+import "./lib/trait_nft_item.tact";
 
 contract DSocialNetworkPost with NftItem {
     collection_address: Address;

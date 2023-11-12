@@ -1,6 +1,6 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
-import "./messages.tact";
+import "./messages_nft.tact";
 import "./constants.tact";
 
 trait NftItem with Deployable, Ownable {

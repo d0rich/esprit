@@ -1,5 +1,5 @@
 import "@stdlib/deploy";
-import "./messages.tact";
+import "./messages_nft.tact";
 import "./constants.tact";
 
 trait NftCollection with Deployable {
