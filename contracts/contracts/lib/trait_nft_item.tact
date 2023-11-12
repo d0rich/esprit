@@ -10,24 +10,29 @@ trait NftItem with Deployable, Ownable, Accounting {
     individual_content: Cell;
     is_initialized: Bool;
 
+    // ===== Customizable functions ===== //
+
+    virtual fun getNftItemIndividualContent(): Cell {
+        let b: StringBuilder = beginString();
+        let collectionData: String = self.individual_content.asSlice().asString();
+        b.append(collectionData);
+        b.append(self.item_index.toString());
+        b.append(".json");
+        return b.toCell();
+    }
+
     // --------- Get Function  --------- //
 
 
     // ------------------ NFT standard getters  ------------------ //
     // https://github.com/ton-blockchain/TEPs/blob/master/text/0062-nft-standard.md#get-methods
     get fun get_nft_data(): GetNftData {
-        let b: StringBuilder = beginString();
-        let collectionData: String = self.individual_content.asSlice().asString();
-        b.append(collectionData);
-        b.append(self.item_index.toString());
-        b.append(".json");
-
-        return GetNftData {
+         return GetNftData {
             is_initialized: self.is_initialized,
             index: self.item_index,
             collection_address: self.collection_address,
             owner_address: self.owner,
-            individual_content: b.toCell()
+            individual_content: self.getNftItemIndividualContent()
         };
     }
 
