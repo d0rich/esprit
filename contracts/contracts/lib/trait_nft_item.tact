@@ -1,14 +1,16 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages_nft.tact";
-import "./constants.tact";
+import "./trait_accounting.tact";
 
-trait NftItem with Deployable, Ownable {
+trait NftItem with Deployable, Ownable, Accounting {
     collection_address: Address;
     item_index: Int;
     owner: Address;
     individual_content: Cell;
     is_initialized: Bool;
+
+    // ===== Recievers ===== //
 
     receive(msg: Transfer){
         let ctx: Context = context();
@@ -16,10 +18,7 @@ trait NftItem with Deployable, Ownable {
         // Only Owner of the this NFT Item can transfer it.
         self.requireOwner();
 
-        let msgValue: Int = ctx.value; // Check the gasCost for storage
-        let tonBalanceBeforeMsg: Int = myBalance() - msgValue;
-        let storageFee: Int = minTonsForStorage - min(tonBalanceBeforeMsg, minTonsForStorage);
-        msgValue = msgValue - (storageFee + gasConsumption);
+        let msgValue: Int = self.getFullAmountForSending();
 
         if (self.is_initialized == false) {  // Initial Transfer, aka the "Minting" of the NFT
             self.is_initialized = true;
@@ -75,6 +74,10 @@ trait NftItem with Deployable, Ownable {
     }
 
     // --------- Get Function  --------- //
+
+
+    // ------------------ NFT standard getters  ------------------ //
+    // https://github.com/ton-blockchain/TEPs/blob/master/text/0062-nft-standard.md#get-methods
     get fun get_nft_data(): GetNftData {
         let b: StringBuilder = beginString();
         let collectionData: String = self.individual_content.asSlice().asString();

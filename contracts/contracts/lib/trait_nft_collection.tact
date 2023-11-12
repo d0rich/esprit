@@ -1,8 +1,8 @@
 import "@stdlib/deploy";
 import "./messages_nft.tact";
-import "./constants.tact";
+import "./trait_accounting.tact";
 
-trait NftCollection with Deployable {
+trait NftCollection with Deployable, Accounting {
     next_item_index: Int;
     owner_address: Address;
     royalty_params: RoyaltyParams;
@@ -10,19 +10,15 @@ trait NftCollection with Deployable {
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftItemInitInternal(item_index: Int): StateInit {
+    virtual fun getNftItemInit(item_index: Int): StateInit {
         require(false, "Not implemented");
     }
 
     // ===== Recievers ===== //
 
     receive("Mint"){
-        let ctx: Context = context(); // get sender Info
-        let msgValue: Int = ctx.value;
-        let tonBalanceBeforeMsg: Int = myBalance() - msgValue;
-        let storageFee: Int = minTonsForStorage - min(tonBalanceBeforeMsg, minTonsForStorage);
-        msgValue = msgValue - (storageFee + gasConsumption);
-        self.mint(ctx.sender, msgValue);
+        let ctx: Context = context();
+        self.mint(ctx.sender, self.getFullAmountForSending());
     }
 
     receive(msg: GetRoyaltyParams) {
@@ -65,6 +61,11 @@ trait NftCollection with Deployable {
     }
 
     // ------------------ Get Function  ------------------ //
+
+
+    // ------------------ NFT standard getters  ------------------ //
+    // https://github.com/ton-blockchain/TEPs/blob/master/text/0062-nft-standard.md#get-methods-1
+
     get fun get_collection_data(): CollectionData {
         let b: StringBuilder = beginString();
         let collectionDataString: String = self.collection_content.asSlice().asString();
@@ -80,10 +81,6 @@ trait NftCollection with Deployable {
     get fun get_nft_address_by_index(item_index: Int): Address?{
         let initCode: StateInit = self.getNftItemInit(item_index);
         return contractAddress(initCode);
-    }
-
-    get fun getNftItemInit(item_index: Int): StateInit {
-        return self.getNftItemInitInternal(item_index);
     }
 
     get fun get_nft_content(index: Int, individual_content: Cell): Cell {

@@ -14,7 +14,7 @@ contract DSocialNetworkAccount with NftCollection {
         self.royalty_params = royalty_params;
     }
 
-    override fun getNftItemInitInternal(item_index: Int): StateInit {
+    override fun getNftItemInit(item_index: Int): StateInit {
         return initOf DSocialNetworkPost(myAddress(), item_index, self.owner_address, self.collection_content);
     }
 }
