@@ -21,6 +21,16 @@ struct RoyaltyParams {
     destination: Address;
 }
 
+message MintNft {
+    individual_content: Cell;
+}
+
+message InitializeNft {
+    query_id: Int as uint64;
+    owner: Address;
+    response_destination: Address;
+    individual_content: Cell;
+}
 
 message(0x5fcc3d14) Transfer {
     query_id: Int as uint64;

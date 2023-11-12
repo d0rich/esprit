@@ -38,39 +38,12 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Recievers ===== //
 
-    receive(msg: Transfer){
-        // Only Owner of the this NFT Item can transfer it.
-        self.requireOwner();
-
-        if (self.is_initialized == false) {
-            // Initial Transfer, aka the "Minting" of the NFT
-            self.initializeNftItem(msg);
-        } else {
-            self.transferNftItem(msg);
-        }
-    }
-
-    receive(msg: GetStaticData){
-        let ctx: Context = context();
-        send(SendParameters {
-            to: ctx.sender,
-            value: 0,
-            mode: 64,  // (return msg amount except gas fees)
-            bounce: true,
-            body: ReportStaticData{
-                query_id: msg.query_id,
-                index_id: self.item_index,
-                collection: self.collection_address
-            }.toCell()
-        });
-    }
-
-    // ===== Private Methods ===== //
-    fun initializeNftItem(msg: Transfer) {
+    receive(msg: InitializeNft) {
         self.requireOwner();
         require(self.is_initialized == false, "NFT Item is already initialized");
         self.is_initialized = true;
-        self.owner = msg.new_owner;
+        self.owner = msg.owner;
+        self.individual_content = msg.individual_content;
         send(SendParameters{
             to: msg.response_destination,
             value: 0,
@@ -79,7 +52,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         });
     }
 
-    fun transferNftItem(msg: Transfer) {
+    receive(msg: Transfer){
         self.requireOwner();
         require(self.is_initialized == true, "NFT Item is not initialized");
         let msgValue: Int = self.calculateFullAmountForSending();
@@ -109,4 +82,21 @@ trait NftItem with Deployable, Ownable, Accounting {
             });
         }
     }
+
+    receive(msg: GetStaticData){
+        let ctx: Context = context();
+        send(SendParameters {
+            to: ctx.sender,
+            value: 0,
+            mode: 64,  // (return msg amount except gas fees)
+            bounce: true,
+            body: ReportStaticData{
+                query_id: msg.query_id,
+                index_id: self.item_index,
+                collection: self.collection_address
+            }.toCell()
+        });
+    }
+
+    // ===== Private Methods ===== //
 }

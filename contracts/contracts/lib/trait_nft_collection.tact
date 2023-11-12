@@ -60,7 +60,7 @@ trait NftCollection with Deployable, Accounting {
 
     // ===== Recievers ===== //
 
-    receive("Mint"){
+    receive(msg: MintNft){
         require(self.next_item_index >= 0, "non-sequential NFTs");
         self.requireEnoughTonForMinting();
         let ctx: Context = context();
@@ -70,13 +70,11 @@ trait NftCollection with Deployable, Accounting {
                 value: self.calculateNftItemInitalBalance(),
                 bounce: false,
                 mode: SendIgnoreErrors,
-                body: Transfer {
+                body: InitializeNft {
                     query_id: 0,
-                    new_owner: ctx.sender,
+                    owner: ctx.sender,
                     response_destination: self.owner,
-                    custom_payload: emptyCell(),
-                    forward_amount: 0,
-                    forward_payload: emptySlice()
+                    individual_content: msg.individual_content
                 }.toCell(),
                 code: nft_init.code,
                 data: nft_init.data
