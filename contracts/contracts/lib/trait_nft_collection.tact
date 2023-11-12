@@ -55,7 +55,7 @@ trait NftCollection with Deployable, Accounting {
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         send(SendParameters{
                 to: contractAddress(nft_init),
-                value: self.getFullAmountForSending(),
+                value: self.calculateFullAmountForSending(),
                 bounce: false,
                 mode: SendIgnoreErrors,
                 body: Transfer {

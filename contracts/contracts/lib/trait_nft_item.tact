@@ -81,7 +81,7 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     fun transferNftItem(msg: Transfer) {
         self.requireOwner();
-        let msgValue: Int = self.getFullAmountForSending();
+        let msgValue: Int = self.calculateFullAmountForSending();
         let ctx: Context = context();
         self.owner = msg.new_owner;  // change current owner to the new_owner
         if (msg.forward_amount > 0) {

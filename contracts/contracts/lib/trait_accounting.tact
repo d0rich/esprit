@@ -10,18 +10,18 @@ trait Accounting {
         return ctx.value;
     }
 
-    fun getMinOperationFee(): Int {
+    fun calculateMinOperationFee(): Int {
         let tonBalanceBeforeMsg: Int = myBalance() - self.getTonRecieved();
         // calculate TON to keep in contract, handle case when balance is less than MIN_TON_FOR_STORAGE
         let storageFee: Int = self.MIN_TON_FOR_STORAGE - min(tonBalanceBeforeMsg, self.MIN_TON_FOR_STORAGE);
         return storageFee + self.getGasConsumption();
     }
 
-    fun getFullAmountForSending(): Int {
-        return self.getTonRecieved() - self.getMinOperationFee();
+    fun calculateFullAmountForSending(): Int {
+        return self.getTonRecieved() - self.calculateMinOperationFee();
     }
 
-    fun getFullAmountForSendingWithPersonalFee(personalFee: Int): Int {
-        return self.getFullAmountForSending() - personalFee;
+    fun calculateFullAmountForSendingWithPersonalFee(personalFee: Int): Int {
+        return self.calculateFullAmountForSending() - personalFee;
     }
 }
