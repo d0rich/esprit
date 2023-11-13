@@ -6,16 +6,25 @@ import "./trait_accounting.tact";
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
     owner: Address;
-    collection_content: Cell;
+    collection_content: NftCollectionMetadataPlain;
+    social_links: map<Int, Cell>;
 
     // ===== Customizable functions ===== //
 
     virtual fun getNftCollectionContent(): Cell {
-        let b: StringBuilder = beginString();
-        let collectionDataString: String = self.collection_content.asSlice().asString();
-        b.append(collectionDataString);
-        b.append("meta.json");
-        return b.toCell();
+        // let b: StringBuilder = beginString();
+        // let collectionDataString: String = self.collection_content.asSlice().asString();
+        // b.append(collectionDataString);
+        // b.append("meta.json");
+        // return b.toCell();
+        // TODO: if following works, remove the above
+        let fullContent: NftCollectionMetadata = NftCollectionMetadata{
+            image: self.collection_content.image,
+            name: self.collection_content.name,
+            description: self.collection_content.description,
+            social_links: self.social_links
+        };
+        return fullContent.toCell();
     }
 
     virtual fun getNftItemInit(item_index: Int): StateInit {
@@ -23,10 +32,12 @@ trait NftCollection with Deployable, Ownable, Accounting {
     }
 
     virtual fun getNftItemIndividualContent(index: Int, individual_content: Cell): Cell {
-        let b: StringBuilder = beginString();
-        let ic: String = individual_content.asSlice().asString();
-        b.append(ic);
-        return b.toCell();
+        // let b: StringBuilder = beginString();
+        // let ic: String = individual_content.asSlice().asString();
+        // b.append(ic);
+        // return b.toCell();
+        // TODO: if following works, remove the above
+        return individual_content;
     }
 
     virtual fun requireEnoughTonForMinting() {

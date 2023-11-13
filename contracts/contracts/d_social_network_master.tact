@@ -39,9 +39,13 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         return initOf DSocialNetworkAccount(account_id, myAddress());
     }
 
-    fun generateAccountCollectionContent(owner: Address): Cell {
+    fun generateAccountCollectionContent(owner: Address): NftCollectionMetadataPlain {
         require(false, "not implemented");
-        return emptyCell();
+        return NftCollectionMetadataPlain{
+            image: "",
+            name: "",
+            description: ""
+        };
     }
 
     fun generateAccountRoyaltyParams(owner: Address): RoyaltyParams {

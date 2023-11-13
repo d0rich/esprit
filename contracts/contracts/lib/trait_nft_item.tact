@@ -7,18 +7,28 @@ trait NftItem with Deployable, Ownable, Accounting {
     collection_address: Address;
     item_index: Int;
     owner: Address;
-    individual_content: Cell;
     is_initialized: Bool;
+    individual_content: NftMetadataPlain;
+    attributes: map<Int, NftMetadataAttribute>;
 
     // ===== Customizable functions ===== //
 
     virtual fun getNftItemIndividualContent(): Cell {
-        let b: StringBuilder = beginString();
-        let collectionData: String = self.individual_content.asSlice().asString();
-        b.append(collectionData);
-        b.append(self.item_index.toString());
-        b.append(".json");
-        return b.toCell();
+        // let b: StringBuilder = beginString();
+        // let collectionData: String = self.individual_content.asSlice().asString();
+        // b.append(collectionData);
+        // b.append(self.item_index.toString());
+        // b.append(".json");
+        // return b.toCell();
+        // TODO: if following works, remove the above
+        let fullContent: NftMetadata = NftMetadata {
+            name: self.individual_content.name,
+            description: self.individual_content.description,
+            image: self.individual_content.image,
+            content_url: self.individual_content.content_url,
+            attributes: self.attributes
+        };
+        return fullContent.toCell();
     }
 
     // --------- Get Function  --------- //

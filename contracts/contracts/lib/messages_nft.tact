@@ -6,9 +6,22 @@ struct CollectionData {
     owner_address: Address;
 }
 
+struct NftCollectionMetadata {
+    image: String;
+    name: String;
+    description: String;
+    social_links: map<Int, Cell>;
+}
+
+struct NftCollectionMetadataPlain {
+    image: String;
+    name: String;
+    description: String;
+}
+
 message MintNft {
     query_id: Int as uint64;
-    individual_content: Cell;
+    individual_content: NftMetadataPlain;
 }
 
 // NFT collection: Royalty exntention
@@ -32,11 +45,31 @@ struct RoyaltyParams {
 
 // NFT item
 
+struct NftMetadataAttribute {
+    trait_type: String;
+    value: String;
+}
+
+struct NftMetadata {
+    name: String;
+    description: String;
+    image: String;
+    content_url: String;
+    attributes: map<Int, NftMetadataAttribute>;
+}
+
+struct NftMetadataPlain {
+    name: String;
+    description: String;
+    image: String;
+    content_url: String;
+}
+
 message InitializeNft {
     query_id: Int as uint64;
     owner: Address;
     response_destination: Address;
-    individual_content: Cell;
+    individual_content: NftMetadataPlain;
 }
 
 message(0x5fcc3d14) Transfer {

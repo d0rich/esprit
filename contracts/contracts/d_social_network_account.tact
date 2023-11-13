@@ -10,8 +10,9 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
     owner: Address;
     master_contract: Address;
     royalty_params: RoyaltyParams;
-    collection_content: Cell;
     is_initialized: Bool = false;
+    collection_content: NftCollectionMetadataPlain;
+    social_links: map<Int, Cell>;
 
     init(account_id: Int, master_contract: Address){
         self.account_id = account_id;
@@ -22,7 +23,12 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
             denominator: 0,
             destination: master_contract
         };
-        self.collection_content = emptyCell();
+        // TODO: set real metadata
+        self.collection_content = NftCollectionMetadataPlain{
+            image: "",
+            name: "",
+            description: ""
+        };
     }
 
     receive(msg: InitializeAccount) {
@@ -42,8 +48,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         return initOf DSocialNetworkPost(
             myAddress(),
             item_index,
-            self.owner,
-            self.collection_content
+            self.owner
         );
     }
 }
