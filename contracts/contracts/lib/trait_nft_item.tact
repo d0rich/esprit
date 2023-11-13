@@ -8,8 +8,7 @@ trait NftItem with Deployable, Ownable, Accounting {
     item_index: Int;
     owner: Address;
     is_initialized: Bool;
-    individual_content: NftMetadataPlain;
-    attributes: map<Int, NftMetadataAttribute>;
+    individual_content: NftMetadata;
 
     // ===== Customizable functions ===== //
 
@@ -21,14 +20,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         // b.append(".json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        let fullContent: NftMetadata = NftMetadata {
-            name: self.individual_content.name,
-            description: self.individual_content.description,
-            image: self.individual_content.image,
-            content_url: self.individual_content.content_url,
-            attributes: self.attributes
-        };
-        return fullContent.toCell();
+        return self.individual_content.toCell();
     }
 
     // --------- Get Function  --------- //

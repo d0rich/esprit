@@ -7,19 +7,19 @@ contract DSocialNetworkPost with NftItem {
     item_index: Int;
     owner: Address;
     is_initialized: Bool;
-    individual_content: NftMetadataPlain;
-    attributes: map<Int, NftMetadataAttribute>;
+    individual_content: NftMetadata;
 
     init(collection_address: Address, item_index: Int, owner: Address){
         self.collection_address = collection_address;
         self.item_index = item_index;
         self.owner = collection_address;
         // TODO: set individual_content
-        self.individual_content = NftMetadataPlain{
+        self.individual_content = NftMetadata{
             image: "",
             name: "",
             description: "",
-            content_url: ""
+            content_url: "",
+            attributes: emptyMap()
         };
         self.is_initialized = false;
     }

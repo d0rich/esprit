@@ -13,15 +13,9 @@ struct NftCollectionMetadata {
     social_links: map<Int, Cell>;
 }
 
-struct NftCollectionMetadataPlain {
-    image: String;
-    name: String;
-    description: String;
-}
-
 message MintNft {
     query_id: Int as uint64;
-    individual_content: NftMetadataPlain;
+    individual_content: NftMetadata;
 }
 
 // NFT collection: Royalty exntention
@@ -58,18 +52,11 @@ struct NftMetadata {
     attributes: map<Int, NftMetadataAttribute>;
 }
 
-struct NftMetadataPlain {
-    name: String;
-    description: String;
-    image: String;
-    content_url: String;
-}
-
 message InitializeNft {
     query_id: Int as uint64;
     owner: Address;
     response_destination: Address;
-    individual_content: NftMetadataPlain;
+    individual_content: NftMetadata;
 }
 
 message(0x5fcc3d14) Transfer {

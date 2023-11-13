@@ -11,6 +11,6 @@ message RegisterAccount {
 message InitializeAccount {
     query_id: Int as uint64;
     owner: Address;
-    collection_content: NftCollectionMetadataPlain;
+    collection_content: NftCollectionMetadata;
     royalty_params: RoyaltyParams;
 }

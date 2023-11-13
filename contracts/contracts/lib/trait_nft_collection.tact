@@ -6,8 +6,7 @@ import "./trait_accounting.tact";
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
     owner: Address;
-    collection_content: NftCollectionMetadataPlain;
-    social_links: map<Int, Cell>;
+    collection_content: NftCollectionMetadata;
 
     // ===== Customizable functions ===== //
 
@@ -18,13 +17,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
         // b.append("meta.json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        let fullContent: NftCollectionMetadata = NftCollectionMetadata{
-            image: self.collection_content.image,
-            name: self.collection_content.name,
-            description: self.collection_content.description,
-            social_links: self.social_links
-        };
-        return fullContent.toCell();
+        return self.collection_content.toCell();
     }
 
     virtual fun getNftItemInit(item_index: Int): StateInit {
