@@ -43,8 +43,8 @@ describe('DSocialNetworkMaster', () => {
       {
         $$type: 'RegisterAccount',
         query_id: 0n,
-        account_name: 'd0rich',
-        account_description: 'This is my first account'
+        account_name: 'test',
+        account_description: 'Test account description'
       }
     )
 
