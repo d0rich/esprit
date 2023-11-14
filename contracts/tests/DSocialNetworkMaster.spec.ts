@@ -1,26 +1,21 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
 import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
+import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
-  let dSocialNetworkMaster: SandboxContract<DSocialNetworkMaster>
+  let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
+  let dMaster: SandboxContract<DSocialNetworkMaster>
 
   beforeEach(async () => {
     blockchain = await Blockchain.create()
-
-    dSocialNetworkMaster = blockchain.openContract(
-      await DSocialNetworkMaster.fromInit()
-    )
-
-    const deployer = await blockchain.treasury('deployer')
-
-    const deployResult = await dSocialNetworkMaster.send(
+    dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
+    deployer = await blockchain.treasury('deployer')
+    const deployResult = await dMaster.send(
       deployer.getSender(),
-      {
-        value: toNano('0.05')
-      },
+      { value: toNano('0.05') },
       {
         $$type: 'Deploy',
         queryId: 0n
@@ -29,14 +24,46 @@ describe('DSocialNetworkMaster', () => {
 
     expect(deployResult.transactions).toHaveTransaction({
       from: deployer.address,
-      to: dSocialNetworkMaster.address,
+      to: dMaster.address,
       deploy: true,
       success: true
     })
   })
 
-  it('should deploy', async () => {
-    // the check is done inside beforeEach
-    // blockchain and dSocialNetworkMaster are ready to use
+  it('deployer shoud be owner', async () => {
+    const owner = await dMaster.getOwner()
+
+    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+  })
+
+  it('register account', async () => {
+    const registerResult = await dMaster.send(
+      deployer.getSender(),
+      { value: toNano('0.5') },
+      {
+        $$type: 'RegisterAccount',
+        query_id: 0n,
+        account_name: 'd0rich',
+        account_description:
+          'This is my first account sadsadasdasdasdsadadasdsadsadsadsadasdasdadadasdasdsadasdsadadasdadasdasdasdasdasdasdasdasdadasdadasdadasdasdasdsadasdadadsdaddsadsadadd'
+      }
+    )
+
+    const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)
+
+    expect(accountAddress).not.toBeNull()
+
+    expect(registerResult.transactions).toHaveTransaction({
+      from: dMaster.address,
+      to: accountAddress!,
+      success: true
+    })
+
+    expect(await dMaster.getGetAccountsCount()).toBe(1n)
+
+    blockchain.openContract(DSocialNetworkAccount.fromAddress(accountAddress!))
+
+    // console.log(await dAccount.getGetAccountInfo())
+    // console.log(await dAccount.getRoyaltyParams())
   })
 })

@@ -18,8 +18,8 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         self.master_contract = master_contract;
         self.owner = master_contract;
         self.royalty_params = RoyaltyParams{
-            numerator: 0,
-            denominator: 0,
+            numerator: 13,
+            denominator: 100,
             destination: master_contract
         };
         // TODO: set real metadata
@@ -31,12 +31,20 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         };
     }
 
+    get fun get_account_info(): AccountInfo {
+        return AccountInfo{
+            id: self.account_id,
+            owner: self.owner,
+            collection_content: self.collection_content,
+            is_initialized: self.is_initialized
+        };
+    }
+
     receive(msg: InitializeAccount) {
         require(!self.is_initialized, "Account is already initialized");
         self.requireOwner();
         self.owner = msg.owner;
         self.collection_content = msg.collection_content;
-        self.royalty_params = msg.royalty_params;
         self.is_initialized = true;
     }
 

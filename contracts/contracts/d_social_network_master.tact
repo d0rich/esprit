@@ -14,6 +14,15 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         self.owner = ctx.sender;
     }
 
+    get fun get_accounts_count(): Int {
+        return self.next_account_index;
+    }
+
+    get fun get_account_address_by_index(item_index: Int): Address?{
+        let initCode: StateInit = self.getAccountInit(item_index);
+        return contractAddress(initCode);
+    }
+
     receive(msg: RegisterAccount) {
         require(self.next_account_index >= 0, "non-sequential NFTs");
         let ctx: Context = context();
@@ -26,8 +35,7 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
                 body: InitializeAccount {
                     query_id: 0,
                     owner: ctx.sender,
-                    collection_content: self.generateAccountCollectionContent(ctx.sender),
-                    royalty_params: self.generateAccountRoyaltyParams(ctx.sender)
+                    collection_content: self.generateAccountCollectionContent(msg)
                 }.toCell(),
                 code: account_init.code,
                 data: account_init.data
@@ -39,22 +47,13 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         return initOf DSocialNetworkAccount(account_id, myAddress());
     }
 
-    fun generateAccountCollectionContent(owner: Address): NftCollectionMetadata {
-        require(false, "not implemented");
+    fun generateAccountCollectionContent(msg: RegisterAccount): NftCollectionMetadata {
+        // TODO: add image link
         return NftCollectionMetadata{
-            image: "",
-            name: "",
-            description: "",
+            image: "some-image-link",
+            name: msg.account_name,
+            description: msg.account_description,
             social_links: emptyMap()
-        };
-    }
-
-    fun generateAccountRoyaltyParams(owner: Address): RoyaltyParams {
-        require(false, "not implemented");
-        return RoyaltyParams{
-            numerator: 0,
-            denominator: 0,
-            destination: myAddress()
         };
     }
 }
