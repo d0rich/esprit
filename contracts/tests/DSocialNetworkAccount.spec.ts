@@ -8,6 +8,7 @@ describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
+  let dAccount: SandboxContract<DSocialNetworkAccount>
 
   beforeEach(async () => {
     blockchain = await Blockchain.create()
@@ -28,23 +29,15 @@ describe('DSocialNetworkMaster', () => {
       deploy: true,
       success: true
     })
-  })
 
-  it('deployer shoud be owner', async () => {
-    const owner = await dMaster.getOwner()
-
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
-  })
-
-  it('register account', async () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('0.5') },
       {
         $$type: 'RegisterAccount',
         query_id: 0n,
-        account_name: 'd0rich',
-        account_description: 'This is my first account'
+        account_name: 'name',
+        account_description: 'Account description'
       }
     )
 
@@ -60,9 +53,14 @@ describe('DSocialNetworkMaster', () => {
 
     expect(await dMaster.getGetAccountsCount()).toBe(1n)
 
-    blockchain.openContract(DSocialNetworkAccount.fromAddress(accountAddress!))
+    dAccount = blockchain.openContract(
+      DSocialNetworkAccount.fromAddress(accountAddress!)
+    )
+  })
 
-    // console.log(await dAccount.getGetAccountInfo())
-    // console.log(await dAccount.getRoyaltyParams())
+  it('deployer shoud be owner of the account', async () => {
+    const owner = await dAccount.getOwner()
+
+    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
   })
 })
