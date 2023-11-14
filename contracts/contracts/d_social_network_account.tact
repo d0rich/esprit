@@ -40,6 +40,10 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         };
     }
 
+    get fun get_next_item_index(): Int {
+        return self.next_item_index;
+    }
+
     receive(msg: InitializeAccount) {
         require(!self.is_initialized, "Account is already initialized");
         self.requireOwner();

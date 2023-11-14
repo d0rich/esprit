@@ -22,3 +22,12 @@ struct AccountInfo {
     collection_content: NftCollectionMetadata;
     is_initialized: Bool;
 }
+
+// Post contract
+
+struct PostInfo {
+    account: Address;
+    id: Int;
+    owner: Address;
+    nft_content: NftMetadata;
+}

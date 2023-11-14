@@ -1,6 +1,7 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./lib/trait_nft_item.tact";
+import "./messages_d.tact";
 
 contract DSocialNetworkPost with NftItem {
     collection_address: Address;
@@ -22,6 +23,15 @@ contract DSocialNetworkPost with NftItem {
             attributes: emptyMap()
         };
         self.is_initialized = false;
+    }
+
+    get fun get_post_info(): PostInfo {
+        return PostInfo{
+            account: self.collection_address,
+            id: self.item_index,
+            owner: self.owner,
+            nft_content: self.individual_content
+        };
     }
 
 

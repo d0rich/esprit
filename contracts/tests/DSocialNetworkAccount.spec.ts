@@ -1,8 +1,12 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import { toNano, Dictionary } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
+import {
+  DSocialNetworkAccount,
+  NftMetadataAttribute
+} from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
+import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -62,5 +66,44 @@ describe('DSocialNetworkMaster', () => {
     const owner = await dAccount.getOwner()
 
     expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+  })
+
+  it('should create post', async () => {
+    const attributes = Dictionary.empty<bigint, NftMetadataAttribute>()
+    attributes.set(0n, {
+      $$type: 'NftMetadataAttribute',
+      trait_type: 'content',
+      value: 'This is my first post'
+    })
+    const registerResult = await dAccount.send(
+      deployer.getSender(),
+      { value: toNano('0.5') },
+      {
+        $$type: 'MintNft',
+        query_id: 0n,
+        individual_content: {
+          $$type: 'NftMetadata',
+          name: 'Test post',
+          description: 'Test post description',
+          image: 'https://test.com/image.png',
+          content_url: 'https://test.com/content.txt',
+          attributes
+        }
+      }
+    )
+
+    const postAddress = await dAccount.getGetNftAddressByIndex(0n)
+
+    expect(postAddress).not.toBeNull()
+
+    expect(registerResult.transactions).toHaveTransaction({
+      from: dAccount.address,
+      to: postAddress!,
+      success: true
+    })
+
+    expect(await dAccount.getGetNextItemIndex()).toBe(1n)
+
+    blockchain.openContract(DSocialNetworkPost.fromAddress(postAddress!))
   })
 })
