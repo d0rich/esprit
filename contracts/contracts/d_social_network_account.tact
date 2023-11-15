@@ -35,6 +35,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         return AccountInfo{
             id: self.account_id,
             owner: self.owner,
+            master_contract: self.master_contract,
             collection_content: self.collection_content,
             is_initialized: self.is_initialized
         };

@@ -14,6 +14,10 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         self.owner = ctx.sender;
     }
 
+    get fun get_version(): String {
+        return self.version;
+    }
+
     get fun get_accounts_count(): Int {
         return self.next_account_index;
     }

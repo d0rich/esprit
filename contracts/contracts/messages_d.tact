@@ -18,6 +18,7 @@ message InitializeAccount {
 
 struct AccountInfo {
     id: Int;
+    master_contract: Address;
     owner: Address;
     collection_content: NftCollectionMetadata;
     is_initialized: Bool;
