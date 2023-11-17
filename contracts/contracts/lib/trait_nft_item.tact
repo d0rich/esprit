@@ -8,7 +8,7 @@ trait NftItem with Deployable, Ownable, Accounting {
     item_index: Int;
     owner: Address;
     is_initialized: Bool;
-    individual_content: NftMetadata;
+    individual_content: String;
 
     // ===== Customizable functions ===== //
 
@@ -20,7 +20,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         // b.append(".json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        return self.individual_content.toCell();
+        return self.individual_content.asSlice().asCell();
     }
 
     // --------- Get Function  --------- //

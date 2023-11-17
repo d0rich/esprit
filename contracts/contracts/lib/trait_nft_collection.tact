@@ -6,7 +6,7 @@ import "./trait_accounting.tact";
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
     owner: Address;
-    collection_content: NftCollectionMetadata;
+    collection_content: String;
 
     // ===== Customizable functions ===== //
 
@@ -17,7 +17,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
         // b.append("meta.json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        return self.collection_content.toCell();
+        return self.collection_content.asSlice().asCell();
     }
 
     virtual fun getNftItemInit(item_index: Int): StateInit {

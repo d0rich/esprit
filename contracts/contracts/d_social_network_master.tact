@@ -5,7 +5,7 @@ import "./messages_d.tact";
 import "./d_social_network_account.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
-    version: String = "v0.0.1-no-metadata-arrays";
+    version: String = "v0.0.1-metadata-as-json-string";
     owner: Address;
     next_account_index: Int as uint32 = 0;
 
@@ -39,7 +39,7 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
                 body: InitializeAccount {
                     query_id: 0,
                     owner: ctx.sender,
-                    collection_content: self.generateAccountCollectionContent(msg)
+                    collection_content: msg.account_metadata_json
                 }.toCell(),
                 code: account_init.code,
                 data: account_init.data
@@ -49,14 +49,5 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
 
     fun getAccountInit(account_id: Int): StateInit {
         return initOf DSocialNetworkAccount(account_id, myAddress());
-    }
-
-    fun generateAccountCollectionContent(msg: RegisterAccount): NftCollectionMetadata {
-        // TODO: add image link
-        return NftCollectionMetadata{
-            image: "some-image-link",
-            name: msg.account_name,
-            description: msg.account_description
-        };
     }
 }
