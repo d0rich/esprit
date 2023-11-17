@@ -5,7 +5,7 @@ import "./messages_d.tact";
 import "./d_social_network_account.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
-    version: String = "v0.0.1-metadata-as-struct-no-convertation-to-cell";
+    version: String = "v0.0.1-metadata-as-cells";
     owner: Address;
     next_account_index: Int as uint32 = 0;
 

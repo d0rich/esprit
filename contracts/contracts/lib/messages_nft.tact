@@ -2,7 +2,7 @@
 
 struct CollectionData {
     next_item_index: Int;
-    collection_content: NftCollectionMetadata;
+    collection_content: Cell;
     owner_address: Address;
 }
 
@@ -93,5 +93,5 @@ struct GetNftData {
     index: Int;
     collection_address: Address;
     owner_address: Address;
-    individual_content: NftMetadata;
+    individual_content: Cell;
 }
