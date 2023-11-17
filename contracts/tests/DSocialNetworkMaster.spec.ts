@@ -3,6 +3,7 @@ import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
+import { registerTestAccountMessage } from '../utils/test'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -40,16 +41,7 @@ describe('DSocialNetworkMaster', () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('0.5') },
-      {
-        $$type: 'RegisterAccount',
-        query_id: 0n,
-        account_metadata_json: JSON.stringify({
-          image: 'https://d0rich.me/og/image.jpg',
-          name: 'test',
-          description: 'Test account description',
-          social_links: ['https://d0rich.t.me']
-        })
-      }
+      registerTestAccountMessage
     )
 
     const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)

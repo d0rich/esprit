@@ -4,6 +4,10 @@ import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
+import {
+  createTestPostMessage,
+  registerTestAccountMessage
+} from '../utils/test'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -34,16 +38,7 @@ describe('DSocialNetworkMaster', () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('0.5') },
-      {
-        $$type: 'RegisterAccount',
-        query_id: 0n,
-        account_metadata_json: JSON.stringify({
-          image: 'https://d0rich.me/og/image.jpg',
-          name: 'test',
-          description: 'Test account description',
-          social_links: ['https://d0rich.t.me']
-        })
-      }
+      registerTestAccountMessage
     )
 
     const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)
@@ -73,16 +68,7 @@ describe('DSocialNetworkMaster', () => {
     const registerResult = await dAccount.send(
       deployer.getSender(),
       { value: toNano('0.5') },
-      {
-        $$type: 'MintNft',
-        query_id: 0n,
-        individual_content: JSON.stringify({
-          name: 'Test post',
-          description: 'Test post description',
-          image: 'https://d0rich.me/og/image.jpg',
-          content_url: 'https://test.com/content.txt'
-        })
-      }
+      createTestPostMessage
     )
 
     const postAddress = await dAccount.getGetNftAddressByIndex(0n)
