@@ -6,6 +6,7 @@ message RegisterAccount {
     query_id: Int as uint64;
     account_name: String;
     account_description: String;
+    social_links: String;
 }
 
 // Account contract

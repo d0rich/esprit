@@ -1,10 +1,7 @@
-import { toNano, Dictionary } from 'ton-core'
+import { toNano } from 'ton-core'
 import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import {
-  DSocialNetworkAccount,
-  NftMetadataAttribute
-} from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 
 export async function run(provider: NetworkProvider) {
@@ -30,7 +27,8 @@ export async function run(provider: NetworkProvider) {
       $$type: 'RegisterAccount',
       query_id: 0n,
       account_name: 'test',
-      account_description: 'Test account description'
+      account_description: 'Test account description',
+      social_links: JSON.stringify(['https://d0rich.t.me/'])
     }
   )
 
@@ -41,13 +39,6 @@ export async function run(provider: NetworkProvider) {
   )
 
   await provider.waitForDeploy(dAccount.address)
-
-  const attributes = Dictionary.empty<bigint, NftMetadataAttribute>()
-  attributes.set(0n, {
-    $$type: 'NftMetadataAttribute',
-    trait_type: 'content',
-    value: 'This is my first post'
-  })
 
   await dAccount.send(
     provider.sender(),
@@ -61,7 +52,9 @@ export async function run(provider: NetworkProvider) {
         description: 'Test post description',
         image: 'https://test.com/image.png',
         content_url: 'https://test.com/content.txt',
-        attributes
+        attributes: JSON.stringify([
+          { trait_type: 'content', value: 'This is my first post' }
+        ])
       }
     }
   )

@@ -27,7 +27,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
             image: "",
             name: "",
             description: "",
-            social_links: emptyMap()
+            social_links: "[]"
         };
     }
 

@@ -1,10 +1,7 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano, Dictionary } from 'ton-core'
+import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import {
-  DSocialNetworkAccount,
-  NftMetadataAttribute
-} from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 
@@ -41,7 +38,8 @@ describe('DSocialNetworkMaster', () => {
         $$type: 'RegisterAccount',
         query_id: 0n,
         account_name: 'test',
-        account_description: 'Test account description'
+        account_description: 'Test account description',
+        social_links: JSON.stringify(['https://d0rich.t.me/'])
       }
     )
 
@@ -69,12 +67,6 @@ describe('DSocialNetworkMaster', () => {
   })
 
   it('should create post', async () => {
-    const attributes = Dictionary.empty<bigint, NftMetadataAttribute>()
-    attributes.set(0n, {
-      $$type: 'NftMetadataAttribute',
-      trait_type: 'content',
-      value: 'This is my first post'
-    })
     const registerResult = await dAccount.send(
       deployer.getSender(),
       { value: toNano('0.5') },
@@ -87,7 +79,9 @@ describe('DSocialNetworkMaster', () => {
           description: 'Test post description',
           image: 'https://test.com/image.png',
           content_url: 'https://test.com/content.txt',
-          attributes
+          attributes: JSON.stringify([
+            { trait_type: 'content', value: 'This is my first post' }
+          ])
         }
       }
     )
