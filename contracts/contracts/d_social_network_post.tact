@@ -19,8 +19,7 @@ contract DSocialNetworkPost with NftItem {
             image: "",
             name: "",
             description: "",
-            content_url: "",
-            attributes: emptyCell()
+            content_url: ""
         };
         self.is_initialized = false;
     }

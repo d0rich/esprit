@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { Cell, toNano } from 'ton-core'
+import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
@@ -77,8 +77,7 @@ describe('DSocialNetworkMaster', () => {
           name: 'Test post',
           description: 'Test post description',
           image: 'https://test.com/image.png',
-          content_url: 'https://test.com/content.txt',
-          attributes: Cell.EMPTY
+          content_url: 'https://test.com/content.txt'
         }
       }
     )

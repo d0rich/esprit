@@ -1,4 +1,4 @@
-import { toNano, Cell } from 'ton-core'
+import { toNano } from 'ton-core'
 import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
@@ -50,8 +50,7 @@ export async function run(provider: NetworkProvider) {
         name: 'Test post',
         description: 'Test post description',
         image: 'https://test.com/image.png',
-        content_url: 'https://test.com/content.txt',
-        attributes: Cell.EMPTY
+        content_url: 'https://test.com/content.txt'
       }
     }
   )
