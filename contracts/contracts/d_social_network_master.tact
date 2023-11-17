@@ -5,7 +5,7 @@ import "./messages_d.tact";
 import "./d_social_network_account.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
-    version: String = "v0.0.1-metadata-as-cells";
+    version: String = "v0.0.1-no-maps-in-metadata";
     owner: Address;
     next_account_index: Int as uint32 = 0;
 
@@ -42,8 +42,7 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
                     collection_content: NftCollectionMetadata {
                         image: "https://d0rich.me/og/image.jpg",
                         name: msg.account_name,
-                        description: msg.account_description,
-                        social_links: emptyMap()
+                        description: msg.account_description
                     }
                 }.toCell(),
                 code: account_init.code,

@@ -33,8 +33,7 @@ export const createTestPostMessage: MintNft = {
     name: 'Test post',
     description: 'Test post description',
     image: 'https://d0rich.me/og/image.jpg',
-    content_url: 'https://test.com/content.txt',
-    attributes: testNftAttributes
+    content_url: 'https://test.com/content.txt'
   }
   // individual_content: JSON.stringify({
   //   name: 'Test post',

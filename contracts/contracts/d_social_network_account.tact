@@ -26,8 +26,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         self.collection_content = NftCollectionMetadata {
             image: "",
             name: "",
-            description: "",
-            social_links: emptyMap()
+            description: ""
         };
     }
 

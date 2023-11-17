@@ -10,7 +10,6 @@ struct NftCollectionMetadata {
     image: String;
     name: String;
     description: String;
-    social_links: map<Int, Cell>;
 }
 
 message MintNft {
@@ -48,8 +47,7 @@ struct NftMetadata {
     name: String;
     description: String;
     image: String;
-    content_url: String;
-    attributes: map<Int, NftMetadataAttribute>;
+    content_url: String?;
 }
 
 message InitializeNft {
