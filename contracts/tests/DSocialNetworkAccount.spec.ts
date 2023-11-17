@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import { Cell, toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
@@ -38,8 +38,7 @@ describe('DSocialNetworkMaster', () => {
         $$type: 'RegisterAccount',
         query_id: 0n,
         account_name: 'test',
-        account_description: 'Test account description',
-        social_links: JSON.stringify(['https://d0rich.t.me/'])
+        account_description: 'Test account description'
       }
     )
 
@@ -79,9 +78,7 @@ describe('DSocialNetworkMaster', () => {
           description: 'Test post description',
           image: 'https://test.com/image.png',
           content_url: 'https://test.com/content.txt',
-          attributes: JSON.stringify([
-            { trait_type: 'content', value: 'This is my first post' }
-          ])
+          attributes: Cell.EMPTY
         }
       }
     )

@@ -44,8 +44,7 @@ describe('DSocialNetworkMaster', () => {
         $$type: 'RegisterAccount',
         query_id: 0n,
         account_name: 'test',
-        account_description: 'Test account description',
-        social_links: JSON.stringify(['https://d0rich.t.me/'])
+        account_description: 'Test account description'
       }
     )
 
