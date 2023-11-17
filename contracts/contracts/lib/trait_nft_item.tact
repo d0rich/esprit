@@ -12,7 +12,7 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftItemIndividualContent(): Cell {
+    virtual fun getNftItemIndividualContent(): String {
         // let b: StringBuilder = beginString();
         // let collectionData: String = self.individual_content.asSlice().asString();
         // b.append(collectionData);
@@ -20,7 +20,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         // b.append(".json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        return self.individual_content.asSlice().asCell();
+        return self.individual_content;
     }
 
     // --------- Get Function  --------- //

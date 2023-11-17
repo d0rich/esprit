@@ -10,14 +10,14 @@ trait NftCollection with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftCollectionContent(): Cell {
+    virtual fun getNftCollectionContent(): String {
         // let b: StringBuilder = beginString();
         // let collectionDataString: String = self.collection_content.asSlice().asString();
         // b.append(collectionDataString);
         // b.append("meta.json");
         // return b.toCell();
         // TODO: if following works, remove the above
-        return self.collection_content.asSlice().asCell();
+        return self.collection_content;
     }
 
     virtual fun getNftItemInit(item_index: Int): StateInit {
