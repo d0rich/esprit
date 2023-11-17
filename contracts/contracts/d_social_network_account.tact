@@ -11,7 +11,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
     master_contract: Address;
     royalty_params: RoyaltyParams;
     is_initialized: Bool = false;
-    collection_content: String;
+    collection_content: NftCollectionMetadata;
 
     init(account_id: Int, master_contract: Address){
         self.account_id = account_id;
@@ -23,7 +23,12 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
             destination: master_contract
         };
         // TODO: set real metadata
-        self.collection_content = "{}";
+        self.collection_content = NftCollectionMetadata {
+            image: "",
+            name: "",
+            description: "",
+            social_links: emptyMap()
+        };
     }
 
     get fun get_account_info(): AccountInfo {

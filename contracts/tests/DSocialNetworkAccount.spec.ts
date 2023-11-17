@@ -7,7 +7,7 @@ import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
   createTestPostMessage,
   registerTestAccountMessage
-} from '../utils/test'
+} from '../utils/test-fixtures'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain

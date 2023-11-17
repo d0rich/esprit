@@ -4,7 +4,8 @@ import "./lib/messages_nft.tact";
 
 message RegisterAccount {
     query_id: Int as uint64;
-    account_metadata_json: String;
+    account_name: String;
+    account_description: String;
 }
 
 // Account contract
@@ -12,14 +13,14 @@ message RegisterAccount {
 message InitializeAccount {
     query_id: Int as uint64;
     owner: Address;
-    collection_content: String;
+    collection_content: NftCollectionMetadata;
 }
 
 struct AccountInfo {
     id: Int;
     master_contract: Address;
     owner: Address;
-    collection_content: String;
+    collection_content: NftCollectionMetadata;
     is_initialized: Bool;
 }
 
@@ -29,5 +30,5 @@ struct PostInfo {
     account: Address;
     id: Int;
     owner: Address;
-    nft_content: String;
+    nft_content: NftMetadata;
 }

@@ -2,7 +2,7 @@
 
 struct CollectionData {
     next_item_index: Int;
-    collection_content: String;
+    collection_content: NftCollectionMetadata;
     owner_address: Address;
 }
 
@@ -10,11 +10,12 @@ struct NftCollectionMetadata {
     image: String;
     name: String;
     description: String;
+    social_links: map<Int, Cell>;
 }
 
 message MintNft {
     query_id: Int as uint64;
-    individual_content: String;
+    individual_content: NftMetadata;
 }
 
 // NFT collection: Royalty exntention
@@ -48,13 +49,14 @@ struct NftMetadata {
     description: String;
     image: String;
     content_url: String;
+    attributes: map<Int, NftMetadataAttribute>;
 }
 
 message InitializeNft {
     query_id: Int as uint64;
     owner: Address;
     response_destination: Address;
-    individual_content: String;
+    individual_content: NftMetadata;
 }
 
 message(0x5fcc3d14) Transfer {
@@ -91,5 +93,5 @@ struct GetNftData {
     index: Int;
     collection_address: Address;
     owner_address: Address;
-    individual_content: String;
+    individual_content: NftMetadata;
 }

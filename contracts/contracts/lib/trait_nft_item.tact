@@ -8,11 +8,11 @@ trait NftItem with Deployable, Ownable, Accounting {
     item_index: Int;
     owner: Address;
     is_initialized: Bool;
-    individual_content: String;
+    individual_content: NftMetadata;
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftItemIndividualContent(): String {
+    virtual fun getNftItemIndividualContent(): NftMetadata {
         // let b: StringBuilder = beginString();
         // let collectionData: String = self.individual_content.asSlice().asString();
         // b.append(collectionData);

@@ -3,7 +3,7 @@ import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
-import { registerTestAccountMessage } from '../utils/test'
+import { registerTestAccountMessage } from '../utils/test-fixtures'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain

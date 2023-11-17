@@ -6,11 +6,11 @@ import "./trait_accounting.tact";
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
     owner: Address;
-    collection_content: String;
+    collection_content: NftCollectionMetadata;
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftCollectionContent(): String {
+    virtual fun getNftCollectionContent(): NftCollectionMetadata {
         // let b: StringBuilder = beginString();
         // let collectionDataString: String = self.collection_content.asSlice().asString();
         // b.append(collectionDataString);

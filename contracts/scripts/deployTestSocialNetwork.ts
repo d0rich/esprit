@@ -6,7 +6,7 @@ import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
   createTestPostMessage,
   registerTestAccountMessage
-} from '../utils/test'
+} from '../utils/test-fixtures'
 
 export async function run(provider: NetworkProvider) {
   const dMaster = provider.open(await DSocialNetworkMaster.fromInit())
