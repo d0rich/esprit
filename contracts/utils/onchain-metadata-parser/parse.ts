@@ -27,7 +27,7 @@ export async function parse(
   const data = dataCell.cell.asSlice()
   const start = data.loadUint(8)
   if (start !== 0) {
-    throw new Error('Unknown format')
+    throw new Error(`Unknown format: ${start}`)
   }
 
   const dict = data.loadDict(Dictionary.Keys.Buffer(32), NFTDictValueSerializer)

@@ -2,6 +2,7 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages_nft.tact";
 import "./trait_accounting.tact";
+import "./native_dict_functions.tact";
 
 trait NftItem with Deployable, Ownable, Accounting {
     collection_address: Address;
@@ -12,15 +13,25 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftItemIndividualContent(): Cell {
-        // let b: StringBuilder = beginString();
-        // let collectionData: String = self.individual_content.asSlice().asString();
-        // b.append(collectionData);
-        // b.append(self.item_index.toString());
-        // b.append(".json");
-        // return b.toCell();
-        // TODO: if following works, remove the above
-        return self.individual_content.toCell();
+    virtual fun serializeMetadata(): Cell {
+        // let d: map<Int, Cell> = emptyMap();
+        // d.set(sha256("name"), self.individual_content.name.asSlice().asCell());
+        // d.set(sha256("description"), self.individual_content.description.asSlice().asCell());
+        // d.set(sha256("image"), self.individual_content.image.asSlice().asCell());
+        // if (self.individual_content.content_url != null) {
+        //     d.set(sha256("content_url"), (self.individual_content.content_url!!).asSlice().asCell());
+        // }
+        // return beginCell().storeUint(0, 8).storeRef((d.asCell()!!)).endCell();
+        let d: Cell? = newDict();
+        d = udictSetRef(d, 256, sha256("name"), self.individual_content.name.asSlice().asCell());
+        d = udictSetRef(d, 256, sha256("description"), self.individual_content.description.asSlice().asCell());
+        d = udictSetRef(d, 256, sha256("image"), self.individual_content.image.asSlice().asCell());
+        if (self.individual_content.content_url != null) {
+            d = udictSetRef(d, 256, sha256("content_url"), (self.individual_content.content_url!!).asSlice().asCell());
+        }
+        let b: Builder = beginCell().storeUint(0, 8);
+        return storeDict(b, d).endCell();
+        // return beginCell().storeUint(0, 8).storeRef(self.individual_content.toCell()).endCell();
     }
 
     // --------- Get Function  --------- //
@@ -34,7 +45,7 @@ trait NftItem with Deployable, Ownable, Accounting {
             index: self.item_index,
             collection_address: self.collection_address,
             owner_address: self.owner,
-            individual_content: self.getNftItemIndividualContent()
+            individual_content: self.serializeMetadata()
         };
     }
 
