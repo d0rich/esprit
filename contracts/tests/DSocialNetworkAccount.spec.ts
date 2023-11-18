@@ -8,6 +8,7 @@ import {
   createTestPostMessage,
   registerTestAccountMessage
 } from '../utils/test-fixtures'
+import { parse } from '../utils/onchain-metadata-parser/parse'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -83,6 +84,12 @@ describe('DSocialNetworkMaster', () => {
 
     expect(await dAccount.getGetNextItemIndex()).toBe(1n)
 
-    blockchain.openContract(DSocialNetworkPost.fromAddress(postAddress!))
+    const dPost = blockchain.openContract(
+      DSocialNetworkPost.fromAddress(postAddress!)
+    )
+    console.log(
+      'parsed metadata:',
+      await parse(blockchain, dPost.address, dAccount.address)
+    )
   })
 })

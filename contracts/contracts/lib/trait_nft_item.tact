@@ -48,8 +48,8 @@ trait NftItem with Deployable, Ownable, Accounting {
         self.individual_content = msg.individual_content;
         send(SendParameters{
             to: msg.response_destination,
-            value: 0,
-            mode:  SendIgnoreErrors + SendRemainingValue,
+            value: self.calculateFullAmountForSending(),
+            mode:  SendIgnoreErrors,
             body: Excesses { query_id: msg.query_id }.toCell()
         });
     }
