@@ -4,6 +4,13 @@ import "./messages_nft.tact";
 import "./trait_accounting.tact";
 import "./native_dict_functions.tact";
 
+fun serialize_short(s: String): Cell {
+    return beginCell()
+        .storeUint(0, 8)
+        .storeSlice(s.asSlice())
+        .endCell();
+}
+
 trait NftItem with Deployable, Ownable, Accounting {
     collection_address: Address;
     item_index: Int;
@@ -23,11 +30,11 @@ trait NftItem with Deployable, Ownable, Accounting {
         // }
         // return beginCell().storeUint(0, 8).storeRef((d.asCell()!!)).endCell();
         let d: Cell? = newDict();
-        d = udictSetRef(d, 256, sha256("name"), self.individual_content.name.asSlice().asCell());
-        d = udictSetRef(d, 256, sha256("description"), self.individual_content.description.asSlice().asCell());
-        d = udictSetRef(d, 256, sha256("image"), self.individual_content.image.asSlice().asCell());
+        d = udictSetRef(d, 256, sha256("name"), serialize_short(self.individual_content.name));
+        d = udictSetRef(d, 256, sha256("description"), serialize_short(self.individual_content.description));
+        d = udictSetRef(d, 256, sha256("image"), serialize_short(self.individual_content.image));
         if (self.individual_content.content_url != null) {
-            d = udictSetRef(d, 256, sha256("content_url"), (self.individual_content.content_url!!).asSlice().asCell());
+            d = udictSetRef(d, 256, sha256("content_url"), serialize_short(self.individual_content.content_url!!));
         }
         let b: Builder = beginCell().storeUint(0, 8);
         return storeDict(b, d).endCell();
