@@ -23,16 +23,24 @@ trait NftCollection with Deployable, Ownable, Accounting {
         require(false, "Not implemented");
     }
 
-    virtual fun serializeNftContent(index: Int, individual_content: NftMetadata): Cell {
+    virtual fun serializeNftContent(index: Int, individual_content: map<Int, Cell>): Cell {
         require(index >= 0, "index must be positive");
         require(index < self.next_item_index, "index must be less than next_item_index");
-        require(individual_content.antifraud_address == myAddress(), "antifraud_address must be equal to the contract address");
+        let antifraud_flag: Cell? = individual_content.get(sha256("antifraud_flag"));
+        require(antifraud_flag != null, "antifraud_flag must be present");
+        let name: Cell? = individual_content.get(sha256("name"));
+        let description: Cell? = individual_content.get(sha256("description"));
+        let image: Cell? = individual_content.get(sha256("image"));
+        let content_url: Cell? = individual_content.get(sha256("content_url"));
+        require(name != null, "name must be present");
+        require(description != null, "description must be present");
+        require(image != null, "image must be present");
         let tep64Dict: Cell? = beginTep64Dict();
-        tep64Dict = storeTep64SnakeString(tep64Dict, "name", individual_content.name);
-        tep64Dict = storeTep64SnakeString(tep64Dict, "description", individual_content.description);
-        tep64Dict = storeTep64SnakeString(tep64Dict, "image", individual_content.image);
-        if (individual_content.content_url != null) {
-            tep64Dict = storeTep64SnakeString(tep64Dict, "content_url", individual_content.content_url!!);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "name", (name!!).asSlice().asString());
+        tep64Dict = storeTep64SnakeString(tep64Dict, "description", (description!!).asSlice().asString());
+        tep64Dict = storeTep64SnakeString(tep64Dict, "image", (image!!).asSlice().asString());
+        if (content_url != null) {
+            tep64Dict = storeTep64SnakeString(tep64Dict, "content_url", (content_url!!).asSlice().asString());
         }
         return buildTep64OnchainContent(tep64Dict!!);
     }
@@ -63,7 +71,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
         return contractAddress(initCode);
     }
 
-    get fun get_nft_content(index: Int, individual_content: NftMetadata): Cell {
+    get fun get_nft_content(index: Int, individual_content: map<Int, Cell>): Cell {
         return self.serializeNftContent(index, individual_content);
     }
 

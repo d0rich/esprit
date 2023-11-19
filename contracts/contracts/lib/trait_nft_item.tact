@@ -12,6 +12,21 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
+    virtual fun serializeIndividualContent(): map<Int, Cell> {
+        let dict: map<Int, Cell> = emptyMap();
+        dict.set(sha256("name"), self.individual_content.name.asSlice().asCell());
+        dict.set(sha256("description"), self.individual_content.description.asSlice().asCell());
+        dict.set(sha256("image"), self.individual_content.image.asSlice().asCell());
+        if (self.individual_content.content_url != null) {
+            dict.set(sha256("content_url"), (self.individual_content.content_url!!).asSlice().asCell());
+        }
+        dict.set(
+            sha256("antifraud_flag"),
+            beginCell().storeBool(false).endCell()
+        );
+        return dict;
+    }
+
     // --------- Get Function  --------- //
 
 
@@ -23,7 +38,7 @@ trait NftItem with Deployable, Ownable, Accounting {
             index: self.item_index,
             collection_address: self.collection_address,
             owner_address: self.owner,
-            individual_content: self.individual_content
+            individual_content: self.serializeIndividualContent()
         };
     }
 
@@ -38,8 +53,7 @@ trait NftItem with Deployable, Ownable, Accounting {
             name: msg.individual_content.name,
             description: msg.individual_content.description,
             image: msg.individual_content.image,
-            content_url: msg.individual_content.content_url,
-            antifraud_address: self.collection_address
+            content_url: msg.individual_content.content_url
         };
         send(SendParameters{
             to: msg.response_destination,

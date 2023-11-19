@@ -29,16 +29,10 @@ export const createTestPostMessage: MintNft = {
   $$type: 'MintNft',
   query_id: 0n,
   individual_content: {
-    $$type: 'InitialNftMetadata',
+    $$type: 'NftMetadata',
     name: 'Test post',
     description: 'Test post description',
     image: 'https://d0rich.me/og/image.jpg',
     content_url: 'https://test.com/content.txt'
   }
-  // individual_content: JSON.stringify({
-  //   name: 'Test post',
-  //   description: 'Test post description',
-  //   image: 'https://d0rich.me/og/image.jpg',
-  //   content_url: 'https://test.com/content.txt'
-  // })
 }
