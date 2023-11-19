@@ -6,17 +6,29 @@ import {
   MintNft
 } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
+import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
   getTestPostModel,
   registerTestAccountMessage
 } from '../utils/test-fixtures'
-import { DPost } from '../models'
+import { parse } from '../utils/onchain-metadata-parser/parse'
+import { DPost, type DPostModel } from '../models'
+
+function stringifyModel(model: DPostModel): Record<keyof DPostModel, string> {
+  return {
+    ...model,
+    date: model.date.toISOString(),
+    author: model.author.toRawString()
+  }
+}
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
   let dAccount: SandboxContract<DSocialNetworkAccount>
+  let testPostModel: DPostModel
+  let dPost: SandboxContract<DSocialNetworkPost>
 
   beforeEach(async () => {
     blockchain = await Blockchain.create()
@@ -59,16 +71,8 @@ describe('DSocialNetworkMaster', () => {
     dAccount = blockchain.openContract(
       DSocialNetworkAccount.fromAddress(accountAddress!)
     )
-  })
 
-  it('deployer shoud be owner of the account', async () => {
-    const owner = await dAccount.getOwner()
-
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
-  })
-
-  it('should create post', async () => {
-    const testPostModel = getTestPostModel(deployer.address)
+    testPostModel = getTestPostModel(deployer.address)
 
     const createTestPostMessage: MintNft = {
       $$type: 'MintNft',
@@ -93,5 +97,41 @@ describe('DSocialNetworkMaster', () => {
     })
 
     expect(await dAccount.getGetNextItemIndex()).toBe(1n)
+
+    dPost = blockchain.openContract(
+      DSocialNetworkPost.fromAddress(postAddress!)
+    )
+  })
+
+  it('Deployer shoud be owner of the post', async () => {
+    const owner = await dPost.getOwner()
+
+    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+  })
+
+  it('Post model should be serialized correctly', () => {
+    const serializedModel = DPost.serializePostData(testPostModel)
+    const deserializedPostData = DPost.deserializePostData(serializedModel)
+    expect(stringifyModel(testPostModel)).toEqual(
+      stringifyModel(deserializedPostData)
+    )
+  })
+
+  it('Post should be readable', async () => {
+    const getNftDataRes = await dPost.getGetNftData()
+    await dAccount.getGetNftContent(
+      getNftDataRes.index,
+      getNftDataRes.individual_content
+    )
+  })
+
+  it('Post NFT data shoud be parsed correctly', async () => {
+    const postMetadata = await dPost.getGetPostInfo()
+
+    expect(await parse(blockchain, dPost.address, dAccount.address)).toEqual({
+      image: postMetadata.nft_content.image,
+      name: postMetadata.nft_content.name,
+      description: postMetadata.nft_content.description
+    })
   })
 })

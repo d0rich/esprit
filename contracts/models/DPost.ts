@@ -25,9 +25,13 @@ export class DPost {
   constructor(public readonly contract: DSocialNetworkPost) {}
 
   static serializePostData(model: DPostModel): NftMetadata {
-    const name = `Post on D from ${model.date.toLocaleDateString('de-DE')} by ${model.author.toRawString()}`
+    const name = `Post on D from ${model.date.toLocaleDateString(
+      'de-DE'
+    )} by ${model.author.toRawString()}`
     const stringBuilder: string[] = []
-    stringBuilder.push(`${nullChar}Posted: ${model.date.toLocaleDateString('de-DE')}`)
+    stringBuilder.push(
+      `${nullChar}Posted: ${model.date.toLocaleDateString('de-DE')}`
+    )
     stringBuilder.push(`${nullChar}Author: ${model.author.toRawString()}`)
     stringBuilder.push(`${nullChar}See on D: ${model.url}`)
     stringBuilder.push(nullChar)
@@ -37,12 +41,14 @@ export class DPost {
     stringBuilder.push(`${nullChar}=== Technical information ===`)
     stringBuilder.push(nullChar)
     stringBuilder.push(nullChar)
-    stringBuilder.push(`${sohChar}${JSON.stringify({
-      url: model.url,
-      date: model.date.toISOString(),
-      author: model.author.toRawString(),
-      content: model.content
-    })}${enqChar}`)
+    stringBuilder.push(
+      `${sohChar}${JSON.stringify({
+        url: model.url,
+        date: model.date.toISOString(),
+        author: model.author.toRawString(),
+        content: model.content
+      })}${enqChar}`
+    )
     return {
       $$type: 'NftMetadata',
       image: 'https://d0rich.me/og/image.jpg',

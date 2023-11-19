@@ -1,12 +1,17 @@
 import { toNano } from 'ton-core'
 import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
+import {
+  DSocialNetworkAccount,
+  MintNft
+} from '../wrappers/DSocialNetworkAccount'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
-  createTestPostMessage,
+  getTestPostModel,
   registerTestAccountMessage
 } from '../utils/test-fixtures'
+
+import { DPost } from '../models'
 
 export async function run(provider: NetworkProvider) {
   const dMaster = provider.open(await DSocialNetworkMaster.fromInit())
@@ -37,6 +42,14 @@ export async function run(provider: NetworkProvider) {
   )
 
   await provider.waitForDeploy(dAccount.address)
+
+  const testPostModel = getTestPostModel(provider.sender().address!)
+
+  const createTestPostMessage: MintNft = {
+    $$type: 'MintNft',
+    query_id: 0n,
+    individual_content: DPost.serializePostData(testPostModel)
+  }
 
   await dAccount.send(
     provider.sender(),
