@@ -1,9 +1,10 @@
-import { Dictionary } from 'ton-core'
+import { Address, Dictionary } from 'ton-core'
 import { RegisterAccount } from '../wrappers/DSocialNetworkMaster'
 import {
   MintNft,
   NftMetadataAttribute
 } from '../wrappers/DSocialNetworkAccount'
+import { DPost } from '../models'
 
 export const registerTestAccountMessage: RegisterAccount = {
   $$type: 'RegisterAccount',
@@ -25,13 +26,15 @@ testNftAttributes.set(0n, {
   value: 'My first post'
 })
 
-export const createTestPostMessage: MintNft = {
-  $$type: 'MintNft',
-  query_id: 0n,
-  individual_content: {
-    $$type: 'NftMetadata',
-    name: 'Test post',
-    description: 'Test post description',
-    image: 'https://d0rich.me/og/image.jpg'
+export function getCreateTestPostMessage(author: Address): MintNft {
+  return {
+    $$type: 'MintNft',
+    query_id: 0n,
+    individual_content: DPost.serializePostData({
+      url: 'https://d0rich.me',
+      date: new Date(),
+      author,
+      content: 'This is my first post on D'
+    })
   }
 }

@@ -57,8 +57,5 @@ describe('DSocialNetworkMaster', () => {
     expect(await dMaster.getGetAccountsCount()).toBe(1n)
 
     blockchain.openContract(DSocialNetworkAccount.fromAddress(accountAddress!))
-
-    // console.log(await dAccount.getGetAccountInfo())
-    // console.log(await dAccount.getRoyaltyParams())
   })
 })

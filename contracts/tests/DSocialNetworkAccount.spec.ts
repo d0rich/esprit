@@ -5,10 +5,11 @@ import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
-  createTestPostMessage,
+  getCreateTestPostMessage,
   registerTestAccountMessage
 } from '../utils/test-fixtures'
 import { parse } from '../utils/onchain-metadata-parser/parse'
+import { DPost } from '../models'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -66,6 +67,10 @@ describe('DSocialNetworkMaster', () => {
   })
 
   it('should create post', async () => {
+    const createTestPostMessage = getCreateTestPostMessage(deployer.address)
+
+    console.log(createTestPostMessage.individual_content)
+
     const registerResult = await dAccount.send(
       deployer.getSender(),
       { value: toNano('0.5') },
@@ -97,5 +102,9 @@ describe('DSocialNetworkMaster', () => {
       name: createTestPostMessage.individual_content.name,
       description: createTestPostMessage.individual_content.description
     })
+
+    const postMetadata = await dPost.getGetPostInfo()
+
+    console.log(DPost.deserializePostData(postMetadata.nft_content))
   })
 })
