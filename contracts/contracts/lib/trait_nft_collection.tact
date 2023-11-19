@@ -11,14 +11,12 @@ trait NftCollection with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun getNftCollectionContent(): Cell {
-        // let b: StringBuilder = beginString();
-        // let collectionDataString: String = self.collection_content.asSlice().asString();
-        // b.append(collectionDataString);
-        // b.append("meta.json");
-        // return b.toCell();
-        // TODO: if following works, remove the above
-        return self.collection_content.toCell();
+    virtual fun serializeNftCollectionContent(): Cell {
+        let tep64Dict: Cell? = beginTep64Dict();
+        tep64Dict = storeTep64SnakeString(tep64Dict, "name", self.collection_content.name);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "description", self.collection_content.description);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "image", self.collection_content.image);
+        return buildTep64OnchainContent(tep64Dict!!);
     }
 
     virtual fun getNftItemInit(item_index: Int): StateInit {
@@ -52,7 +50,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
     get fun get_collection_data(): CollectionData {
         return CollectionData{
             next_item_index: self.next_item_index,
-            collection_content: self.getNftCollectionContent(),
+            collection_content: self.serializeNftCollectionContent(),
             owner_address: self.owner
         };
     }
