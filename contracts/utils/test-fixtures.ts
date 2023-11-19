@@ -32,7 +32,6 @@ export const createTestPostMessage: MintNft = {
     $$type: 'NftMetadata',
     name: 'Test post',
     description: 'Test post description',
-    image: 'https://d0rich.me/og/image.jpg',
-    content_url: 'https://test.com/content.txt'
+    image: 'https://d0rich.me/og/image.jpg'
   }
 }

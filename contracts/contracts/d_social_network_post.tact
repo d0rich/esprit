@@ -18,8 +18,7 @@ contract DSocialNetworkPost with NftItem {
         self.individual_content = NftMetadata {
             name: "",
             description: "",
-            image: "",
-            content_url: ""
+            image: ""
         };
         self.is_initialized = false;
     }

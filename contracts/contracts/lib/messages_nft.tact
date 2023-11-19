@@ -47,7 +47,6 @@ struct NftMetadata {
     name: String;
     description: String;
     image: String;
-    content_url: String?;
 }
 
 message InitializeNft {

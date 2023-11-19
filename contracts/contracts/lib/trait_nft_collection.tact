@@ -31,7 +31,6 @@ trait NftCollection with Deployable, Ownable, Accounting {
         let name: Cell? = individual_content.get(sha256("name"));
         let description: Cell? = individual_content.get(sha256("description"));
         let image: Cell? = individual_content.get(sha256("image"));
-        let content_url: Cell? = individual_content.get(sha256("content_url"));
         require(name != null, "name must be present");
         require(description != null, "description must be present");
         require(image != null, "image must be present");
@@ -39,9 +38,6 @@ trait NftCollection with Deployable, Ownable, Accounting {
         tep64Dict = storeTep64SnakeString(tep64Dict, "name", (name!!).asSlice().asString());
         tep64Dict = storeTep64SnakeString(tep64Dict, "description", (description!!).asSlice().asString());
         tep64Dict = storeTep64SnakeString(tep64Dict, "image", (image!!).asSlice().asString());
-        if (content_url != null) {
-            tep64Dict = storeTep64SnakeString(tep64Dict, "content_url", (content_url!!).asSlice().asString());
-        }
         return buildTep64OnchainContent(tep64Dict!!);
     }
 

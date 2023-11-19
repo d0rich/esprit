@@ -17,9 +17,6 @@ trait NftItem with Deployable, Ownable, Accounting {
         dict.set(sha256("name"), self.individual_content.name.asSlice().asCell());
         dict.set(sha256("description"), self.individual_content.description.asSlice().asCell());
         dict.set(sha256("image"), self.individual_content.image.asSlice().asCell());
-        if (self.individual_content.content_url != null) {
-            dict.set(sha256("content_url"), (self.individual_content.content_url!!).asSlice().asCell());
-        }
         dict.set(
             sha256("antifraud_flag"),
             beginCell().storeBool(false).endCell()
@@ -49,12 +46,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         require(self.is_initialized == false, "NFT Item is already initialized");
         self.is_initialized = true;
         self.owner = msg.owner;
-        self.individual_content = NftMetadata{
-            name: msg.individual_content.name,
-            description: msg.individual_content.description,
-            image: msg.individual_content.image,
-            content_url: msg.individual_content.content_url
-        };
+        self.individual_content = msg.individual_content;
         send(SendParameters{
             to: msg.response_destination,
             value: self.calculateFullAmountForSending(),

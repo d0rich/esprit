@@ -95,8 +95,7 @@ describe('DSocialNetworkMaster', () => {
     expect(await parse(blockchain, dPost.address, dAccount.address)).toEqual({
       image: createTestPostMessage.individual_content.image,
       name: createTestPostMessage.individual_content.name,
-      description: createTestPostMessage.individual_content.description,
-      content_url: createTestPostMessage.individual_content.content_url
+      description: createTestPostMessage.individual_content.description
     })
   })
 })
