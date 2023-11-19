@@ -2,7 +2,7 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages_nft.tact";
 import "./trait_accounting.tact";
-import "./tep64-serialization.tact";
+import "./tep64_serialization.tact";
 
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
@@ -23,22 +23,10 @@ trait NftCollection with Deployable, Ownable, Accounting {
         require(false, "Not implemented");
     }
 
-    virtual fun serializeNftContent(index: Int, individual_content: map<Int, Cell>): Cell {
+    virtual fun serializeNftContent(index: Int, individual_content: Cell): Cell {
         require(index >= 0, "index must be positive");
         require(index < self.next_item_index, "index must be less than next_item_index");
-        let antifraud_flag: Cell? = individual_content.get(sha256("antifraud_flag"));
-        require(antifraud_flag != null, "antifraud_flag must be present");
-        let name: Cell? = individual_content.get(sha256("name"));
-        let description: Cell? = individual_content.get(sha256("description"));
-        let image: Cell? = individual_content.get(sha256("image"));
-        require(name != null, "name must be present");
-        require(description != null, "description must be present");
-        require(image != null, "image must be present");
-        let tep64Dict: Cell? = beginTep64Dict();
-        tep64Dict = storeTep64SnakeString(tep64Dict, "name", (name!!).asSlice().asString());
-        tep64Dict = storeTep64SnakeString(tep64Dict, "description", (description!!).asSlice().asString());
-        tep64Dict = storeTep64SnakeString(tep64Dict, "image", (image!!).asSlice().asString());
-        return buildTep64OnchainContent(tep64Dict!!);
+        return individual_content;
     }
 
     virtual fun requireEnoughTonForMinting() {
@@ -67,7 +55,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
         return contractAddress(initCode);
     }
 
-    get fun get_nft_content(index: Int, individual_content: map<Int, Cell>): Cell {
+    get fun get_nft_content(index: Int, individual_content: Cell): Cell {
         return self.serializeNftContent(index, individual_content);
     }
 

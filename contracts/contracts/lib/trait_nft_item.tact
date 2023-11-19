@@ -2,6 +2,7 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages_nft.tact";
 import "./trait_accounting.tact";
+import "./tep64_serialization.tact";
 
 trait NftItem with Deployable, Ownable, Accounting {
     collection_address: Address;
@@ -12,16 +13,13 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun serializeIndividualContent(): map<Int, Cell> {
+    virtual fun serializeIndividualContent(): Cell {
         let dict: map<Int, Cell> = emptyMap();
-        dict.set(sha256("name"), self.individual_content.name.asSlice().asCell());
-        dict.set(sha256("description"), self.individual_content.description.asSlice().asCell());
-        dict.set(sha256("image"), self.individual_content.image.asSlice().asCell());
-        dict.set(
-            sha256("antifraud_flag"),
-            beginCell().storeBool(false).endCell()
-        );
-        return dict;
+        let tep64Dict: Cell? = beginTep64Dict();
+        tep64Dict = storeTep64SnakeString(tep64Dict, "name", self.individual_content.name.asSlice().asString());
+        tep64Dict = storeTep64SnakeString(tep64Dict, "description", self.individual_content.description.asSlice().asString());
+        tep64Dict = storeTep64SnakeString(tep64Dict, "image", self.individual_content.image.asSlice().asString());
+        return buildTep64OnchainContent(tep64Dict!!);
     }
 
     // --------- Get Function  --------- //
