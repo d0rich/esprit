@@ -34,7 +34,13 @@ trait NftItem with Deployable, Ownable, Accounting {
         require(self.is_initialized == false, "NFT Item is already initialized");
         self.is_initialized = true;
         self.owner = msg.owner;
-        self.individual_content = msg.individual_content;
+        self.individual_content = NftMetadata{
+            name: msg.individual_content.name,
+            description: msg.individual_content.description,
+            image: msg.individual_content.image,
+            content_url: msg.individual_content.content_url,
+            antifraud_address: self.collection_address
+        };
         send(SendParameters{
             to: msg.response_destination,
             value: self.calculateFullAmountForSending(),

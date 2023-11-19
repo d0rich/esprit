@@ -88,6 +88,16 @@ describe('DSocialNetworkMaster', () => {
       DSocialNetworkPost.fromAddress(postAddress!)
     )
 
+    expect((await dPost.getOwner()).toRawString()).toEqual(
+      deployer.address.toRawString()
+    )
+
+    expect(
+      (
+        await dPost.getGetNftData()
+      ).individual_content.antifraud_address.toRawString()
+    ).toEqual(dAccount.address.toRawString())
+
     expect(await parse(blockchain, dPost.address, dAccount.address)).toEqual({
       image: createTestPostMessage.individual_content.image,
       name: createTestPostMessage.individual_content.name,

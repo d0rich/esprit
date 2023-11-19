@@ -14,7 +14,7 @@ struct NftCollectionMetadata {
 
 message MintNft {
     query_id: Int as uint64;
-    individual_content: NftMetadata;
+    individual_content: InitialNftMetadata;
 }
 
 // NFT collection: Royalty exntention
@@ -48,13 +48,22 @@ struct NftMetadata {
     description: String;
     image: String;
     content_url: String?;
+    // Restrict data serialization from other collections
+    antifraud_address: Address;
+}
+
+struct InitialNftMetadata {
+    name: String;
+    description: String;
+    image: String;
+    content_url: String?;
 }
 
 message InitializeNft {
     query_id: Int as uint64;
     owner: Address;
     response_destination: Address;
-    individual_content: NftMetadata;
+    individual_content: InitialNftMetadata;
 }
 
 message(0x5fcc3d14) Transfer {

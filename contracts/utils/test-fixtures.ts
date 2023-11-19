@@ -29,7 +29,7 @@ export const createTestPostMessage: MintNft = {
   $$type: 'MintNft',
   query_id: 0n,
   individual_content: {
-    $$type: 'NftMetadata',
+    $$type: 'InitialNftMetadata',
     name: 'Test post',
     description: 'Test post description',
     image: 'https://d0rich.me/og/image.jpg',

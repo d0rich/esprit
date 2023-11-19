@@ -24,6 +24,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
     }
 
     virtual fun serializeNftContent(index: Int, individual_content: NftMetadata): Cell {
+        require(individual_content.antifraud_address == myAddress(), "antifraud_address must be equal to the contract address");
         let tep64Dict: Cell? = beginTep64Dict();
         tep64Dict = storeTep64SnakeString(tep64Dict, "name", individual_content.name);
         tep64Dict = storeTep64SnakeString(tep64Dict, "description", individual_content.description);
