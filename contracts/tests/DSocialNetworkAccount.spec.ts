@@ -87,9 +87,12 @@ describe('DSocialNetworkMaster', () => {
     const dPost = blockchain.openContract(
       DSocialNetworkPost.fromAddress(postAddress!)
     )
-    console.log(
-      'parsed metadata:',
-      await parse(blockchain, dPost.address, dAccount.address)
-    )
+
+    expect(await parse(blockchain, dPost.address, dAccount.address)).toEqual({
+      image: createTestPostMessage.individual_content.image,
+      name: createTestPostMessage.individual_content.name,
+      description: createTestPostMessage.individual_content.description,
+      content_url: createTestPostMessage.individual_content.content_url
+    })
   })
 })

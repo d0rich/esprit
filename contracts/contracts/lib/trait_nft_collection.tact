@@ -2,6 +2,7 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./messages_nft.tact";
 import "./trait_accounting.tact";
+import "./tep64-serialization.tact";
 
 trait NftCollection with Deployable, Ownable, Accounting {
     next_item_index: Int;
@@ -24,13 +25,15 @@ trait NftCollection with Deployable, Ownable, Accounting {
         require(false, "Not implemented");
     }
 
-    virtual fun getNftItemIndividualContent(index: Int, individual_content: Cell): Cell {
-        // let b: StringBuilder = beginString();
-        // let ic: String = individual_content.asSlice().asString();
-        // b.append(ic);
-        // return b.toCell();
-        // TODO: if following works, remove the above
-        return individual_content;
+    virtual fun serializeNftContent(index: Int, individual_content: NftMetadata): Cell {
+        let tep64Dict: Cell? = beginTep64Dict();
+        tep64Dict = storeTep64SnakeString(tep64Dict, "name", individual_content.name);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "description", individual_content.description);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "image", individual_content.image);
+        if (individual_content.content_url != null) {
+            tep64Dict = storeTep64SnakeString(tep64Dict, "content_url", individual_content.content_url!!);
+        }
+        return buildTep64OnchainContent(tep64Dict!!);
     }
 
     virtual fun requireEnoughTonForMinting() {
@@ -59,8 +62,8 @@ trait NftCollection with Deployable, Ownable, Accounting {
         return contractAddress(initCode);
     }
 
-    get fun get_nft_content(index: Int, individual_content: Cell): Cell {
-        return self.getNftItemIndividualContent(index, individual_content);
+    get fun get_nft_content(index: Int, individual_content: NftMetadata): Cell {
+        return self.serializeNftContent(index, individual_content);
     }
 
     // ===== Recievers ===== //

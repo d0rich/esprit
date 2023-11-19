@@ -32,7 +32,7 @@ export async function parse(
 
   const dict = data.loadDict(Dictionary.Keys.Buffer(32), NFTDictValueSerializer)
 
-  const keys = ['image', 'name', 'description']
+  const keys = ['image', 'name', 'description', 'content_url']
   const result: Record<string, string> = {}
   for (const key of keys) {
     const dictKey = await sha256(key)

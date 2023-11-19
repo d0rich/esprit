@@ -91,5 +91,5 @@ struct GetNftData {
     index: Int;
     collection_address: Address;
     owner_address: Address;
-    individual_content: Cell;
+    individual_content: NftMetadata;
 }
