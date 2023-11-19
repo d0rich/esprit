@@ -14,11 +14,10 @@ trait NftItem with Deployable, Ownable, Accounting {
     // ===== Customizable functions ===== //
 
     virtual fun serializeIndividualContent(): Cell {
-        let dict: map<Int, Cell> = emptyMap();
         let tep64Dict: Cell? = beginTep64Dict();
-        tep64Dict = storeTep64SnakeString(tep64Dict, "name", self.individual_content.name.asSlice().asString());
-        tep64Dict = storeTep64SnakeString(tep64Dict, "description", self.individual_content.description.asSlice().asString());
-        tep64Dict = storeTep64SnakeString(tep64Dict, "image", self.individual_content.image.asSlice().asString());
+        tep64Dict = storeTep64SnakeString(tep64Dict, "name", self.individual_content.name);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "description", self.individual_content.description);
+        tep64Dict = storeTep64SnakeString(tep64Dict, "image", self.individual_content.image);
         return buildTep64OnchainContent(tep64Dict!!);
     }
 
