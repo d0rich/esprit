@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "blueprint build --all",
+    "build": "blueprint build --all && npm run patch:build-imports",
     "test": "jest",
     "bp:start": "blueprint run",
-    "bp:build": "blueprint build"
+    "bp:build": "blueprint build",
+    "patch:build-imports": "node ./build-scripts/patch-wrappers-imports.mjs"
   },
   "devDependencies": {
     "@ton-community/blueprint": "^0.12.0",
