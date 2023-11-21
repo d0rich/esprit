@@ -1,5 +1,5 @@
 import { Address } from 'ton-core'
-import { DSocialNetworkPost, NftMetadata } from '../wrappers/DSocialNetworkPost'
+import { DSocialNetworkPost, type NftMetadata } from '@d0rich/contracts/wrappers/DSocialNetworkPost'
 
 export type DPostModel = {
   url: string

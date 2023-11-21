@@ -1,4 +1,4 @@
-import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkAccount } from '@d0rich/contracts/wrappers/DSocialNetworkAccount'
 
 export class DAccount {
   // eslint-disable-next-line no-useless-constructor
