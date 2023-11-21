@@ -19,6 +19,10 @@
     "@d0rich/contracts#build": {
       "outputs": ["dist"]
     },
+    "d.d0rich.me#build": {
+      "dependsOn": ["@d0rich/contracts#build", "@d0rich/esprit-design#build"],
+      "outputs": ["dist"]
+    },
     "typecheck": {},
     "test": {},
     "@d0rich/contracts#test": {
