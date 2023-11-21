@@ -45,7 +45,7 @@ export function serializePostData(model: DPostModel): NftMetadata {
   )
   return {
     $$type: 'NftMetadata',
-    image: 'https://d.d0rich.me/metadata/.jpg',
+    image: 'https://d.d0rich.me/metadata/covers/post.jpg',
     name,
     description: stringBuilder.join('\n')
   }

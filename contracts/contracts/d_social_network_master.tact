@@ -39,11 +39,7 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
                 body: InitializeBlog {
                     query_id: 0,
                     owner: ctx.sender,
-                    collection_content: NftCollectionMetadata {
-                        image: "https://d0rich.me/og/image.jpg",
-                        name: msg.blog_name,
-                        description: msg.blog_description
-                    }
+                    collection_content: msg.blog_metadata
                 }.toCell(),
                 code: blog_init.code,
                 data: blog_init.data

@@ -6,8 +6,12 @@ import { DPostModel } from './stub-post-serialization'
 export const registerTestAccountMessage: CreateBlog = {
   $$type: 'CreateBlog',
   query_id: 0n,
-  blog_name: 'test',
-  blog_description: 'Test account description'
+  blog_metadata: {
+    $$type: 'NftCollectionMetadata',
+    name: 'Test blog',
+    description: 'Test blog description',
+    image: 'https://d.d0rich.me/metadata/covers/blog.jpg'
+  }
 }
 
 const testNftAttributes = Dictionary.empty<bigint, NftMetadataAttribute>()

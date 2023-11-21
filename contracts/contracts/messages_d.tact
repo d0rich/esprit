@@ -4,8 +4,7 @@ import "./lib/messages_nft.tact";
 
 message CreateBlog {
     query_id: Int as uint64;
-    blog_name: String;
-    blog_description: String;
+    blog_metadata: NftCollectionMetadata;
 }
 
 // Blog contract
