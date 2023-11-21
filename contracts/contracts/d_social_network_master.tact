@@ -2,12 +2,12 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./lib/trait_accounting.tact";
 import "./messages_d.tact";
-import "./d_social_network_account.tact";
+import "./d_social_network_blog.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  {
     version: String = "v0.0.1-beta";
     owner: Address;
-    next_account_index: Int as uint32 = 0;
+    next_blog_index: Int as uint32 = 0;
 
     init() {
         let ctx: Context = context();
@@ -18,40 +18,40 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
         return self.version;
     }
 
-   get fun get_accounts_count(): Int {
-        return self.next_account_index;
+   get fun get_blogs_count(): Int {
+        return self.next_blog_index;
     }
 
-    get fun get_account_address_by_index(item_index: Int): Address?{
-        let initCode: StateInit = self.getAccountInit(item_index);
+    get fun get_blog_address_by_index(item_index: Int): Address?{
+        let initCode: StateInit = self.getBlogInit(item_index);
         return contractAddress(initCode);
     }
 
-    receive(msg: RegisterAccount) {
-        require(self.next_account_index >= 0, "non-sequential NFTs");
+    receive(msg: CreateBlog) {
+        require(self.next_blog_index >= 0, "non-sequential NFTs");
         let ctx: Context = context();
-        let account_init: StateInit = self.getAccountInit(self.next_account_index);
+        let blog_init: StateInit = self.getBlogInit(self.next_blog_index);
         send(SendParameters{
-                to: contractAddress(account_init),
+                to: contractAddress(blog_init),
                 value: self.calculateFullAmountForSending(),
                 bounce: false,
                 mode: SendIgnoreErrors,
-                body: InitializeAccount {
+                body: InitializeBlog {
                     query_id: 0,
                     owner: ctx.sender,
                     collection_content: NftCollectionMetadata {
                         image: "https://d0rich.me/og/image.jpg",
-                        name: msg.account_name,
-                        description: msg.account_description
+                        name: msg.blog_name,
+                        description: msg.blog_description
                     }
                 }.toCell(),
-                code: account_init.code,
-                data: account_init.data
+                code: blog_init.code,
+                data: blog_init.data
             });
-        self.next_account_index = self.next_account_index + 1;
+        self.next_blog_index = self.next_blog_index + 1;
     }
 
-    fun getAccountInit(account_id: Int): StateInit {
-        return initOf DSocialNetworkAccount(account_id, myAddress());
+    fun getBlogInit(account_id: Int): StateInit {
+        return initOf DSocialNetworkBlog(account_id, myAddress());
     }
 }

@@ -4,8 +4,8 @@ import "./lib/trait_nft_collection_royalty_extention.tact";
 import "./messages_d.tact";
 import "./d_social_network_post.tact";
 
-contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention {
-    account_id: Int;
+contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
+    blog_id: Int;
     next_item_index: Int as uint32 = 0;
     owner: Address;
     master_contract: Address;
@@ -13,8 +13,8 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
     is_initialized: Bool = false;
     collection_content: NftCollectionMetadata;
 
-    init(account_id: Int, master_contract: Address){
-        self.account_id = account_id;
+    init(blog_id: Int, master_contract: Address){
+        self.blog_id = blog_id;
         self.master_contract = master_contract;
         self.owner = master_contract;
         self.royalty_params = RoyaltyParams{
@@ -30,9 +30,9 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         };
     }
 
-    get fun get_account_info(): AccountInfo {
-        return AccountInfo{
-            id: self.account_id,
+    get fun get_account_info(): BlogInfo {
+        return BlogInfo{
+            id: self.blog_id,
             owner: self.owner,
             master_contract: self.master_contract,
             collection_content: self.collection_content,
@@ -44,8 +44,8 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
         return self.next_item_index;
     }
 
-    receive(msg: InitializeAccount) {
-        require(!self.is_initialized, "Account is already initialized");
+    receive(msg: InitializeBlog) {
+        require(!self.is_initialized, "Blog is already initialized");
         self.requireOwner();
         self.owner = msg.owner;
         self.collection_content = msg.collection_content;
@@ -53,7 +53,7 @@ contract DSocialNetworkAccount with NftCollection, NftCollectionRoyaltyExtention
     }
 
     fun requireInitialization() {
-        require(self.is_initialized, "Account is not initialized");
+        require(self.is_initialized, "Blog is not initialized");
     }
 
     override fun getNftItemInit(item_index: Int): StateInit {

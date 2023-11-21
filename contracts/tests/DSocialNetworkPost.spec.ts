@@ -1,10 +1,7 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
 import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import {
-  DSocialNetworkAccount,
-  MintNft
-} from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
@@ -23,7 +20,7 @@ describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
-  let dAccount: SandboxContract<DSocialNetworkAccount>
+  let dBlog: SandboxContract<DSocialNetworkBlog>
   let testPostModel: DPostModel
   let dPost: SandboxContract<DSocialNetworkPost>
 
@@ -53,28 +50,26 @@ describe('DSocialNetworkMaster', () => {
       registerTestAccountMessage
     )
 
-    const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)
+    const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
 
-    expect(accountAddress).not.toBeNull()
+    expect(blogAddress).not.toBeNull()
 
     expect(registerResult.transactions).toHaveTransaction({
       from: dMaster.address,
-      to: accountAddress!,
+      to: blogAddress!,
       success: true
     })
 
-    expect(await dMaster.getGetAccountsCount()).toBe(1n)
+    expect(await dMaster.getGetBlogsCount()).toBe(1n)
 
-    dAccount = blockchain.openContract(
-      DSocialNetworkAccount.fromAddress(accountAddress!)
+    dBlog = blockchain.openContract(
+      DSocialNetworkBlog.fromAddress(blogAddress!)
     )
 
     testPostModel = getTestPostModel(
       deployer.address,
-      (await dAccount.getGetNftAddressByIndex(
-        await dAccount.getGetNextItemIndex()
-      ))!,
-      dAccount.address
+      (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
+      dBlog.address
     )
 
     const createTestPostMessage: MintNft = {
@@ -83,23 +78,23 @@ describe('DSocialNetworkMaster', () => {
       individual_content: serializePostData(testPostModel)
     }
 
-    const createPostResult = await dAccount.send(
+    const createPostResult = await dBlog.send(
       deployer.getSender(),
       { value: toNano('0.5') },
       createTestPostMessage
     )
 
-    const postAddress = await dAccount.getGetNftAddressByIndex(0n)
+    const postAddress = await dBlog.getGetNftAddressByIndex(0n)
 
     expect(postAddress).not.toBeNull()
 
     expect(createPostResult.transactions).toHaveTransaction({
-      from: dAccount.address,
+      from: dBlog.address,
       to: postAddress!,
       success: true
     })
 
-    expect(await dAccount.getGetNextItemIndex()).toBe(1n)
+    expect(await dBlog.getGetNextItemIndex()).toBe(1n)
 
     dPost = blockchain.openContract(
       DSocialNetworkPost.fromAddress(postAddress!)
@@ -122,7 +117,7 @@ describe('DSocialNetworkMaster', () => {
 
   it('Post should be readable', async () => {
     const getNftDataRes = await dPost.getGetNftData()
-    await dAccount.getGetNftContent(
+    await dBlog.getGetNftContent(
       getNftDataRes.index,
       getNftDataRes.individual_content
     )
@@ -133,7 +128,7 @@ describe('DSocialNetworkMaster', () => {
     const parsedPostMetadata = await parse(
       blockchain,
       dPost.address,
-      dAccount.address
+      dBlog.address
     )
     expect(parsedPostMetadata).toEqual({
       image: postMetadata.nft_content.image,

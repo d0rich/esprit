@@ -1,10 +1,7 @@
 import { toNano } from 'ton-core'
 import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import {
-  DSocialNetworkAccount,
-  MintNft
-} from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
   getTestPostModel,
@@ -35,20 +32,16 @@ export async function run(provider: NetworkProvider) {
     registerTestAccountMessage
   )
 
-  const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)
+  const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
 
-  const dAccount = provider.open(
-    DSocialNetworkAccount.fromAddress(accountAddress!)
-  )
+  const dBlog = provider.open(DSocialNetworkBlog.fromAddress(blogAddress!))
 
-  await provider.waitForDeploy(dAccount.address)
+  await provider.waitForDeploy(dBlog.address)
 
   const testPostModel = getTestPostModel(
     provider.sender().address!,
-    (await dAccount.getGetNftAddressByIndex(
-      await dAccount.getGetNextItemIndex()
-    ))!,
-    dAccount.address
+    (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
+    dBlog.address
   )
 
   const createTestPostMessage: MintNft = {
@@ -57,13 +50,13 @@ export async function run(provider: NetworkProvider) {
     individual_content: serializePostData(testPostModel)
   }
 
-  await dAccount.send(
+  await dBlog.send(
     provider.sender(),
     { value: toNano('0.5') },
     createTestPostMessage
   )
 
-  const postAddress = await dAccount.getGetNftAddressByIndex(0n)
+  const postAddress = await dBlog.getGetNftAddressByIndex(0n)
 
   const dPost = provider.open(DSocialNetworkPost.fromAddress(postAddress!))
   await provider.waitForDeploy(dPost.address)

@@ -25,7 +25,7 @@ contract DSocialNetworkPost with NftItem {
 
     get fun get_post_info(): PostInfo {
         return PostInfo{
-            account: self.collection_address,
+            blog: self.collection_address,
             id: self.item_index,
             owner: self.owner,
             nft_content: self.individual_content

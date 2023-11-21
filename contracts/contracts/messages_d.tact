@@ -2,21 +2,21 @@ import "./lib/messages_nft.tact";
 
 // Master contract
 
-message RegisterAccount {
+message CreateBlog {
     query_id: Int as uint64;
-    account_name: String;
-    account_description: String;
+    blog_name: String;
+    blog_description: String;
 }
 
-// Account contract
+// Blog contract
 
-message InitializeAccount {
+message InitializeBlog {
     query_id: Int as uint64;
     owner: Address;
     collection_content: NftCollectionMetadata;
 }
 
-struct AccountInfo {
+struct BlogInfo {
     id: Int;
     master_contract: Address;
     owner: Address;
@@ -27,7 +27,7 @@ struct AccountInfo {
 // Post contract
 
 struct PostInfo {
-    account: Address;
+    blog: Address;
     id: Int;
     owner: Address;
     nft_content: NftMetadata;

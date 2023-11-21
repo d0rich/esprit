@@ -1,7 +1,7 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
 import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import { DSocialNetworkAccount } from '../wrappers/DSocialNetworkAccount'
+import { DSocialNetworkBlog } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import { registerTestAccountMessage } from '../utils/test-fixtures'
 
@@ -37,25 +37,25 @@ describe('DSocialNetworkMaster', () => {
     expect(owner.toRawString()).toEqual(deployer.address.toRawString())
   })
 
-  it('register account', async () => {
+  it('Create blog', async () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('0.5') },
       registerTestAccountMessage
     )
 
-    const accountAddress = await dMaster.getGetAccountAddressByIndex(0n)
+    const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
 
-    expect(accountAddress).not.toBeNull()
+    expect(blogAddress).not.toBeNull()
 
     expect(registerResult.transactions).toHaveTransaction({
       from: dMaster.address,
-      to: accountAddress!,
+      to: blogAddress!,
       success: true
     })
 
-    expect(await dMaster.getGetAccountsCount()).toBe(1n)
+    expect(await dMaster.getGetBlogsCount()).toBe(1n)
 
-    blockchain.openContract(DSocialNetworkAccount.fromAddress(accountAddress!))
+    blockchain.openContract(DSocialNetworkBlog.fromAddress(blogAddress!))
   })
 })

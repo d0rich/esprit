@@ -1,13 +1,13 @@
 import { Address, Dictionary } from 'ton-core'
-import { RegisterAccount } from '../wrappers/DSocialNetworkMaster'
-import { NftMetadataAttribute } from '../wrappers/DSocialNetworkAccount'
+import { CreateBlog } from '../wrappers/DSocialNetworkMaster'
+import { NftMetadataAttribute } from '../wrappers/DSocialNetworkBlog'
 import { DPostModel } from './stub-post-serialization'
 
-export const registerTestAccountMessage: RegisterAccount = {
-  $$type: 'RegisterAccount',
+export const registerTestAccountMessage: CreateBlog = {
+  $$type: 'CreateBlog',
   query_id: 0n,
-  account_name: 'test',
-  account_description: 'Test account description'
+  blog_name: 'test',
+  blog_description: 'Test account description'
 }
 
 const testNftAttributes = Dictionary.empty<bigint, NftMetadataAttribute>()
@@ -20,10 +20,10 @@ testNftAttributes.set(0n, {
 export function getTestPostModel(
   author: Address,
   postContractAddress: Address,
-  accountContractAddress: Address
+  blogContractAddress: Address
 ): DPostModel {
   return {
-    url: `https://d.d0rich.me/${accountContractAddress.toString()}/${postContractAddress.toString()}`,
+    url: `https://d.d0rich.me/${blogContractAddress.toString()}/${postContractAddress.toString()}`,
     date: new Date(),
     author,
     contentMd: 'This is my first post on D'
