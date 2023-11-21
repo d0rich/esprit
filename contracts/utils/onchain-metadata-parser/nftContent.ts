@@ -14,7 +14,8 @@ const OFF_CHAIN_CONTENT_PREFIX = 0x01
 export function flattenSnakeCell(cell: Cell) {
   let c: Cell | null = cell
 
-  const bitResult = new BitBuilder()
+  // TODO: do something with TON Expolrers, they can't handle big snake cells. BitBuilder by default is limited to 1 Cell. https://github.com/ton-org/ton-core/issues/16
+  const bitResult = new BitBuilder(4_294_967_296)
   while (c) {
     const cs = c.beginParse()
     if (cs.remainingBits === 0) {
