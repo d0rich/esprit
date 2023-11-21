@@ -10,7 +10,7 @@ import {
   getTestPostModel,
   registerTestAccountMessage
 } from '../utils/test-fixtures'
-import { DPost } from '../models'
+import { serializePostData } from '../utils/stub-post-serialization'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -68,12 +68,18 @@ describe('DSocialNetworkMaster', () => {
   })
 
   it('should create post', async () => {
-    const testPostModel = getTestPostModel(deployer.address)
+    const testPostModel = getTestPostModel(
+      deployer.address,
+      (await dAccount.getGetNftAddressByIndex(
+        await dAccount.getGetNextItemIndex()
+      ))!,
+      dAccount.address
+    )
 
     const createTestPostMessage: MintNft = {
       $$type: 'MintNft',
       query_id: 0n,
-      individual_content: DPost.serializePostData(testPostModel)
+      individual_content: serializePostData(testPostModel)
     }
 
     const createPostResult = await dAccount.send(

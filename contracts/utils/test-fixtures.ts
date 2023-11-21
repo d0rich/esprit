@@ -17,11 +17,15 @@ testNftAttributes.set(0n, {
   value: 'My first post'
 })
 
-export function getTestPostModel(author: Address): DPostModel {
+export function getTestPostModel(
+  author: Address,
+  postContractAddress: Address,
+  accountContractAddress: Address
+): DPostModel {
   return {
-    url: 'https://d0rich.me',
+    url: `https://d.d0rich.me/${accountContractAddress.toString()}/${postContractAddress.toString()}`,
     date: new Date(),
     author,
-    content: 'This is my first post on D'
+    contentMd: 'This is my first post on D'
   }
 }

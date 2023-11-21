@@ -12,15 +12,12 @@ import {
   registerTestAccountMessage
 } from '../utils/test-fixtures'
 import { parse } from '../utils/onchain-metadata-parser/parse'
-import { DPost, type DPostModel } from '../models'
-
-function stringifyModel(model: DPostModel): Record<keyof DPostModel, string> {
-  return {
-    ...model,
-    date: model.date.toISOString(),
-    author: model.author.toRawString()
-  }
-}
+import {
+  deserializePostData,
+  serializePostData,
+  stringifyPostModel,
+  type DPostModel
+} from '../utils/stub-post-serialization'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -72,12 +69,18 @@ describe('DSocialNetworkMaster', () => {
       DSocialNetworkAccount.fromAddress(accountAddress!)
     )
 
-    testPostModel = getTestPostModel(deployer.address)
+    testPostModel = getTestPostModel(
+      deployer.address,
+      (await dAccount.getGetNftAddressByIndex(
+        await dAccount.getGetNextItemIndex()
+      ))!,
+      dAccount.address
+    )
 
     const createTestPostMessage: MintNft = {
       $$type: 'MintNft',
       query_id: 0n,
-      individual_content: DPost.serializePostData(testPostModel)
+      individual_content: serializePostData(testPostModel)
     }
 
     const createPostResult = await dAccount.send(
@@ -110,10 +113,10 @@ describe('DSocialNetworkMaster', () => {
   })
 
   it('Post model should be serialized correctly', () => {
-    const serializedModel = DPost.serializePostData(testPostModel)
-    const deserializedPostData = DPost.deserializePostData(serializedModel)
-    expect(stringifyModel(testPostModel)).toEqual(
-      stringifyModel(deserializedPostData)
+    const serializedModel = serializePostData(testPostModel)
+    const deserializedPostData = deserializePostData(serializedModel)
+    expect(stringifyPostModel(testPostModel)).toEqual(
+      stringifyPostModel(deserializedPostData)
     )
   })
 
