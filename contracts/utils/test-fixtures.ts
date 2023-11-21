@@ -1,7 +1,7 @@
 import { Address, Dictionary } from 'ton-core'
 import { RegisterAccount } from '../wrappers/DSocialNetworkMaster'
 import { NftMetadataAttribute } from '../wrappers/DSocialNetworkAccount'
-import { DPostModel } from '../models'
+import { DPostModel } from './stub-post-serialization'
 
 export const registerTestAccountMessage: RegisterAccount = {
   $$type: 'RegisterAccount',
