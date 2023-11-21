@@ -127,7 +127,12 @@ describe('DSocialNetworkMaster', () => {
 
   it('Post NFT data shoud be parsed correctly', async () => {
     const postMetadata = await dPost.getGetPostInfo()
-    expect(await parse(blockchain, dPost.address, dAccount.address)).toEqual({
+    const parsedPostMetadata = await parse(
+      blockchain,
+      dPost.address,
+      dAccount.address
+    )
+    expect(parsedPostMetadata).toEqual({
       image: postMetadata.nft_content.image,
       name: postMetadata.nft_content.name,
       description: postMetadata.nft_content.description
