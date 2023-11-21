@@ -30,7 +30,7 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
         };
     }
 
-    get fun get_account_info(): BlogInfo {
+    get fun get_blog_info(): BlogInfo {
         return BlogInfo{
             id: self.blog_id,
             owner: self.owner,
