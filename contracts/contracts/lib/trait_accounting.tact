@@ -24,4 +24,17 @@ trait Accounting {
     fun calculateSendAmountToHoldFeeFromRecieved(personalFee: Int): Int {
         return self.calculateSendAmountToHoldEnoughTonForStorage() - personalFee;
     }
+
+    fun sendExcessesTo(amount: Int, to: Address, query_id: Int?) {
+        let sendQueryId: Int = 0;
+        if (query_id != null) {
+            sendQueryId = query_id!!;
+        }
+        send(SendParameters{
+            to: to,
+            value: amount,
+            mode:  SendIgnoreErrors,
+            body: Excesses { query_id: sendQueryId }.toCell()
+        });
+    }
 }

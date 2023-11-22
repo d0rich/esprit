@@ -38,7 +38,7 @@ describe('DSocialNetworkMaster', () => {
   })
 
   it('Create blog', async () => {
-    const registerResult = await dMaster.send(
+    const createBlogResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('0.2') },
       registerTestAccountMessage
@@ -48,9 +48,17 @@ describe('DSocialNetworkMaster', () => {
 
     expect(blogAddress).not.toBeNull()
 
-    expect(registerResult.transactions).toHaveTransaction({
+    // Should top up blog balance
+    expect(createBlogResult.transactions).toHaveTransaction({
       from: dMaster.address,
       to: blogAddress!,
+      success: true
+    })
+
+    // Should return excesses
+    expect(createBlogResult.transactions).toHaveTransaction({
+      from: blogAddress!,
+      to: deployer.address,
       success: true
     })
 

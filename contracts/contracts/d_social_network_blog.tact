@@ -22,7 +22,6 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
             denominator: 100,
             destination: master_contract
         };
-        // TODO: set real metadata
         self.collection_content = NftCollectionMetadata {
             image: "",
             name: "",
@@ -50,12 +49,22 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
         self.owner = msg.owner;
         self.collection_content = msg.collection_content;
         self.is_initialized = true;
-        send(SendParameters{
-            to: self.owner,
-            value: self.calculateSendAmountToHoldEnoughTonForStorage(),
-            mode:  SendIgnoreErrors,
-            body: Excesses { query_id: msg.query_id }.toCell()
-        });
+        self.sendExcessesTo(
+            self.calculateSendAmountToHoldEnoughTonForStorage(),
+            self.owner,
+            msg.query_id
+        );
+    }
+
+    receive(msg: EditBlogMetadata) {
+        self.requireInitialization();
+        self.requireOwner();
+        self.collection_content = msg.new_metadata;
+        self.sendExcessesTo(
+            self.calculateSendAmountToHoldEnoughTonForStorage(),
+            self.owner,
+            msg.query_id
+        );
     }
 
     fun requireInitialization() {

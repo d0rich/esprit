@@ -14,7 +14,6 @@ contract DSocialNetworkPost with NftItem {
         self.collection_address = collection_address;
         self.item_index = item_index;
         self.owner = collection_address;
-        // TODO: set individual_content
         self.individual_content = NftMetadata {
             name: "",
             description: "",
@@ -32,5 +31,14 @@ contract DSocialNetworkPost with NftItem {
         };
     }
 
-
+    receive(msg: EditBlogPost) {
+        require(self.is_initialized, "This post is not initialized yet");
+        self.requireOwner();
+        self.individual_content = msg.new_metadata;
+        self.sendExcessesTo(
+            self.calculateSendAmountToHoldEnoughTonForStorage(),
+            self.owner,
+            msg.query_id
+        );
+    }
 }

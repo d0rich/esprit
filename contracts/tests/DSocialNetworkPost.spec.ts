@@ -1,7 +1,11 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
 import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
+import {
+  DSocialNetworkBlog,
+  MintNft,
+  NftMetadata
+} from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
@@ -135,5 +139,42 @@ describe('DSocialNetworkMaster', () => {
       name: postMetadata.nft_content.name,
       description: postMetadata.nft_content.description
     })
+  })
+
+  it('Post should be editable', async () => {
+    const newPostMetadata: NftMetadata = {
+      $$type: 'NftMetadata',
+      name: 'New post name',
+      description: 'New post description',
+      image: 'New post cover'
+    }
+
+    const editPostResult = await dPost.send(
+      deployer.getSender(),
+      { value: toNano('0.1') },
+      {
+        $$type: 'EditBlogPost',
+        query_id: 0n,
+        new_metadata: newPostMetadata
+      }
+    )
+
+    // Should top up post balance
+    expect(editPostResult.transactions).toHaveTransaction({
+      from: deployer.address,
+      to: dPost.address,
+      success: true
+    })
+
+    // Should return excesses to owner
+    expect(editPostResult.transactions).toHaveTransaction({
+      from: dPost.address,
+      to: deployer.address,
+      success: true
+    })
+
+    const postMetadata = await dPost.getGetPostInfo()
+
+    expect(postMetadata.nft_content).toEqual(newPostMetadata)
   })
 })

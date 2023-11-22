@@ -1,7 +1,11 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
 import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
-import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
+import {
+  DSocialNetworkBlog,
+  EditBlogMetadata,
+  MintNft
+} from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import {
   getTestPostModel,
@@ -87,12 +91,59 @@ describe('DSocialNetworkMaster', () => {
 
     expect(postAddress).not.toBeNull()
 
+    // Should top up post balance
     expect(createPostResult.transactions).toHaveTransaction({
       from: dBlog.address,
       to: postAddress!,
       success: true
     })
 
+    // Should return excesses to owner
+    expect(createPostResult.transactions).toHaveTransaction({
+      from: postAddress!,
+      to: deployer.address,
+      success: true
+    })
+
     expect(await dBlog.getGetNextItemIndex()).toBe(1n)
+  })
+
+  it('Should edit blog metadata correctly', async () => {
+    const editBlogMetadataMessage: EditBlogMetadata = {
+      $$type: 'EditBlogMetadata',
+      query_id: 0n,
+      new_metadata: {
+        $$type: 'NftCollectionMetadata',
+        name: 'New blog name',
+        description: 'New blog description',
+        image: 'New blog avatar'
+      }
+    }
+
+    const editBlogMetadataResult = await dBlog.send(
+      deployer.getSender(),
+      { value: toNano('0.2') },
+      editBlogMetadataMessage
+    )
+
+    // Should pay for changes
+    expect(editBlogMetadataResult.transactions).toHaveTransaction({
+      from: deployer.address,
+      to: dBlog.address,
+      success: true
+    })
+
+    // Should return excesses
+    expect(editBlogMetadataResult.transactions).toHaveTransaction({
+      from: dBlog.address,
+      to: deployer.address,
+      success: true
+    })
+
+    const newMetadata = await dBlog.getGetBlogInfo()
+
+    expect(newMetadata.collection_content).toEqual(
+      editBlogMetadataMessage.new_metadata
+    )
   })
 })

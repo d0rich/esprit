@@ -15,6 +15,11 @@ message InitializeBlog {
     collection_content: NftCollectionMetadata;
 }
 
+message EditBlogMetadata {
+    query_id: Int as uint64;
+    new_metadata: NftCollectionMetadata;
+}
+
 struct BlogInfo {
     id: Int;
     master_contract: Address;
@@ -24,6 +29,11 @@ struct BlogInfo {
 }
 
 // Post contract
+
+message EditBlogPost {
+    query_id: Int as uint64;
+    new_metadata: NftMetadata;
+}
 
 struct PostInfo {
     blog: Address;
