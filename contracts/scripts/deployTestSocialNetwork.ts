@@ -16,7 +16,7 @@ export async function run(provider: NetworkProvider) {
   await dMaster.send(
     provider.sender(),
     {
-      value: toNano('0.05')
+      value: toNano('0.1')
     },
     {
       $$type: 'Deploy',
@@ -28,7 +28,7 @@ export async function run(provider: NetworkProvider) {
 
   await dMaster.send(
     provider.sender(),
-    { value: toNano('0.5') },
+    { value: toNano('0.2') },
     registerTestAccountMessage
   )
 
@@ -52,7 +52,7 @@ export async function run(provider: NetworkProvider) {
 
   await dBlog.send(
     provider.sender(),
-    { value: toNano('0.5') },
+    { value: toNano('0.2') },
     createTestPostMessage
   )
 

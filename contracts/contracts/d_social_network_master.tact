@@ -28,12 +28,12 @@ contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting  
     }
 
     receive(msg: CreateBlog) {
-        require(self.next_blog_index >= 0, "non-sequential NFTs");
+        require(self.next_blog_index >= 0, "non-sequential blog id");
         let ctx: Context = context();
         let blog_init: StateInit = self.getBlogInit(self.next_blog_index);
         send(SendParameters{
                 to: contractAddress(blog_init),
-                value: self.calculateFullAmountForSending(),
+                value: self.calculateSendAmountToHoldEnoughTonForStorage(),
                 bounce: false,
                 mode: SendIgnoreErrors,
                 body: InitializeBlog {

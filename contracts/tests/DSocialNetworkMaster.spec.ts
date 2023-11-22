@@ -16,7 +16,7 @@ describe('DSocialNetworkMaster', () => {
     deployer = await blockchain.treasury('deployer')
     const deployResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.05') },
+      { value: toNano('0.1') },
       {
         $$type: 'Deploy',
         queryId: 0n
@@ -40,7 +40,7 @@ describe('DSocialNetworkMaster', () => {
   it('Create blog', async () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.5') },
+      { value: toNano('0.2') },
       registerTestAccountMessage
     )
 

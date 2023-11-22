@@ -50,6 +50,12 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
         self.owner = msg.owner;
         self.collection_content = msg.collection_content;
         self.is_initialized = true;
+        send(SendParameters{
+            to: self.owner,
+            value: self.calculateSendAmountToHoldEnoughTonForStorage(),
+            mode:  SendIgnoreErrors,
+            body: Excesses { query_id: msg.query_id }.toCell()
+        });
     }
 
     fun requireInitialization() {

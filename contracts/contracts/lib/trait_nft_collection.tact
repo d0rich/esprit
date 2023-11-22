@@ -33,7 +33,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
     }
 
     virtual fun calculateNftItemInitalBalance(): Int {
-        return self.calculateFullAmountForSending();
+        return self.calculateSendAmountToHoldEnoughTonForStorage();
     }
 
     // ------------------ Get Function  ------------------ //
@@ -74,7 +74,6 @@ trait NftCollection with Deployable, Ownable, Accounting {
                 body: InitializeNft {
                     query_id: 0,
                     owner: ctx.sender,
-                    response_destination: self.owner,
                     individual_content: msg.individual_content
                 }.toCell(),
                 code: nft_init.code,

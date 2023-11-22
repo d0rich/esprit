@@ -17,11 +17,11 @@ trait Accounting {
         return storageFee + self.getGasConsumption();
     }
 
-    fun calculateFullAmountForSending(): Int {
-        return self.getTonRecieved() - self.calculateMinOperationFee();
+    fun calculateSendAmountToHoldEnoughTonForStorage(): Int {
+        return myBalance() - self.calculateMinOperationFee();
     }
 
-    fun calculateFullAmountForSendingWithPersonalFee(personalFee: Int): Int {
-        return self.calculateFullAmountForSending() - personalFee;
+    fun calculateSendAmountToHoldFeeFromRecieved(personalFee: Int): Int {
+        return self.calculateSendAmountToHoldEnoughTonForStorage() - personalFee;
     }
 }

@@ -52,7 +52,6 @@ struct NftMetadata {
 message InitializeNft {
     query_id: Int as uint64;
     owner: Address;
-    response_destination: Address;
     individual_content: NftMetadata;
 }
 
