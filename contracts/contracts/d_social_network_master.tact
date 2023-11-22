@@ -7,7 +7,7 @@ import "./messages_d.tact";
 import "./d_social_network_blog.tact";
 
 contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting, PersonalFees, StorageController  {
-    version: String = "v0.0.1-beta";
+    version: String = "v1";
     owner: Address;
     personal_fees_destination: Address;
     next_blog_index: Int as uint32 = 0;
