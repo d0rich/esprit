@@ -9,6 +9,8 @@ This repository is a monorepo containing the source code for the d0rich personal
 | [d0rich.me](https://d0rich.me)|[![Netlify Status](https://api.netlify.com/api/v1/badges/7f6ac5ab-454b-4072-9d5c-7b5e5d79d8aa/deploy-status)](https://app.netlify.com/sites/d0rich-me/deploys)|
 | [design.d0rich.me](https://design.d0rich.me)|[![Netlify Status](https://api.netlify.com/api/v1/badges/60e1e406-b797-4d9c-a19d-4d71e373eb67/deploy-status)](https://app.netlify.com/sites/design-d0rich-me/deploys)|
 | [d0xigen.d0rich.me](https://d0xigen.d0rich.me)|[![Netlify Status](https://api.netlify.com/api/v1/badges/f0606994-1b25-43be-a12c-8ce0e6941970/deploy-status)](https://app.netlify.com/sites/d0xigen-d0rich-me/deploys)|
+| [d.d0rich.me](https://d.d0rich.me)|[![Netlify Status](https://api.netlify.com/api/v1/badges/d3bed083-7cea-4a19-8a1b-5db7e86879a5/deploy-status)](https://app.netlify.com/sites/d-d0rich-me/deploys)|
+| [testnet.d.d0rich.me](https://testnet.d.d0rich.me)|[![Netlify Status](https://api.netlify.com/api/v1/badges/bbeed4f8-1786-416c-9e51-3e1d65b6eecb/deploy-status)](https://app.netlify.com/sites/testnet-d-d0rich-me/deploys)|
 
 ## Packages
 
