@@ -11,6 +11,7 @@
     "generate": "turbo run generate",
     "build": "turbo run build",
     "dev:d0rich.me": "turbo run d0rich.me#dev",
+    "dev:d.d0rich.me": "turbo run d.d0rich.me#dev",
     "dev:design.d0rich.me": "turbo run design.d0rich.me#dev",
     "dev:d0xigen.d0rich.me": "turbo run d0xigen.d0rich.me#dev",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
