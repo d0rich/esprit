@@ -28,7 +28,7 @@ export async function run(provider: NetworkProvider) {
 
   await dMaster.send(
     provider.sender(),
-    { value: toNano('0.2') },
+    { value: toNano('1') },
     registerTestAccountMessage
   )
 

@@ -50,7 +50,7 @@ describe('DSocialNetworkMaster', () => {
 
     const registerResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.2') },
+      { value: toNano('1') },
       registerTestAccountMessage
     )
 

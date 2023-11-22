@@ -1,22 +1,27 @@
 import "@stdlib/deploy";
 import "./lib/trait_nft_collection.tact";
 import "./lib/trait_nft_collection_royalty_extention.tact";
+import "./lib/trait_personal_fees.tact";
 import "./messages_d.tact";
 import "./d_social_network_post.tact";
 
-contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
+contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, PersonalFees {
     blog_id: Int;
     next_item_index: Int as uint32 = 0;
     owner: Address;
+    personal_fees_destination: Address;
     master_contract: Address;
     royalty_params: RoyaltyParams;
     is_initialized: Bool = false;
     collection_content: NftCollectionMetadata;
 
-    init(blog_id: Int, master_contract: Address){
+    const CREATE_POST_FEE: Int = ton("0.1");
+
+    init(blog_id: Int, master_contract: Address, personal_fees_destination: Address){
         self.blog_id = blog_id;
         self.master_contract = master_contract;
         self.owner = master_contract;
+        self.personal_fees_destination = personal_fees_destination;
         self.royalty_params = RoyaltyParams{
             numerator: 13,
             denominator: 100,
@@ -77,5 +82,20 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention {
             item_index,
             self.owner
         );
+    }
+
+    override fun actionBeforeMinting() {
+        require(context().value + ton("0.05") >= self.CREATE_POST_FEE, "not enough funds to create a post");
+    }
+
+    override fun actionAfterMinting() {
+        let sb: StringBuilder = beginString();
+        sb.append("D Blog Post Created by ");
+        sb.append(self.collection_content.name);
+        self.sendRemainingValueAsPersonalFee(sb.toString());
+    }
+
+    override fun calculateNftItemInitialBalance(): Int {
+        return self.calculateSendAmountToHoldFeeFromRecieved(self.CREATE_POST_FEE);
     }
 }

@@ -40,7 +40,7 @@ describe('DSocialNetworkMaster', () => {
   it('Create blog', async () => {
     const createBlogResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.2') },
+      { value: toNano('1') },
       registerTestAccountMessage
     )
 
