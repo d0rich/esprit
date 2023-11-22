@@ -1,9 +1,10 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./lib/trait_nft_item.tact";
+import "./lib/trait_storage_controller.tact";
 import "./messages_d.tact";
 
-contract DSocialNetworkPost with NftItem {
+contract DSocialNetworkPost with NftItem, StorageController {
     collection_address: Address;
     item_index: Int;
     owner: Address;

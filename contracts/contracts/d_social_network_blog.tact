@@ -2,10 +2,11 @@ import "@stdlib/deploy";
 import "./lib/trait_nft_collection.tact";
 import "./lib/trait_nft_collection_royalty_extention.tact";
 import "./lib/trait_personal_fees.tact";
+import "./lib/trait_storage_controller.tact";
 import "./messages_d.tact";
 import "./d_social_network_post.tact";
 
-contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, PersonalFees {
+contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, PersonalFees, StorageController {
     blog_id: Int;
     next_item_index: Int as uint32 = 0;
     owner: Address;

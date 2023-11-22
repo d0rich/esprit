@@ -2,10 +2,11 @@ import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "./lib/trait_accounting.tact";
 import "./lib/trait_personal_fees.tact";
+import "./lib/trait_storage_controller.tact";
 import "./messages_d.tact";
 import "./d_social_network_blog.tact";
 
-contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting, PersonalFees  {
+contract DSocialNetworkMaster with Deployable, OwnableTransferable, Accounting, PersonalFees, StorageController  {
     version: String = "v0.0.1-beta";
     owner: Address;
     personal_fees_destination: Address;
