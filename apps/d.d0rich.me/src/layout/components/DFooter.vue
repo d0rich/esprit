@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {
   DWrapShape,
-  DAnimationFloatingLetter,
-  DBtn
+  DAnimationFloatingLetter
 } from '@d0rich/esprit-design'
 import { RouterLink } from 'vue-router'
 </script>
