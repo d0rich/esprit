@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
-import { useTonConnect } from '../composables/useTonConnect'
+import { useTonConnectStore } from '../stores/tonConnectStore'
 
 const buttonRootId = 'ton-connect-button-root'
 
-const { setRenderRoot } = useTonConnect()
+const { setRenderRoot } = useTonConnectStore()
 onMounted(() => {
   setRenderRoot(buttonRootId)
 })

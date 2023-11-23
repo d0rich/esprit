@@ -13,6 +13,7 @@
   "dependencies": {
     "@d0rich/contracts": "*",
     "@d0rich/esprit-design": "*",
+    "@orbs-network/ton-access": "^2.3.3",
     "@tonconnect/ui": "^2.0.0-beta.6",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
