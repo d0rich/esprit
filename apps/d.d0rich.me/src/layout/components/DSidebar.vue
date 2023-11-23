@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import SidebarMenu from '../../widgets/SidebarMenu.vue'
 defineProps({
   show: {
