@@ -20,6 +20,7 @@ export const useTonConnectStore = defineStore('ton-connect', () => {
         '-manifest.json'
     })
   )
+  const buttonRootId = ref<string | null>(null)
 
   const wallet = ref(tonConnect.value.wallet)
   const cancelWalletSubscription = tonConnect.value.onStatusChange(
@@ -93,7 +94,7 @@ export const useTonConnectStore = defineStore('ton-connect', () => {
   ) {
     tonConnect.value.uiOptions = {
       ...options,
-      buttonRootId: tonConnect.value.uiOptions.buttonRootId
+      buttonRootId: buttonRootId.value
     }
   }
 
@@ -102,6 +103,7 @@ export const useTonConnectStore = defineStore('ton-connect', () => {
    * @param rootId id of the element where the button will be rendered
    */
   function setRenderRoot(rootId: string | null) {
+    buttonRootId.value = rootId
     tonConnect.value.uiOptions = {
       ...tonConnect.value.uiOptions,
       buttonRootId: rootId

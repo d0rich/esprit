@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import { DBtn } from '@d0rich/esprit-design'
 
-import { useThemeStore, type ColorMode } from '../stores/useThemeStore'
+import { useThemeStore, type ColorMode } from '../stores/themeStore'
 
 const theme = useThemeStore()
 const modes = ref<
@@ -33,3 +33,4 @@ function switchMode() {
     <Icon :icon="currentMode?.icon || ''" />
   </DBtn>
 </template>
+../stores/themeStore

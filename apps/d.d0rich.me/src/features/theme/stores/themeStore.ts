@@ -1,11 +1,15 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 export type ColorMode = 'light' | 'dark' | 'system'
+export type ExplicitColorMode = 'light' | 'dark'
 
 export const useThemeStore = defineStore('theme', () => {
   const theme = ref<ColorMode>('system')
-  const systemTheme = ref<ColorMode>(getSystemTheme())
+  const systemTheme = ref<ExplicitColorMode>(getSystemTheme())
+  const explicitTheme = computed<ExplicitColorMode>(() =>
+    getExplicitTheme(theme.value)
+  )
 
   if (window.matchMedia) {
     window
@@ -21,7 +25,11 @@ export const useThemeStore = defineStore('theme', () => {
     setThemeInHtml(newTheme)
   })
 
-  function getSystemTheme(): ColorMode {
+  function getExplicitTheme(theme: ColorMode): ExplicitColorMode {
+    return theme === 'system' ? systemTheme.value : theme
+  }
+
+  function getSystemTheme(): ExplicitColorMode {
     if (!window.matchMedia) {
       return 'light'
     }
@@ -31,8 +39,7 @@ export const useThemeStore = defineStore('theme', () => {
   }
 
   function setThemeInHtml(newTheme: ColorMode) {
-    const newThemeExplicit =
-      newTheme === 'system' ? systemTheme.value : newTheme
+    const newThemeExplicit = getExplicitTheme(newTheme)
     const classToRemove = newThemeExplicit === 'light' ? 'dark' : 'light'
     const classToAdd = newThemeExplicit === 'light' ? 'light' : 'dark'
     document.documentElement.classList.add(classToAdd)
@@ -45,6 +52,7 @@ export const useThemeStore = defineStore('theme', () => {
 
   return {
     theme,
+    explicitTheme,
     systemTheme,
     setTheme
   }
