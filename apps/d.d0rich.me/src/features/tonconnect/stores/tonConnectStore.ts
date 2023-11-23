@@ -36,10 +36,12 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
   const tonClient = ref<TonClient | null>(null)
 
   const stopRefreshingTonClient = watch(currentNetwork, async (network) => {
+    if (!network) {
+      tonClient.value = null
+      return
+    }
     tonClient.value = new TonClient({
-      endpoint: await getHttpEndpoint({
-        network
-      })
+      endpoint: await getHttpEndpoint({ network })
     })
   })
 

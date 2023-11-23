@@ -20,6 +20,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@tailwindcss/typography": "^0.5.10",
     "@tsconfig/node18": "^18.2.2",
     "@types/jsdom": "^21.1.3",
