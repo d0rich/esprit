@@ -1,7 +1,7 @@
-/// <reference types="vite/client" />interface ImportMetaEnv {
+/// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_APP_TITLE: 'TESTNET' | 'MAINNET'
+  readonly VITE_TON_NETWORK: 'TESTNET' | 'MAINNET'
 }
 
 interface ImportMeta {
