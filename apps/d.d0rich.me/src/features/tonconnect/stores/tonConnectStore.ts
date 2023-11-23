@@ -12,16 +12,18 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
   const config = useAppConfig()
 
   // State
-  const tonConnect = new TonConnectUI({
-    manifestUrl:
-      window.location.origin +
-      '/tonconnect' +
-      (config.network === 'TESTNET' ? '-testnet' : '') +
-      '-manifest.json'
-  })
+  const tonConnect = ref(
+    new TonConnectUI({
+      manifestUrl:
+        window.location.origin +
+        '/tonconnect' +
+        (config.network === 'TESTNET' ? '-testnet' : '') +
+        '-manifest.json'
+    })
+  )
 
-  const wallet = ref(tonConnect.wallet)
-  const cancelWalletSubscription = tonConnect.onStatusChange(
+  const wallet = ref(tonConnect.value.wallet)
+  const cancelWalletSubscription = tonConnect.value.onStatusChange(
     (status) => (wallet.value = status)
   )
 
@@ -67,7 +69,7 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
   // Actions
 
   function sendTransaction(args: SenderArguments) {
-    return tonConnect.sendTransaction({
+    return tonConnect.value.sendTransaction({
       messages: [
         {
           address: args.to.toString(),
@@ -97,9 +99,9 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
       'buttonRootId'
     >
   ) {
-    tonConnect.uiOptions = {
+    tonConnect.value.uiOptions = {
       ...options,
-      buttonRootId: tonConnect.uiOptions.buttonRootId
+      buttonRootId: tonConnect.value.uiOptions.buttonRootId
     }
   }
 
@@ -108,8 +110,8 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
    * @param rootId id of the element where the button will be rendered
    */
   function setRenderRoot(rootId: string | null) {
-    tonConnect.uiOptions = {
-      ...tonConnect.uiOptions,
+    tonConnect.value.uiOptions = {
+      ...tonConnect.value.uiOptions,
       buttonRootId: rootId
     }
   }
