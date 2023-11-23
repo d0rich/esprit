@@ -4,12 +4,12 @@ import { useTonConnectStore } from '../stores/tonConnectStore'
 
 const buttonRootId = 'ton-connect-button-root'
 
-const { setRenderRoot } = useTonConnectStore()
+const tonConnect = useTonConnectStore()
 onMounted(() => {
-  setRenderRoot(buttonRootId)
+  tonConnect.setRenderRoot(buttonRootId)
 })
 onBeforeUnmount(() => {
-  setRenderRoot(null)
+  tonConnect.setRenderRoot(null)
 })
 </script>
 

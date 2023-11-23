@@ -5,7 +5,7 @@ import { DBtn } from '@d0rich/esprit-design'
 
 import { useThemeStore, type ColorMode } from '../stores/useThemeStore'
 
-const themeStore = useThemeStore()
+const theme = useThemeStore()
 const modes = ref<
   {
     name: ColorMode
@@ -18,13 +18,13 @@ const modes = ref<
 ])
 
 const currentMode = computed(() => {
-  return modes.value.find((m) => m.name === themeStore.theme)
+  return modes.value.find((m) => m.name === theme.theme)
 })
 
 function switchMode() {
   const currentModeIndex = modes.value.findIndex((m) => m === currentMode.value)
   const nextModeIndex = (currentModeIndex + 1) % modes.value.length
-  themeStore.setTheme(modes.value[nextModeIndex].name)
+  theme.setTheme(modes.value[nextModeIndex].name)
 }
 </script>
 

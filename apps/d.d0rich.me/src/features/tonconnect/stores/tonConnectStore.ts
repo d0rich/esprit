@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import type { SenderArguments } from 'ton-core'
-import { Address } from 'ton-core/dist/address/Address'
 import { CHAIN } from '@tonconnect/protocol'
 import { TonConnectUI } from '@tonconnect/ui'
 import { getHttpEndpoint, type Network } from '@orbs-network/ton-access'
 import { TonClient } from 'ton/dist/client/TonClient'
 import { useAppConfig } from '@/shared/composables/useAppConfig'
 
-export const useTonConnectStore = defineStore('tonconnect', () => {
+export const useTonConnectStore = defineStore('ton-connect', () => {
   const config = useAppConfig()
 
   // State
@@ -53,14 +52,7 @@ export const useTonConnectStore = defineStore('tonconnect', () => {
     isConnected: computed(() => !!wallet.value?.account.address),
     wallet: walletAddress,
     network: currentNetwork,
-    sender: {
-      send: sendTransaction,
-      address: computed(() => {
-        const addressString = walletAddress.value
-        if (!addressString) return null
-        return Address.parse(addressString)
-      })
-    },
+    sendTransaction,
     setOptions,
     setRenderRoot,
     cleanupSubscriptions: cleanup
