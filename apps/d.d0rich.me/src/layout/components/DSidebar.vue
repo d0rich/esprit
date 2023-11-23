@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import SidebarMenu from '../../widgets/SidebarMenu.vue'
 defineProps({
   show: {
     type: Boolean,
@@ -21,7 +22,7 @@ defineProps({
         <div
           class="absolute -z-10 inset-0 bg-green-400 dark:bg-green-950 opacity-80 dark:opacity-95 backdrop-saturate-0 backdrop-brightness-50"
         />
-        <slot />
+        <SidebarMenu />
       </nav>
       <div
         class="h-full w-4 bg-black dark:bg-white"

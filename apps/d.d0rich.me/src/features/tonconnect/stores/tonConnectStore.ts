@@ -17,7 +17,11 @@ export const useTonConnectStore = defineStore('ton-connect', () => {
         window.location.origin +
         '/tonconnect' +
         (config.network === 'TESTNET' ? '-testnet' : '') +
-        '-manifest.json'
+        '-manifest.json',
+      language: 'en',
+      uiPreferences: {
+        borderRadius: 'none'
+      }
     })
   )
   const buttonRootId = ref<string | null>(null)
