@@ -8,10 +8,7 @@ import {
 } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
-import {
-  getTestPostModel,
-  registerTestAccountMessage
-} from '../utils/test-fixtures'
+import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
 import { parse } from '../utils/onchain-metadata-parser/parse'
 import {
   deserializePostData,
@@ -51,7 +48,7 @@ describe('DSocialNetworkMaster', () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('1') },
-      registerTestAccountMessage
+      createBlogMessage
     )
 
     const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)

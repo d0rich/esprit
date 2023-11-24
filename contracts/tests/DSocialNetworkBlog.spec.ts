@@ -7,11 +7,9 @@ import {
   MintNft
 } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
-import {
-  getTestPostModel,
-  registerTestAccountMessage
-} from '../utils/test-fixtures'
+import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
 import { serializePostData } from '../utils/stub-post-serialization'
+import { parse } from '../utils/onchain-metadata-parser/parse'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -42,7 +40,7 @@ describe('DSocialNetworkMaster', () => {
     const registerResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('1') },
-      registerTestAccountMessage
+      createBlogMessage
     )
 
     const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
@@ -145,5 +143,19 @@ describe('DSocialNetworkMaster', () => {
     expect(newMetadata.collection_content).toEqual(
       editBlogMetadataMessage.new_metadata
     )
+  })
+
+  it('Blog NFT data shoud be parsed correctly', async () => {
+    const blogMetadata = await dBlog.getGetBlogInfo()
+    const parsedPostMetadata = await parse(
+      blockchain,
+      dBlog.address,
+      dMaster.address
+    )
+    expect(parsedPostMetadata).toEqual({
+      image: blogMetadata.collection_content.image,
+      name: blogMetadata.collection_content.name,
+      description: blogMetadata.collection_content.description
+    })
   })
 })

@@ -21,6 +21,10 @@ trait NftItem with Deployable, Ownable, Accounting {
         return buildTep64OnchainContent(tep64Dict!!);
     }
 
+    virtual fun onNftItemInitialized(msg: InitializeNft) {
+        // empty
+    }
+
     // --------- Get Function  --------- //
 
 
@@ -44,6 +48,7 @@ trait NftItem with Deployable, Ownable, Accounting {
         self.is_initialized = true;
         self.owner = msg.owner;
         self.individual_content = msg.individual_content;
+        self.onNftItemInitialized(msg);
         send(SendParameters{
             to: self.owner,
             value: self.calculateSendAmountToHoldEnoughTonForStorage(),

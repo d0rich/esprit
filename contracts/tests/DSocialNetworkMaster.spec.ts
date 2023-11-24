@@ -3,7 +3,7 @@ import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
-import { registerTestAccountMessage } from '../utils/test-fixtures'
+import { createBlogMessage } from '../utils/test-fixtures'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
@@ -41,7 +41,7 @@ describe('DSocialNetworkMaster', () => {
     const createBlogResult = await dMaster.send(
       deployer.getSender(),
       { value: toNano('1') },
-      registerTestAccountMessage
+      createBlogMessage
     )
 
     const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)

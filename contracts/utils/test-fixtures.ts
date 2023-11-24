@@ -1,25 +1,17 @@
-import { Address, Dictionary } from 'ton-core'
-import { CreateBlog } from '../wrappers/DSocialNetworkMaster'
-import { NftMetadataAttribute } from '../wrappers/DSocialNetworkBlog'
+import { Address } from 'ton-core'
+import { MintNft } from '../wrappers/DSocialNetworkMaster'
 import { DPostModel } from './stub-post-serialization'
 
-export const registerTestAccountMessage: CreateBlog = {
-  $$type: 'CreateBlog',
+export const createBlogMessage: MintNft = {
+  $$type: 'MintNft',
   query_id: 0n,
-  blog_metadata: {
-    $$type: 'NftCollectionMetadata',
+  individual_content: {
+    $$type: 'NftMetadata',
     name: 'Test blog',
     description: 'Test blog description',
     image: 'https://d.d0rich.me/metadata/covers/blog.jpg'
   }
 }
-
-const testNftAttributes = Dictionary.empty<bigint, NftMetadataAttribute>()
-testNftAttributes.set(0n, {
-  $$type: 'NftMetadataAttribute',
-  trait_type: 'content',
-  value: 'My first post'
-})
 
 export function getTestPostModel(
   author: Address,

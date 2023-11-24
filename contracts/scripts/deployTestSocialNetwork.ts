@@ -3,10 +3,7 @@ import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
-import {
-  getTestPostModel,
-  registerTestAccountMessage
-} from '../utils/test-fixtures'
+import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
 
 import { serializePostData } from '../utils/stub-post-serialization'
 
@@ -29,7 +26,7 @@ export async function run(provider: NetworkProvider) {
   await dMaster.send(
     provider.sender(),
     { value: toNano('1') },
-    registerTestAccountMessage
+    createBlogMessage
   )
 
   const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)

@@ -1,4 +1,5 @@
 import "@stdlib/deploy";
+import "./lib/trait_nft_item.tact";
 import "./lib/trait_nft_collection.tact";
 import "./lib/trait_nft_collection_royalty_extention.tact";
 import "./lib/trait_personal_fees.tact";
@@ -6,29 +7,41 @@ import "./lib/trait_storage_controller.tact";
 import "./messages_d.tact";
 import "./d_social_network_post.tact";
 
-contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, PersonalFees, StorageController {
-    blog_id: Int;
-    next_item_index: Int as uint32 = 0;
+contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExtention, PersonalFees, StorageController {
+    // NftItem
+    item_index: Int;
+    collection_address: Address; // Master contract
     owner: Address;
-    personal_fees_destination: Address;
-    master_contract: Address;
-    royalty_params: RoyaltyParams;
     is_initialized: Bool = false;
+    individual_content: NftMetadata;
+
+    // NftCollection
+    next_item_index: Int as uint32 = 0;
     collection_content: NftCollectionMetadata;
+    royalty_params: RoyaltyParams;
+
+    // PersonalFees
+    personal_fees_destination: Address;
+
 
     const CREATE_POST_FEE: Int = ton("0.1");
 
-    init(blog_id: Int, master_contract: Address, personal_fees_destination: Address){
-        self.blog_id = blog_id;
-        self.master_contract = master_contract;
-        self.owner = master_contract;
+    init(item_index: Int, collection_address: Address, personal_fees_destination: Address){
+        self.item_index = item_index;
+        self.collection_address = collection_address;
+        self.owner = collection_address;
         self.personal_fees_destination = personal_fees_destination;
         self.royalty_params = RoyaltyParams{
             numerator: 13,
             denominator: 100,
-            destination: master_contract
+            destination: self.owner
         };
         self.collection_content = NftCollectionMetadata {
+            image: "",
+            name: "",
+            description: ""
+        };
+        self.individual_content = NftMetadata {
             image: "",
             name: "",
             description: ""
@@ -37,9 +50,9 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, P
 
     get fun get_blog_info(): BlogInfo {
         return BlogInfo{
-            id: self.blog_id,
+            id: self.item_index,
             owner: self.owner,
-            master_contract: self.master_contract,
+            master_contract: self.collection_address,
             collection_content: self.collection_content,
             is_initialized: self.is_initialized
         };
@@ -47,19 +60,6 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, P
 
     get fun get_next_item_index(): Int {
         return self.next_item_index;
-    }
-
-    receive(msg: InitializeBlog) {
-        require(!self.is_initialized, "Blog is already initialized");
-        self.requireOwner();
-        self.owner = msg.owner;
-        self.collection_content = msg.collection_content;
-        self.is_initialized = true;
-        self.sendExcessesTo(
-            self.calculateSendAmountToHoldEnoughTonForStorage(),
-            self.owner,
-            msg.query_id
-        );
     }
 
     receive(msg: EditBlogMetadata) {
@@ -77,6 +77,14 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, P
         require(self.is_initialized, "Blog is not initialized");
     }
 
+    override fun onNftItemInitialized(msg: InitializeNft) {
+        self.collection_content = NftCollectionMetadata{
+            image: msg.individual_content.image,
+            name: msg.individual_content.name,
+            description: msg.individual_content.description
+        };
+    }
+
     override fun getNftItemInit(item_index: Int): StateInit {
         return initOf DSocialNetworkPost(
             myAddress(),
@@ -85,11 +93,11 @@ contract DSocialNetworkBlog with NftCollection, NftCollectionRoyaltyExtention, P
         );
     }
 
-    override fun actionBeforeMinting() {
+    override fun actionBeforeMinting(msg: MintNft) {
         require(context().value + ton("0.05") >= self.CREATE_POST_FEE, "not enough funds to create a post");
     }
 
-    override fun actionAfterMinting() {
+    override fun actionAfterMinting(msg: MintNft) {
         let sb: StringBuilder = beginString();
         sb.append("D Blog Post Created by ");
         sb.append(self.collection_content.name);
