@@ -6,6 +6,7 @@ export interface LinkProps {
   readonly replace?: boolean
   readonly to?: RouteLocationRaw
   readonly exact?: boolean
+  readonly tag?: string
 }
 
 export function useLink(props: LinkProps) {
@@ -33,25 +34,33 @@ export function useLink(props: LinkProps) {
     )
   })
 
-  if (typeof NuxtLink !== 'undefined') {
-    return {
-      isLink,
-      isExternalLink,
-      linkComponent: NuxtLink
+  if (isLink.value) {
+    if (typeof NuxtLink !== 'undefined') {
+      return {
+        isLink,
+        isExternalLink,
+        linkComponent: NuxtLink
+      }
     }
-  }
 
-  if (typeof RouterLink !== 'string') {
+    if (typeof RouterLink !== 'string') {
+      return {
+        isLink,
+        isExternalLink,
+        linkComponent: RouterLink
+      }
+    }
+
     return {
       isLink,
       isExternalLink,
-      linkComponent: RouterLink
+      linkComponent: 'a'
     }
   }
 
   return {
     isLink,
     isExternalLink,
-    linkComponent: 'a'
+    linkComponent: props.tag || 'span'
   }
 }

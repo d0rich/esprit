@@ -19,7 +19,7 @@ defineProps({
     <div class="h-full grid grid-cols-[1fr,_auto]">
       <nav class="background-container">
         <div
-          class="absolute -z-10 inset-0 bg-green-400 dark:bg-green-950 opacity-80 dark:opacity-95 backdrop-saturate-0 backdrop-brightness-50"
+          class="absolute -z-10 inset-0 bg-yellow-400 dark:bg-yellow-800 opacity-80 dark:opacity-95 backdrop-saturate-0 backdrop-brightness-50"
         />
         <SidebarMenu />
       </nav>

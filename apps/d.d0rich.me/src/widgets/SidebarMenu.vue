@@ -12,6 +12,10 @@ const navLinks = ref([
     path: '/'
   },
   {
+    title: 'Create blog',
+    path: '/create-blog'
+  },
+  {
     title: 'Settings',
     path: '/settings'
   }

@@ -13,5 +13,11 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [
+    require('@tailwindcss/typography'),
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('@tailwindcss/forms')({
+      strategy: 'class'
+    })
+  ]
 }
