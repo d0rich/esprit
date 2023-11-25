@@ -1,7 +1,8 @@
+import '@ton-community/test-utils'
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
+import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog } from '../wrappers/DSocialNetworkBlog'
-import '@ton-community/test-utils'
 import {
   createBlogFee,
   createBlogMessage,
@@ -55,6 +56,41 @@ describe('DSocialNetworkMaster', () => {
     expect(await dMaster.getGetBlogsCount()).toBe(1n)
 
     blockchain.openContract(DSocialNetworkBlog.fromAddress(blogAddress!))
+  })
+
+  it('User should not be able to create blog with insufficient fee', async () => {
+    const createBlogResult = await dMaster.send(
+      user.getSender(),
+      { value: toNano('0.5') },
+      createBlogMessage
+    )
+
+    const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
+
+    // Should return excesses
+    expect(createBlogResult.transactions).not.toHaveTransaction({
+      from: dMaster.address,
+      to: blogAddress!,
+      success: true
+    })
+
+    expect(await dMaster.getGetBlogsCount()).toBe(0n)
+  })
+
+  it('User should not be able to change owner', async () => {
+    await dMaster.send(
+      user.getSender(),
+      { value: toNano('1') },
+      {
+        $$type: 'ChangeOwner',
+        queryId: 0n,
+        newOwner: user.address
+      }
+    )
+
+    const owner = await dMaster.getOwner()
+
+    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
   })
 
   // Preparation

@@ -93,6 +93,7 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
     }
 
     override fun actionBeforeMinting(msg: MintNft) {
+        self.requireOwner();
         require(context().value + ton("0.05") >= self.CREATE_POST_FEE, "not enough funds to create a post");
     }
 

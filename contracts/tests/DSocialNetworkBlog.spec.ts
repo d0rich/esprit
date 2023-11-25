@@ -3,8 +3,7 @@ import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
-  EditBlogMetadata,
-  MintNft
+  EditBlogMetadata
 } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import {
@@ -22,6 +21,7 @@ describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
   let user: Awaited<ReturnType<typeof blockchain.treasury>>
+  let anotherUser: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
   let dBlog: SandboxContract<DSocialNetworkBlog>
 
@@ -38,16 +38,14 @@ describe('DSocialNetworkMaster', () => {
       dBlog.address
     )
 
-    const createTestPostMessage: MintNft = {
-      $$type: 'MintNft',
-      query_id: 0n,
-      individual_content: serializePostData(testPostModel)
-    }
-
     const createPostResult = await dBlog.send(
       user.getSender(),
       { value: createPostFee },
-      createTestPostMessage
+      {
+        $$type: 'MintNft',
+        query_id: 0n,
+        individual_content: serializePostData(testPostModel)
+      }
     )
 
     const postAddress = await dBlog.getGetNftAddressByIndex(0n)
@@ -80,6 +78,76 @@ describe('DSocialNetworkMaster', () => {
     })
 
     expect(await dBlog.getGetNextItemIndex()).toBe(1n)
+  })
+
+  it('Should not create post with insufficient fee', async () => {
+    const testPostModel = getTestPostModel(
+      user.address,
+      (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
+      dBlog.address
+    )
+
+    const createPostResult = await dBlog.send(
+      user.getSender(),
+      { value: toNano('0.1') },
+      {
+        $$type: 'MintNft',
+        query_id: 0n,
+        individual_content: serializePostData(testPostModel)
+      }
+    )
+
+    const postAddress = await dBlog.getGetNftAddressByIndex(0n)
+
+    expect(postAddress).not.toBeNull()
+
+    const dPost = blockchain.openContract(
+      DSocialNetworkPost.fromAddress(postAddress!)
+    )
+
+    // Should not top up post balance
+    expect(createPostResult.transactions).not.toHaveTransaction({
+      from: dBlog.address,
+      to: dPost.address,
+      success: true
+    })
+
+    expect(await dBlog.getGetNextItemIndex()).not.toBe(1n)
+  })
+
+  it('Another user should not be able to create posts', async () => {
+    const testPostModel = getTestPostModel(
+      anotherUser.address,
+      (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
+      dBlog.address
+    )
+
+    const createPostResult = await dBlog.send(
+      anotherUser.getSender(),
+      { value: createPostFee },
+      {
+        $$type: 'MintNft',
+        query_id: 0n,
+        individual_content: serializePostData(testPostModel)
+      }
+    )
+
+    const postAddress = await dBlog.getGetNftAddressByIndex(0n)
+
+    expect(postAddress).not.toBeNull()
+
+    const dPost = blockchain.openContract(
+      DSocialNetworkPost.fromAddress(postAddress!)
+    )
+
+    // Should not top up post balance
+    expect(createPostResult.transactions).not.toHaveTransaction({
+      from: dBlog.address,
+      to: dPost.address,
+      success: true
+    })
+
+    expect(await dBlog.getGetNextItemIndex()).not.toBe(1n)
   })
 
   it('Should edit blog metadata correctly', async () => {
@@ -121,6 +189,33 @@ describe('DSocialNetworkMaster', () => {
     )
   })
 
+  it('Another user should not edit blog metadata', async () => {
+    const oldMetadata = await dBlog.getGetBlogInfo()
+
+    const editBlogMetadataMessage: EditBlogMetadata = {
+      $$type: 'EditBlogMetadata',
+      query_id: 0n,
+      new_metadata: {
+        $$type: 'NftCollectionMetadata',
+        name: 'New blog name',
+        description: 'New blog description',
+        image: 'New blog avatar'
+      }
+    }
+
+    await dBlog.send(
+      anotherUser.getSender(),
+      { value: toNano('0.2') },
+      editBlogMetadataMessage
+    )
+
+    const newMetadata = await dBlog.getGetBlogInfo()
+
+    expect(newMetadata.collection_content).toEqual(
+      oldMetadata.collection_content
+    )
+  })
+
   it('Blog NFT data shoud be parsed correctly', async () => {
     const blogMetadata = await dBlog.getGetBlogInfo()
     const parsedPostMetadata = await parse(
@@ -142,6 +237,7 @@ describe('DSocialNetworkMaster', () => {
     dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
     deployer = await blockchain.treasury('deployer')
     user = await blockchain.treasury('user')
+    anotherUser = await blockchain.treasury('anotherUser')
     const deployResult = await dMaster.send(
       deployer.getSender(),
       { value: deployMasterFee },

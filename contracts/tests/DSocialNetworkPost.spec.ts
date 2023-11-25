@@ -27,6 +27,7 @@ describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
   let user: Awaited<ReturnType<typeof blockchain.treasury>>
+  let anotherUser: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
   let dBlog: SandboxContract<DSocialNetworkBlog>
   let testPostModel: DPostModel
@@ -105,6 +106,31 @@ describe('DSocialNetworkMaster', () => {
     expect(postMetadata.nft_content).toEqual(newPostMetadata)
   })
 
+  it('Post should not be editable by another user', async () => {
+    const oldPostMetadata = await dPost.getGetPostInfo()
+
+    const newPostMetadata: NftMetadata = {
+      $$type: 'NftMetadata',
+      name: 'New post name',
+      description: 'New post description',
+      image: 'New post cover'
+    }
+
+    await dPost.send(
+      anotherUser.getSender(),
+      { value: toNano('0.1') },
+      {
+        $$type: 'EditBlogPost',
+        query_id: 0n,
+        new_metadata: newPostMetadata
+      }
+    )
+
+    const postMetadata = await dPost.getGetPostInfo()
+
+    expect(postMetadata.nft_content).toEqual(oldPostMetadata.nft_content)
+  })
+
   // Preparation
 
   beforeEach(async () => {
@@ -112,6 +138,7 @@ describe('DSocialNetworkMaster', () => {
     dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
     deployer = await blockchain.treasury('deployer')
     user = await blockchain.treasury('user')
+    anotherUser = await blockchain.treasury('anotherUser')
     const deployResult = await dMaster.send(
       deployer.getSender(),
       { value: deployMasterFee },
