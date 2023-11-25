@@ -35,7 +35,7 @@ defineEmits(['update:showSideBar'])
         </DBtn>
         <RouterLink to="/">
           <img
-            alt="D blogs logo"
+            alt="D site logo"
             src="/favicon.svg"
             class="dark:invert inline-block w-8 mx-2"
           />

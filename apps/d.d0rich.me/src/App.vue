@@ -13,6 +13,6 @@ import Layout from './layout/Layout.vue'
 /* TODO: Configure colors more percisely */
 body {
   @apply text-black dark:text-white
-        bg-neutral-300 dark:bg-neutral-600;
+        bg-neutral-300 dark:bg-neutral-800;
 }
 </style>
