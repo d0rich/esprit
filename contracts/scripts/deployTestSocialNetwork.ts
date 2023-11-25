@@ -1,9 +1,14 @@
-import { toNano } from 'ton-core'
 import { NetworkProvider } from '@ton-community/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
-import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
+import {
+  getTestPostModel,
+  createBlogMessage,
+  deployMasterFee,
+  createBlogFee,
+  createPostFee
+} from '../utils/test-fixtures'
 
 import { serializePostData } from '../utils/stub-post-serialization'
 
@@ -13,7 +18,7 @@ export async function run(provider: NetworkProvider) {
   await dMaster.send(
     provider.sender(),
     {
-      value: toNano('0.1')
+      value: deployMasterFee
     },
     {
       $$type: 'Deploy',
@@ -25,7 +30,7 @@ export async function run(provider: NetworkProvider) {
 
   await dMaster.send(
     provider.sender(),
-    { value: toNano('1') },
+    { value: createBlogFee },
     createBlogMessage
   )
 
@@ -49,7 +54,7 @@ export async function run(provider: NetworkProvider) {
 
   await dBlog.send(
     provider.sender(),
-    { value: toNano('0.2') },
+    { value: createPostFee },
     createTestPostMessage
   )
 

@@ -18,6 +18,10 @@ message TopUp {
 trait StorageController with Ownable, Accounting {
     owner: Address;
 
+    get fun balance(): Int {
+        return myBalance();
+    }
+
     receive(msg: TopUp) {}
 
     receive(msg: Withdraw) {

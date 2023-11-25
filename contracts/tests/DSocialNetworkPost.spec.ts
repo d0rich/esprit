@@ -8,7 +8,13 @@ import {
 } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
-import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
+import {
+  getTestPostModel,
+  createBlogMessage,
+  createPostFee,
+  createBlogFee,
+  deployMasterFee
+} from '../utils/test-fixtures'
 import { parse } from '../utils/onchain-metadata-parser/parse'
 import {
   deserializePostData,
@@ -20,6 +26,7 @@ import {
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
+  let user: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
   let dBlog: SandboxContract<DSocialNetworkBlog>
   let testPostModel: DPostModel
@@ -29,9 +36,10 @@ describe('DSocialNetworkMaster', () => {
     blockchain = await Blockchain.create()
     dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
     deployer = await blockchain.treasury('deployer')
+    user = await blockchain.treasury('user')
     const deployResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.1') },
+      { value: deployMasterFee },
       {
         $$type: 'Deploy',
         queryId: 0n
@@ -45,9 +53,9 @@ describe('DSocialNetworkMaster', () => {
       success: true
     })
 
-    const registerResult = await dMaster.send(
-      deployer.getSender(),
-      { value: toNano('1') },
+    const createBlogResult = await dMaster.send(
+      user.getSender(),
+      { value: createBlogFee },
       createBlogMessage
     )
 
@@ -55,7 +63,7 @@ describe('DSocialNetworkMaster', () => {
 
     expect(blogAddress).not.toBeNull()
 
-    expect(registerResult.transactions).toHaveTransaction({
+    expect(createBlogResult.transactions).toHaveTransaction({
       from: dMaster.address,
       to: blogAddress!,
       success: true
@@ -68,7 +76,7 @@ describe('DSocialNetworkMaster', () => {
     )
 
     testPostModel = getTestPostModel(
-      deployer.address,
+      user.address,
       (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
       dBlog.address
     )
@@ -80,8 +88,8 @@ describe('DSocialNetworkMaster', () => {
     }
 
     const createPostResult = await dBlog.send(
-      deployer.getSender(),
-      { value: toNano('0.2') },
+      user.getSender(),
+      { value: createPostFee },
       createTestPostMessage
     )
 
@@ -102,10 +110,10 @@ describe('DSocialNetworkMaster', () => {
     )
   })
 
-  it('Deployer shoud be owner of the post', async () => {
+  it('User shoud be owner of the post', async () => {
     const owner = await dPost.getOwner()
 
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+    expect(owner.toRawString()).toEqual(user.address.toRawString())
   })
 
   it('Post model should be serialized correctly', () => {
@@ -147,7 +155,7 @@ describe('DSocialNetworkMaster', () => {
     }
 
     const editPostResult = await dPost.send(
-      deployer.getSender(),
+      user.getSender(),
       { value: toNano('0.1') },
       {
         $$type: 'EditBlogPost',
@@ -158,7 +166,7 @@ describe('DSocialNetworkMaster', () => {
 
     // Should top up post balance
     expect(editPostResult.transactions).toHaveTransaction({
-      from: deployer.address,
+      from: user.address,
       to: dPost.address,
       success: true
     })
@@ -166,7 +174,7 @@ describe('DSocialNetworkMaster', () => {
     // Should return excesses to owner
     expect(editPostResult.transactions).toHaveTransaction({
       from: dPost.address,
-      to: deployer.address,
+      to: user.address,
       success: true
     })
 

@@ -8,6 +8,8 @@ import "./messages_d.tact";
 import "./d_social_network_post.tact";
 
 contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExtention, PersonalFees, StorageController {
+    personal_fees_destination: Address;
+
     // NftItem
     item_index: Int;
     collection_address: Address; // Master contract
@@ -19,9 +21,6 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
     next_item_index: Int as uint32 = 0;
     collection_content: NftCollectionMetadata;
     royalty_params: RoyaltyParams;
-
-    // PersonalFees
-    personal_fees_destination: Address;
 
 
     const CREATE_POST_FEE: Int = ton("0.1");
@@ -63,7 +62,7 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
     }
 
     receive(msg: EditBlogMetadata) {
-        self.requireInitialization();
+        require(self.is_initialized, "Blog is not initialized");
         self.requireOwner();
         self.collection_content = msg.new_metadata;
         self.sendExcessesTo(
@@ -73,9 +72,7 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         );
     }
 
-    fun requireInitialization() {
-        require(self.is_initialized, "Blog is not initialized");
-    }
+    // Initialize this contract as NFT item
 
     override fun onNftItemInitialized(msg: InitializeNft) {
         self.collection_content = NftCollectionMetadata{
@@ -84,6 +81,8 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
             description: msg.individual_content.description
         };
     }
+
+    // Mint NFT items (posts)
 
     override fun getNftItemInit(item_index: Int): StateInit {
         return initOf DSocialNetworkPost(
@@ -101,10 +100,10 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         let sb: StringBuilder = beginString();
         sb.append("D Blog Post Created by ");
         sb.append(self.collection_content.name);
-        self.sendRemainingValueAsPersonalFee(sb.toString());
+        self.sendPersonalFee(self.CREATE_POST_FEE, sb.toString());
     }
 
     override fun calculateNftItemInitialBalance(): Int {
-        return self.calculateSendAmountToHoldFeeFromRecieved(self.CREATE_POST_FEE);
+        return self.calculateSendAmountToHoldFeeFromRecieved(self.CREATE_POST_FEE + ton("0.05"));
     }
 }

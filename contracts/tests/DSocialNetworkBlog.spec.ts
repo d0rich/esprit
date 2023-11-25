@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import { fromNano, toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
@@ -7,13 +7,21 @@ import {
   MintNft
 } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
-import { getTestPostModel, createBlogMessage } from '../utils/test-fixtures'
+import {
+  getTestPostModel,
+  createBlogMessage,
+  createPostFee,
+  createBlogFee,
+  deployMasterFee
+} from '../utils/test-fixtures'
 import { serializePostData } from '../utils/stub-post-serialization'
 import { parse } from '../utils/onchain-metadata-parser/parse'
+import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
+  let user: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
   let dBlog: SandboxContract<DSocialNetworkBlog>
 
@@ -21,9 +29,10 @@ describe('DSocialNetworkMaster', () => {
     blockchain = await Blockchain.create()
     dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
     deployer = await blockchain.treasury('deployer')
+    user = await blockchain.treasury('user')
     const deployResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.1') },
+      { value: deployMasterFee },
       {
         $$type: 'Deploy',
         queryId: 0n
@@ -37,9 +46,9 @@ describe('DSocialNetworkMaster', () => {
       success: true
     })
 
-    const registerResult = await dMaster.send(
-      deployer.getSender(),
-      { value: toNano('1') },
+    const createBlogResult = await dMaster.send(
+      user.getSender(),
+      { value: createBlogFee },
       createBlogMessage
     )
 
@@ -47,7 +56,7 @@ describe('DSocialNetworkMaster', () => {
 
     expect(blogAddress).not.toBeNull()
 
-    expect(registerResult.transactions).toHaveTransaction({
+    expect(createBlogResult.transactions).toHaveTransaction({
       from: dMaster.address,
       to: blogAddress!,
       success: true
@@ -60,15 +69,15 @@ describe('DSocialNetworkMaster', () => {
     )
   })
 
-  it('deployer shoud be owner of the account', async () => {
+  it('User shoud be owner of the blog', async () => {
     const owner = await dBlog.getOwner()
 
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+    expect(owner.toRawString()).toEqual(user.address.toRawString())
   })
 
-  it('should create post', async () => {
+  it('Should create post', async () => {
     const testPostModel = getTestPostModel(
-      deployer.address,
+      user.address,
       (await dBlog.getGetNftAddressByIndex(await dBlog.getGetNextItemIndex()))!,
       dBlog.address
     )
@@ -80,8 +89,8 @@ describe('DSocialNetworkMaster', () => {
     }
 
     const createPostResult = await dBlog.send(
-      deployer.getSender(),
-      { value: toNano('0.2') },
+      user.getSender(),
+      { value: createPostFee },
       createTestPostMessage
     )
 
@@ -89,16 +98,27 @@ describe('DSocialNetworkMaster', () => {
 
     expect(postAddress).not.toBeNull()
 
+    const dPost = blockchain.openContract(
+      DSocialNetworkPost.fromAddress(postAddress!)
+    )
+
     // Should top up post balance
     expect(createPostResult.transactions).toHaveTransaction({
       from: dBlog.address,
-      to: postAddress!,
+      to: dPost.address,
       success: true
     })
 
-    // Should return excesses to owner
+    // Should return excesses to user
     expect(createPostResult.transactions).toHaveTransaction({
-      from: postAddress!,
+      from: dPost.address,
+      to: user.address,
+      success: true
+    })
+
+    // Should send fee to owner
+    expect(createPostResult.transactions).toHaveTransaction({
+      from: dBlog.address,
       to: deployer.address,
       success: true
     })
@@ -119,14 +139,14 @@ describe('DSocialNetworkMaster', () => {
     }
 
     const editBlogMetadataResult = await dBlog.send(
-      deployer.getSender(),
+      user.getSender(),
       { value: toNano('0.2') },
       editBlogMetadataMessage
     )
 
     // Should pay for changes
     expect(editBlogMetadataResult.transactions).toHaveTransaction({
-      from: deployer.address,
+      from: user.address,
       to: dBlog.address,
       success: true
     })
@@ -134,7 +154,7 @@ describe('DSocialNetworkMaster', () => {
     // Should return excesses
     expect(editBlogMetadataResult.transactions).toHaveTransaction({
       from: dBlog.address,
-      to: deployer.address,
+      to: user.address,
       success: true
     })
 

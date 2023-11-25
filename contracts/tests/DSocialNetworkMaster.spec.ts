@@ -1,22 +1,27 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog } from '../wrappers/DSocialNetworkBlog'
 import '@ton-community/test-utils'
-import { createBlogMessage } from '../utils/test-fixtures'
+import {
+  createBlogFee,
+  createBlogMessage,
+  deployMasterFee
+} from '../utils/test-fixtures'
 
 describe('DSocialNetworkMaster', () => {
   let blockchain: Blockchain
   let deployer: Awaited<ReturnType<typeof blockchain.treasury>>
+  let user: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
 
   beforeEach(async () => {
     blockchain = await Blockchain.create()
     dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
     deployer = await blockchain.treasury('deployer')
+    user = await blockchain.treasury('user')
     const deployResult = await dMaster.send(
       deployer.getSender(),
-      { value: toNano('0.1') },
+      { value: deployMasterFee },
       {
         $$type: 'Deploy',
         queryId: 0n
@@ -39,8 +44,8 @@ describe('DSocialNetworkMaster', () => {
 
   it('Create blog', async () => {
     const createBlogResult = await dMaster.send(
-      deployer.getSender(),
-      { value: toNano('1') },
+      user.getSender(),
+      { value: createBlogFee },
       createBlogMessage
     )
 
@@ -58,6 +63,13 @@ describe('DSocialNetworkMaster', () => {
     // Should return excesses
     expect(createBlogResult.transactions).toHaveTransaction({
       from: blogAddress!,
+      to: user.address,
+      success: true
+    })
+
+    // Should send fee to owner
+    expect(createBlogResult.transactions).toHaveTransaction({
+      from: dMaster.address,
       to: deployer.address,
       success: true
     })

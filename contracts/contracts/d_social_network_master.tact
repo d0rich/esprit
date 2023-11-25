@@ -43,18 +43,20 @@ contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention,
         };
     }
 
-     get fun get_version(): String {
+    get fun get_version(): String {
         return self.version;
     }
 
-   get fun get_blogs_count(): Int {
+    get fun get_blogs_count(): Int {
         return self.next_item_index;
     }
 
     get fun get_blog_address_by_index(item_index: Int): Address?{
-        let initCode: StateInit = self.getBlogInit(item_index);
+        let initCode: StateInit = self.getNftItemInit(item_index);
         return contractAddress(initCode);
     }
+
+    // Mint NFT items (blogs)
 
     override fun getNftItemInit(item_index: Int): StateInit {
         return initOf DSocialNetworkBlog(item_index, myAddress(), self.personal_fees_destination);
@@ -68,14 +70,11 @@ contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention,
         let sb: StringBuilder = beginString();
         sb.append("D Blog Created: ");
         sb.append(msg.individual_content.name);
-        self.sendRemainingValueAsPersonalFee(sb.toString());
+        self.sendPersonalFee(self.CREATE_BLOG_FEE, sb.toString());
     }
 
     override fun calculateNftItemInitialBalance(): Int {
         return self.calculateSendAmountToHoldFeeFromRecieved(self.CREATE_BLOG_FEE);
     }
 
-    fun getBlogInit(account_id: Int): StateInit {
-        return self.getNftItemInit(account_id);
-    }
 }

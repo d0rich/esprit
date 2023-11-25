@@ -1,6 +1,10 @@
-import { Address } from 'ton-core'
+import { Address, toNano } from 'ton-core'
 import { MintNft } from '../wrappers/DSocialNetworkMaster'
 import { DPostModel } from './stub-post-serialization'
+
+export const deployMasterFee = toNano('0.1')
+export const createBlogFee = toNano('1')
+export const createPostFee = toNano('0.3')
 
 export const createBlogMessage: MintNft = {
   $$type: 'MintNft',
