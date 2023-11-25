@@ -17,6 +17,11 @@
     "@tonconnect/ui": "^2.0.0-beta.6",
     "@vueuse/core": "^10.6.1",
     "pinia": "^2.1.7",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
+    "strip-markdown": "^6.0.0",
+    "unified": "^11.0.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },

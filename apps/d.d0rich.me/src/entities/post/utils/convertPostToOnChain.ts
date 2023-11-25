@@ -1,5 +1,6 @@
 import type { PostOnChain, PostOffChain } from '../model'
 import { useAppConfig } from '../../../shared/composables/useAppConfig'
+import { mdToPlainTextProcessor } from '../../../shared/unified/md-to-plain-text'
 import { etxChar, stxChar } from './symbols'
 
 const config = useAppConfig()
@@ -7,14 +8,15 @@ const config = useAppConfig()
 export function convertPostToOnChain(model: PostOffChain): PostOnChain {
   const name = `Post on D from ${model.date.toLocaleDateString(
     'de-DE'
-  )} by ${model.author.toRawString()}`
+  )} by ${model.author.toString()}`
   const stringBuilder: string[] = []
   stringBuilder.push(`Posted: ${model.date.toLocaleDateString('de-DE')}`)
   stringBuilder.push(`Author: ${model.author.toString()}`)
   stringBuilder.push(`See on D: ${model.url}`)
   stringBuilder.push('')
-  // TODO: Convert markdown to plain text
-  stringBuilder.push(model.contentMd)
+  stringBuilder.push(
+    mdToPlainTextProcessor.processSync(model.contentMd).toString()
+  )
   stringBuilder.push('', '', '')
   stringBuilder.push('===== Technical information =====')
   stringBuilder.push(
