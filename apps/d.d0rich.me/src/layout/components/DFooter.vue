@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { DWrapShape, DAnimationFloatingLetter } from '@d0rich/esprit-design'
-import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -14,9 +13,9 @@ import { RouterLink } from 'vue-router'
   >
     <div class="pt-[1rem]">
       <div class="p-6 flex justify-between">
-        <RouterLink
+        <a
           class="flex items-end font-serif hover:underline"
-          to="https://d0rich.me"
+          href="https://d0rich.me"
           target="_blank"
         >
           <DAnimationFloatingLetter
@@ -24,7 +23,7 @@ import { RouterLink } from 'vue-router'
             path-class="fill-black dark:fill-white"
           />
           eveloped by d0rich
-        </RouterLink>
+        </a>
         <div class="flex items-center gap-2 text-xl">
           <slot />
         </div>
