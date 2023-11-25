@@ -62,15 +62,12 @@ contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention,
         return initOf DSocialNetworkBlog(item_index, myAddress(), self.personal_fees_destination);
     }
 
-    override fun onBeforeMintNft(msg: MintNft) {
+    override fun onBeforeMintNft() {
         require(context().value + ton("0.05") >= self.CREATE_BLOG_FEE, "not enough funds to create a blog");
     }
 
-    override fun onAfterMintNft(msg: MintNft) {
-        let sb: StringBuilder = beginString();
-        sb.append("D Blog Created: ");
-        sb.append(msg.individual_content.name);
-        self.sendPersonalFee(self.CREATE_BLOG_FEE, sb.toString());
+    override fun onAfterMintNft() {
+        self.sendPersonalFee(self.CREATE_BLOG_FEE, "D Blog created");
     }
 
     override fun calculateNftItemInitialBalance(): Int {

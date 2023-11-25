@@ -65,6 +65,11 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         require(self.is_initialized, "Blog is not initialized");
         self.requireOwner();
         self.collection_content = msg.new_metadata;
+        self.individual_content = NftMetadata {
+            image: msg.new_metadata.image,
+            name: msg.new_metadata.name,
+            description: msg.new_metadata.description
+        };
         self.sendExcessesTo(
             self.calculateSendAmountToHoldEnoughTonForStorage(),
             self.owner,
@@ -74,22 +79,22 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
 
     // Initialize this contract as NFT item
 
-    override fun onNftItemInitialized(msg: InitializeNft) {
+    override fun onAfterUpdateNftItemMetadata() {
         self.collection_content = NftCollectionMetadata{
-            image: msg.individual_content.image,
-            name: msg.individual_content.name,
-            description: msg.individual_content.description
+            image: self.individual_content.image,
+            name: self.individual_content.name,
+            description: self.individual_content.description
         };
     }
 
     // Transfer this contract as NFT item
 
-    override fun calculateNftItemTransferValue(msg: Transfer): Int {
+    override fun calculateNftItemTransferValue(): Int {
         return self.calculateSendAmountToHoldEnoughTonForStorage() - ton("0.03");
     }
 
-    override fun onNftItemTransfer(msg: Transfer) {
-        self.royalty_params.destination = msg.new_owner;
+    override fun onNftItemTransfer() {
+        self.royalty_params.destination = self.owner;
     }
 
     // Mint NFT items (posts)
@@ -102,16 +107,13 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         );
     }
 
-    override fun onBeforeMintNft(msg: MintNft) {
+    override fun onBeforeMintNft() {
         self.requireOwner();
         require(context().value + ton("0.05") >= self.CREATE_POST_FEE, "not enough funds to create a post");
     }
 
-    override fun onAfterMintNft(msg: MintNft) {
-        let sb: StringBuilder = beginString();
-        sb.append("D Blog Post Created by ");
-        sb.append(self.collection_content.name);
-        self.sendPersonalFee(self.CREATE_POST_FEE, sb.toString());
+    override fun onAfterMintNft() {
+        self.sendPersonalFee(self.CREATE_POST_FEE, "D Blog Post created");
     }
 
     override fun calculateNftItemInitialBalance(): Int {

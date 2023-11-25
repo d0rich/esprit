@@ -29,10 +29,10 @@ trait NftCollection with Deployable, Ownable, Accounting {
         return individual_content;
     }
 
-    virtual fun onBeforeMintNft(msg: MintNft) {
+    virtual fun onBeforeMintNft() {
     }
 
-    virtual fun onAfterMintNft(msg: MintNft) {
+    virtual fun onAfterMintNft() {
     }
 
     virtual fun calculateNftItemInitialBalance(): Int {
@@ -66,7 +66,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
 
     receive(msg: MintNft){
         require(self.next_item_index >= 0, "non-sequential NFTs");
-        self.onBeforeMintNft(msg);
+        self.onBeforeMintNft();
         let ctx: Context = context();
         let nft_init: StateInit = self.getNftItemInit(self.next_item_index);
         send(SendParameters{
@@ -83,7 +83,7 @@ trait NftCollection with Deployable, Ownable, Accounting {
                 data: nft_init.data
             });
         self.next_item_index = self.next_item_index + 1;
-        self.onAfterMintNft(msg);
+        self.onAfterMintNft();
     }
 
     // ===== Private Methods ===== //
