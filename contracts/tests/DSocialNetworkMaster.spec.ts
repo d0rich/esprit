@@ -14,28 +14,6 @@ describe('DSocialNetworkMaster', () => {
   let user: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
 
-  beforeEach(async () => {
-    blockchain = await Blockchain.create()
-    dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
-    deployer = await blockchain.treasury('deployer')
-    user = await blockchain.treasury('user')
-    const deployResult = await dMaster.send(
-      deployer.getSender(),
-      { value: deployMasterFee },
-      {
-        $$type: 'Deploy',
-        queryId: 0n
-      }
-    )
-
-    expect(deployResult.transactions).toHaveTransaction({
-      from: deployer.address,
-      to: dMaster.address,
-      deploy: true,
-      success: true
-    })
-  })
-
   it('deployer shoud be owner', async () => {
     const owner = await dMaster.getOwner()
 
@@ -77,5 +55,29 @@ describe('DSocialNetworkMaster', () => {
     expect(await dMaster.getGetBlogsCount()).toBe(1n)
 
     blockchain.openContract(DSocialNetworkBlog.fromAddress(blogAddress!))
+  })
+
+  // Preparation
+
+  beforeEach(async () => {
+    blockchain = await Blockchain.create()
+    dMaster = blockchain.openContract(await DSocialNetworkMaster.fromInit())
+    deployer = await blockchain.treasury('deployer')
+    user = await blockchain.treasury('user')
+    const deployResult = await dMaster.send(
+      deployer.getSender(),
+      { value: deployMasterFee },
+      {
+        $$type: 'Deploy',
+        queryId: 0n
+      }
+    )
+
+    expect(deployResult.transactions).toHaveTransaction({
+      from: deployer.address,
+      to: dMaster.address,
+      deploy: true,
+      success: true
+    })
   })
 })
