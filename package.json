@@ -3,8 +3,7 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*",
-    "contracts"
+    "packages/*"
   ],
   "scripts": {
     "prepare:all": "turbo run prepare",

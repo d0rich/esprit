@@ -2,7 +2,7 @@ import { Address } from 'ton-core'
 import {
   DSocialNetworkPost,
   type NftMetadata
-} from '@d0rich/contracts/wrappers/DSocialNetworkPost'
+} from '@d0rich/ton-contracts/wrappers/DSocialNetworkPost'
 
 export type DPostModel = {
   url: string

@@ -11,8 +11,8 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
-    "@d0rich/contracts": "*",
     "@d0rich/esprit-design": "*",
+    "@d0rich/ton-contracts": "*",
     "@orbs-network/ton-access": "^2.3.3",
     "@tonconnect/ui": "^2.0.0-beta.6",
     "@vueuse/core": "^10.6.1",

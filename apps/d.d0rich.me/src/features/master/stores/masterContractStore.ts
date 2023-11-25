@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { Address } from 'ton-core/dist/address/Address'
-import { DSocialNetworkMaster } from '@d0rich/contracts/wrappers/DSocialNetworkMaster'
+import { DSocialNetworkMaster } from '@d0rich/ton-contracts/wrappers/DSocialNetworkMaster'
 
 const masterContractAddress = 'kQBzW8ZRV2T-rx3xfAwIZyiO2FN4wCpI7If4Exj7vX9DElJG'
 
