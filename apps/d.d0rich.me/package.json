@@ -13,6 +13,8 @@
   "dependencies": {
     "@d0rich/esprit-design": "*",
     "@d0rich/ton-contracts": "*",
+    "@dicebear/collection": "^7.0.1",
+    "@dicebear/core": "^7.0.1",
     "@orbs-network/ton-access": "^2.3.3",
     "@tonconnect/ui": "^2.0.0-beta.6",
     "@vueuse/core": "^10.6.1",
