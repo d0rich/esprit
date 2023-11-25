@@ -13,7 +13,7 @@ trait NftItem with Deployable, Ownable, Accounting {
 
     // ===== Customizable functions ===== //
 
-    virtual fun serializeIndividualContent(): Cell {
+    virtual fun serializeNftItemIndividualContent(): Cell {
         let tep64Dict: Cell? = beginTep64Dict();
         tep64Dict = storeTep64SnakeString(tep64Dict, "name", self.individual_content.name);
         tep64Dict = storeTep64SnakeString(tep64Dict, "description", self.individual_content.description);
@@ -22,6 +22,14 @@ trait NftItem with Deployable, Ownable, Accounting {
     }
 
     virtual fun onNftItemInitialized(msg: InitializeNft) {
+        // empty
+    }
+
+    virtual fun calculateNftItemTransferValue(msg: Transfer): Int {
+        return self.calculateSendAmountToHoldEnoughTonForStorage();
+    }
+
+    virtual fun onNftItemTransfer(msg: Transfer) {
         // empty
     }
 
@@ -36,7 +44,7 @@ trait NftItem with Deployable, Ownable, Accounting {
             index: self.item_index,
             collection_address: self.collection_address,
             owner_address: self.owner,
-            individual_content: self.serializeIndividualContent()
+            individual_content: self.serializeNftItemIndividualContent()
         };
     }
 
@@ -60,9 +68,10 @@ trait NftItem with Deployable, Ownable, Accounting {
     receive(msg: Transfer){
         self.requireOwner();
         require(self.is_initialized == true, "NFT Item is not initialized");
-        let msgValue: Int = self.calculateSendAmountToHoldEnoughTonForStorage();
+        let msgValue: Int = self.calculateNftItemTransferValue(msg);
         let ctx: Context = context();
-        self.owner = msg.new_owner;  // change current owner to the new_owner
+        self.owner = msg.new_owner;
+        self.onNftItemTransfer(msg);
         if (msg.forward_amount > 0) {
             send(SendParameters{
                 to: msg.new_owner,

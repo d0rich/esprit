@@ -9,7 +9,7 @@ import "./messages_d.tact";
 import "./d_social_network_blog.tact";
 
 contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention, Deployable, OwnableTransferable, Accounting, PersonalFees, StorageController  {
-    version: String = "v1.1";
+    version: String = "v1.2";
     owner: Address;
     personal_fees_destination: Address;
 
@@ -37,7 +37,7 @@ contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention,
             description: description_sb.toString()
         };
         self.royalty_params = RoyaltyParams{
-            numerator: 13,
+            numerator: 7,
             denominator: 100,
             destination: self.owner
         };
@@ -62,11 +62,11 @@ contract DSocialNetworkMaster with NftCollection, NftCollectionRoyaltyExtention,
         return initOf DSocialNetworkBlog(item_index, myAddress(), self.personal_fees_destination);
     }
 
-    override fun actionBeforeMinting(msg: MintNft) {
+    override fun onBeforeMintNft(msg: MintNft) {
         require(context().value + ton("0.05") >= self.CREATE_BLOG_FEE, "not enough funds to create a blog");
     }
 
-    override fun actionAfterMinting(msg: MintNft) {
+    override fun onAfterMintNft(msg: MintNft) {
         let sb: StringBuilder = beginString();
         sb.append("D Blog Created: ");
         sb.append(msg.individual_content.name);

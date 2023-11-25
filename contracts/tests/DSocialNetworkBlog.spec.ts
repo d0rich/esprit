@@ -31,6 +31,7 @@ describe('DSocialNetworkMaster', () => {
 
       expect(owner.toRawString()).toEqual(user.address.toRawString())
     })
+
     it('Blog should be transferable', async () => {
       const transferResult = await dBlog.send(
         user.getSender(),
@@ -70,6 +71,33 @@ describe('DSocialNetworkMaster', () => {
       const owner = await dBlog.getOwner()
 
       expect(owner.toRawString()).toEqual(anotherUser.address.toRawString())
+    })
+
+    it('Royalty params destination should be changed after transfer', async () => {
+      const oldRoyaltyParams = await dBlog.getRoyaltyParams()
+
+      await dBlog.send(
+        user.getSender(),
+        { value: toNano('10') },
+        {
+          $$type: 'Transfer',
+          query_id: 0n,
+          new_owner: anotherUser.address,
+          custom_payload: null,
+          forward_amount: toNano('5'),
+          forward_payload: Cell.EMPTY,
+          response_destination: user.address
+        }
+      )
+
+      const newRoyaltyParams = await dBlog.getRoyaltyParams()
+
+      expect(newRoyaltyParams.destination.toRawString()).not.toEqual(
+        oldRoyaltyParams.destination.toRawString()
+      )
+      expect(newRoyaltyParams.destination.toRawString()).toEqual(
+        anotherUser.address.toRawString()
+      )
     })
 
     it('Another user can not initiate blog transfer', async () => {

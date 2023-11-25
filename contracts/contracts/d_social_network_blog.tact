@@ -31,7 +31,7 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         self.owner = collection_address;
         self.personal_fees_destination = personal_fees_destination;
         self.royalty_params = RoyaltyParams{
-            numerator: 13,
+            numerator: 3,
             denominator: 100,
             destination: self.owner
         };
@@ -82,6 +82,16 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         };
     }
 
+    // Transfer this contract as NFT item
+
+    override fun calculateNftItemTransferValue(msg: Transfer): Int {
+        return self.calculateSendAmountToHoldEnoughTonForStorage() - ton("0.03");
+    }
+
+    override fun onNftItemTransfer(msg: Transfer) {
+        self.royalty_params.destination = msg.new_owner;
+    }
+
     // Mint NFT items (posts)
 
     override fun getNftItemInit(item_index: Int): StateInit {
@@ -92,12 +102,12 @@ contract DSocialNetworkBlog with NftItem, NftCollection, NftCollectionRoyaltyExt
         );
     }
 
-    override fun actionBeforeMinting(msg: MintNft) {
+    override fun onBeforeMintNft(msg: MintNft) {
         self.requireOwner();
         require(context().value + ton("0.05") >= self.CREATE_POST_FEE, "not enough funds to create a post");
     }
 
-    override fun actionAfterMinting(msg: MintNft) {
+    override fun onAfterMintNft(msg: MintNft) {
         let sb: StringBuilder = beginString();
         sb.append("D Blog Post Created by ");
         sb.append(self.collection_content.name);
