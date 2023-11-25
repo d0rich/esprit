@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import { Cell, toNano } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
@@ -228,6 +228,67 @@ describe('DSocialNetworkMaster', () => {
       name: blogMetadata.collection_content.name,
       description: blogMetadata.collection_content.description
     })
+  })
+
+  it('Blog should be transferable', async () => {
+    const transferResult = await dBlog.send(
+      user.getSender(),
+      { value: toNano('10') },
+      {
+        $$type: 'Transfer',
+        query_id: 0n,
+        new_owner: anotherUser.address,
+        custom_payload: null,
+        forward_amount: toNano('5'),
+        forward_payload: Cell.EMPTY,
+        response_destination: user.address
+      }
+    )
+
+    // Should top up post balance
+    expect(transferResult.transactions).toHaveTransaction({
+      from: user.address,
+      to: dBlog.address,
+      success: true
+    })
+
+    // Should return excesses to owner
+    expect(transferResult.transactions).toHaveTransaction({
+      from: dBlog.address,
+      to: user.address,
+      success: true
+    })
+
+    // Should forward some amount to new owner
+    expect(transferResult.transactions).toHaveTransaction({
+      from: dBlog.address,
+      to: user.address,
+      success: true
+    })
+
+    const owner = await dBlog.getOwner()
+
+    expect(owner.toRawString()).toEqual(anotherUser.address.toRawString())
+  })
+
+  it('Another user can not initiate blog transfer', async () => {
+    await dBlog.send(
+      anotherUser.getSender(),
+      { value: toNano('10') },
+      {
+        $$type: 'Transfer',
+        query_id: 0n,
+        new_owner: anotherUser.address,
+        custom_payload: null,
+        forward_amount: toNano('5'),
+        forward_payload: Cell.EMPTY,
+        response_destination: user.address
+      }
+    )
+
+    const owner = await dBlog.getOwner()
+
+    expect(owner.toRawString()).toEqual(user.address.toRawString())
   })
 
   // Preparation

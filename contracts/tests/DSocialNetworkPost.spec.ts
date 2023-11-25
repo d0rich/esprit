@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import { toNano, Cell } from 'ton-core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
@@ -129,6 +129,67 @@ describe('DSocialNetworkMaster', () => {
     const postMetadata = await dPost.getGetPostInfo()
 
     expect(postMetadata.nft_content).toEqual(oldPostMetadata.nft_content)
+  })
+
+  it('Post should be transferable', async () => {
+    const transferResult = await dPost.send(
+      user.getSender(),
+      { value: toNano('10') },
+      {
+        $$type: 'Transfer',
+        query_id: 0n,
+        new_owner: anotherUser.address,
+        custom_payload: null,
+        forward_amount: toNano('5'),
+        forward_payload: Cell.EMPTY,
+        response_destination: user.address
+      }
+    )
+
+    // Should top up post balance
+    expect(transferResult.transactions).toHaveTransaction({
+      from: user.address,
+      to: dPost.address,
+      success: true
+    })
+
+    // Should return excesses to owner
+    expect(transferResult.transactions).toHaveTransaction({
+      from: dPost.address,
+      to: user.address,
+      success: true
+    })
+
+    // Should forward some amount to new owner
+    expect(transferResult.transactions).toHaveTransaction({
+      from: dPost.address,
+      to: user.address,
+      success: true
+    })
+
+    const owner = await dPost.getOwner()
+
+    expect(owner.toRawString()).toEqual(anotherUser.address.toRawString())
+  })
+
+  it('Another user can not initiate post transfer', async () => {
+    await dPost.send(
+      anotherUser.getSender(),
+      { value: toNano('10') },
+      {
+        $$type: 'Transfer',
+        query_id: 0n,
+        new_owner: anotherUser.address,
+        custom_payload: null,
+        forward_amount: toNano('5'),
+        forward_payload: Cell.EMPTY,
+        response_destination: user.address
+      }
+    )
+
+    const owner = await dPost.getOwner()
+
+    expect(owner.toRawString()).toEqual(user.address.toRawString())
   })
 
   // Preparation
