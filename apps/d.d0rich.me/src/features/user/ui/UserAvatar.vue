@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { createAvatar } from '@dicebear/core'
-import { adventurerNeutral } from '@dicebear/collection'
+import { thumbs } from '@dicebear/collection'
 
 const props = defineProps({
   wallet: {
@@ -11,7 +11,7 @@ const props = defineProps({
 })
 
 const avatar = computed(() => {
-  return createAvatar(adventurerNeutral, {
+  return createAvatar(thumbs, {
     seed: props.wallet
   }).toString()
 })
