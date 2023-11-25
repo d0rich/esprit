@@ -33,163 +33,167 @@ describe('DSocialNetworkMaster', () => {
   let testPostModel: DPostModel
   let dPost: SandboxContract<DSocialNetworkPost>
 
-  it('User shoud be owner of the post', async () => {
-    const owner = await dPost.getOwner()
+  describe('Ownership', () => {
+    it('User shoud be owner of the post', async () => {
+      const owner = await dPost.getOwner()
 
-    expect(owner.toRawString()).toEqual(user.address.toRawString())
-  })
+      expect(owner.toRawString()).toEqual(user.address.toRawString())
+    })
 
-  it('Post model should be serialized correctly', () => {
-    const serializedModel = serializePostData(testPostModel)
-    const deserializedPostData = deserializePostData(serializedModel)
-    expect(stringifyPostModel(testPostModel)).toEqual(
-      stringifyPostModel(deserializedPostData)
-    )
-  })
+    it('Post should be transferable', async () => {
+      const transferResult = await dPost.send(
+        user.getSender(),
+        { value: toNano('10') },
+        {
+          $$type: 'Transfer',
+          query_id: 0n,
+          new_owner: anotherUser.address,
+          custom_payload: null,
+          forward_amount: toNano('5'),
+          forward_payload: Cell.EMPTY,
+          response_destination: user.address
+        }
+      )
 
-  it('Post should be readable', async () => {
-    const getNftDataRes = await dPost.getGetNftData()
-    await dBlog.getGetNftContent(
-      getNftDataRes.index,
-      getNftDataRes.individual_content
-    )
-  })
+      // Should top up post balance
+      expect(transferResult.transactions).toHaveTransaction({
+        from: user.address,
+        to: dPost.address,
+        success: true
+      })
 
-  it('Post NFT data shoud be parsed correctly', async () => {
-    const postMetadata = await dPost.getGetPostInfo()
-    const parsedPostMetadata = await parse(
-      blockchain,
-      dPost.address,
-      dBlog.address
-    )
-    expect(parsedPostMetadata).toEqual({
-      image: postMetadata.nft_content.image,
-      name: postMetadata.nft_content.name,
-      description: postMetadata.nft_content.description
+      // Should return excesses to owner
+      expect(transferResult.transactions).toHaveTransaction({
+        from: dPost.address,
+        to: user.address,
+        success: true
+      })
+
+      // Should forward some amount to new owner
+      expect(transferResult.transactions).toHaveTransaction({
+        from: dPost.address,
+        to: user.address,
+        success: true
+      })
+
+      const owner = await dPost.getOwner()
+
+      expect(owner.toRawString()).toEqual(anotherUser.address.toRawString())
+    })
+
+    it('Another user can not initiate post transfer', async () => {
+      await dPost.send(
+        anotherUser.getSender(),
+        { value: toNano('10') },
+        {
+          $$type: 'Transfer',
+          query_id: 0n,
+          new_owner: anotherUser.address,
+          custom_payload: null,
+          forward_amount: toNano('5'),
+          forward_payload: Cell.EMPTY,
+          response_destination: user.address
+        }
+      )
+
+      const owner = await dPost.getOwner()
+
+      expect(owner.toRawString()).toEqual(user.address.toRawString())
     })
   })
 
-  it('Post should be editable', async () => {
-    const newPostMetadata: NftMetadata = {
-      $$type: 'NftMetadata',
-      name: 'New post name',
-      description: 'New post description',
-      image: 'New post cover'
-    }
+  describe('Metadata', () => {
+    it('Post model should be serialized correctly', () => {
+      const serializedModel = serializePostData(testPostModel)
+      const deserializedPostData = deserializePostData(serializedModel)
+      expect(stringifyPostModel(testPostModel)).toEqual(
+        stringifyPostModel(deserializedPostData)
+      )
+    })
 
-    const editPostResult = await dPost.send(
-      user.getSender(),
-      { value: toNano('0.1') },
-      {
-        $$type: 'EditBlogPost',
-        query_id: 0n,
-        new_metadata: newPostMetadata
+    it('Post should be readable', async () => {
+      const getNftDataRes = await dPost.getGetNftData()
+      await dBlog.getGetNftContent(
+        getNftDataRes.index,
+        getNftDataRes.individual_content
+      )
+    })
+
+    it('Post NFT data shoud be parsed correctly', async () => {
+      const postMetadata = await dPost.getGetPostInfo()
+      const parsedPostMetadata = await parse(
+        blockchain,
+        dPost.address,
+        dBlog.address
+      )
+      expect(parsedPostMetadata).toEqual({
+        image: postMetadata.nft_content.image,
+        name: postMetadata.nft_content.name,
+        description: postMetadata.nft_content.description
+      })
+    })
+
+    it('Post should be editable', async () => {
+      const newPostMetadata: NftMetadata = {
+        $$type: 'NftMetadata',
+        name: 'New post name',
+        description: 'New post description',
+        image: 'New post cover'
       }
-    )
 
-    // Should top up post balance
-    expect(editPostResult.transactions).toHaveTransaction({
-      from: user.address,
-      to: dPost.address,
-      success: true
+      const editPostResult = await dPost.send(
+        user.getSender(),
+        { value: toNano('0.1') },
+        {
+          $$type: 'EditBlogPost',
+          query_id: 0n,
+          new_metadata: newPostMetadata
+        }
+      )
+
+      // Should top up post balance
+      expect(editPostResult.transactions).toHaveTransaction({
+        from: user.address,
+        to: dPost.address,
+        success: true
+      })
+
+      // Should return excesses to owner
+      expect(editPostResult.transactions).toHaveTransaction({
+        from: dPost.address,
+        to: user.address,
+        success: true
+      })
+
+      const postMetadata = await dPost.getGetPostInfo()
+
+      expect(postMetadata.nft_content).toEqual(newPostMetadata)
     })
 
-    // Should return excesses to owner
-    expect(editPostResult.transactions).toHaveTransaction({
-      from: dPost.address,
-      to: user.address,
-      success: true
-    })
+    it('Post should not be editable by another user', async () => {
+      const oldPostMetadata = await dPost.getGetPostInfo()
 
-    const postMetadata = await dPost.getGetPostInfo()
-
-    expect(postMetadata.nft_content).toEqual(newPostMetadata)
-  })
-
-  it('Post should not be editable by another user', async () => {
-    const oldPostMetadata = await dPost.getGetPostInfo()
-
-    const newPostMetadata: NftMetadata = {
-      $$type: 'NftMetadata',
-      name: 'New post name',
-      description: 'New post description',
-      image: 'New post cover'
-    }
-
-    await dPost.send(
-      anotherUser.getSender(),
-      { value: toNano('0.1') },
-      {
-        $$type: 'EditBlogPost',
-        query_id: 0n,
-        new_metadata: newPostMetadata
+      const newPostMetadata: NftMetadata = {
+        $$type: 'NftMetadata',
+        name: 'New post name',
+        description: 'New post description',
+        image: 'New post cover'
       }
-    )
 
-    const postMetadata = await dPost.getGetPostInfo()
+      await dPost.send(
+        anotherUser.getSender(),
+        { value: toNano('0.1') },
+        {
+          $$type: 'EditBlogPost',
+          query_id: 0n,
+          new_metadata: newPostMetadata
+        }
+      )
 
-    expect(postMetadata.nft_content).toEqual(oldPostMetadata.nft_content)
-  })
+      const postMetadata = await dPost.getGetPostInfo()
 
-  it('Post should be transferable', async () => {
-    const transferResult = await dPost.send(
-      user.getSender(),
-      { value: toNano('10') },
-      {
-        $$type: 'Transfer',
-        query_id: 0n,
-        new_owner: anotherUser.address,
-        custom_payload: null,
-        forward_amount: toNano('5'),
-        forward_payload: Cell.EMPTY,
-        response_destination: user.address
-      }
-    )
-
-    // Should top up post balance
-    expect(transferResult.transactions).toHaveTransaction({
-      from: user.address,
-      to: dPost.address,
-      success: true
+      expect(postMetadata.nft_content).toEqual(oldPostMetadata.nft_content)
     })
-
-    // Should return excesses to owner
-    expect(transferResult.transactions).toHaveTransaction({
-      from: dPost.address,
-      to: user.address,
-      success: true
-    })
-
-    // Should forward some amount to new owner
-    expect(transferResult.transactions).toHaveTransaction({
-      from: dPost.address,
-      to: user.address,
-      success: true
-    })
-
-    const owner = await dPost.getOwner()
-
-    expect(owner.toRawString()).toEqual(anotherUser.address.toRawString())
-  })
-
-  it('Another user can not initiate post transfer', async () => {
-    await dPost.send(
-      anotherUser.getSender(),
-      { value: toNano('10') },
-      {
-        $$type: 'Transfer',
-        query_id: 0n,
-        new_owner: anotherUser.address,
-        custom_payload: null,
-        forward_amount: toNano('5'),
-        forward_payload: Cell.EMPTY,
-        response_destination: user.address
-      }
-    )
-
-    const owner = await dPost.getOwner()
-
-    expect(owner.toRawString()).toEqual(user.address.toRawString())
   })
 
   // Preparation

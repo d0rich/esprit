@@ -15,82 +15,86 @@ describe('DSocialNetworkMaster', () => {
   let user: Awaited<ReturnType<typeof blockchain.treasury>>
   let dMaster: SandboxContract<DSocialNetworkMaster>
 
-  it('deployer shoud be owner', async () => {
-    const owner = await dMaster.getOwner()
+  describe('Ownership', () => {
+    it('Deployer shoud be owner', async () => {
+      const owner = await dMaster.getOwner()
 
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+      expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+    })
+
+    it('User should not be able to create blog with insufficient fee', async () => {
+      const createBlogResult = await dMaster.send(
+        user.getSender(),
+        { value: toNano('0.5') },
+        createBlogMessage
+      )
+
+      const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
+
+      // Should return excesses
+      expect(createBlogResult.transactions).not.toHaveTransaction({
+        from: dMaster.address,
+        to: blogAddress!,
+        success: true
+      })
+
+      expect(await dMaster.getGetBlogsCount()).toBe(0n)
+    })
+
+    it('User should not be able to change owner', async () => {
+      await dMaster.send(
+        user.getSender(),
+        { value: toNano('1') },
+        {
+          $$type: 'ChangeOwner',
+          queryId: 0n,
+          newOwner: user.address
+        }
+      )
+
+      const owner = await dMaster.getOwner()
+
+      expect(owner.toRawString()).toEqual(deployer.address.toRawString())
+    })
   })
 
-  it('Create blog', async () => {
-    const createBlogResult = await dMaster.send(
-      user.getSender(),
-      { value: createBlogFee },
-      createBlogMessage
-    )
+  describe('Blog creatino', () => {
+    it('Create blog', async () => {
+      const createBlogResult = await dMaster.send(
+        user.getSender(),
+        { value: createBlogFee },
+        createBlogMessage
+      )
 
-    const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
+      const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
 
-    expect(blogAddress).not.toBeNull()
+      expect(blogAddress).not.toBeNull()
 
-    // Should top up blog balance
-    expect(createBlogResult.transactions).toHaveTransaction({
-      from: dMaster.address,
-      to: blogAddress!,
-      success: true
+      // Should top up blog balance
+      expect(createBlogResult.transactions).toHaveTransaction({
+        from: dMaster.address,
+        to: blogAddress!,
+        success: true
+      })
+
+      // Should return excesses
+      expect(createBlogResult.transactions).toHaveTransaction({
+        from: blogAddress!,
+        to: user.address,
+        success: true
+      })
+
+      // Should send fee to owner
+      expect(createBlogResult.transactions).toHaveTransaction({
+        from: dMaster.address,
+        to: deployer.address,
+        success: true
+      })
+
+      expect(await dMaster.getGetBlogsCount()).toBe(1n)
+
+      blockchain.openContract(DSocialNetworkBlog.fromAddress(blogAddress!))
     })
-
-    // Should return excesses
-    expect(createBlogResult.transactions).toHaveTransaction({
-      from: blogAddress!,
-      to: user.address,
-      success: true
-    })
-
-    // Should send fee to owner
-    expect(createBlogResult.transactions).toHaveTransaction({
-      from: dMaster.address,
-      to: deployer.address,
-      success: true
-    })
-
-    expect(await dMaster.getGetBlogsCount()).toBe(1n)
-
-    blockchain.openContract(DSocialNetworkBlog.fromAddress(blogAddress!))
-  })
-
-  it('User should not be able to create blog with insufficient fee', async () => {
-    const createBlogResult = await dMaster.send(
-      user.getSender(),
-      { value: toNano('0.5') },
-      createBlogMessage
-    )
-
-    const blogAddress = await dMaster.getGetBlogAddressByIndex(0n)
-
-    // Should return excesses
-    expect(createBlogResult.transactions).not.toHaveTransaction({
-      from: dMaster.address,
-      to: blogAddress!,
-      success: true
-    })
-
-    expect(await dMaster.getGetBlogsCount()).toBe(0n)
-  })
-
-  it('User should not be able to change owner', async () => {
-    await dMaster.send(
-      user.getSender(),
-      { value: toNano('1') },
-      {
-        $$type: 'ChangeOwner',
-        queryId: 0n,
-        newOwner: user.address
-      }
-    )
-
-    const owner = await dMaster.getOwner()
-
-    expect(owner.toRawString()).toEqual(deployer.address.toRawString())
   })
 
   // Preparation
