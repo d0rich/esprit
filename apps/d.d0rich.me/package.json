@@ -21,6 +21,7 @@
     "@tonconnect/ui": "^2.0.0-beta.6",
     "@vueuse/core": "^10.6.1",
     "consola": "^3.2.3",
+    "dateformat": "^5.0.3",
     "pinia": "^2.1.7",
     "rehype-stringify": "^10.0.0",
     "remark-parse": "^11.0.0",

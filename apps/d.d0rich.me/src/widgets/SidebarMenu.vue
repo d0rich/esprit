@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DBtn } from '@d0rich/esprit-design'
+import UserAvatar from '../entities/user/ui/UserAvatar.vue'
 import TonConnect from '../features/tonconnect/ui/TonConnect.vue'
-import UserAvatar from '../features/user/ui/UserAvatar.vue'
 import { useTonConnectStore } from '@/features/tonconnect/stores/tonConnectStore'
 
 const tonConnectStore = useTonConnectStore()
