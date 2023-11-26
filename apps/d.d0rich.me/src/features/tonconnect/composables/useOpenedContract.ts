@@ -1,5 +1,5 @@
 import { computed, type ComputedRef } from 'vue'
-import type { OpenedContract, Contract } from 'ton-core'
+import type { OpenedContract, Contract } from '@ton/core'
 import { useTonConnectStore } from '../stores/tonConnectStore'
 
 export function useOpenedContract<T extends Contract>(

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { Address } from 'ton-core/dist/address/Address'
+import { Address } from '@ton/core/dist/address/Address'
 import { DSocialNetworkMaster } from '@d0rich/ton-contracts/wrappers/DSocialNetworkMaster'
 import { useAppConfig } from '../../../shared/composables/useAppConfig'
 

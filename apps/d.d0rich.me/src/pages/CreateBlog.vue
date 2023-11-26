@@ -2,7 +2,7 @@
 import { ref, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { consola } from 'consola'
-import { toNano } from 'ton-core/dist/utils/convert'
+import { toNano } from '@ton/core/dist/utils/convert'
 import {
   DCard,
   DCardTitle,

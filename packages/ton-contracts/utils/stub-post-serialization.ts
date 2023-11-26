@@ -1,4 +1,4 @@
-import { Address } from 'ton-core'
+import { Address } from '@ton/core'
 import { NftMetadata } from '../wrappers/DSocialNetworkPost'
 
 /** Start of text symbol */

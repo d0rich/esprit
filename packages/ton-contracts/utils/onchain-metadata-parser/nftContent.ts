@@ -7,7 +7,7 @@ import {
   Dictionary,
   Slice,
   Builder
-} from 'ton-core'
+} from '@ton/core'
 
 const OFF_CHAIN_CONTENT_PREFIX = 0x01
 

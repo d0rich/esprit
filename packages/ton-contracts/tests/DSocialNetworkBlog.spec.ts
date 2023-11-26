@@ -1,11 +1,11 @@
-import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { Cell, toNano } from 'ton-core'
+import '@ton/test-utils'
+import { Blockchain, SandboxContract } from '@ton/sandbox'
+import { Cell, toNano } from '@ton/core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
   EditBlogMetadata
 } from '../wrappers/DSocialNetworkBlog'
-import '@ton-community/test-utils'
 import {
   getTestPostModel,
   createBlogMessage,

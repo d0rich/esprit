@@ -1,4 +1,4 @@
-import { Address } from 'ton-core/dist/address/Address'
+import { Address } from '@ton/core/dist/address/Address'
 import type { PostOnChain, PostOffChain } from '../model'
 import { etxChar, stxChar } from './symbols'
 

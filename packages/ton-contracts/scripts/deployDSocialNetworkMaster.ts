@@ -1,5 +1,5 @@
-import { toNano } from 'ton-core'
-import { NetworkProvider } from '@ton-community/blueprint'
+import { toNano } from '@ton/core'
+import { NetworkProvider } from '@ton/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 
 export async function run(provider: NetworkProvider) {

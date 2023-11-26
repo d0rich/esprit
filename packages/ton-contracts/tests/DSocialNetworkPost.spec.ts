@@ -1,12 +1,12 @@
-import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano, Cell } from 'ton-core'
+import '@ton/test-utils'
+import { Blockchain, SandboxContract } from '@ton/sandbox'
+import { toNano, Cell } from '@ton/core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import {
   DSocialNetworkBlog,
   MintNft,
   NftMetadata
 } from '../wrappers/DSocialNetworkBlog'
-import '@ton-community/test-utils'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'
 import {
   getTestPostModel,

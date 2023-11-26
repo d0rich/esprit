@@ -1,4 +1,4 @@
-import { NetworkProvider } from '@ton-community/blueprint'
+import { NetworkProvider } from '@ton/blueprint'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog, MintNft } from '../wrappers/DSocialNetworkBlog'
 import { DSocialNetworkPost } from '../wrappers/DSocialNetworkPost'

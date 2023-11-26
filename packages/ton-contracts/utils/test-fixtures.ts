@@ -1,4 +1,4 @@
-import { Address, toNano } from 'ton-core'
+import { Address, toNano } from '@ton/core'
 import { MintNft } from '../wrappers/DSocialNetworkMaster'
 import { DPostModel } from './stub-post-serialization'
 

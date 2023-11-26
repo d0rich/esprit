@@ -1,5 +1,5 @@
-import { Blockchain } from '@ton-community/sandbox'
-import { Address, Dictionary, TupleItemCell } from 'ton-core'
+import { Blockchain } from '@ton/sandbox'
+import { Address, Dictionary, TupleItemCell } from '@ton/core'
 import { sha256 } from 'ton-crypto'
 import { NFTDictValueSerializer } from './dict'
 

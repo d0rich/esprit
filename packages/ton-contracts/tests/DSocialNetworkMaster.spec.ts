@@ -1,6 +1,6 @@
-import '@ton-community/test-utils'
-import { Blockchain, SandboxContract } from '@ton-community/sandbox'
-import { toNano } from 'ton-core'
+import '@ton/test-utils'
+import { Blockchain, SandboxContract } from '@ton/sandbox'
+import { toNano } from '@ton/core'
 import { DSocialNetworkMaster } from '../wrappers/DSocialNetworkMaster'
 import { DSocialNetworkBlog } from '../wrappers/DSocialNetworkBlog'
 import {

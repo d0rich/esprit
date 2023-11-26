@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Builder, Dictionary, Slice } from 'ton-core'
+import { Builder, Dictionary, Slice } from '@ton/core'
 import { flattenSnakeCell, ParseChunkDict } from './nftContent'
 
 interface ChunkDictValue {
