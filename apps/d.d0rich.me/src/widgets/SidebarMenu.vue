@@ -12,14 +12,20 @@ const navLinks = ref([
     path: '/'
   },
   {
+    title: 'My blogs',
+    path: '/my-blogs'
+  },
+  {
     title: 'Create blog',
-    path: '/create-blog'
+    path: '/my-blogs/create'
   },
   {
     title: 'Settings',
     path: '/settings'
   }
 ])
+
+defineEmits(['closeSidebar'])
 </script>
 
 <template>
@@ -46,6 +52,7 @@ const navLinks = ref([
             no-rotate
             text-transform="none"
             class="!font-medium"
+            @click="$emit('closeSidebar')"
           >
             {{ link.title }}
           </DBtn>

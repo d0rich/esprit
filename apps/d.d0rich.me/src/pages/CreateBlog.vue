@@ -24,7 +24,7 @@ const isTestnet = useAppConfig().network === 'TESTNET'
 
 const loading = ref(false)
 let createBlogTimer: ReturnType<typeof setTimeout> | null = null
-const showPossibleOptions = ref(true)
+const showPossibleOptions = ref(false)
 
 const newBlogData = ref<NftMetadata>({
   $$type: 'NftMetadata',
@@ -98,7 +98,9 @@ async function getLastBlogAddress() {
           It takes more time than expected. Try this options:
         </p>
         <div class="flex flex-col items-start">
-          <DBtn no-rotate highlight="composite-list-item">See your blogs</DBtn>
+          <DBtn to="/my-blogs" no-rotate highlight="composite-list-item"
+            >See your blogs</DBtn
+          >
           <DBtn
             type="none"
             class="text-left"

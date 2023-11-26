@@ -20,7 +20,7 @@ const showSideBar = ref(false)
         }"
         @click="showSideBar = !showSideBar"
       />
-      <DSidebar :show="showSideBar" class="order-1" />
+      <DSidebar v-model:show="showSideBar" class="order-1" />
       <main class="order-2 pt-24 overflow-hidden px-4 md:px-6 pb-[50vh]">
         <slot />
       </main>

@@ -6,6 +6,7 @@ defineProps({
     default: false
   }
 })
+defineEmits(['update:show'])
 </script>
 
 <template>
@@ -21,7 +22,7 @@ defineProps({
         <div
           class="absolute -z-10 inset-0 bg-yellow-400 dark:bg-yellow-800 opacity-80 dark:opacity-95 backdrop-saturate-0 backdrop-brightness-50"
         />
-        <SidebarMenu />
+        <SidebarMenu @close-sidebar="$emit('update:show')" />
       </nav>
       <div
         class="h-full w-4 bg-black dark:bg-white"
