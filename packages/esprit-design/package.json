@@ -12,7 +12,8 @@
   "exports": {
     ".": {
       "import": "./dist/esprit-design.js",
-      "require": "./dist/esprit-design.umd.cjs"
+      "require": "./dist/esprit-design.umd.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./style.css": "./dist/style.css",
     "./tailwind.config": "./tailwind.config.js",

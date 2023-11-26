@@ -65,7 +65,7 @@ defineProps({
   clip-path: var(--shape-bubble--left__outline);
 }
 
-.d-blockquote--right .d-blockquote__shape {
+.d-blockquote--left .d-blockquote__shape {
   clip-path: var(--shape-bubble--left);
 }
 </style>
