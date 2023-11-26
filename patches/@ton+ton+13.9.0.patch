@@ -1,8 +1,8 @@
 diff --git a/node_modules/@ton/ton/dist/client/TonClient.js b/node_modules/@ton/ton/dist/client/TonClient.js
-index 6a515f5..408c86b 100644
+index 6a515f5..7f3a8be 100644
 --- a/node_modules/@ton/ton/dist/client/TonClient.js
 +++ b/node_modules/@ton/ton/dist/client/TonClient.js
-@@ -6,33 +6,20 @@
+@@ -6,33 +6,21 @@
   * This source code is licensed under the MIT license found in the
   * LICENSE file in the root directory of this source tree.
   */
@@ -17,12 +17,12 @@ index 6a515f5..408c86b 100644
 -    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
 -    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 -};
--var _TonClient_api;
+ var _TonClient_api;
  Object.defineProperty(exports, "__esModule", { value: true });
  exports.TonClient = void 0;
  const HttpApi_1 = require("./api/HttpApi");
 -const core_1 = require("@ton/core");
-+const ton_core_1 = require("ton-core");
++const ton_core_1 = require("@ton/core");
  class TonClient {
      constructor(parameters) {
 -        _TonClient_api.set(this, void 0);
@@ -42,7 +42,7 @@ index 6a515f5..408c86b 100644
      }
      /**
       * Get Address Balance
-@@ -50,7 +37,7 @@ class TonClient {
+@@ -50,7 +38,7 @@ class TonClient {
       * @returns stack and gas_used field
       */
      async runMethod(address, name, stack = []) {
@@ -51,7 +51,7 @@ index 6a515f5..408c86b 100644
          if (res.exit_code !== 0) {
              throw Error('Unable to execute get method. Got exit_code: ' + res.exit_code);
          }
-@@ -75,7 +62,7 @@ class TonClient {
+@@ -75,7 +63,7 @@ class TonClient {
       * @returns stack and gas_used field
      */
      async runMethodWithError(address, name, params = []) {
@@ -60,7 +60,7 @@ index 6a515f5..408c86b 100644
          return { gas_used: res.gas_used, stack: parseStack(res.stack), exit_code: res.exit_code };
      }
      /**
-@@ -95,10 +82,10 @@ class TonClient {
+@@ -95,10 +83,10 @@ class TonClient {
       */
      async getTransactions(address, opts) {
          // Fetch transactions
@@ -73,7 +73,7 @@ index 6a515f5..408c86b 100644
          }
          return res;
      }
-@@ -110,9 +97,9 @@ class TonClient {
+@@ -110,9 +98,9 @@ class TonClient {
       * @returns transaction or null if not exist
       */
      async getTransaction(address, lt, hash) {
@@ -85,7 +85,7 @@ index 6a515f5..408c86b 100644
          }
          else {
              return null;
-@@ -123,7 +110,7 @@ class TonClient {
+@@ -123,7 +111,7 @@ class TonClient {
       * @returns masterchain info
       */
      async getMasterchainInfo() {
@@ -94,7 +94,7 @@ index 6a515f5..408c86b 100644
          return {
              workchain: r.init.workchain,
              shard: r.last.shard,
-@@ -136,7 +123,7 @@ class TonClient {
+@@ -136,7 +124,7 @@ class TonClient {
       * @param seqno masterchain seqno
       */
      async getWorkchainShards(seqno) {
@@ -103,7 +103,7 @@ index 6a515f5..408c86b 100644
          return r.map((m) => ({
              workchain: m.workchain,
              shard: m.shard,
-@@ -150,12 +137,12 @@ class TonClient {
+@@ -150,12 +138,12 @@ class TonClient {
       * @param shard
       */
      async getShardTransactions(workchain, seqno, shard) {
@@ -118,7 +118,7 @@ index 6a515f5..408c86b 100644
              lt: v.lt,
              hash: v.hash
          }));
-@@ -165,18 +152,18 @@ class TonClient {
+@@ -165,18 +153,18 @@ class TonClient {
       * @param src source message
       */
      async sendMessage(src) {
@@ -141,7 +141,7 @@ index 6a515f5..408c86b 100644
      }
      /**
       * Estimate fees for external message
-@@ -184,7 +171,7 @@ class TonClient {
+@@ -184,7 +172,7 @@ class TonClient {
       * @returns
       */
      async estimateExternalMessageFee(address, args) {
@@ -150,7 +150,7 @@ index 6a515f5..408c86b 100644
      }
      /**
       * Send external message to contract
-@@ -193,14 +180,14 @@ class TonClient {
+@@ -193,14 +181,14 @@ class TonClient {
       */
      async sendExternalMessage(contract, src) {
          if (await this.isContractDeployed(contract.address) || !contract.init) {
@@ -167,7 +167,7 @@ index 6a515f5..408c86b 100644
                  to: contract.address,
                  init: { code: contract.init.code, data: contract.init.data },
                  body: src
-@@ -221,7 +208,7 @@ class TonClient {
+@@ -221,7 +209,7 @@ class TonClient {
       * @param address contract address
       */
      async getContractState(address) {
@@ -176,7 +176,7 @@ index 6a515f5..408c86b 100644
          let balance = BigInt(info.balance);
          let state = info.state;
          return {
-@@ -247,7 +234,7 @@ class TonClient {
+@@ -247,7 +235,7 @@ class TonClient {
       * @returns contract
       */
      open(src) {
@@ -185,7 +185,7 @@ index 6a515f5..408c86b 100644
      }
      /**
       * Create a provider
-@@ -261,60 +248,35 @@ class TonClient {
+@@ -261,60 +249,35 @@ class TonClient {
  }
  exports.TonClient = TonClient;
  _TonClient_api = new WeakMap();
@@ -271,7 +271,7 @@ index 6a515f5..408c86b 100644
  }
  function createProvider(client, address, init) {
      return {
-@@ -365,13 +327,13 @@ function createProvider(client, address, init) {
+@@ -365,13 +328,13 @@ function createProvider(client, address, init) {
              //
              // Send package
              //
@@ -288,7 +288,7 @@ index 6a515f5..408c86b 100644
                  .endCell()
                  .toBoc();
              await client.sendFile(boc);
-@@ -390,7 +352,7 @@ function createProvider(client, address, init) {
+@@ -390,7 +353,7 @@ function createProvider(client, address, init) {
              // Resolve value
              let value;
              if (typeof message.value === 'string') {
@@ -297,7 +297,7 @@ index 6a515f5..408c86b 100644
              }
              else {
                  value = message.value;
-@@ -398,7 +360,7 @@ function createProvider(client, address, init) {
+@@ -398,7 +361,7 @@ function createProvider(client, address, init) {
              // Resolve body
              let body = null;
              if (typeof message.body === 'string') {
