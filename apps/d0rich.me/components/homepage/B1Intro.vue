@@ -13,7 +13,7 @@ const socialLinks = ref([
   {
     icon: 'ic:sharp-mail',
     alt: 'Email link',
-    link: 'mailto:dorich2000@gmail.com'
+    link: 'mailto:d0rich.connect@gmail.com'
   },
   {
     icon: 'fa6-brands:linkedin',
