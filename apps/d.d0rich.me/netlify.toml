@@ -1,7 +1,0 @@
-[build]
-  ignore = "node apps/d.d0rich.me/ignore-build.mjs"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

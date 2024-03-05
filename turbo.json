@@ -16,32 +16,13 @@
       "dependsOn": ["prepare"],
       "outputs": ["dist"]
     },
-    "@d0rich/ton-contracts#build": {
-      "outputs": ["dist"]
-    },
-    "d.d0rich.me#build": {
-      "dependsOn": [
-        "@d0rich/ton-contracts#build",
-        "@d0rich/esprit-design#build"
-      ],
-      "outputs": ["dist"]
-    },
     "typecheck": {},
     "test": {},
-    "@d0rich/ton-contracts#test": {
-      "dependsOn": ["@d0rich/ton-contracts#build"]
-    },
     "dev": {
       "cache": false,
       "persistent": true
     },
     "d0rich.me#dev": {},
-    "d.d0rich.me#dev": {
-      "dependsOn": [
-        "@d0rich/ton-contracts#build",
-        "@d0rich/esprit-design#build"
-      ]
-    },
     "d0xigen.d0rich.me#dev": {},
     "design.d0rich.me#dev": {},
     "nuxt-content-mermaid-playground#dev": {}
