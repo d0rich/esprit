@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.2.3
+
+### Patch Changes
+
+- f33f4d9: Update list of published files
+
 ## 0.2.2
 
 ### Patch Changes
