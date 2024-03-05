@@ -5,9 +5,6 @@
     "access": "public"
   },
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/esprit-design.umd.cjs",
   "module": "./dist/esprit-design.js",
   "types": "./dist/index.d.ts",
