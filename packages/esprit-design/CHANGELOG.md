@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.2.0
+
+### Minor Changes
+
+- 660dbee: First published version
+
 ## 0.1.0
 
 ### Minor Changes
