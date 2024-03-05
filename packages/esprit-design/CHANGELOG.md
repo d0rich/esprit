@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.2.1
+
+### Patch Changes
+
+- f0811da: Update publish config
+
 ## 0.2.0
 
 ### Minor Changes
