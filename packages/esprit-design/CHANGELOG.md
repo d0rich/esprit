@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.2.2
+
+### Patch Changes
+
+- 73798aa: Build before publishing
+
 ## 0.2.1
 
 ### Patch Changes
