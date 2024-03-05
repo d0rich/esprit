@@ -16,7 +16,9 @@ const isDD0richMeChanged = changesList.includes('apps/d.d0rich.me')
 
 //  Contracts
 
-const areContractsChanged = changesList.includes('contracts/contracts')
+const areContractsChanged = changesList.includes(
+  'packages/ton-contracts/contracts'
+)
 
 // Packages
 const isNuxtContentMermaidChanged = changesList.includes(

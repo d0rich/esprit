@@ -1,0 +1,22 @@
+{
+  "name": "@d0rich/ton-contracts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "blueprint build --all && npm run patch:build-imports",
+    "test": "jest",
+    "bp:start": "blueprint run",
+    "bp:build": "blueprint build",
+    "patch:build-imports": "node ./build-scripts/patch-wrappers-imports.mjs"
+  },
+  "devDependencies": {
+    "@ton/blueprint": "^0.14.0",
+    "@ton/core": "^0.53.0",
+    "@ton/crypto": "^3.2.0",
+    "@ton/sandbox": "^0.13.1",
+    "@ton/test-utils": "^0.4.2",
+    "@ton/ton": "^13.9.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.2.5"
+  }
+}
