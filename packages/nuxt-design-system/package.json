@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "new-javascript": "^0.4.3",
     "nuxt": "3.6"
   },
   "dependencies": {

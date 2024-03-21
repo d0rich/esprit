@@ -6,4 +6,7 @@ export type {
   MaskType,
   StatsProps
 } from './components/d'
-export type { Coords, LineEdge } from './utils/polygon-animation'
+export type {
+  Coords,
+  LineEdge
+} from '@d0rich/esprit-design/src/utils/polygon-animation'
