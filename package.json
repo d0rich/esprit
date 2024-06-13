@@ -6,7 +6,6 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "prepare:all": "turbo run prepare",
     "generate:all": "turbo run generate",
     "build:all": "turbo run build",
@@ -30,7 +29,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-vitest": "^0.1.4",
-    "patch-package": "^8.0.0",
     "prettier": "^2.8.4",
     "ts-node": "^10.9.1",
     "turbo": "latest",
