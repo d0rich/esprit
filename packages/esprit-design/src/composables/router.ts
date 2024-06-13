@@ -33,13 +33,25 @@ export function useLink(props: LinkProps) {
       href.startsWith('#')
     )
   })
+  const propsToProvide = computed(() => {
+    const propsToProvide: Record<string, any> = {...props}
+    if (props.href && props.to) {
+      delete propsToProvide.href
+    } else if (props.href) {
+      delete propsToProvide.to
+    } else if (props.to) {
+      delete propsToProvide.href
+    }
+    return propsToProvide
+  })
 
   if (isLink.value) {
     if (typeof NuxtLink !== 'undefined') {
       return {
         isLink,
         isExternalLink,
-        linkComponent: NuxtLink
+        linkComponent: NuxtLink,
+        propsToProvide
       }
     }
 
@@ -47,20 +59,23 @@ export function useLink(props: LinkProps) {
       return {
         isLink,
         isExternalLink,
-        linkComponent: RouterLink
+        linkComponent: RouterLink,
+        propsToProvide
       }
     }
 
     return {
       isLink,
       isExternalLink,
-      linkComponent: 'a'
+      linkComponent: 'a',
+      propsToProvide
     }
   }
 
   return {
     isLink,
     isExternalLink,
-    linkComponent: props.tag || 'span'
+    linkComponent: props.tag || 'span',
+    propsToProvide
   }
 }

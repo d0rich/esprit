@@ -55,7 +55,8 @@ const props = defineProps({
 const {
   linkComponent: currentComponent,
   isLink,
-  isExternalLink
+  isExternalLink,
+  propsToProvide
 } = useLink(props)
 </script>
 
@@ -69,7 +70,7 @@ const {
       'd-btn--capitalize': textTransform === 'capitalize',
       'd-btn--lowercase': textTransform === 'lowercase'
     }"
-    v-bind="props"
+    v-bind="propsToProvide"
   >
     <DWrapFocusHighlight
       :variant="highlight"
