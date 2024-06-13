@@ -21,7 +21,7 @@
     "release": "turbo run test && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
+    "@changesets/cli": "^2.27.5",
     "@nuxt/content": "^2.12.1",
     "@nuxt/eslint-config": "^0.3.13",
     "@nuxthq/studio": "^2.0.0",
