@@ -11,9 +11,6 @@ export default {
 </script>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'docs'
-})
 const route = useRoute()
 const { tableOfContents } = useDocsLayoutState()
 const { data: doc, error } = useAsyncData<DocPage>(
@@ -55,7 +52,7 @@ useSafeOnMounted(root, () => {
       :description="doc.description"
     />
     <DAsyncSafeMeta v-else-if="error" title="Page not found" />
-    <NuxtLayout>
+    <NuxtLayout name="docs">
       <ContentRenderer v-if="doc && doc._type === 'markdown'" :value="doc">
         <ContentRendererMarkdown tag="article" class="d-article" :value="doc" />
         <nav class="justify-center grid sm:grid-cols-2 gap-8 items-start mt-32">
