@@ -5,6 +5,7 @@
     "apps/*",
     "packages/*"
   ],
+  "packageManager": "npm@10.8.1",
   "scripts": {
     "prepare:all": "turbo run prepare",
     "generate:all": "turbo run generate",
