@@ -8,7 +8,7 @@ export const useDocsLayoutState = () => ({
   )
 })
 
-export const useTocObserver = (root: Ref<HTMLElement>) => {
+export const useTocObserver = () => {
   const { tableOfContents } = useDocsLayoutState()
   const highlightMap = new Map<string, boolean>()
 
@@ -45,7 +45,7 @@ export const useTocObserver = (root: Ref<HTMLElement>) => {
     }, 100)
   })
 
-  useSafeOnMounted(root, () => {
+  onMounted(() => {
     setupObserver()
   })
 

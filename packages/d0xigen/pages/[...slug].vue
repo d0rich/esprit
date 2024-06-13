@@ -38,14 +38,13 @@ function setToc() {
   tableOfContents.value = doc.value?.body?.toc ?? null
 }
 
-const root = ref<HTMLElement>(null as any)
-useSafeOnMounted(root, () => {
+onMounted(() => {
   setToc()
 })
 </script>
 
 <template>
-  <div ref="root">
+  <div>
     <DAsyncSafeMeta
       v-if="doc"
       :title="doc.title"

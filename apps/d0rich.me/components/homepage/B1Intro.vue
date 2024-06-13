@@ -59,7 +59,6 @@ const actions: ActionFanItem<CharacterPose>[] = [
   }
 ]
 
-const root = ref<Element | null>(null)
 const introContainer = ref<Element | null>(null)
 const background = ref<Element | null>(null)
 const textContainer = ref<ComponentPublicInstance | null>(null)
@@ -67,7 +66,7 @@ const svgRef = ref<SVGSVGElement | null>(null)
 const polygonRef = ref<SVGPolygonElement | null>(null)
 const socials = ref<ComponentPublicInstance[]>([])
 
-useSafeOnMounted(root as Ref<HTMLElement>, () => {
+onMounted(() => {
   introAnimations.applyBgTransitionAnimation(
     introContainer,
     background,
@@ -81,7 +80,6 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
 <template>
   <section
     v-if="data"
-    :ref="(el) => { root = el as Element }"
     style="height: 200vh"
   >
     <div class="sticky top-0">
@@ -95,9 +93,7 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
         />
         <DWrapShape
           :ref="
-            (el) => {
-              textContainer = el as ComponentPublicInstance
-            }
+            (el: ComponentPublicInstance) => {textContainer = el}
           "
           class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]"
           shape-class="intro-shape"
@@ -157,7 +153,7 @@ useSafeOnMounted(root as Ref<HTMLElement>, () => {
               <DWrapShape
                 v-for="(socialLink, index) in socialLinks"
                 :key="index"
-                :ref="(el) => { socials[index] = el as ComponentPublicInstance }"
+                :ref="(el: ComponentPublicInstance) => { socials[index] = el }"
                 class="absolute -top-1/3 left-1/2"
                 shape-class="d-chip bg-black"
                 filter-class="sharp-shadow ss-br-2 ss-white"

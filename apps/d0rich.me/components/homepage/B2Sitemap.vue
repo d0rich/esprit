@@ -23,15 +23,13 @@ const sectionsLineColor = computed(() => {
 const disconnectObserver = ref(() => {})
 const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
 
-const rootComponent = ref<ComponentPublicInstance | null>(null)
-const root = computed(() => rootComponent.value?.$el)
 const svgRef = ref<SVGSVGElement | null>(null)
 const polygonRef = ref<SVGPolygonElement | null>(null)
 const sections = ref<Element[]>([])
 const sectionsMasks = ref<ComponentPublicInstance[]>([])
 const sectionsContent = ref<Element[]>([])
 
-useSafeOnMounted(root, () => {
+onMounted(() => {
   sectionsAnimations.applyLineAnimation(svgRef, polygonRef)
   disconnectObserver.value = sectionsAnimations.setupCurrentSectionObserver(
     sections,
@@ -46,7 +44,6 @@ onBeforeUnmount(() => disconnectObserver.value())
 <template>
   <DWrapBackground
     id="sitemap"
-    :ref="(el) => { rootComponent = el as ComponentPublicInstance }"
     tag="section"
     class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
     overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
@@ -103,7 +100,7 @@ onBeforeUnmount(() => disconnectObserver.value())
         class="section-description"
       >
         <DMask
-          :ref="el => sectionsMasks[index] = el as ComponentPublicInstance"
+          :ref="(el: ComponentPublicInstance) => {sectionsMasks[index] = el}"
           :mask="doc.mask"
           color
           class="section-description__image"

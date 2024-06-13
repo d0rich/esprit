@@ -3,12 +3,10 @@ import * as skillsAnimations from '~~/utils/homepage/skills'
 
 const { data } = useAsyncData(() => queryContent('/homepage/skills').find())
 
-const rootComponent = ref<ComponentPublicInstance | null>(null)
-const root = computed(() => rootComponent.value?.$el)
 const skillsGroups = ref<ComponentPublicInstance[]>([])
 const bgSpinner = ref<ComponentPublicInstance | null>(null)
 
-useSafeOnMounted(root, () => {
+onMounted(() => {
   skillsAnimations.applyContentRevealAnimation(skillsGroups)
 })
 </script>
@@ -16,7 +14,6 @@ useSafeOnMounted(root, () => {
 <template>
   <DWrapBackground
     id="skills"
-    :ref="el => rootComponent = el as ComponentPublicInstance"
     tag="section"
     class="overflow-hidden"
     overlay-class="skills__bg-overlay"
@@ -24,7 +21,7 @@ useSafeOnMounted(root, () => {
     <template #svg>
       <div class="relative w-full h-full max-w-3xl mx-auto">
         <DAnimationHypnosis
-          :ref="el => bgSpinner = el as ComponentPublicInstance"
+          :ref="(el: ComponentPublicInstance) => {bgSpinner = el}"
           class="absolute inset-0 mx-auto right-2/3 top-[12%] w-80 -rotate-12"
         />
         <DAnimationHypnosis
@@ -39,7 +36,7 @@ useSafeOnMounted(root, () => {
       <ContentRenderer
         v-for="(doc, index) in data"
         :key="doc._id"
-        :ref="el => skillsGroups[index] = el as ComponentPublicInstance"
+        :ref="(el: ComponentPublicInstance) => {skillsGroups[index] = el}"
         tag="div"
         class="skills-group"
         :value="doc"
