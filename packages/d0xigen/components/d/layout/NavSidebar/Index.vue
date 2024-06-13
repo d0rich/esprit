@@ -6,7 +6,9 @@ export default {
 
 <script setup lang="ts">
 const { showContentTree } = useDocsLayoutState()
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: navigation } = await useAsyncData('navigation', () =>
+  fetchContentNavigation()
+)
 </script>
 
 <template>

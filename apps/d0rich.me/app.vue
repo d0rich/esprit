@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { key } = useTransitionAnimationWorkaround()
 const route = useRoute()
 

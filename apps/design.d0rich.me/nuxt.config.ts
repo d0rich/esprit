@@ -5,10 +5,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: [
-        '/',
-        '/_d0rich/meta.json'
-      ]
+      routes: ['/', '/_d0rich/meta.json']
     }
   }
 })

@@ -78,10 +78,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section
-    v-if="data"
-    style="height: 200vh"
-  >
+  <section v-if="data" style="height: 200vh">
     <div class="sticky top-0">
       <div
         :ref="(el) => { introContainer = el as Element }"

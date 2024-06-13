@@ -34,7 +34,7 @@ export function useLink(props: LinkProps) {
     )
   })
   const propsToProvide = computed(() => {
-    const propsToProvide: Record<string, any> = {...props}
+    const propsToProvide: Record<string, any> = { ...props }
     if (props.href && props.to) {
       delete propsToProvide.href
     } else if (props.href) {
