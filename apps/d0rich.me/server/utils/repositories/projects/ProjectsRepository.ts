@@ -64,7 +64,10 @@ export class ProjectsRepository {
           return await $fetch<D0xigenProjectMeta>(
             joinURL(url, '_d0rich/meta.json')
           )
-        } catch (e) {}
+        } catch (e) {
+          console.error(e)
+          return null
+        }
       })
       .filter((project) => typeof project === 'object')
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)

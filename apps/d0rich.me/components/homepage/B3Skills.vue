@@ -21,7 +21,11 @@ onMounted(() => {
     <template #svg>
       <div class="relative w-full h-full max-w-3xl mx-auto">
         <DAnimationHypnosis
-          :ref="(el: ComponentPublicInstance) => {bgSpinner = el}"
+          :ref="
+            (el: ComponentPublicInstance) => {
+              bgSpinner = el
+            }
+          "
           class="absolute inset-0 mx-auto right-2/3 top-[12%] w-80 -rotate-12"
         />
         <DAnimationHypnosis
@@ -36,7 +40,11 @@ onMounted(() => {
       <ContentRenderer
         v-for="(doc, index) in data"
         :key="doc._id"
-        :ref="(el: ComponentPublicInstance) => {skillsGroups[index] = el}"
+        :ref="
+          (el: ComponentPublicInstance) => {
+            skillsGroups[index] = el
+          }
+        "
         tag="div"
         class="skills-group"
         :value="doc"

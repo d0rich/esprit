@@ -66,8 +66,9 @@ const { data: resumeList } = useAsyncData(
           :key="resume._path"
           class="max-w-[9rem] text-center"
           :to="addTrailingSlash(resume._path)"
-          >{{ resume.title }}</DBtn
         >
+          {{ resume.title }}
+        </DBtn>
       </nav>
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">

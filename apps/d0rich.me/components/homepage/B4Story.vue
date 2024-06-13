@@ -65,20 +65,39 @@ onMounted(() => {
         </DWrapShape>
       </div>
     </div>
-    <div :ref="(el) => { storyContainer = el as Element }" class="story-blocks">
+    <div
+      :ref="
+        (el) => {
+          storyContainer = el as Element
+        }
+      "
+      class="story-blocks"
+    >
       <svg
-        :ref="(el) => { svg = el as (SVGElement & SVGSVGElement) }"
+        :ref="
+          (el) => {
+            svg = el as SVGElement & SVGSVGElement
+          }
+        "
         height="100%"
         width="100%"
         class="story-progress"
         viewBox="0 0 10 100"
       >
         <polygon
-          :ref="(el) => { linePlaceholder = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              linePlaceholder = el as SVGPolygonElement
+            }
+          "
           class="fill-black"
         />
         <polygon
-          :ref="(el) => { line = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              line = el as SVGPolygonElement
+            }
+          "
           class="fill-white"
         />
       </svg>
@@ -86,7 +105,11 @@ onMounted(() => {
         <DCard
           v-for="(doc, index) in data.blocks"
           :key="doc._id"
-          :ref="(el: ComponentPublicInstance) => {cards[index] = el}"
+          :ref="
+            (el: ComponentPublicInstance) => {
+              cards[index] = el
+            }
+          "
           mode="homepage-story"
           class="my-20"
         >

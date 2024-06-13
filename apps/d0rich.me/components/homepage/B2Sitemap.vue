@@ -76,7 +76,11 @@ onBeforeUnmount(() => disconnectObserver.value())
         />
       </div>
       <svg
-        :ref="(el) => { svgRef = el as SVGSVGElement }"
+        :ref="
+          (el) => {
+            svgRef = el as SVGSVGElement
+          }
+        "
         height="100%"
         width="100%"
         class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
@@ -84,7 +88,11 @@ onBeforeUnmount(() => disconnectObserver.value())
         preserveAspectRatio="xMidYMin"
       >
         <polygon
-          :ref="(el) => { polygonRef = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              polygonRef = el as SVGPolygonElement
+            }
+          "
           class="transition-colors"
           :class="sectionsLineColor"
         />
@@ -96,17 +104,25 @@ onBeforeUnmount(() => disconnectObserver.value())
       <div
         v-for="(doc, index) in data"
         :key="doc._id"
-        :ref="el => { sections[index] = el as Element}"
+        :ref="
+          (el) => {
+            sections[index] = el as Element
+          }
+        "
         class="section-description"
       >
         <DMask
-          :ref="(el: ComponentPublicInstance) => {sectionsMasks[index] = el}"
+          :ref="
+            (el: ComponentPublicInstance) => {
+              sectionsMasks[index] = el
+            }
+          "
           :mask="doc.mask"
           color
           class="section-description__image"
         />
         <div
-          :ref="el => sectionsContent[index] = el as Element"
+          :ref="(el) => (sectionsContent[index] = el as Element)"
           class="section-description__text"
         >
           <DBigBangButton

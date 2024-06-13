@@ -14,7 +14,8 @@ defineProps<{
         (<NuxtLink
           class="resume-sertificates-card__place"
           :href="cert.place.link"
-          >{{ cert.place.title }}</NuxtLink
+        >
+          {{ cert.place.title }} </NuxtLink
         >,
         <time :datetime="cert.daterange.end">
           {{

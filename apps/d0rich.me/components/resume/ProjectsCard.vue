@@ -13,7 +13,8 @@ defineProps<{
         <NuxtLink
           class="resume-projects-card__place"
           :href="addTrailingSlash(project.url)"
-          >{{ project.title }}</NuxtLink
+        >
+          {{ project.title }} </NuxtLink
         >: {{ project.description }}
       </li>
     </ul>
