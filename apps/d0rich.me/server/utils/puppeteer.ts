@@ -34,7 +34,7 @@ export async function fetchPageWithCss(path: string) {
 }
 
 export async function savePdf(path: string) {
-  const browser = await launch({ headless: 'new' })
+  const browser = await launch({ headless: true })
   const page = await browser.newPage()
   if (useRuntimeConfig().public.isDev) {
     // If in development mode
