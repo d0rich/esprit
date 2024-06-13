@@ -22,7 +22,7 @@ async function renderMermaidDiagram() {
         suppressErrors: true
       })
     } catch (e) {
-      console.error(e)
+      console.warn(e)
     }
 
     isDiagramLoading.value = false

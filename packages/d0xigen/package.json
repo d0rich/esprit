@@ -41,10 +41,9 @@
     "node-html-to-image": "^3.3.0",
     "nuxt": "^3.12.1",
     "png-to-ico": "^2.1.8",
-    "rehype-external-links": "^2.0.1",
+    "rehype-external-links": "^3.0.0",
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
     "sitemap": "^7.1.1",
-    "unist-util-visit": "^4.1.2",
     "vue-gtag": "^2.0.1"
   }
 }

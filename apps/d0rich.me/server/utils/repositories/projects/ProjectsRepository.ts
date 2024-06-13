@@ -65,8 +65,7 @@ export class ProjectsRepository {
             joinURL(url, '_d0rich/meta.json')
           )
         } catch (e) {
-          console.error(e)
-          return null
+          return undefined
         }
       })
       .filter((project) => typeof project === 'object')
