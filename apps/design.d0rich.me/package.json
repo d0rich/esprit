@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@d0rich/nuxt-design-system": "*",
-    "vue-gtag": "^2.0.1",
-    "nuxt": "3.6"
+    "nuxt": "^3.12.1",
+    "vue-gtag": "^2.0.1"
   }
 }

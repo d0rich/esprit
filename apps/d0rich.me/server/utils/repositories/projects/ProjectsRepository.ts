@@ -7,7 +7,7 @@ export class ProjectsRepository {
   async getProjects() {
     const parsedProjects = await this.parseProjects()
     const externalProjects = await GithubRepository.getExternalReposPagesMeta()
-    return [...parsedProjects, ...externalProjects]
+    return [...parsedProjects, ...externalProjects].filter(project => typeof project === 'object')
   }
 
   async getProjectsSortedByDate() {
@@ -56,13 +56,14 @@ export class ProjectsRepository {
         ].map((url) => withTrailingSlash(normalizeURL(url)))
       )
     )
-    const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
-      try {
-        return await $fetch<D0xigenProjectMeta>(
-          joinURL(url, '_d0rich/meta.json')
-        )
-      } catch (e) {}
-    })
+    const d0xigenProjectsPromises = allSitesUrls
+      .map(async (url) => {
+        try {
+          return await $fetch<D0xigenProjectMeta>(
+            joinURL(url, '_d0rich/meta.json')
+          )
+        } catch (e) {}
+      }).filter((project) => typeof project === 'object')
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
     return d0xigenProjectsWithEmpty.filter(
       (project) => !!project

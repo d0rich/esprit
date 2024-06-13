@@ -21,17 +21,17 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@nuxt/content": "2.8",
-    "@nuxthq/studio": "^1.0.3",
+    "@nuxt/content": "^2.12.1",
+    "@nuxthq/studio": "^2.0.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-unicorn": "^49.0.0",
     "prettier": "^2.8.4",
-    "ts-node": "^10.9.1",
-    "turbo": "latest",
-    "typescript": "^5.0.2",
-    "vue-tsc": "^1.2.0"
+    "ts-node": "^10.9.2",
+    "turbo": "^2.0.3",
+    "typescript": "^5.4.5",
+    "vue-tsc": "^2.0.21"
   }
 }
