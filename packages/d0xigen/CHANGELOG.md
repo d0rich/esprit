@@ -1,5 +1,20 @@
 # d0xigen
 
+## 0.3.0
+
+### Minor Changes
+
+- 86d70fa: Update dependencies
+
+### Patch Changes
+
+- 86d70fa: Fix prerendered routes
+- 86d70fa: Fix hydration mismatch for navigation
+- 86d70fa: Remove useSafeOnMounted()
+- Updated dependencies [86d70fa]
+  - @d0rich/nuxt-content-mermaid@0.3.0
+  - @d0rich/nuxt-design-system@0.9.0
+
 ## 0.2.9
 
 ### Patch Changes

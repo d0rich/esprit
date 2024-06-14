@@ -1,5 +1,16 @@
 # @d0rich/esprit-design
 
+## 0.3.0
+
+### Minor Changes
+
+- 86d70fa: Update dependencies
+
+### Patch Changes
+
+- 86d70fa: Fix to and href used in NuxtLink simoultaniously warning
+- 86d70fa: Remove useSafeOnMounted()
+
 ## 0.2.3
 
 ### Patch Changes
