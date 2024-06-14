@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="flex justify-center mt-10">
-      <DBtn to="/" no-rotate class="text-3xl">To homepage</DBtn>
+      <DBtn to="/" no-rotate class="text-3xl"> To homepage </DBtn>
     </div>
   </section>
 </template>

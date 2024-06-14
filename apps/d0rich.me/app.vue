@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useFaviconAnimation()
 const { key } = useTransitionAnimationWorkaround()
 const route = useRoute()
 
 const description = 'Small web portal of an experienced IT specialist.'
+
+onNuxtReady(() => {
+  useFaviconAnimation()
+})
 
 useHead({
   titleTemplate(title: string | undefined) {

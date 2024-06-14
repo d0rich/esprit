@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
+        '/',
         '/sitemap.xml',
         '/api/resume/Nikolai_Dorofeev-Fullstack_Developer.pdf',
         '/api/resume/Nikolai_Dorofeev-Backend_Developer.pdf',

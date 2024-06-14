@@ -31,7 +31,7 @@ const fanItems = ref<ActionFanItem<CharacterPose>[]>([
         </DCard>
 
         <DActionsList :actions="listItems" @action-focus="pose = $event">
-          <template #header>Click me</template>
+          <template #header> Click me </template>
         </DActionsList>
 
         <DCharacter :pose="pose" no-image />
@@ -44,12 +44,12 @@ const fanItems = ref<ActionFanItem<CharacterPose>[]>([
           </p>
           <p>Try add more items to action fan.</p>
           <div class="grid grid-cols-2 gap-3">
-            <DBtn @click="fanItems.push({ title: 'New', emit: 'action' })"
-              >Add Item</DBtn
-            >
-            <DBtn @click="fanItems = [{ title: 'Idle', emit: 'idle' }]"
-              >Reset Items</DBtn
-            >
+            <DBtn @click="fanItems.push({ title: 'New', emit: 'action' })">
+              Add Item
+            </DBtn>
+            <DBtn @click="fanItems = [{ title: 'Idle', emit: 'idle' }]">
+              Reset Items
+            </DBtn>
           </div>
         </DCard>
 

@@ -21,7 +21,9 @@ async function renderMermaidDiagram() {
         nodes: [codeBlock.value],
         suppressErrors: true
       })
-    } catch (e) {}
+    } catch (e) {
+      console.warn(e)
+    }
 
     isDiagramLoading.value = false
   }
@@ -42,7 +44,7 @@ onMounted(() => {
         'opacity-0': isDiagramLoading
       }"
       v-text="decodedCode"
-    ></pre>
+    />
     <div>
       <div v-if="isDiagramLoading" class="mermaid-placeholder font-serif">
         <component :is="spinner" class="mermaid-placeholder__spinner" />

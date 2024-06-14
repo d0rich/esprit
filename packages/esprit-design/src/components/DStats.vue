@@ -78,7 +78,9 @@ const fifthStat = computed(() => statFromIndex(4))
 <template>
   <figure class="max-w-full">
     <div class="stats__print-value">
-      <div class="stats__print-value__group-title">{{ groupTitle }}</div>
+      <div class="stats__print-value__group-title">
+        {{ groupTitle }}
+      </div>
       <div>
         <div
           v-for="(skill, index) in titles"
@@ -274,11 +276,21 @@ const fifthStat = computed(() => statFromIndex(4))
         </g>
       </svg>
       <div class="stats__images">
-        <div class="stats__image"><slot name="icon-1" /></div>
-        <div class="stats__image"><slot name="icon-2" /></div>
-        <div class="stats__image"><slot name="icon-3" /></div>
-        <div class="stats__image"><slot name="icon-4" /></div>
-        <div class="stats__image"><slot name="icon-5" /></div>
+        <div class="stats__image">
+          <slot name="icon-1" />
+        </div>
+        <div class="stats__image">
+          <slot name="icon-2" />
+        </div>
+        <div class="stats__image">
+          <slot name="icon-3" />
+        </div>
+        <div class="stats__image">
+          <slot name="icon-4" />
+        </div>
+        <div class="stats__image">
+          <slot name="icon-5" />
+        </div>
       </div>
       <svg
         viewBox="-500 -500 2000 2000"

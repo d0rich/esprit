@@ -11,9 +11,6 @@ export default {
 </script>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'docs'
-})
 const route = useRoute()
 const { tableOfContents } = useDocsLayoutState()
 const { data: doc, error } = useAsyncData<DocPage>(
@@ -41,21 +38,20 @@ function setToc() {
   tableOfContents.value = doc.value?.body?.toc ?? null
 }
 
-const root = ref<HTMLElement>(null as any)
-useSafeOnMounted(root, () => {
+onMounted(() => {
   setToc()
 })
 </script>
 
 <template>
-  <div ref="root">
+  <div>
     <DAsyncSafeMeta
       v-if="doc"
       :title="doc.title"
       :description="doc.description"
     />
     <DAsyncSafeMeta v-else-if="error" title="Page not found" />
-    <NuxtLayout>
+    <NuxtLayout name="docs">
       <ContentRenderer v-if="doc && doc._type === 'markdown'" :value="doc">
         <ContentRendererMarkdown tag="article" class="d-article" :value="doc" />
         <nav class="justify-center grid sm:grid-cols-2 gap-8 items-start mt-32">
@@ -78,6 +74,6 @@ useSafeOnMounted(root, () => {
 
 <style>
 .d-article :is(h1, h2, h3, h4, h5, h6) {
-  @apply !pt-20 !-mt-20;
+  @apply scroll-m-20;
 }
 </style>

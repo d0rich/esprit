@@ -28,23 +28,23 @@
     "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
-    "@types/dateformat": "^5.0.0"
+    "@types/dateformat": "^5.0.2"
   },
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "@nuxt-themes/typography": "^1.0.1",
-    "@nuxt/content": "^2.6.0",
-    "@vueuse/core": "^9.13.0",
+    "@nuxt/content": "^2.12.1",
+    "@vueuse/core": "^10.11.0",
     "dateformat": "^5.0.3",
-    "gsap": "^3.11.5",
-    "node-html-to-image": "^3.3.0",
-    "nuxt": "^3.6",
+    "gsap": "^3.12.5",
+    "node-html-to-image": "^4.0.0",
+    "nuxt": "^3.12.1",
     "png-to-ico": "^2.1.8",
-    "rehype-external-links": "^2.0.1",
+    "rehype-external-links": "^3.0.0",
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
-    "sitemap": "^7.1.1",
-    "unist-util-visit": "^4.1.2",
+    "sitemap": "^8.0.0",
+    "unist-util-visit": "^5.0.0",
     "vue-gtag": "^2.0.1"
   }
 }

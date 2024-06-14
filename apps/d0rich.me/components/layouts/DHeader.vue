@@ -12,10 +12,10 @@
         <div
           class="w-full h-16 flex justify-evenly items-center overflow-visible"
         >
-          <DBtn to="/">Dorich</DBtn>
-          <DBtn to="/projects/">Projects</DBtn>
-          <DBtn to="/blog/">Blog</DBtn>
-          <DBtn to="/resume/">Resume</DBtn>
+          <DBtn to="/"> Dorich </DBtn>
+          <DBtn to="/projects/"> Projects </DBtn>
+          <DBtn to="/blog/"> Blog </DBtn>
+          <DBtn to="/resume/"> Resume </DBtn>
         </div>
       </DShape>
     </header>

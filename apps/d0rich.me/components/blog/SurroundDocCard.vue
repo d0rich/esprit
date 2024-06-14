@@ -24,7 +24,9 @@ defineProps<{
       <DCardTitle v-else class="[&_h3]:!text-cyan-800">
         <Icon name="ic:sharp-arrow-back-ios" />Newer
       </DCardTitle>
-      <h4 class="text-xl font-bold">{{ doc.title }}</h4>
+      <h4 class="text-xl font-bold">
+        {{ doc.title }}
+      </h4>
       <p>{{ doc.description }}</p>
     </DCard>
   </NuxtLink>

@@ -17,7 +17,9 @@
 
           <ul>
             <li><DBtn>Just Button</DBtn></li>
-            <li><DBtn no-rotate>No Rotate</DBtn></li>
+            <li>
+              <DBtn no-rotate> No Rotate </DBtn>
+            </li>
           </ul>
         </DCard>
 
@@ -28,8 +30,12 @@
             Hover effect looks like a distorted tile.
           </p>
           <ul>
-            <li><DBtn no-rotate>Button</DBtn></li>
-            <li><DBtn no-rotate active>Active button</DBtn></li>
+            <li>
+              <DBtn no-rotate> Button </DBtn>
+            </li>
+            <li>
+              <DBtn no-rotate active> Active button </DBtn>
+            </li>
           </ul>
         </DCard>
 
@@ -42,16 +48,16 @@
           </p>
 
           <ul class="isolate">
-            <li><DBtn no-rotate highlight="list-item">List highlight</DBtn></li>
+            <li>highlight="list-item" > List highlight</li>
             <li>
-              <DBtn no-rotate highlight="list-item" active
-                >Active list highlight</DBtn
-              >
+              <DBtn no-rotate highlight="list-item" active>
+                Active list highlight
+              </DBtn>
             </li>
             <li>
-              <DBtn highlight="list-item" no-rotate color-class="bg-blue-600"
-                >Custom color</DBtn
-              >
+              <DBtn highlight="list-item" no-rotate color-class="bg-blue-600">
+                Custom color
+              </DBtn>
             </li>
             <li>
               <DBtn
@@ -59,24 +65,26 @@
                 no-rotate
                 active
                 color-class="bg-blue-600"
-                >Active Custom color</DBtn
               >
+                Active Custom color
+              </DBtn>
             </li>
             <li>
-              <DBtn highlight="negative-list-item" no-rotate>Negative</DBtn>
+              <DBtn highlight="negative-list-item" no-rotate> Negative </DBtn>
             </li>
             <li>
-              <DBtn highlight="negative-list-item" no-rotate active
-                >Active Negative</DBtn
-              >
+              <DBtn highlight="negative-list-item" no-rotate active>
+                Active Negative
+              </DBtn>
             </li>
             <li>
               <DBtn
                 highlight="composite-list-item"
                 no-rotate
                 color-class="bg-blue-600"
-                >Composite</DBtn
               >
+                Composite
+              </DBtn>
             </li>
             <li>
               <DBtn
@@ -84,8 +92,9 @@
                 no-rotate
                 active
                 color-class="bg-blue-600"
-                >Active Composite</DBtn
               >
+                Active Composite
+              </DBtn>
             </li>
           </ul>
         </DCard>

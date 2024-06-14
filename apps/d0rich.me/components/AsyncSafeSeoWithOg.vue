@@ -9,7 +9,9 @@ defineProps<{
 
 <template>
   <Head>
-    <Title v-if="title">{{ title }}</Title>
+    <Title v-if="title">
+      {{ title }}
+    </Title>
     <Meta
       v-if="title || ogTitle"
       property="og:title"

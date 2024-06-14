@@ -10,16 +10,13 @@ const { data } = useAsyncData('homepage', async () => {
   return { intro, blocks }
 })
 
-const rootComponent = ref<ComponentPublicInstance | null>(null)
-const root = computed(() => rootComponent.value?.$el)
-
 const storyContainer = ref<Element | null>(null)
 const svg = ref<(SVGElement & SVGSVGElement) | null>(null)
 const line = ref<SVGPolygonElement | null>(null)
 const linePlaceholder = ref<SVGPolygonElement | null>(null)
 const cards = ref<ComponentPublicInstance[]>([])
 
-useSafeOnMounted(root, () => {
+onMounted(() => {
   storyAnimations.applyProgressAnimation(
     storyContainer,
     svg,
@@ -34,7 +31,6 @@ useSafeOnMounted(root, () => {
   <DWrapBackground
     v-if="data"
     id="story"
-    :ref="el => rootComponent = el as ComponentPublicInstance"
     tag="section"
     overlay-class="story__bg-overlay"
   >
@@ -69,20 +65,39 @@ useSafeOnMounted(root, () => {
         </DWrapShape>
       </div>
     </div>
-    <div :ref="(el) => { storyContainer = el as Element }" class="story-blocks">
+    <div
+      :ref="
+        (el) => {
+          storyContainer = el as Element
+        }
+      "
+      class="story-blocks"
+    >
       <svg
-        :ref="(el) => { svg = el as (SVGElement & SVGSVGElement) }"
+        :ref="
+          (el) => {
+            svg = el as SVGElement & SVGSVGElement
+          }
+        "
         height="100%"
         width="100%"
         class="story-progress"
         viewBox="0 0 10 100"
       >
         <polygon
-          :ref="(el) => { linePlaceholder = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              linePlaceholder = el as SVGPolygonElement
+            }
+          "
           class="fill-black"
         />
         <polygon
-          :ref="(el) => { line = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              line = el as SVGPolygonElement
+            }
+          "
           class="fill-white"
         />
       </svg>
@@ -90,7 +105,11 @@ useSafeOnMounted(root, () => {
         <DCard
           v-for="(doc, index) in data.blocks"
           :key="doc._id"
-          :ref="el => cards[index] = el as ComponentPublicInstance"
+          :ref="
+            (el: ComponentPublicInstance) => {
+              cards[index] = el
+            }
+          "
           mode="homepage-story"
           class="my-20"
         >

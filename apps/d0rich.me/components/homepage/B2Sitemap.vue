@@ -23,15 +23,13 @@ const sectionsLineColor = computed(() => {
 const disconnectObserver = ref(() => {})
 const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
 
-const rootComponent = ref<ComponentPublicInstance | null>(null)
-const root = computed(() => rootComponent.value?.$el)
 const svgRef = ref<SVGSVGElement | null>(null)
 const polygonRef = ref<SVGPolygonElement | null>(null)
 const sections = ref<Element[]>([])
 const sectionsMasks = ref<ComponentPublicInstance[]>([])
 const sectionsContent = ref<Element[]>([])
 
-useSafeOnMounted(root, () => {
+onMounted(() => {
   sectionsAnimations.applyLineAnimation(svgRef, polygonRef)
   disconnectObserver.value = sectionsAnimations.setupCurrentSectionObserver(
     sections,
@@ -46,7 +44,6 @@ onBeforeUnmount(() => disconnectObserver.value())
 <template>
   <DWrapBackground
     id="sitemap"
-    :ref="(el) => { rootComponent = el as ComponentPublicInstance }"
     tag="section"
     class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
     overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
@@ -79,7 +76,11 @@ onBeforeUnmount(() => disconnectObserver.value())
         />
       </div>
       <svg
-        :ref="(el) => { svgRef = el as SVGSVGElement }"
+        :ref="
+          (el) => {
+            svgRef = el as SVGSVGElement
+          }
+        "
         height="100%"
         width="100%"
         class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
@@ -87,7 +88,11 @@ onBeforeUnmount(() => disconnectObserver.value())
         preserveAspectRatio="xMidYMin"
       >
         <polygon
-          :ref="(el) => { polygonRef = el as SVGPolygonElement }"
+          :ref="
+            (el) => {
+              polygonRef = el as SVGPolygonElement
+            }
+          "
           class="transition-colors"
           :class="sectionsLineColor"
         />
@@ -99,17 +104,25 @@ onBeforeUnmount(() => disconnectObserver.value())
       <div
         v-for="(doc, index) in data"
         :key="doc._id"
-        :ref="el => { sections[index] = el as Element}"
+        :ref="
+          (el) => {
+            sections[index] = el as Element
+          }
+        "
         class="section-description"
       >
         <DMask
-          :ref="el => sectionsMasks[index] = el as ComponentPublicInstance"
+          :ref="
+            (el: ComponentPublicInstance) => {
+              sectionsMasks[index] = el
+            }
+          "
           :mask="doc.mask"
           color
           class="section-description__image"
         />
         <div
-          :ref="el => sectionsContent[index] = el as Element"
+          :ref="(el) => (sectionsContent[index] = el as Element)"
           class="section-description__text"
         >
           <DBigBangButton
