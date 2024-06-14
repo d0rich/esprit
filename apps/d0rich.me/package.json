@@ -22,7 +22,7 @@
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.13",
     "octokit": "^4.0.2",
-    "puppeteer": "^22.11.0",
+    "puppeteer": "^21.11.0",
     "rehype-external-links": "^3.0.0",
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
     "sitemap": "^8.0.0",
