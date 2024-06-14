@@ -74,6 +74,6 @@ onMounted(() => {
 
 <style>
 .d-article :is(h1, h2, h3, h4, h5, h6) {
-  @apply !pt-20 !-mt-20;
+  @apply scroll-m-20;
 }
 </style>
