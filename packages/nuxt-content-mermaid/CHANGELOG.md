@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 0.3.0
+
+### Minor Changes
+
+- 86d70fa: Update dependencies
+
 ## 0.2.0
 
 ### Minor Changes
