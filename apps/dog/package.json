@@ -1,0 +1,20 @@
+{
+  "name": "@d0rich/dog",
+  "version": "0.3.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "",
+    "run:web": "node"
+  },
+  "dependencies": {
+    "@backroad/backroad": "^1.4.0-alpha.5",
+    "node-html-to-image": "^4.0.0",
+    "png-to-ico": "^2.1.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
