@@ -39,7 +39,7 @@ program.command('gen', { isDefault: true })
     const favicon = await getFaviconIco({ title })
     const ogImage = await getOgImageJpeg({ title, description })
     await workingStorage.setItemRaw('favicon.ico', favicon)
-    await workingStorage.setItemRaw('og:image.jpeg', ogImage)
+    await workingStorage.setItemRaw('og:image.jpg', ogImage)
     console.log('🐶 Done, wuaff! Check out \'.dog\' directory')
   })
 
