@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
     .find()
   return resumeList.map((resume) => ({
     title: resume.title,
-    path: resume._path?.replace('/resume/leads/', '/resume/'),
+    path: resume._path?.replace('/resume/leads', '/resume'),
   }))
 })
