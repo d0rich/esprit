@@ -1,15 +1,15 @@
-import path from 'path';
-import { createStorage } from "unstorage";
-import fsDriver from "unstorage/drivers/fs";
+import path from 'path'
+import { createStorage } from 'unstorage'
+import fsDriver from 'unstorage/drivers/fs'
 
 export const assetsStorage = createStorage({
-  driver: fsDriver({ base: path.resolve(__dirname, "../assets/") }),
-});
+  driver: fsDriver({ base: path.resolve(__dirname, '../assets/') })
+})
 
 export const tmpStorage = createStorage({
-  driver: fsDriver({ base: path.resolve(__dirname, "../.tmp/") }),
-});
+  driver: fsDriver({ base: path.resolve(__dirname, '../.tmp/') })
+})
 
 export const workingStorage = createStorage({
-  driver: fsDriver({ base: '.dog' }),
-});
+  driver: fsDriver({ base: '.dog' })
+})

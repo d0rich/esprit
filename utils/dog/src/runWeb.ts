@@ -1,3 +1,3 @@
-import { runWebGenerator } from './webApp';
+import { runWebGenerator } from './webApp'
 
-runWebGenerator();
+runWebGenerator()

@@ -24,11 +24,7 @@ export default defineNuxtConfig({
   modules: ['@nuxthq/studio', '@nuxt/content'],
   nitro: {
     prerender: {
-      routes: [
-        '/',
-        '/sitemap.xml',
-        '/api/resume/list.json',
-      ]
+      routes: ['/', '/sitemap.xml', '/api/resume/list.json']
     }
   },
   content: {

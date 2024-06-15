@@ -1,2 +1,2 @@
-export * from './favicon.js';
-export * from './og-image.js';
+export * from './favicon.js'
+export * from './og-image.js'

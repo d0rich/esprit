@@ -1,6 +1,6 @@
-import { createStorage } from "unstorage";
-import fsDriver from "unstorage/drivers/fs";
+import { createStorage } from 'unstorage'
+import fsDriver from 'unstorage/drivers/fs'
 
 export const dist = createStorage({
-  driver: fsDriver({ base: "./dist" }),
-});
+  driver: fsDriver({ base: './dist' })
+})

@@ -1,4 +1,4 @@
-import {collectResumeList} from './collectResumeList'
+import { collectResumeList } from './collectResumeList'
 import { getResumePdf } from './getResumePdf'
 import { dist } from '../../store/dist'
 

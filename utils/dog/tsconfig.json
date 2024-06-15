@@ -1,5 +1,4 @@
 {
-
   "compilerOptions": {
     "outDir": "./dist",
     "baseUrl": "./src",
@@ -11,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
