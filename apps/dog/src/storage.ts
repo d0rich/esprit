@@ -9,3 +9,7 @@ export const assetsStorage = createStorage({
 export const tmpStorage = createStorage({
   driver: fsDriver({ base: path.resolve(__dirname, "../.tmp/") }),
 });
+
+export const workingStorage = createStorage({
+  driver: fsDriver({ base: '.dog' }),
+});

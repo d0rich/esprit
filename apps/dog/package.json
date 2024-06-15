@@ -1,9 +1,11 @@
 {
   "name": "@d0rich/dog",
+  "description": "A CLI tool to generate favicons and app icons for your web app",
   "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
+  "bin": "./dist/cli.js",
   "scripts": {
     "build": "tsc",
     "dev:web": "tsx watch ./src/web.ts",
@@ -19,6 +21,7 @@
     "unstorage": "^1.10.2"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.7",
     "tsx": "^4.15.4",
     "typescript": "^5.4.5"
   }

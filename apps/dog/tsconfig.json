@@ -6,7 +6,7 @@
     "rootDir": "./src",
     "declaration": false,
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "Node16",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
