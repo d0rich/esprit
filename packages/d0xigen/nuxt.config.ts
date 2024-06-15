@@ -21,8 +21,6 @@ export default defineNuxtConfig({
         '/',
         '/sitemap.xml',
         '/robots.txt',
-        '/favicon.ico',
-        '/og/image.jpg',
         '/CNAME',
         '/_d0rich/meta.json'
       ]
