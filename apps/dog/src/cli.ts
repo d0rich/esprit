@@ -1,5 +1,5 @@
-import { tmpStorage } from "./storage";
-import { getFaviconIco, getOgImageJpeg } from "./generators";
+import { tmpStorage } from "./storage.js";
+import { getFaviconIco, getOgImageJpeg } from "./generators/index.js";
 
 async function main() {
   const favicon = await getFaviconIco({ title: 'D' })

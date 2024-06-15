@@ -1,6 +1,6 @@
 import nodeHtmlToImage from 'node-html-to-image'
 import pngToIco from 'png-to-ico'
-import { assetsStorage } from '../storage'
+import { assetsStorage } from '../storage.js'
 
 export interface FaviconOptions {
   title: string

@@ -1,6 +1,6 @@
 import { run } from '@backroad/backroad';
-import { getFaviconIco, getOgImageJpeg } from './generators';
-import { bufferToImgSrc } from './utils/bufferToImgSrc'
+import { getFaviconIco, getOgImageJpeg } from './generators/index.js';
+import { bufferToImgSrc } from './utils/bufferToImgSrc.js'
 
 run((br) => {
   br.title({
@@ -49,4 +49,4 @@ You might want to use CLI instead.
     getFaviconIco({ title })
       .then(res => br.setValue('favicon', bufferToImgSrc(res, 'ico')))
   }
-}, {server: { port: 8080}});
+});

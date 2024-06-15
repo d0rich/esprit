@@ -1,16 +1,19 @@
 {
   "name": "@d0rich/dog",
-  "version": "0.3.0",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "dev": "tsx watch ./src/main.ts",
     "build": "tsc",
-    "run:web": "node"
+    "dev:web": "tsx watch ./src/web.ts",
+    "run:web": "node ./dist/web.js"
   },
   "dependencies": {
     "@backroad/backroad": "^1.4.0-alpha.5",
+    "@types/node": "^20.14.2",
+    "commander": "^12.1.0",
+    "inquirer": "^9.2.23",
     "node-html-to-image": "^4.0.0",
     "png-to-ico": "^2.1.8",
     "unstorage": "^1.10.2"

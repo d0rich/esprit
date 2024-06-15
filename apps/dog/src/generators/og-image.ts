@@ -1,5 +1,5 @@
 import nodeHtmlToImage from 'node-html-to-image'
-import { assetsStorage } from '../storage'
+import { assetsStorage } from '../storage.js'
 
 export interface OgImageOptions {
   title: string
