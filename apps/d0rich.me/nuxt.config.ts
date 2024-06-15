@@ -27,9 +27,7 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/sitemap.xml',
-        '/api/resume/Nikolai_Dorofeev-Fullstack_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-Backend_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-Frontend_Developer.pdf'
+        '/api/resume/list.json',
       ]
     }
   },
