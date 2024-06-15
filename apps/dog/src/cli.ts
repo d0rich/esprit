@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import fs from "fs";
 import path from 'path';
-import { tmpStorage, workingStorage } from "./storage.js";
+import { runWebGenerator } from './webApp';
+import { workingStorage } from "./storage.js";
 import { getFaviconIco, getOgImageJpeg } from "./generators/index.js";
 import { program } from "commander";
 
@@ -16,7 +17,7 @@ interface GenOptions {
   description?: string;
 }
 
-program.command('gen')
+program.command('gen', { isDefault: true })
   .description('Generate images')
   .option('-t, --title <title>', 'Title', undefined)
   .option('-d, --description <description>', 'Description', undefined)
@@ -40,6 +41,12 @@ program.command('gen')
     await workingStorage.setItemRaw('favicon.ico', favicon)
     await workingStorage.setItemRaw('og:image.jpeg', ogImage)
     console.log('🐶 Done, wuaff! Check out \'.dog\' directory')
+  })
+
+program.command('web')
+  .description('Run web generator')
+  .action(() => {
+    runWebGenerator();
   })
 
 program.parse();

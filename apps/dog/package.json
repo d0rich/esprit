@@ -8,8 +8,8 @@
   "bin": "./dist/cli.js",
   "scripts": {
     "build": "tsc",
-    "dev:web": "tsx watch ./src/web.ts",
-    "run:web": "node ./dist/web.js"
+    "dev:web": "tsx watch ./src/runWeb.ts",
+    "run:web": "node ./dist/runWeb.js"
   },
   "dependencies": {
     "@backroad/backroad": "^1.4.0-alpha.5",
