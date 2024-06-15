@@ -15,7 +15,7 @@
           <DBtn to="/"> Dorich </DBtn>
           <DBtn to="/projects/"> Projects </DBtn>
           <DBtn to="/blog/"> Blog </DBtn>
-          <DBtn to="/resume/"> Resume </DBtn>
+          <DBtn to="/resume/"> Resumé </DBtn>
         </div>
       </DShape>
     </header>

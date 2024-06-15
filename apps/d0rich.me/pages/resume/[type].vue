@@ -42,7 +42,7 @@ const { data: resumeList } = useAsyncData(
   <div>
     <AsyncSafeSeoWithOg
       v-if="data"
-      :title="`Resume: ${data.lead.title}`"
+      :title="`Resumé: ${data.lead.title}`"
       :description="data.lead.description"
     />
     <DevOnly>
