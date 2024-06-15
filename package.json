@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "utils/*"
   ],
   "packageManager": "npm@10.8.1",
   "scripts": {
