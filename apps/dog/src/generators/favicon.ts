@@ -1,17 +1,17 @@
 import nodeHtmlToImage from 'node-html-to-image'
 import pngToIco from 'png-to-ico'
-import { storage } from '../storage'
+import { assetsStorage } from '../storage'
 
 export interface FaviconOptions {
   title: string
 }
 
 export async function getFaviconHtml(options: FaviconOptions) {
-  const template = await storage.getItem('templates:favicon.html')
+  const template = await assetsStorage.getItem('templates:favicon.html')
   if (!template) {
     throw new Error('Missing favicon HTML template')
   }
-  const background = await storage.getItem('templates:favicon.svg')
+  const background = await assetsStorage.getItem('templates:favicon.svg')
   if (!background) {
     throw new Error('Missing favicon SVG background')
   }

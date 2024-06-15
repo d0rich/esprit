@@ -1,5 +1,5 @@
 import nodeHtmlToImage from 'node-html-to-image'
-import { storage } from '../storage'
+import { assetsStorage } from '../storage'
 
 export interface OgImageOptions {
   title: string
@@ -7,11 +7,11 @@ export interface OgImageOptions {
 }
 
 export async function getOgImageHtml(options: OgImageOptions) {
-  const template = await storage.getItem('templates:og-image.html')
+  const template = await assetsStorage.getItem('templates:og-image.html')
   if (!template) {
     throw new Error('Missing og:image HTML template')
   }
-  const background = await storage.getItem('templates:background.svg')
+  const background = await assetsStorage.getItem('templates:background.svg')
   if (!background) {
     throw new Error('Missing og:image SVG background')
   }
@@ -26,7 +26,6 @@ export async function getOgImageJpeg(options: OgImageOptions) {
   const html = await getOgImageHtml(options)
   const image = await nodeHtmlToImage({
     html,
-    waitUntil: 'networkidle0',
     type: 'jpeg'
   })
   return image
