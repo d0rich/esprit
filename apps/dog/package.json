@@ -4,17 +4,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module",
   "scripts": {
-    "build": "",
+    "dev": "tsx watch ./src/main.ts",
+    "build": "tsc",
     "run:web": "node"
   },
   "dependencies": {
     "@backroad/backroad": "^1.4.0-alpha.5",
     "node-html-to-image": "^4.0.0",
-    "png-to-ico": "^2.1.8"
+    "png-to-ico": "^2.1.8",
+    "unstorage": "^1.10.2"
   },
   "devDependencies": {
+    "tsx": "^4.15.4",
     "typescript": "^5.4.5"
   }
 }
