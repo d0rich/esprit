@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <DCard class="break-inside-avoid">
+  <DCard class="">
     <DCardTitle>
       {{ project.title }}
       <template #extra>

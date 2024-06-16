@@ -18,7 +18,7 @@ defineProps<{
 </script>
 
 <template>
-  <DCard class="break-inside-avoid">
+  <DCard class="">
     <DCardTitle>
       {{ timenote.title }}
       <template #extra>
@@ -26,13 +26,15 @@ defineProps<{
           :is="timenote.place.link ? 'a' : 'span'"
           :href="timenote.place.link"
           target="_blank"
-          class="timenote__place-link"
+          class="timenote__place-link print:ml-2"
         >
           {{ timenote.place.title }}
         </Component>
       </template>
     </DCardTitle>
-    <p class="text-blue-600 dark:text-blue-300 print:text-sm">
+    <p
+      class="text-blue-600 dark:text-blue-300 print:text-sm break-inside-avoid"
+    >
       <time :datetime="timenote.daterange.start">
         {{ dateToMonthYear(timenote.daterange.start) }}
       </time>
