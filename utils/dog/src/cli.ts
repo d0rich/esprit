@@ -2,9 +2,7 @@
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import path from 'path'
-import { runWebGenerator } from './webApp.js'
 import { workingStorage } from './storage.js'
-import { getFaviconIco, getOgImageJpeg } from './generators/index.js'
 import chalk from 'chalk'
 import { program } from 'commander'
 
@@ -48,6 +46,7 @@ program
         })
       ).description
     console.log(`🐶 Description: ${description}`)
+    const { getFaviconIco, getOgImageJpeg } = await import('./generators/index.js')
     console.log('🐶 Generating images...')
     const favicon = await getFaviconIco({ title })
     const ogImage = await getOgImageJpeg({ title, description })
@@ -59,7 +58,8 @@ program
 program
   .command('web')
   .description('Run web generator')
-  .action(() => {
+  .action(async () => {
+    const { runWebGenerator } = await import('./webApp.js')
     runWebGenerator()
   })
 
