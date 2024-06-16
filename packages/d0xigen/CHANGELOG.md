@@ -1,5 +1,12 @@
 # d0xigen
 
+## 0.5.0
+
+### Minor Changes
+
+- ceeaa38: Display d0xigen as generator in meta tag
+- ceeaa38: Make images big in OpenGraph
+
 ## 0.4.1
 
 ### Patch Changes
