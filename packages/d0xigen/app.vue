@@ -14,7 +14,7 @@ useSeoMeta({
   description: appConfig.d0xigen.description,
   ogDescription: appConfig.d0xigen.description,
   author: appConfig.d0xigen.author,
-  generator: 'Nuxt 3',
+  generator: `d0xigen v${useRuntimeConfig().public.version}`,
   ogSiteName: appConfig.d0xigen.title,
   ogImage: appConfig.d0xigen.url + appConfig.d0xigen.og.image,
   twitterImage: appConfig.d0xigen.url + appConfig.d0xigen.og.image,

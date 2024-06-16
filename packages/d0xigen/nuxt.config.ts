@@ -1,6 +1,9 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import fs from 'fs'
 const currentDir = dirname(fileURLToPath(import.meta.url))
+
+const packageJson = JSON.parse(fs.readFileSync(join(currentDir, 'package.json'), 'utf-8'))
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -35,7 +38,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       isDev: process.env.NODE_ENV === 'development',
-      isProd: process.env.NODE_ENV === 'production'
+      isProd: process.env.NODE_ENV === 'production',
+      version: packageJson.version
     }
   },
   colorMode: {
