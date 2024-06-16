@@ -34,6 +34,10 @@ You might want to use CLI instead.
     if (faviconSrc) {
       col2.image({
         src: faviconSrc,
+        style: {
+          width: '32px',
+          height: '32px'
+        },
         label: 'Favicon'
       })
     }

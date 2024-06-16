@@ -5,7 +5,7 @@ export default defineAppConfig({
     url: 'https://d0xigen.d0rich.me',
     author: 'Nikolay Dorofeev',
     social: {
-      github: 'https://github.com/d0rich/d0xigen'
+      github: 'https://github.com/d0rich/esprit/tree/main/packages/d0xigen'
     },
     seo: {
       keywords: [
