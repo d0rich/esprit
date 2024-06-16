@@ -5,13 +5,13 @@
     "rootDir": "./src",
     "declaration": false,
     "target": "ESNext",
-    "module": "Node16",
-    "esModuleInterop": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext"]
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "src/storage.ts"],
   "exclude": ["node_modules"]
 }

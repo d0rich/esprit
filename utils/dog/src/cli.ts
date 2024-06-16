@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 import fs from 'fs'
+import { fileURLToPath } from 'url'
 import path from 'path'
-import { runWebGenerator } from './webApp'
+import { runWebGenerator } from './webApp.js'
 import { workingStorage } from './storage.js'
 import { getFaviconIco, getOgImageJpeg } from './generators/index.js'
 import chalk from 'chalk'
 import { program } from 'commander'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const packageJson = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../package.json/'), 'utf8')
