@@ -1,0 +1,14 @@
+{
+  "name": "dog.d0rich.me",
+  "private": true,
+  "scripts": {
+    "prepare": "nuxi prepare",
+    "typecheck": "nuxi typecheck",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "d0xigen": "*"
+  }
+}
