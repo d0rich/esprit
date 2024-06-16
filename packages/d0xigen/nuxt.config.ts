@@ -3,7 +3,9 @@ import { dirname, join } from 'path'
 import fs from 'fs'
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
-const packageJson = JSON.parse(fs.readFileSync(join(currentDir, 'package.json'), 'utf-8'))
+const packageJson = JSON.parse(
+  fs.readFileSync(join(currentDir, 'package.json'), 'utf-8')
+)
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
