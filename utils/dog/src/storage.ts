@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 import { createStorage } from 'unstorage'
 import fsDriverModule from 'unstorage/drivers/fs'
 
+// TODO: fix when typescript is fixed
 // @ts-ignore
 const fsDriver = fsDriverModule as (typeof fsDriverModule)['default']
 
