@@ -2,7 +2,7 @@ import { TypeOf } from 'zod'
 import { ofetch } from 'ofetch'
 import { ResumeListSchema } from '../../models/ResumeList'
 import { config } from '../../config'
-import {consola} from 'consola'
+import { consola } from 'consola'
 
 export async function collectResumeList() {
   const response = await ofetch<TypeOf<typeof ResumeListSchema>>(

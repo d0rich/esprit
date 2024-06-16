@@ -16,10 +16,8 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
 })
 
 const printResumeLink = computed(() => {
-  return `/api/resume/Nikolai_Dorofeev-${data.value?.lead.title?.replaceAll(
-    ' ',
-    '_'
-  )}.pdf`
+  const specialization = data.value?.lead.title?.replaceAll(' ', '_')
+  return `https://cdn.d0rich.me/resume/Nikolai_Dorofeev-${specialization}.pdf`
 })
 
 const { data: resumeList } = useAsyncData(
