@@ -38,6 +38,7 @@
   "dependencies": {
     "@backroad/backroad": "^1.4.0-alpha.5",
     "@types/node": "^20.14.2",
+    "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "inquirer": "^9.2.23",
     "node-html-to-image": "^4.0.0",
