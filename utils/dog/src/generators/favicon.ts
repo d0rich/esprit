@@ -20,9 +20,10 @@ export async function getFaviconHtml(options: FaviconOptions) {
     .replace('{{background}}', background.toString())
     .replace(
       '{{signature}}',
-      [...new Intl.Segmenter().segment(options.title)]
-        .map(segment => segment.segment)[0]
-      )
+      [...new Intl.Segmenter().segment(options.title)].map(
+        (segment) => segment.segment
+      )[0]
+    )
 }
 
 export async function getFaviconPng(options: FaviconOptions) {
