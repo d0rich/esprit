@@ -8,51 +8,57 @@ const changesList = execSync(
   `git diff --name-only ${cachedCommitRef} ${commitRef}`
 ).toString()
 
-// Apps
-const isD0richMeChanged = changesList.includes('apps/d0rich.me')
-const isD0xigenD0richMeChanged = changesList.includes('apps/d0xigen.d0rich.me')
-const isDesignD0richMeChanged = changesList.includes('apps/design.d0rich.me')
-const isDD0richMeChanged = changesList.includes('apps/d.d0rich.me')
+class Changed {
+  constructor({ src = false, deps = false }) {
+    this.src = src
+    this.deps = deps
+  }
 
-//  Contracts
-
-const areContractsChanged = changesList.includes(
-  'packages/ton-contracts/contracts'
-)
+  get any() {
+    return this.src || this.deps
+  }
+}
 
 // Packages
-const isNuxtContentMermaidChanged = changesList.includes(
-  'packages/nuxt-content-mermaid'
-)
-const isNuxtDesignSystemChanged = changesList.includes(
-  'packages/nuxt-design-system'
-)
+const espritDesignChange = new Changed({
+  src: changesList.includes('packages/esprit-design'),
+  deps: false
+})
 
-const isEspritDesignChanged = changesList.includes('packages/esprit-design')
+const nuxtDesignSystemChange = new Changed({
+  src: changesList.includes('packages/nuxt-design-system'),
+  deps: espritDesignChange.any
+})
 
-const ignoreD0richMeBuild =
-  !isD0richMeChanged &&
-  !isNuxtContentMermaidChanged &&
-  !isNuxtDesignSystemChanged &&
-  !isEspritDesignChanged
+const nuxtContentMermaidChange = new Changed({
+  src: changesList.includes('packages/nuxt-content-mermaid'),
+  deps: false
+})
 
-const ignoreD0xigenD0richMeBuild =
-  !isD0xigenD0richMeChanged &&
-  !isNuxtContentMermaidChanged &&
-  !isNuxtDesignSystemChanged &&
-  !isEspritDesignChanged
+const d0xigenChange = new Changed({
+  src: changesList.includes('packages/d0xigen'),
+  deps: nuxtDesignSystemChange.any || nuxtContentMermaidChange.any
+})
 
-const ignoreDesignD0richMeBuild =
-  !isDesignD0richMeChanged &&
-  !isNuxtDesignSystemChanged &&
-  !isEspritDesignChanged
+// Apps
+const d0richMeChange = new Changed({
+  src: changesList.includes('apps/d0rich.me'),
+  deps: nuxtDesignSystemChange.any || nuxtContentMermaidChange.any
+})
+const d0xigenD0richMeChange = new Changed({
+  src: changesList.includes('apps/d0xigen.d0rich.me'),
+  deps: d0xigenChange.any
+})
+const designD0richMeChange = new Changed({
+  src: changesList.includes('apps/design.d0rich.me'),
+  deps: nuxtDesignSystemChange.any
+})
+const dogD0richMeChange = new Changed({
+  src: changesList.includes('apps/dog.d0rich.me'),
+  deps: d0xigenChange.any
+})
 
-const ignoreDD0richMeBuild =
-  !isDD0richMeChanged && !areContractsChanged && !isEspritDesignChanged
-
-export {
-  ignoreD0richMeBuild,
-  ignoreD0xigenD0richMeBuild,
-  ignoreDesignD0richMeBuild,
-  ignoreDD0richMeBuild
-}
+export const ignoreD0richMeBuild = !d0richMeChange.any
+export const ignoreD0xigenD0richMeBuild = !d0xigenD0richMeChange.any
+export const ignoreDesignD0richMeBuild = !designD0richMeChange.any
+export const ignoreDogD0richMeBuild = !dogD0richMeChange.any
