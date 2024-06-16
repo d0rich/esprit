@@ -84,7 +84,7 @@ defineProps<{
 
 <style>
 .project-tile {
-  @apply relative isolate;
+  @apply relative isolate font-sans;
 }
 
 .project-tile__frame--top,
