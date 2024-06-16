@@ -1,5 +1,11 @@
 # d0xigen
 
+## 0.4.0
+
+### Minor Changes
+
+- 1391771: Remove image generations. Now it will be available via @d0rich/dog
+
 ## 0.3.0
 
 ### Minor Changes
