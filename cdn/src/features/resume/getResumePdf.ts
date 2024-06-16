@@ -1,27 +1,32 @@
 import { BrowserStore } from '../../store/browser'
+import { config } from '../../config'
+import { consola } from 'consola'
 
 export async function getResumePdf(path: string) {
   const browser = await BrowserStore.getBrowser()
   const page = await browser.newPage()
-  await page.goto('http://d0rich.me' + path, {
-    waitUntil: 'networkidle0'
+  await page.goto(config.MAIN_BASE_URL + path, {
+    waitUntil: 'domcontentloaded'
   })
+  consola.debug('Page loaded: ', config.MAIN_BASE_URL + path)
   await page.emulateMediaType('print')
+  consola.debug('Emulated media type: print')
   await page.evaluate(() => {
     const html = document.querySelector('html')
     if (html) {
       html.className = 'light'
-      html.querySelectorAll('a').forEach((a) => {
-        const href = a.getAttribute('href')
-        if (!href) return
-        if (href.startsWith('/')) a.href = 'https://d0rich.me' + href
-      })
     }
   })
+  consola.debug('Page evaluated')
   const pdf = await page.pdf({
     printBackground: true,
-    format: 'A4'
+    format: 'A4',
+    margin: {
+      top: '1cm',
+      bottom: '1cm'
+    }
   })
+  consola.debug('PDF generated')
   await page.close()
   return pdf
 }

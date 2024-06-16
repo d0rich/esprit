@@ -1,10 +1,14 @@
 import { TypeOf } from 'zod'
 import { ofetch } from 'ofetch'
 import { ResumeListSchema } from '../../models/ResumeList'
+import { config } from '../../config'
+import {consola} from 'consola'
 
 export async function collectResumeList() {
   const response = await ofetch<TypeOf<typeof ResumeListSchema>>(
-    'https://d0rich.me/api/resume/list'
+    `${config.MAIN_BASE_URL}/api/resume/list.json`
   )
-  return ResumeListSchema.parse(response)
+  const list = ResumeListSchema.parse(response)
+  consola.info('Resume list collected: ', list)
+  return list
 }
