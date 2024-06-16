@@ -46,7 +46,9 @@ program
         })
       ).description
     console.log(`🐶 Description: ${description}`)
-    const { getFaviconIco, getOgImageJpeg } = await import('./generators/index.js')
+    const { getFaviconIco, getOgImageJpeg } = await import(
+      './generators/index.js'
+    )
     console.log('🐶 Generating images...')
     const favicon = await getFaviconIco({ title })
     const ogImage = await getOgImageJpeg({ title, description })
