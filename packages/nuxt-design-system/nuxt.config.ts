@@ -30,7 +30,8 @@ export default defineNuxtConfig({
       Roboto: true,
       'Roboto Slab': true,
       'JetBrains Mono': true,
-      Arsenal: true
+      Arsenal: true,
+      'Noto Color Emoji': true
     },
     preload: true
   }

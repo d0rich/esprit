@@ -7,10 +7,18 @@ module.exports = {
   content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      sans: ['Roboto', ...defaultTheme.fontFamily.sans],
-      serif: ['"Roboto Slab"', ...defaultTheme.fontFamily.sans],
-      mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
-      dialog: ['Arsenal']
+      sans: ['Roboto', '"Noto Color Emoji"', ...defaultTheme.fontFamily.sans],
+      serif: [
+        '"Roboto Slab"',
+        '"Noto Color Emoji"',
+        ...defaultTheme.fontFamily.sans
+      ],
+      mono: [
+        '"JetBrains Mono"',
+        '"Noto Color Emoji"',
+        ...defaultTheme.fontFamily.mono
+      ],
+      dialog: ['Arsenal', '"Noto Color Emoji"']
     },
     extend: {
       screens: {
