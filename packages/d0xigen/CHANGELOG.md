@@ -1,5 +1,13 @@
 # d0xigen
 
+## 0.4.1
+
+### Patch Changes
+
+- e2ae3da: Use Noto Color Emoji
+- Updated dependencies [e2ae3da]
+  - @d0rich/nuxt-design-system@0.9.1
+
 ## 0.4.0
 
 ### Minor Changes

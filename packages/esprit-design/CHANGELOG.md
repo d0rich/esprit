@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.1
+
+### Patch Changes
+
+- e2ae3da: Use Noto Color Emoji
+
 ## 0.3.0
 
 ### Minor Changes
