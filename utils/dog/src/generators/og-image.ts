@@ -1,5 +1,5 @@
 import nodeHtmlToImage from 'node-html-to-image'
-import { assetsStorage } from '../storage.js'
+import { assetsStorage, tmpStorage } from '../storage.js'
 
 export interface OgImageOptions {
   title: string
@@ -24,6 +24,7 @@ export async function getOgImageHtml(options: OgImageOptions) {
 
 export async function getOgImageJpeg(options: OgImageOptions) {
   const html = await getOgImageHtml(options)
+  tmpStorage.setItemRaw('og-image.html', html)
   const image = await nodeHtmlToImage({
     html,
     type: 'jpeg'

@@ -1,6 +1,6 @@
 import nodeHtmlToImage from 'node-html-to-image'
 import pngToIco from 'png-to-ico'
-import { assetsStorage } from '../storage.js'
+import { assetsStorage, tmpStorage } from '../storage.js'
 
 export interface FaviconOptions {
   title: string
@@ -18,11 +18,16 @@ export async function getFaviconHtml(options: FaviconOptions) {
   return template
     .toString()
     .replace('{{background}}', background.toString())
-    .replace('{{signature}}', options.title[0])
+    .replace(
+      '{{signature}}',
+      [...new Intl.Segmenter().segment(options.title)]
+        .map(segment => segment.segment)[0]
+      )
 }
 
 export async function getFaviconPng(options: FaviconOptions) {
   const html = await getFaviconHtml(options)
+  tmpStorage.setItemRaw('favicon.html', html)
   const png = await nodeHtmlToImage({
     html,
     waitUntil: 'networkidle0',
