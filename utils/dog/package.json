@@ -1,0 +1,52 @@
+{
+  "name": "@d0rich/dog",
+  "description": "A CLI tool to generate favicons and app icons for your web app",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Nikolai Dorofeev",
+    "email": "dorich2000@gmail.com",
+    "url": "https://d0rich.me/"
+  },
+  "keywords": [
+    "cli",
+    "favicon",
+    "icon",
+    "web",
+    "app",
+    "generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d0rich/esprit",
+    "directory": "utils/dog"
+  },
+  "bin": {
+    "dog": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev:web": "tsx watch ./src/runWeb.ts",
+    "run:web": "node ./dist/runWeb.js"
+  },
+  "dependencies": {
+    "@backroad/backroad": "^1.4.0-alpha.5",
+    "@types/node": "^20.14.2",
+    "commander": "^12.1.0",
+    "inquirer": "^9.2.23",
+    "node-html-to-image": "^4.0.0",
+    "png-to-ico": "^2.1.8",
+    "unstorage": "^1.10.2"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "tsx": "^4.15.4",
+    "typescript": "^5.4.5"
+  }
+}

@@ -7,9 +7,13 @@ defineProps<{
 </script>
 
 <template>
-  <DCard dense class="break-inside-avoid">
+  <DCard dense class="">
     <ul class="resume-sertificates-card__list">
-      <li v-for="cert in cerificates" :key="cert._id">
+      <li
+        v-for="cert in cerificates"
+        :key="cert._id"
+        class="break-inside-avoid"
+      >
         {{ cert.title }}
         (<NuxtLink
           class="resume-sertificates-card__place"

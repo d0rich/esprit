@@ -16,10 +16,8 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
 })
 
 const printResumeLink = computed(() => {
-  return `/api/resume/Nikolai_Dorofeev-${data.value?.lead.title?.replaceAll(
-    ' ',
-    '_'
-  )}.pdf`
+  const specialization = data.value?.lead.title?.replaceAll(' ', '_')
+  return `https://cdn.d0rich.me/resume/Nikolai_Dorofeev-${specialization}.pdf`
 })
 
 const { data: resumeList } = useAsyncData(
@@ -42,7 +40,7 @@ const { data: resumeList } = useAsyncData(
   <div>
     <AsyncSafeSeoWithOg
       v-if="data"
-      :title="`Resume: ${data.lead.title}`"
+      :title="`Resumé: ${data.lead.title}`"
       :description="data.lead.description"
     />
     <DevOnly>
@@ -110,7 +108,7 @@ const { data: resumeList } = useAsyncData(
         }"
       >
         <div class="print:order-2">
-          <section id="languages" class="break-inside-avoid">
+          <section id="languages" class="">
             <h2 class="resume-page__section-title">Languages</h2>
             <ContentRenderer
               :value="data.languages"
@@ -118,7 +116,7 @@ const { data: resumeList } = useAsyncData(
               class="resume-page__prose-content"
             />
           </section>
-          <section id="skills" class="break-inside-avoid">
+          <section id="skills" class="">
             <h2 class="resume-page__section-title">Skills</h2>
             <TransitionGroup
               name="skills-list"
@@ -133,12 +131,13 @@ const { data: resumeList } = useAsyncData(
                 v-for="skillset in data.skills"
                 :key="skillset._id"
                 :value="skillset"
+                class="break-inside-avoid"
               />
             </TransitionGroup>
           </section>
         </div>
         <div>
-          <section id="work-experience" class="break-inside-avoid">
+          <section id="work-experience" class="">
             <h2 class="resume-page__section-title">Work Experience</h2>
             <ResumeTimeNote
               v-for="workPlace in data.work"
@@ -148,16 +147,16 @@ const { data: resumeList } = useAsyncData(
             />
           </section>
           <div class="grid md:grid-cols-2 gap-x-20 print:block">
-            <section id="projects" class="break-inside-avoid">
+            <section id="projects" class="">
               <h2 class="resume-page__section-title">Projects</h2>
               <ResumeProjectsCard :projects="data.projects" />
             </section>
-            <section id="certificates" class="break-inside-avoid">
+            <section id="certificates" class="">
               <h2 class="resume-page__section-title">Certificates</h2>
               <ResumeCertificatesCard :cerificates="data.certificates" />
             </section>
           </div>
-          <section id="education" class="break-inside-avoid">
+          <section id="education" class="">
             <h2 class="resume-page__section-title">Education</h2>
             <ResumeTimeNote
               v-for="eduPlace in data.education"

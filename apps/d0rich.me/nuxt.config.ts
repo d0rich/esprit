@@ -24,13 +24,7 @@ export default defineNuxtConfig({
   modules: ['@nuxthq/studio', '@nuxt/content'],
   nitro: {
     prerender: {
-      routes: [
-        '/',
-        '/sitemap.xml',
-        '/api/resume/Nikolai_Dorofeev-Fullstack_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-Backend_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-Frontend_Developer.pdf'
-      ]
+      routes: ['/', '/sitemap.xml', '/api/resume/list.json']
     }
   },
   content: {

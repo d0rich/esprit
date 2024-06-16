@@ -39,7 +39,7 @@ export default defineAppConfig({
     title: 'd0xigen',
     description: 'My awesome docs',
     url: 'https://d0rich.me',
-    author: 'Nikolay Dorofeev',
+    author: 'Nikolai Dorofeev',
     social: {
       github: undefined
     },
