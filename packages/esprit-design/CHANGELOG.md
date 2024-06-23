@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.2
+
+### Patch Changes
+
+- 3ba3385: Exclude gsap from the bundle
+
 ## 0.3.1
 
 ### Patch Changes
