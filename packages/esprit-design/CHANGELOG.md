@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.3
+
+### Patch Changes
+
+- 883dd48: Add named routes typing
+
 ## 0.3.2
 
 ### Patch Changes
