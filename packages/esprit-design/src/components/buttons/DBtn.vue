@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 import type { HighlightVariant } from '../utils/index'
 import DWrapFocusHighlight from '../utils/DWrapFocusHighlight.vue'
 import { useLink } from '../../composables/router'
@@ -14,7 +15,7 @@ export default {
 <script setup lang="ts">
 const props = defineProps({
   to: {
-    type: String,
+    type: [String, Object as () => RouteLocationRaw],
     default: ''
   },
   href: {

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils'
 import { useLink } from '../../composables/router'
+import type { RouteLocationRaw } from 'vue-router'
 
 export default {
   name: 'DBigBangButton'
@@ -20,7 +21,7 @@ const props = defineProps({
     default: 'button'
   },
   to: {
-    type: String,
+    type: [String, Object as () => RouteLocationRaw],
     default: ''
   }
 })
