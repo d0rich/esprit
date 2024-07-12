@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.4
+
+### Patch Changes
+
+- 10ad632: Remove \* selectors from focus highlight component
+
 ## 0.3.3
 
 ### Patch Changes
