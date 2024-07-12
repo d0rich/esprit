@@ -56,7 +56,7 @@ const currentComponent = computed(() => {
     <Component
       v-bind="props"
       :is="currentComponent"
-      class="d-focus-hl"
+      class="d-focus-hl d-focusable"
       :class="{
         'd-focus-hl--exact': linkExact,
         'd-focus-hl--not-exact': !linkExact,
@@ -114,7 +114,7 @@ const currentComponent = computed(() => {
 }
 
 .d-focus-hl:hover > .d-focus-hl__hl--negative-tile,
-*:focus .d-focus-hl__hl--negative-tile {
+.d-focusable:focus .d-focus-hl__hl--negative-tile {
   opacity: 1;
   animation: hl--negative-tile-animation linear 1s infinite;
 }
@@ -126,7 +126,7 @@ const currentComponent = computed(() => {
   left: -5%;
 }
 
-*:focus .d-focus-hl__hl--negative-tile {
+.d-focusable:focus .d-focus-hl__hl--negative-tile {
   width: 140% !important;
   height: 200% !important;
   top: -50% !important;
@@ -191,7 +191,7 @@ const currentComponent = computed(() => {
   @apply -z-10;
 }
 
-:is(.d-focus-hl:hover, *:focus)
+:is(.d-focus-hl:hover, .d-focusable:focus)
   :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {
   opacity: 1;
   animation: hl--list-item-animation 0.3s infinite;
@@ -205,7 +205,8 @@ const currentComponent = computed(() => {
   left: -5%;
 }
 
-*:focus :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {
+.d-focusable:focus
+  :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {
   width: 220% !important;
   height: 200% !important;
   top: -50% !important;

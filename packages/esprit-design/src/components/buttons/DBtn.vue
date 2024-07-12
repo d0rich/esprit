@@ -64,7 +64,7 @@ const {
 <template>
   <Component
     :is="currentComponent"
-    class="d-btn"
+    class="d-btn d-focusable"
     :class="{
       'd-btn--rotated': !noRotate,
       'd-btn--uppercase': textTransform === 'uppercase',
