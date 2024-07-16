@@ -21,7 +21,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
           <ul>
             <li>
               <DBtn
-                href="mailto:d0rich.connect@gmail.com"
+                href="mailto:dorich2000@gmail.com"
                 target="_blank"
                 text-transform="none"
                 no-rotate
@@ -29,7 +29,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
               >
                 <div class="flex items-center gap-2">
                   <Icon name="ic:sharp-mail" class="text-xl" />
-                  d0rich.connect@gmail.com
+                  dorich2000@gmail.com
                 </div>
               </DBtn>
             </li>
