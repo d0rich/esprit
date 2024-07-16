@@ -1,5 +1,2 @@
 [build]
   ignore = "node apps/d0rich.me/ignore-build.mjs"
-  base = "/"
-  publish = "apps/d0rich.me/dist"
-  command = "npm run generate --workspace=d0rich.me"
