@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.5
+
+### Patch Changes
+
+- 13fe78f: Conditional slot wrapper rendering
+
 ## 0.3.4
 
 ### Patch Changes
