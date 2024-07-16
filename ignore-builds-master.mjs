@@ -1,5 +1,7 @@
 import { execSync } from 'child_process'
 
+console.info('Running ignore script')
+
 const cachedCommitRef =
   process.env.CACHED_COMMIT_REF || 'd06423d365fa9cf3ef99a8653abbf1a83fe7d3bb'
 const commitRef = process.env.COMMIT_REF || 'HEAD'
@@ -7,6 +9,9 @@ const commitRef = process.env.COMMIT_REF || 'HEAD'
 const changesList = execSync(
   `git diff --name-only ${cachedCommitRef} ${commitRef}`
 ).toString()
+
+console.info('Changes list:')
+console.info(changesList)
 
 class Changed {
   constructor({ src = false, deps = false }) {
