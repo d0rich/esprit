@@ -1,27 +1,69 @@
-<script lang="ts">
-import { type StyleValue } from 'vue'
-
-export default {
-  name: 'DWrapShape'
-}
-</script>
-
 <script setup lang="ts">
-defineProps<{
+import { type StyleValue, computed } from 'vue'
+
+defineOptions({
+  name: 'DWrapShape'
+})
+const props = defineProps<{
   shapeClass?: string | Record<string, boolean>
   shapeStyle?: StyleValue
   filterClass?: string | Record<string, boolean>
   filterStyle?: StyleValue
   tag?: string
 }>()
+
+const slots = defineSlots<{
+  'shape-content'?: () => {}
+  'bg-overlay'?: () => {}
+  default?: () => {}
+}>()
+
+function isClassEmpty(
+  cls: string | Record<string, boolean> | undefined
+): boolean {
+  if (!cls) return true
+  if (typeof cls === 'string') return !cls.trim()
+  return Object.keys(cls).length === 0
+}
+
+function isStyleEmpty(style: StyleValue): boolean {
+  if (typeof style === 'string') return !style.trim()
+  if (Array.isArray(style)) return style.length === 0
+  if (style === null) return true
+  if (style === undefined) return true
+  return Object.keys(style).length === 0
+}
+
+const isShapeCustomized = computed(() => {
+  if (slots['shape-content']) return true
+  if (!isClassEmpty(props.shapeClass)) return true
+  return !isStyleEmpty(props.shapeStyle)
+})
+const isFilterCustomized = computed(() => {
+  if (!isClassEmpty(props.filterClass)) return true
+  return !isStyleEmpty(props.filterStyle)
+})
 </script>
 
 <template>
   <Component :is="tag ?? 'div'">
     <div class="d-shape">
-      <div class="d-shape__bg-filter" :class="filterClass" :style="filterStyle">
-        <div class="d-shape__bg-wrapper">
-          <div class="d-shape__bg" :class="shapeClass" :style="shapeStyle">
+      <div
+        v-if="isShapeCustomized || slots['bg-overlay'] || isFilterCustomized"
+        class="d-shape__bg-filter"
+        :class="filterClass"
+        :style="filterStyle"
+      >
+        <div
+          v-if="isShapeCustomized || slots['bg-overlay']"
+          class="d-shape__bg-wrapper"
+        >
+          <div
+            v-if="isShapeCustomized"
+            class="d-shape__bg"
+            :class="shapeClass"
+            :style="shapeStyle"
+          >
             <slot name="shape-content" />
           </div>
           <slot name="bg-overlay" />

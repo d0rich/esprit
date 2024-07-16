@@ -1,16 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
 import DWrapFocusHighlight, {
   type HighlightVariant
 } from '../utils/DWrapFocusHighlight.vue'
 import DWrapShape from '../utils/DWrapShape.vue'
-
-export default {
-  name: 'DActionsList',
-  components: {
-    DWrapFocusHighlight,
-    DWrapShape
-  }
-}
 
 export type ActionListItem<TEmit = any> = {
   title: string
@@ -23,9 +15,13 @@ export type ActionListItem<TEmit = any> = {
     [k: string]: any
   }
 }
-</script>
-
-<script setup lang="ts">
+defineOptions({
+  name: 'DActionsList',
+  components: {
+    DWrapFocusHighlight,
+    DWrapShape
+  }
+})
 defineEmits(['actionFocus', 'actionUnfocus', 'actionChoose'])
 
 defineProps({
@@ -43,12 +39,16 @@ function getCurrentHighlightVariant(action: ActionListItem): HighlightVariant {
   if (action.attrs?.highlightVariant) return action.attrs.highlightVariant
   return 'negative-list-item'
 }
+
+const slots = defineSlots<{
+  header?: () => {}
+}>()
 </script>
 
 <template>
   <DWrapShape shape-class="d-actions-list__shape">
     <div class="d-actions-list__body">
-      <div class="d-actions-list__header">
+      <div v-if="slots.header" class="d-actions-list__header">
         <slot name="header" />
       </div>
 

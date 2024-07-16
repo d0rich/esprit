@@ -1,13 +1,10 @@
-<script lang="ts">
-import { type StyleValue } from 'vue'
-
-export default {
-  name: 'DWrapBackground'
-}
-</script>
-
 <script setup lang="ts">
-defineProps({
+import { type StyleValue, computed } from 'vue'
+
+defineOptions({
+  name: 'DWrapBackground'
+})
+const props = defineProps({
   overlayClass: {
     type: [String, Object as () => Record<string, boolean>],
     default: ''
@@ -33,13 +30,34 @@ defineProps({
     default: 'div'
   }
 })
+
+const slots = defineSlots<{
+  svg?: () => {}
+  default?: () => {}
+}>()
+
+const isOverlayStyleEmpty = computed(() => {
+  if (typeof props.overlayStyle === 'string') return !props.overlayStyle.trim()
+  if (Array.isArray(props.overlayStyle)) return props.overlayStyle.length === 0
+  if (props.overlayStyle === null) return true
+  if (props.overlayStyle === undefined) return true
+  return Object.keys(props.overlayStyle).length === 0
+})
 </script>
 
 <template>
   <Component :is="tag" class="mbg__main-container">
-    <div class="mbg__relative-container">
-      <div class="mbg__layer" :class="overlayClass" :style="overlayStyle" />
-      <div class="mbg__layer">
+    <div
+      v-if="overlayClass || !isOverlayStyleEmpty || slots.svg || slots.default"
+      class="mbg__relative-container"
+    >
+      <div
+        v-if="overlayClass || !isOverlayStyleEmpty"
+        class="mbg__layer"
+        :class="overlayClass"
+        :style="overlayStyle"
+      />
+      <div v-if="slots.svg" class="mbg__layer">
         <slot name="svg" />
       </div>
       <div
@@ -48,7 +66,7 @@ defineProps({
         :class="dotsClass"
         :style="dotsStyle"
       />
-      <div class="mbg__content">
+      <div v-if="slots.default" class="mbg__content">
         <slot />
       </div>
     </div>
