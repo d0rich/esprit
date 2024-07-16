@@ -4,7 +4,6 @@ import * as skillsAnimations from '~~/utils/homepage/skills'
 const { data } = useAsyncData(() => queryContent('/homepage/skills').find())
 
 const skillsGroups = ref<ComponentPublicInstance[]>([])
-const bgSpinner = ref<ComponentPublicInstance | null>(null)
 
 onMounted(() => {
   skillsAnimations.applyContentRevealAnimation(skillsGroups)
@@ -21,12 +20,7 @@ onMounted(() => {
     <template #svg>
       <div class="relative w-full h-full max-w-3xl mx-auto">
         <DAnimationHypnosis
-          :ref="
-            (el: ComponentPublicInstance) => {
-              bgSpinner = el
-            }
-          "
-          class="absolute inset-0 mx-auto right-2/3 top-[12%] w-80 -rotate-12"
+          class="absolute inset-0 mx-auto right-2/3 top-28 w-80 -rotate-12"
         />
         <DAnimationHypnosis
           class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
@@ -41,8 +35,8 @@ onMounted(() => {
         v-for="(doc, index) in data"
         :key="doc._id"
         :ref="
-          (el: ComponentPublicInstance) => {
-            skillsGroups[index] = el
+          (el) => {
+            skillsGroups[index] = el as ComponentPublicInstance
           }
         "
         tag="div"
