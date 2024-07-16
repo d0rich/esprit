@@ -20,5 +20,11 @@ export const externalRepos: GithubExternalRepo[] = [
     repo: 'ton-validators-map',
     tags: ['TON', 'front-end', 'geoJSON', 'SVG', 'animations'],
     complexity: 3
+  },
+  {
+    owner: 'ton-org',
+    repo: 'ton',
+    tags: ['TON', 'blockchain'],
+    complexity: 3
   }
 ]
