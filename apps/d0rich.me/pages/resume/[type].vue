@@ -93,7 +93,7 @@ const { data: resumeList } = useAsyncData(
           mask="wolf"
           color
           outline
-          class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden"
+          class="h-full w-full flex flex-row-reverse absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden"
         />
       </section>
       <ContentRenderer
