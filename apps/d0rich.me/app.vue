@@ -17,6 +17,7 @@ useHead({
     {
       name: 'keywords',
       content: [
+        'Nikolai Dorofeev',
         'developer',
         'Georgia',
         'hire',
@@ -25,7 +26,7 @@ useHead({
         'web',
         'frontend',
         'backend',
-        'system analyst'
+        'blockchain'
       ].join(', ')
     }
   ],
