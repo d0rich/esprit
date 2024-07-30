@@ -20,64 +20,66 @@ defineProps<{
   >
     <div class="project-tile__frame--top" />
     <div class="project-tile__frame--bottom" />
-    <NuxtLink class="project-tile__link" :to="addTrailingSlash(project.url)">
-      <div class="project-tile__link__image-wrapper">
-        <div
-          class="project-tile__link__image"
-          :style="`background-image: url(${project.image});`"
-        />
-      </div>
-      <div class="project-tile__link-image-overlay" />
-      <div style="height: 5rem; pointer-events: none" />
-      <div class="max-w-2xl mx-auto px-3">
-        <DWrapShape
-          shape-class="bg-black bg-opacity-90"
-          shape-style="clip-path: var(--shape-card);"
-        >
-          <div style="padding: var(--shape-card-padding)">
-            <div class="text-right">
-              Last updated:
-              <time class="font-bold">{{
-                dateToDayMonthYear(project.last_updated)
-              }}</time>
+    <NuxtLink :to="addTrailingSlash(project.url)">
+      <div class="project-tile__link">
+        <div class="project-tile__link__image-wrapper">
+          <div
+            class="project-tile__link__image"
+            :style="`background-image: url(${project.image});`"
+          />
+        </div>
+        <div class="project-tile__link-image-overlay" />
+        <div style="height: 5rem; pointer-events: none" />
+        <div class="max-w-2xl mx-auto px-3">
+          <DWrapShape
+            shape-class="bg-black bg-opacity-90"
+            shape-style="clip-path: var(--shape-card);"
+          >
+            <div style="padding: var(--shape-card-padding)">
+              <div class="text-right">
+                Last updated:
+                <time class="font-bold">{{
+                  dateToDayMonthYear(project.last_updated)
+                }}</time>
+              </div>
+              <h2 class="text-3xl font-bold text-red-200 mb-2">
+                {{ project.title }}
+              </h2>
+
+              <p class="my-2">
+                {{ project.description }}
+              </p>
+
+              <p>
+                Complexity:
+                <Icon
+                  v-for="num in project.complexity"
+                  :key="num"
+                  class="text-red-200"
+                  name="ic:sharp-star"
+                />
+                <Icon
+                  v-for="num in 5 - (project.complexity || 0)"
+                  :key="num"
+                  class="text-red-200"
+                  name="ic:sharp-star-outline"
+                />
+              </p>
+
+              <div class="text-right mt-3 -mr-5">
+                <DChip
+                  v-for="tag in project.tags"
+                  :key="tag"
+                  class="project-tile__link__tag"
+                >
+                  #{{ tag }}
+                </DChip>
+              </div>
             </div>
-            <h2 class="text-3xl font-bold text-red-200 mb-2">
-              {{ project.title }}
-            </h2>
-
-            <p class="my-2">
-              {{ project.description }}
-            </p>
-
-            <p>
-              Complexity:
-              <Icon
-                v-for="num in project.complexity"
-                :key="num"
-                class="text-red-200"
-                name="ic:sharp-star"
-              />
-              <Icon
-                v-for="num in 5 - (project.complexity || 0)"
-                :key="num"
-                class="text-red-200"
-                name="ic:sharp-star-outline"
-              />
-            </p>
-
-            <div class="text-right mt-3 -mr-5">
-              <DChip
-                v-for="tag in project.tags"
-                :key="tag"
-                class="project-tile__link__tag"
-              >
-                #{{ tag }}
-              </DChip>
-            </div>
-          </div>
-        </DWrapShape>
+          </DWrapShape>
+        </div>
+        <div style="height: 5rem; pointer-events: none" />
       </div>
-      <div style="height: 5rem; pointer-events: none" />
     </NuxtLink>
   </div>
 </template>
