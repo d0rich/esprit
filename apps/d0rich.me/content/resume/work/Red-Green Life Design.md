@@ -5,6 +5,7 @@ place:
   link: https://www.redgreenlifedesign.com/
 daterange:
   start: 2023-11-11
+  end: 2024-07-16
 ---
 
 - Developed a mobile application for tracking diet results using React Native + Expo.
