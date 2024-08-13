@@ -18,22 +18,22 @@ defineProps<{
 </script>
 
 <template>
-  <DCard class="">
-    <DCardTitle>
+  <DCard>
+    <DCardTitle class="break-after-avoid-page">
       {{ timenote.title }}
       <template #extra>
         <Component
           :is="timenote.place.link ? 'a' : 'span'"
           :href="timenote.place.link"
           target="_blank"
-          class="timenote__place-link print:ml-2"
+          class="timenote__place-link"
         >
           {{ timenote.place.title }}
         </Component>
       </template>
     </DCardTitle>
     <p
-      class="text-blue-600 dark:text-blue-300 print:text-sm break-inside-avoid"
+      class="timenote__daterange"
     >
       <time :datetime="timenote.daterange.start">
         {{ dateToMonthYear(timenote.daterange.start) }}
@@ -55,12 +55,16 @@ defineProps<{
         }})
       </span>
     </p>
-    <ContentRenderer class="resume-time-note__content" :value="timenote" />
+    <ContentRenderer class="print:text-sm break-inside-avoid-page" :value="timenote" />
   </DCard>
 </template>
 
 <style>
 a.timenote__place-link {
-  @apply underline;
+  @apply underline print:ml-2;
+}
+.timenote__daterange {
+  @apply text-blue-600 dark:text-blue-300 print:text-sm
+         break-inside-avoid break-after-avoid-page;
 }
 </style>

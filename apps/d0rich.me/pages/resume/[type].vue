@@ -181,11 +181,11 @@ section {
 <style>
 .resume-page__section-title {
   @apply text-5xl text-blue-700 dark:text-blue-300 mb-2
-    print:text-2xl print:mt-4;
+    print:text-2xl print:mt-4 break-after-avoid-page;
 }
 
 .resume-page__prose-content {
-  @apply [&_p]:!m-0 [&_p]:!mb-2 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
+  @apply [&_p]:!m-0 [&_p]:!mb-2 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0 print:text-sm;
 }
 
 @media print {

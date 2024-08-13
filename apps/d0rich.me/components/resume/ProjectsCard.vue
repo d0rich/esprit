@@ -27,7 +27,7 @@ defineProps<{
 
 <style>
 .resume-projects-card__list {
-  @apply pl-5 space-y-3 list-disc;
+  @apply pl-5 space-y-3 list-disc print:text-sm;
 }
 a.resume-projects-card__place {
   @apply underline dark:text-blue-300 text-blue-800;
