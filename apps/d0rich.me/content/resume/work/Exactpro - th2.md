@@ -1,5 +1,5 @@
 ---
-title: DocOps / Full-stack Engineer
+title: Senior Fullstack Developer
 place:
   title: Exactpro
   link: https://exactpro.com/
@@ -8,12 +8,15 @@ daterange:
   end: 2023-08-16
 ---
 
-- Developed a custom documentation portal with features for technical writers using Gridsome (Vue.js + GraphQL).
-- Led development of an easy-to-deploy and easy-to-update docs web toolkit package based on Nuxt.js and Tailwind CSS.
-- Integrated applications with 3rd party solutions such as GitHub or Algolia.
-- Analyzed user requirements to derive technical software design and performance requirements.
-- Developed demonstration Python and Kotlin modules for th2 - complex Kubernetes-based microservices framework with gRPC and RabbitMQ communication.
-- Wrote clear and easy-to-understand documentation pages for complex Kubernetes-based - microservices framework.
-- Configured CI/CD pipelines for publishing static websites and npm packages via GitHub actions, GitLab CI, Jenkins.
-- Mentored junior specialists and technical writers.
-- Developed #1 architecture for providing traceability of digital assets between blockchains for Swift Hackathon 2022.
+*Documentation Portal Development for th2 (Kubernetes-based Microservices Framework)*:
+- Played a key role in designing and developing a custom documentation portal tailored for technical writers, utilizing Gridsome (Vue.js + GraphQL);
+- Analyzed and translated user requirements into robust technical designs and performance specifications;
+- Led the development of a highly deployable and easily maintainable documentation toolkit based on Nuxt.js and Tailwind CSS;
+- Integrated third-party solutions, including GitHub and Algolia, to enhance documentation functionality;
+- Developed demonstration modules in Python and Kotlin for th2, focusing on gRPC and RabbitMQ communication within a Kubernetes environment;
+- Authored clear, comprehensive documentation for complex microservices frameworks;
+- Configured CI/CD pipelines for the seamless deployment of static websites and npm packages using - GitHub Actions, GitLab CI, and Jenkins;
+- Provided mentorship to junior developers and technical writers, fostering skill development and knowledge sharing.
+
+*Other achievements*:
+- Architected the winning solution for the Swift Hackathon 2022, enabling traceability of digital assets across blockchains.
