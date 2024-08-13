@@ -19,7 +19,7 @@ defineProps<{
 
 <template>
   <DCard>
-    <DCardTitle class="break-after-avoid-page">
+    <DCardTitle class="break-inside-avoid-page break-after-avoid-page">
       {{ timenote.title }}
       <template #extra>
         <Component
