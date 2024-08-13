@@ -32,9 +32,7 @@ defineProps<{
         </Component>
       </template>
     </DCardTitle>
-    <p
-      class="timenote__daterange"
-    >
+    <p class="timenote__daterange">
       <time :datetime="timenote.daterange.start">
         {{ dateToMonthYear(timenote.daterange.start) }}
       </time>
@@ -55,7 +53,10 @@ defineProps<{
         }})
       </span>
     </p>
-    <ContentRenderer class="print:text-sm break-inside-avoid-page" :value="timenote" />
+    <ContentRenderer
+      class="print:text-sm break-inside-avoid-page"
+      :value="timenote"
+    />
   </DCard>
 </template>
 
