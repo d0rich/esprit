@@ -18,14 +18,18 @@ useHead({
       name: 'keywords',
       content: [
         'Nikolai Dorofeev',
+        'd0rich',
+        'dorich2000@gmail.com',
+        'n.dorofeev.pro@gmail.com',
         'developer',
-        'Georgia',
-        'hire',
+        'programmer',
+        'software engineer',
         'IT',
         'informational technologies',
         'web',
         'frontend',
         'backend',
+        'fullstack',
         'blockchain'
       ].join(', ')
     }
