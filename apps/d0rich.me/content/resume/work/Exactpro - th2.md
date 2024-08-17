@@ -8,15 +8,9 @@ daterange:
   end: 2023-08-16
 ---
 
-*Documentation Portal Development for th2 (Kubernetes-based Microservices Framework)*:
-- Played a key role in designing and developing a custom documentation portal tailored for technical writers, utilizing Gridsome (Vue.js + GraphQL);
-- Analyzed and translated user requirements into robust technical designs and performance specifications;
-- Led the development of a highly deployable and easily maintainable documentation toolkit based on Nuxt.js and Tailwind CSS;
-- Integrated third-party solutions, including GitHub and Algolia, to enhance documentation functionality;
-- Developed demonstration modules in Python and Kotlin for th2, focusing on gRPC and RabbitMQ communication within a Kubernetes environment;
-- Authored clear, comprehensive documentation for complex microservices frameworks;
-- Configured CI/CD pipelines for the seamless deployment of static websites and npm packages using - GitHub Actions, GitLab CI, and Jenkins;
-- Provided mentorship to junior developers and technical writers, fostering skill development and knowledge sharing.
-
-*Other achievements*:
-- Architected the winning solution for the Swift Hackathon 2022, enabling traceability of digital assets across blockchains.
+- Designed and developed a custom documentation portal with Vue.js, VueX, Node.js, GraphQL, increasing accessibility of the crucial data and speeding up the process of its publishing for the empoyees without deep technology understanding;
+- Led the development of a highly deployable and easily maintainable documentation framework based on Nuxt.js, Node.js, and Tailwind CSS, speeding up time-to-market and reducing maintenance costs for the propietary documentation portals;
+- Automated syncronization of the documentation portal with the GitHub repositories and Algolia search engine, ensuring the documentation is always up-to-date and easily searchable;
+- Developed reusable high-performant microservices in Python and Kotlin, focusing on gRPC and RabbitMQ communication within a Docker / Kubernetes environment, saving developent time for the several teams;
+- Automated the seamless deployment of static websites and npm packages via CI/CD pipelines using GitHub Actions, GitLab CI, and Jenkins, saving the team time and effort;
+- Architected the winning solution for the Swift Hackathon 2022, enabling traceability of digital assets across blockchains. It helped to bring new clients to the company.

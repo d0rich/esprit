@@ -1,21 +1,15 @@
 ---
-title: Full-stack Engineer
+title: Fullstack Developer
 place:
   title: Red-Green Life Design
   link: https://www.redgreenlifedesign.com/
 daterange:
   start: 2023-11-11
-  end: 2024-07-16
+  end: 2024-08-16
 ---
 
-*Mobile Application for Diet Tracking*
-
-- Collaborated as part of a small, cross-functional team (team lead, mobile developer, designer) to develop a mobile application for tracking diet results;
 - Developed the mobile client using React Native and Expo, delivering a smooth and responsive user experience;
 - Worked closely with the designer to ensure that the UI/UX aligned with user expectations and adhered to design specifications;
-- Built and maintained backend services using Node.js and Express, providing reliable support for the mobile application;
-- Designed and implemented RESTful APIs in collaboration with the frontend developer, ensuring seamless data exchange between the client and server;
-- Configured OAuth2.0 authentication, ensuring secure user access and data protection;
-- Managed the PostgreSQL database, overseeing data storage, retrieval, and integrity for the application;
-- Managed backend instances across different stages of product development, ensuring consistent performance and reliability;
-- Configured a CI/CD pipeline using GitHub Actions, automating the deployment process and enhancing development efficiency.
+- Built and maintained RESTful APIs using Node.js, Express, PostgreSQL, and Prisma ORM, providing reliable support for the mobile application;
+- Configured OAuth2.0 authentication, providing greater User Experience with one-tap authentification;
+- Automated several environments deployments via CI/CD pipelines using GitHub Actions, saving time and effort for the team.
