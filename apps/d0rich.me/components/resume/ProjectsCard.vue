@@ -12,7 +12,7 @@ defineProps<{
       <li
         v-for="project in projects"
         :key="project.url"
-        class="break-inside-avoid"
+        class="break-inside-avoid first:break-after-avoid"
       >
         <NuxtLink
           class="resume-projects-card__place"
