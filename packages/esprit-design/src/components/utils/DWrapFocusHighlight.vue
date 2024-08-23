@@ -12,7 +12,9 @@ export default {
 
 <script setup lang="ts">
 export type HighlightVariant =
+  | 'tile'
   | 'negative-tile'
+  | 'composite-tile'
   | 'list-item'
   | 'negative-list-item'
   | 'composite-list-item'
@@ -69,19 +71,30 @@ const currentComponent = computed(() => {
         class="d-focus-hl__hl--negative-tile"
       />
       <div
-        v-else-if="variant === 'list-item'"
-        class="d-focus-hl__hl--list-item"
+        v-else-if="variant === 'tile' || variant === 'composite-tile'"
+        class="d-focus-hl__hl--tile"
         :class="colorClass"
       />
       <div
         v-else-if="variant === 'negative-list-item'"
         class="d-focus-hl__hl--negative-list-item"
       />
-      <template v-else-if="variant === 'composite-list-item'">
-        <div class="d-focus-hl__hl--list-item" :class="colorClass" />
-        <div class="d-focus-hl__hl--negative-list-item" />
-      </template>
+      <div
+        v-else-if="variant === 'list-item' || variant === 'composite-list-item'"
+        class="d-focus-hl__hl--list-item"
+        :class="colorClass"
+      />
+
       <slot />
+
+      <div
+        v-if="variant === 'composite-tile'"
+        class="d-focus-hl__hl--negative-tile"
+      />
+      <div
+        v-else-if="variant === 'composite-list-item'"
+        class="d-focus-hl__hl--negative-list-item"
+      />
     </Component>
   </DWrapShape>
 </template>
@@ -89,7 +102,7 @@ const currentComponent = computed(() => {
 <!-- common -->
 <style>
 .d-focus-hl {
-  @apply relative;
+  @apply relative isolate;
 }
 .d-focus-hl--default-color {
   @apply bg-red-600;
@@ -98,11 +111,11 @@ const currentComponent = computed(() => {
 
 <!-- negative-tile -->
 <style>
-.d-focus-hl:has(.d-focus-hl__hl--negative-tile) {
+.d-focus-hl:has(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   @apply w-fit;
 }
 
-.d-focus-hl > .d-focus-hl__hl--negative-tile {
+.d-focus-hl > :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   width: 0%;
   height: 0%;
   top: 50%;
@@ -110,23 +123,31 @@ const currentComponent = computed(() => {
   content: '';
   opacity: 0;
   pointer-events: none;
-  @apply absolute backdrop-invert transition-all;
+  @apply absolute transition-all;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-tile,
-.d-focusable:focus .d-focus-hl__hl--negative-tile {
+.d-focus-hl > .d-focus-hl__hl--negative-tile {
+  @apply backdrop-invert;
+}
+
+.d-focus-hl > .d-focus-hl__hl--tile {
+  @apply -z-10;
+}
+
+.d-focus-hl:hover > :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile),
+.d-focusable:focus :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   opacity: 1;
   animation: hl--negative-tile-animation linear 1s infinite;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-tile {
+.d-focus-hl:hover > :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   width: 110%;
   height: 130%;
   top: -15%;
   left: -5%;
 }
 
-.d-focusable:focus .d-focus-hl__hl--negative-tile {
+.d-focusable:focus :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   width: 140% !important;
   height: 200% !important;
   top: -50% !important;
@@ -142,7 +163,7 @@ const currentComponent = computed(() => {
       ),
     .d-focus-hl--active
   )
-  :is(.d-focus-hl__hl--negative-tile) {
+  :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
   opacity: 1;
   width: 120% !important;
   height: 120% !important;

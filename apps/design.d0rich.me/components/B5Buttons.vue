@@ -31,10 +31,40 @@
           </p>
           <ul>
             <li>
-              <DBtn no-rotate> Button </DBtn>
+              <DBtn no-rotate highlight="tile"> Tile </DBtn>
             </li>
             <li>
-              <DBtn no-rotate active> Active button </DBtn>
+              <DBtn no-rotate highlight="tile" active> Active tile </DBtn>
+            </li>
+            <li>
+              <DBtn highlight="tile" no-rotate color-class="bg-blue-600">
+                Custom color
+              </DBtn>
+            </li>
+            <li>
+              <DBtn no-rotate> Negative </DBtn>
+            </li>
+            <li>
+              <DBtn no-rotate active> Active negative </DBtn>
+            </li>
+            <li>
+              <DBtn
+                highlight="composite-tile"
+                no-rotate
+                color-class="bg-blue-600"
+              >
+                Composite
+              </DBtn>
+            </li>
+            <li>
+              <DBtn
+                highlight="composite-tile"
+                no-rotate
+                active
+                color-class="bg-blue-600"
+              >
+                Active Composite
+              </DBtn>
             </li>
           </ul>
         </DCard>
@@ -48,7 +78,11 @@
           </p>
 
           <ul class="isolate">
-            <li>highlight="list-item" > List highlight</li>
+            <li>
+              <DBtn no-rotate highlight="list-item">
+                Active list highlight
+              </DBtn>
+            </li>
             <li>
               <DBtn no-rotate highlight="list-item" active>
                 Active list highlight
