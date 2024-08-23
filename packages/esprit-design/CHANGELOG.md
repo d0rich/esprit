@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.6
+
+### Patch Changes
+
+- d54be62: More tile highlights options
+
 ## 0.3.5
 
 ### Patch Changes
