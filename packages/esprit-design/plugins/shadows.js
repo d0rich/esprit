@@ -46,9 +46,13 @@ function generateDirections() {
   return result
 }
 
-function generateColors() {
+function generateColors(themeColors) {
   const result = {}
-  for (const colorKey in colors) {
+  const localColors = {
+    ...colors,
+    ...themeColors
+  }
+  for (const colorKey in localColors) {
     if (
       [
         'inherit',
@@ -63,14 +67,14 @@ function generateColors() {
     ) {
       continue
     }
-    if (typeof colors[colorKey] === 'string') {
+    if (typeof localColors[colorKey] === 'string') {
       result[`.ss-${colorKey}`] = {
-        [COLOR_VAR]: colors[colorKey]
+        [COLOR_VAR]: localColors[colorKey]
       }
-    } else if (typeof colors[colorKey] === 'object') {
-      for (const colorVariantKey in colors[colorKey]) {
+    } else if (typeof localColors[colorKey] === 'object') {
+      for (const colorVariantKey in localColors[colorKey]) {
         result[`.ss-${colorKey}-${colorVariantKey}`] = {
-          [COLOR_VAR]: colors[colorKey][colorVariantKey]
+          [COLOR_VAR]: localColors[colorKey][colorVariantKey]
         }
       }
     }
@@ -78,10 +82,10 @@ function generateColors() {
   return result
 }
 
-module.exports = plugin(function ({ addUtilities }) {
+module.exports = plugin(function ({ addUtilities, config }) {
   addUtilities({
     '.sharp-shadow': defaultStyle,
     ...generateDirections(),
-    ...generateColors()
+    ...generateColors(config().theme.colors)
   })
 })
