@@ -3,7 +3,7 @@ export default defineAppConfig({
     title: 'd0xigen',
     description: '🌬📓 Docs to breath life into your project',
     url: 'https://d0xigen.d0rich.me',
-    author: 'Nikolay Dorofeev',
+    author: 'Nikolai Dorofeev',
     authorSocial: {
       telegram: '@d0rich',
       website: 'https://d0rich.me',
