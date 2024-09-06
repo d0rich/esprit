@@ -13,7 +13,14 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="doc._path" class="transition-transform hover:scale-90">
+  <NuxtLink
+    :to="doc._path"
+    class="d-next-prev-card"
+    :class="{
+      next: direction === 'after',
+      prev: direction === 'before'
+    }"
+  >
     <DCard dense>
       <DCardTitle v-if="direction === 'before'">
         <Icon name="ic:sharp-arrow-back-ios" />Previous
@@ -28,3 +35,9 @@ defineProps<{
     </DCard>
   </NuxtLink>
 </template>
+
+<style scoped>
+.d-next-prev-card {
+  @apply transition-transform hover:scale-90;
+}
+</style>

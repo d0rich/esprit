@@ -54,7 +54,7 @@ onMounted(() => {
     <NuxtLayout name="docs">
       <ContentRenderer v-if="doc && doc._type === 'markdown'" :value="doc">
         <ContentRendererMarkdown tag="article" class="d-article" :value="doc" />
-        <nav class="justify-center grid sm:grid-cols-2 gap-8 items-start mt-32">
+        <nav class="d-next-prev-nav">
           <DLayoutSurroundDocCard
             v-if="doc.before"
             :doc="doc.before"
@@ -75,5 +75,8 @@ onMounted(() => {
 <style>
 .d-article :is(h1, h2, h3, h4, h5, h6) {
   @apply scroll-m-20;
+}
+.d-next-prev-nav {
+  @apply justify-center grid sm:grid-cols-2 gap-8 items-start mt-32;
 }
 </style>
