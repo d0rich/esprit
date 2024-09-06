@@ -3,7 +3,8 @@ import { Disqus } from 'vue-disqus'
 import type { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
 
 interface Document extends MarkdownParsedContent {
-  date?: Date
+  date?: string
+  image?: string
 }
 
 const slug = clearSlug(useRoute().params.slug as string[])
@@ -53,16 +54,34 @@ const linkToBlog = computed(() => {
     Math.floor((position.value ?? 1) / (itemsOnPage - 1) + 1)
   )
 })
+
+const docDate = computed(() => {
+  if (!doc.value?.date) return undefined
+  return new Date(doc.value.date)
+})
 </script>
 
 <template>
   <div v-if="doc" class="pb-[50vh] pt-10">
-    <AsyncSafeSeoWithOg :title="doc.title" :description="doc.description" />
+    <AsyncSafeSeoWithOg
+      :title="doc.title"
+      :description="doc.description"
+      :image="doc.image"
+    />
+    <Head>
+      <Meta
+        v-if="docDate"
+        property="tg:published_date"
+        :content="String(Math.floor(docDate.getTime() / 1000))"
+      />
+    </Head>
     <div class="blog-article blog-fonts">
       <nav class="mb-10">
         <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
       </nav>
-      <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
+      <time v-if="docDate" :datetime="docDate.toISOString()">
+        {{ dateToDayMonthYear(doc.date) }}
+      </time>
     </div>
     <ContentRenderer
       :value="doc"
