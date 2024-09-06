@@ -4,6 +4,11 @@ export default defineAppConfig({
     description: '🌬📓 Docs to breath life into your project',
     url: 'https://d0xigen.d0rich.me',
     author: 'Nikolay Dorofeev',
+    authorSocial: {
+      telegram: '@d0rich',
+      website: 'https://d0rich.me',
+      twitter: '@d0rich'
+    },
     social: {
       github: 'https://github.com/d0rich/esprit/tree/main/packages/d0xigen'
     },

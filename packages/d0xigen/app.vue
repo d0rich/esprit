@@ -19,6 +19,12 @@ useSeoMeta({
   ogImage: appConfig.d0xigen.url + appConfig.d0xigen.og.image,
   twitterImage: appConfig.d0xigen.url + appConfig.d0xigen.og.image,
   twitterCard: 'summary_large_image',
+  twitterSite: computed(
+    () =>
+      appConfig.d0xigen.authorSocial?.twitterSite ??
+      appConfig.d0xigen.authorSocial?.twitter
+  ),
+  twitterCreator: appConfig.d0xigen.authorSocial?.twitter,
   ogUrl: computed(() => appConfig.d0xigen.url + route.path)
 })
 </script>

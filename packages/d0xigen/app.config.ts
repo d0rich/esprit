@@ -6,6 +6,12 @@ interface ThemeConfig {
   description: string
   url: string
   author: string
+  authorSocial?: {
+    telegram?: `@${string}`
+    website?: string
+    twitter?: `@${string}`
+    twitterSite?: `@${string}`
+  }
   social?: {
     github?: string
   }
@@ -40,6 +46,11 @@ export default defineAppConfig({
     description: 'My awesome docs',
     url: 'https://d0rich.me',
     author: 'Nikolai Dorofeev',
+    authorSocial: {
+      telegram: '@d0rich',
+      website: 'https://d0rich.me',
+      twitter: '@d0rich'
+    },
     social: {
       github: undefined
     },
