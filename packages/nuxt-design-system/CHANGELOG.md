@@ -1,5 +1,11 @@
 # @d0rich/nuxt-design-system
 
+## 0.9.3
+
+### Patch Changes
+
+- 54f05eb: Fix name typo
+
 ## 0.9.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # d0xigen
 
+## 0.5.3
+
+### Patch Changes
+
+- 54f05eb: Fix name typo
+- Updated dependencies [54f05eb]
+  - @d0rich/nuxt-content-mermaid@0.3.1
+  - @d0rich/nuxt-design-system@0.9.3
+
 ## 0.5.2
 
 ### Patch Changes
