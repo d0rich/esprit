@@ -1,5 +1,11 @@
 # d0xigen
 
+## 0.5.1
+
+### Patch Changes
+
+- 8969701: Add author's website, twitter, telegram to the meta
+
 ## 0.5.0
 
 ### Minor Changes
