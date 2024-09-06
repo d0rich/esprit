@@ -1,6 +1,6 @@
 {
   "name": "@d0rich/nuxt-design-system",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "publishConfig": {
     "access": "public"
   },

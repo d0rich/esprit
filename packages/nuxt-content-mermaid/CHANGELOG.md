@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 0.3.1
+
+### Patch Changes
+
+- 54f05eb: Fix name typo
+
 ## 0.3.0
 
 ### Minor Changes
