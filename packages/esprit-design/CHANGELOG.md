@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.3.7
+
+### Patch Changes
+
+- 167fbab: Tailwind shadows plugin inherits colors from config
+
 ## 0.3.6
 
 ### Patch Changes
