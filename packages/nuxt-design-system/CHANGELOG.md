@@ -1,5 +1,11 @@
 # @d0rich/nuxt-design-system
 
+## 0.9.2
+
+### Patch Changes
+
+- f3e043a: Add data-language for code blocks for telegram instant view
+
 ## 0.9.1
 
 ### Patch Changes
