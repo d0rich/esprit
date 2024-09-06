@@ -1,5 +1,11 @@
 # d0xigen
 
+## 0.5.2
+
+### Patch Changes
+
+- a468cb2: Specify classes for next/prev cards
+
 ## 0.5.1
 
 ### Patch Changes
