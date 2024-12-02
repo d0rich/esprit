@@ -28,13 +28,13 @@
     "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
+    "@nuxt/content": "^2.13.4",
     "@types/dateformat": "^5.0.2"
   },
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "@nuxt-themes/typography": "^1.0.1",
-    "@nuxt/content": "^2.13.4",
     "@vueuse/core": "^12.0.0",
     "dateformat": "^5.0.3",
     "gsap": "^3.12.5",
