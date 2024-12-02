@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-  path: '/projects/:page(\\d+)?'
+  path: '/projects/:page(\\d+)?',
+  colorMode: 'dark'
 })
 
 const route = useRoute()
