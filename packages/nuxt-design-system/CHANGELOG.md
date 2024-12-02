@@ -1,5 +1,16 @@
 # @d0rich/nuxt-design-system
 
+## 0.11.0
+
+### Minor Changes
+
+- 6347d2a: Add prose components for primary usage of tailwindcss typography
+
+### Patch Changes
+
+- Updated dependencies [6347d2a]
+  - @d0rich/esprit-design@0.4.1
+
 ## 0.10.0
 
 ### Minor Changes

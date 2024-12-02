@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.4.1
+
+### Patch Changes
+
+- 6347d2a: Add light theme support for DStat component
+
 ## 0.4.0
 
 ### Minor Changes
