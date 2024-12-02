@@ -64,8 +64,8 @@ function starFromValue(value: number) {
 }
 function statFromIndex(index: number) {
   return {
-    value: props.values ? props.values[index] ?? 1 : 1,
-    title: props.titles ? props.titles[index] ?? '' : ''
+    value: props.values ? (props.values[index] ?? 1) : 1,
+    title: props.titles ? (props.titles[index] ?? '') : ''
   }
 }
 const firstStat = computed(() => statFromIndex(0))

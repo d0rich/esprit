@@ -156,11 +156,11 @@ const currentComponent = computed(() => {
 
 :is(
     :is(
-        .router-link-active
-          .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link),
-        .router-link-exact-active
-          .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
-      ),
+      .router-link-active
+        .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link),
+      .router-link-exact-active
+        .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
+    ),
     .d-focus-hl--active
   )
   :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
@@ -236,11 +236,11 @@ const currentComponent = computed(() => {
 
 :is(
     :is(
-        .router-link-active
-          .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link),
-        .router-link-exact-active
-          .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
-      ),
+      .router-link-active
+        .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link),
+      .router-link-exact-active
+        .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
+    ),
     .d-focus-hl--active
   )
   :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {

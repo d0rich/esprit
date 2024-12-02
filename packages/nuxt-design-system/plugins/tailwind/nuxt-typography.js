@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss/plugin')} */
 const plugin = require('tailwindcss/plugin')
 

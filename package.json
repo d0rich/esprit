@@ -14,10 +14,10 @@
     "dev:d0rich.me": "turbo run d0rich.me#dev",
     "dev:design.d0rich.me": "turbo run design.d0rich.me#dev",
     "dev:d0xigen.d0rich.me": "turbo run d0xigen.d0rich.me#dev",
-    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:js": "eslint .",
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore . --fix",
+    "lintfix": "prettier --write --list-different . && eslint . --fix",
     "changes": "changeset",
     "release": "turbo run test && changeset publish"
   },
