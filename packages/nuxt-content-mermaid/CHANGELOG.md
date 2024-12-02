@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 0.4.1
+
+### Patch Changes
+
+- 6347d2a: Add a class `not-prose` to ignore tailwindcss prose styles
+
 ## 0.4.0
 
 ### Minor Changes

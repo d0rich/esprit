@@ -1,5 +1,18 @@
 # d0xigen
 
+## 1.0.0
+
+### Major Changes
+
+- 6347d2a: Remove nuxt typography and use tailwindcss typography with some customizations
+
+### Patch Changes
+
+- Updated dependencies [6347d2a]
+- Updated dependencies [6347d2a]
+  - @d0rich/nuxt-content-mermaid@0.4.1
+  - @d0rich/nuxt-design-system@0.11.0
+
 ## 0.6.0
 
 ### Minor Changes
