@@ -2,7 +2,6 @@
 export default defineNuxtConfig({
   extends: [
     '@d0rich/nuxt-content-mermaid',
-    '@nuxt-themes/typography',
     '@d0rich/nuxt-design-system'
   ],
 

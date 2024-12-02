@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Disqus } from 'vue-disqus'
-import type { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { MarkdownParsedContent } from '@nuxt/content'
+import { addTrailingSlash } from '@/utils/seo'
+import { dateToDayMonthYear } from '@/utils/date'
 
 interface Document extends MarkdownParsedContent {
   date?: string
@@ -75,7 +77,7 @@ const docDate = computed(() => {
         :content="String(Math.floor(docDate.getTime() / 1000))"
       />
     </Head>
-    <div class="blog-article blog-fonts">
+    <div class="blog-article mb-3">
       <nav class="mb-10">
         <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
       </nav>
@@ -86,7 +88,7 @@ const docDate = computed(() => {
     <ContentRenderer
       :value="doc"
       tag="article"
-      class="blog-article blog-fonts"
+      class="prose dark:prose-invert blog-article"
     />
     <nav
       class="blog-article justify-center grid sm:grid-cols-2 gap-8 items-start my-16"
@@ -120,18 +122,12 @@ const docDate = computed(() => {
 .blog-article {
   @apply max-w-screen-md
          mx-auto px-3
-         dark:prose-headings:text-cyan-400
          dark:[&_p]:first-letter:bg-cyan-800
          dark:[&_:not(blockquote)_p]:first-letter:bg-transparent
          dark:marker:text-cyan-400;
 }
 
-.blog-fonts {
-  @apply [&_p]:!font-sans [&_a]:!font-sans [&_em]:!font-sans [&_li]:!font-sans
-         [&_ul]:!font-sans [&_ol]:!font-sans [&_blockquote]:!font-sans
-         [&_strong]:!font-sans [&_del]:!font-sans [&_hr]:!font-sans
-         [&_table]:!font-sans [&_thead]:!font-sans [&_tbody]:!font-sans [&_tr]:!font-sans
-         [&_th]:!font-sans [&_td]:!font-sans [&_sup]:!font-sans [&_sub]:!font-sans
-         [&_h1]:!font-sans [&_h2]:!font-sans [&_h3]:!font-sans [&_h4]:!font-sans [&_h5]:!font-sans [&_h6]:!font-sans;
+.blog-article :is(h1, h2, h3, h4, h5, h6) a, .blog-article :is(h1, h2, h3, h4, h5, h6) {
+  @apply dark:text-cyan-400;
 }
 </style>

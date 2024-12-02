@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
 import type { ResumeData } from '~~/server/routes/api/resume/data'
+import { addTrailingSlash } from '~/utils/seo';
 
 definePageMeta({
   path: '/resume/:type?'

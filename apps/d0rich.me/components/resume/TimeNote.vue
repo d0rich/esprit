@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent } from '@nuxt/content'
+import { dateToMonthYear, formatYearMonthDateDiff } from '~/utils/date'
 
 export interface TimeNote extends ParsedContent {
   place: {
