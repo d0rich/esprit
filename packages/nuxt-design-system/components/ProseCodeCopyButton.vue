@@ -66,7 +66,7 @@ const copy = (_e: MouseEvent) => {
   @apply transform scale-100 opacity-100;
 }
 .icon-wrapper {
-  @apply block relative w-4 h-4;
+  @apply block relative w-4 h-4 text-white;
 }
 .icon-wrapper .icon {
   @apply block absolute;

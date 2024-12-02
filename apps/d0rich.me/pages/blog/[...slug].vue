@@ -88,7 +88,7 @@ const docDate = computed(() => {
     <ContentRenderer
       :value="doc"
       tag="article"
-      class="prose dark:prose-invert blog-article"
+      class="prose prose-cyan dark:prose-invert blog-article"
     />
     <nav
       class="blog-article justify-center grid sm:grid-cols-2 gap-8 items-start my-16"
@@ -120,15 +120,6 @@ const docDate = computed(() => {
 
 <style>
 .blog-article {
-  @apply max-w-screen-md
-         mx-auto px-3
-         dark:[&_p]:first-letter:bg-cyan-800
-         dark:[&_:not(blockquote)_p]:first-letter:bg-transparent
-         dark:marker:text-cyan-400;
-}
-
-.blog-article :is(h1, h2, h3, h4, h5, h6) a,
-.blog-article :is(h1, h2, h3, h4, h5, h6) {
-  @apply dark:text-cyan-400;
+  @apply max-w-screen-md mx-auto px-3;
 }
 </style>

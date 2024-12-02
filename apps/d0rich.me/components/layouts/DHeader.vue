@@ -2,9 +2,9 @@
   <Transition name="header">
     <header v-if="show">
       <DShape
-        class="print:hidden text-white"
+        class="print:hidden"
         :filter-class="`${shadowColor} header__shape-filter`"
-        shape-class="bg-black"
+        shape-class="dark:bg-black bg-white"
         :shape-style="{
           clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
         }"

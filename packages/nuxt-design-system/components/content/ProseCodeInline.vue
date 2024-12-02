@@ -6,6 +6,8 @@
 
 <style>
 .prose-code-inline {
-  @apply bg-neutral-800 border border-neutral-700 px-1 py-0.5 text-sm;
+  @apply px-1 py-0.5 text-sm
+       dark:bg-neutral-800 border dark:border-neutral-700
+       bg-neutral-200 border-neutral-400;
 }
 </style>
