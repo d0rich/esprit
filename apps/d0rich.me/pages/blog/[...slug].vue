@@ -127,7 +127,8 @@ const docDate = computed(() => {
          dark:marker:text-cyan-400;
 }
 
-.blog-article :is(h1, h2, h3, h4, h5, h6) a, .blog-article :is(h1, h2, h3, h4, h5, h6) {
+.blog-article :is(h1, h2, h3, h4, h5, h6) a,
+.blog-article :is(h1, h2, h3, h4, h5, h6) {
   @apply dark:text-cyan-400;
 }
 </style>

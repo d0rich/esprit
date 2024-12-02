@@ -1,9 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  extends: [
-    '@d0rich/nuxt-content-mermaid',
-    '@d0rich/nuxt-design-system'
-  ],
+  extends: ['@d0rich/nuxt-content-mermaid', '@d0rich/nuxt-design-system'],
 
   app: {
     pageTransition: {
