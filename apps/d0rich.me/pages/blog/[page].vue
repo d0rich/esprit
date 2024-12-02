@@ -52,7 +52,7 @@ const blogQuery: QueryBuilderParams = {
         mask="owl"
         color
         outline
-        class="h-full w-full flex flex-row-reverse absolute top-0 -z-10 brightness-[25%] sm:brightness-100 transition-all"
+        class="h-full w-full flex flex-row-reverse absolute top-0 -z-10 opacity-25 sm:opacity-100 transition-all"
       />
     </div>
 
