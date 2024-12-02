@@ -62,9 +62,3 @@ useSeoMeta({
   </NuxtLayout>
   <DBigBangButtonAnimation class="z-50" />
 </template>
-
-<style>
-:root {
-  @apply nuxt-typography-connector;
-}
-</style>

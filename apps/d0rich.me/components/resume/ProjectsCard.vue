@@ -7,8 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <DCard dense>
-    <ul class="resume-projects-card__list">
+  <DCard
+    dense
+    class="prose prose-blue dark:prose-invert print:prose-sm max-w-screen-lg"
+  >
+    <ul>
       <li
         v-for="project in projects"
         :key="project.url"
@@ -24,12 +27,3 @@ defineProps<{
     </ul>
   </DCard>
 </template>
-
-<style>
-.resume-projects-card__list {
-  @apply pl-5 space-y-3 list-disc print:text-sm;
-}
-a.resume-projects-card__place {
-  @apply underline dark:text-blue-300 text-blue-800;
-}
-</style>

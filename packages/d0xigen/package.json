@@ -34,7 +34,6 @@
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
-    "@nuxt-themes/typography": "^1.0.1",
     "@vueuse/core": "^12.0.0",
     "dateformat": "^5.0.3",
     "gsap": "^3.12.5",

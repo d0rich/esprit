@@ -37,7 +37,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <figure ref="root" class="mermaid-container">
+  <figure ref="root" class="mermaid-container not-prose">
     <pre
       ref="codeBlock"
       :class="{

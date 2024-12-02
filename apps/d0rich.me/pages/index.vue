@@ -1,3 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+  colorMode: 'dark'
+})
+</script>
+
 <template>
   <div class="-mt-20">
     <AsyncSafeSeoWithOg og-title="Homepage" />

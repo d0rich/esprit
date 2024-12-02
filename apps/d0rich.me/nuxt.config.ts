@@ -1,10 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  extends: [
-    '@d0rich/nuxt-content-mermaid',
-    '@nuxt-themes/typography',
-    '@d0rich/nuxt-design-system'
-  ],
+  extends: ['@d0rich/nuxt-content-mermaid', '@d0rich/nuxt-design-system'],
 
   app: {
     pageTransition: {
@@ -36,7 +32,10 @@ export default defineNuxtConfig({
 
   content: {
     highlight: {
-      theme: 'one-dark-pro'
+      theme: {
+        default: 'github-light',
+        dark: 'one-dark-pro'
+      }
     },
     markdown: {
       remarkPlugins: ['remark-simple-plantuml'],

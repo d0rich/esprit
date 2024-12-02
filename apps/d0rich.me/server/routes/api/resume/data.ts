@@ -1,7 +1,4 @@
-import type {
-  ParsedContent,
-  QueryBuilderWhere
-} from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent, QueryBuilderWhere } from '@nuxt/content'
 import type { TimeNote } from '~~/components/resume/TimeNote.vue'
 import type { D0xigenProjectMeta } from '~~/server/utils/types'
 import { ProjectsRepository } from '~~/server/utils/repositories/projects'

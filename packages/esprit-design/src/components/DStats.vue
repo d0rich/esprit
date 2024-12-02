@@ -370,15 +370,15 @@ const fifthStat = computed(() => statFromIndex(4))
 }
 
 .stats__bg {
-  @apply fill-neutral-900;
+  @apply dark:fill-neutral-800 fill-neutral-300;
 }
 
 .stats__bg-star--odd {
-  @apply fill-neutral-500;
+  @apply dark:fill-neutral-500 fill-neutral-400;
 }
 
 .stats__bg-star--even {
-  @apply fill-neutral-800;
+  @apply dark:fill-neutral-800 fill-neutral-600;
 }
 
 .stats__single-stat:hover {
