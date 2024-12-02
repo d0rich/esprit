@@ -32,7 +32,10 @@ export default defineNuxtConfig({
 
   content: {
     highlight: {
-      theme: 'one-dark-pro'
+      theme: {
+        default: 'github-light',
+        dark: 'one-dark-pro'
+      }
     },
     markdown: {
       remarkPlugins: ['remark-simple-plantuml'],

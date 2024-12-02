@@ -39,10 +39,6 @@ html {
 }
 
 body {
-  @apply bg-neutral-200 dark:bg-neutral-900 dark:text-gray-100;
-}
-
-:root {
-  @apply nuxt-typography-connector;
+  @apply bg-neutral-100 dark:bg-neutral-900 dark:text-gray-100;
 }
 </style>

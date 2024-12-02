@@ -37,7 +37,7 @@ const hovered = ref(false)
 
 <style>
 .prose-code {
-  @apply text-xs relative overflow-hidden w-full bg-neutral-800;
+  @apply text-xs relative overflow-hidden w-full dark:bg-neutral-800 bg-neutral-200;
 }
 
 .prose-code code {
@@ -65,7 +65,8 @@ const hovered = ref(false)
 }
 
 .prose-code .filename {
-  @apply absolute opacity-0 top-0 right-0 p-2 bg-neutral-700 text-neutral-100 text-xs font-mono transition-opacity;
+  @apply absolute opacity-0 top-0 right-0 p-2 text-xs font-mono transition-opacity
+       dark:bg-neutral-700 dark:text-neutral-100 bg-neutral-100 text-neutral-900;
 }
 
 .prose-code .copy-button {

@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent } from '@nuxt/content'
 
 interface DocPage extends ParsedContent {
   description?: string
@@ -53,7 +53,11 @@ onMounted(() => {
     <DAsyncSafeMeta v-else-if="error" title="Page not found" />
     <NuxtLayout name="docs">
       <ContentRenderer v-if="doc && doc._type === 'markdown'" :value="doc">
-        <ContentRendererMarkdown tag="article" class="d-article" :value="doc" />
+        <ContentRendererMarkdown
+          tag="article"
+          class="prose prose-green dark:prose-invert d-article"
+          :value="doc"
+        />
         <nav class="d-next-prev-nav">
           <DLayoutSurroundDocCard
             v-if="doc.before"
@@ -73,6 +77,9 @@ onMounted(() => {
 </template>
 
 <style>
+.d-article {
+  @apply max-w-screen-lg;
+}
 .d-article :is(h1, h2, h3, h4, h5, h6) {
   @apply scroll-m-20;
 }
