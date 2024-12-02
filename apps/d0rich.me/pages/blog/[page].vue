@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
+import type { QueryBuilderParams } from '@nuxt/content'
 import type { BlogContent } from '@/components/blog/Tile.vue'
 
 definePageMeta({
@@ -24,8 +24,6 @@ const { data: pagesCount } = useAsyncData(
 const blogQuery: QueryBuilderParams = {
   path: '/blog',
   without: ['excerpt', 'body'],
-  // @ts-ignore
-  // FIXME: QueryBuilderParams wrong type definition
   where: filter,
   limit: itemsOnPage,
   skip: (currentPage.value - 1) * itemsOnPage,
@@ -38,8 +36,12 @@ const blogQuery: QueryBuilderParams = {
     <AsyncSafeSeoWithOg title="Blog" />
     <div class="relative isolate px-3 max-w-3xl mx-auto my-10 overflow-hidden">
       <div class="max-w-lg">
-        <h1 class="text-6xl sm:text-8xl font-serif mb-5 text-cyan-300">Blog</h1>
-        <p class="first-letter:bg-cyan-600">
+        <h1
+          class="text-6xl sm:text-8xl font-serif mb-5 dark:text-cyan-300 text-cyan-700"
+        >
+          Blog
+        </h1>
+        <p class="dark:first-letter:bg-cyan-600 first-letter:bg-cyan-200">
           Welcome to my blog! Here you will find news, articles, and insights
           related to software development, programming languages, technology
           trends, and more. My goal is to provide informative and engaging

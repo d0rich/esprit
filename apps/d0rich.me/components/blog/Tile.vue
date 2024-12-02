@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent } from '@nuxt/content'
 
 export interface BlogContent extends ParsedContent {
   image?: string
@@ -32,7 +32,7 @@ defineProps<{
         <div class="text-right font-bold">
           <time>{{ dateToDayMonthYear(article.date) }}</time>
         </div>
-        <h2 class="text-3xl font-bold text-cyan-200 mb-2">
+        <h2 class="text-3xl font-bold text-cyan-600 dark:text-cyan-200 mb-2">
           {{ article.title }}
         </h2>
 
@@ -61,7 +61,7 @@ defineProps<{
 
 .blog-tile__shape {
   clip-path: var(--shape-card--dense);
-  @apply bg-black bg-opacity-70;
+  @apply bg-white dark:bg-black bg-opacity-70;
 }
 
 .blog-tile__image {
@@ -75,6 +75,6 @@ defineProps<{
 }
 
 .blog-tile__link__tag {
-  @apply mx-1 text-lg font-bold bg-cyan-600;
+  @apply mx-1 text-lg font-bold bg-cyan-200 dark:bg-cyan-600;
 }
 </style>
