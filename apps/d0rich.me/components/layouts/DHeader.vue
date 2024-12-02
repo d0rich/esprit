@@ -2,7 +2,7 @@
   <Transition name="header">
     <header v-if="show">
       <DShape
-        class="print:hidden"
+        class="print:hidden text-white"
         :filter-class="`${shadowColor} header__shape-filter`"
         shape-class="bg-black"
         :shape-style="{
@@ -16,6 +16,7 @@
           <DBtn to="/projects/"> Projects </DBtn>
           <DBtn to="/blog/"> Blog </DBtn>
           <DBtn to="/resume/"> Resumé </DBtn>
+          <DThemeSwitch v-if="isThemeSwitchVisible" />
         </div>
       </DShape>
     </header>
@@ -24,11 +25,13 @@
 
 <script lang="ts">
 import DShape from '@d0rich/nuxt-design-system/components/d/wrap/Shape.vue'
+import DThemeSwitch from '@d0rich/nuxt-design-system/components/d/ThemeSwitch.vue'
 
 export default defineComponent({
   name: 'DHeader',
   components: {
-    DShape
+    DShape,
+    DThemeSwitch
   },
   setup() {
     const { showHeader } = useLayoutState()
@@ -67,11 +70,17 @@ export default defineComponent({
     return {
       show: showHeader,
       shadowColor: computed(() => {
-        if (route.path.startsWith('/blog')) return 'ss-cyan-300'
-        if (route.path.startsWith('/projects')) return 'ss-red-300'
-        if (route.path.startsWith('/resume')) return 'ss-blue-300'
+        if (route.path.startsWith('/blog'))
+          return 'dark:ss-cyan-300 ss-cyan-500'
+        if (route.path.startsWith('/projects'))
+          return 'dark:ss-red-300 ss-red-500'
+        if (route.path.startsWith('/resume'))
+          return 'dark:ss-blue-300 ss-blue-500'
         return 'ss-neutral-50'
-      })
+      }),
+      isThemeSwitchVisible: computed(
+        () => route.path.startsWith('/blog') || route.path.startsWith('/resume')
+      )
     }
   }
 })

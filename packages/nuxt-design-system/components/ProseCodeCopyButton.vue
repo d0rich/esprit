@@ -30,7 +30,6 @@ const copy = (_e: MouseEvent) => {
       state.value = 'copied'
     })
     .catch((err) => {
-       
       console.warn('Couldn\'t copy to clipboard!', err)
     })
 }
