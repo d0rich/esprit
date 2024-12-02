@@ -7,8 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <DCard dense class="">
-    <ul class="resume-sertificates-card__list">
+  <DCard
+    dense
+    class="prose prose-blue dark:prose-invert print:prose-sm max-w-screen-lg"
+  >
+    <ul>
       <li
         v-for="cert in cerificates"
         :key="cert._id"
@@ -37,9 +40,6 @@ defineProps<{
 </template>
 
 <style>
-.resume-sertificates-card__list {
-  @apply pl-5 space-y-3 list-disc print:text-sm;
-}
 a.resume-sertificates-card__place {
   @apply underline dark:text-blue-300 text-blue-800;
 }

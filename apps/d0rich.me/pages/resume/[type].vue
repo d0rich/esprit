@@ -94,7 +94,7 @@ const { data: resumeList } = useAsyncData(
           mask="wolf"
           color
           outline
-          class="h-full w-full flex flex-row-reverse absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden"
+          class="h-full w-full flex flex-row-reverse absolute top-0 right-0 -z-10 opacity-25 md:opacity-100 transition-all print:hidden"
         />
       </section>
       <ContentRenderer
@@ -138,16 +138,16 @@ const { data: resumeList } = useAsyncData(
           </section>
         </div>
         <div>
-          <section id="work-experience" class="">
+          <section id="work-experience">
             <h2 class="resume-page__section-title">Work Experience</h2>
             <ResumeTimeNote
               v-for="workPlace in data.work"
               :key="workPlace._id"
-              class="my-3 print:my-8 resume-page__prose-content"
+              class="my-10 print:my-8 resume-page__prose-content"
               :timenote="workPlace"
             />
           </section>
-          <div class="grid md:grid-cols-2 gap-x-20 print:block">
+          <div>
             <section id="projects" class="">
               <h2 class="resume-page__section-title">Projects</h2>
               <ResumeProjectsCard :projects="data.projects" />
@@ -181,12 +181,17 @@ section {
 
 <style>
 .resume-page__section-title {
-  @apply text-5xl text-blue-700 dark:text-blue-300 mb-2
+  @apply text-5xl text-blue-700 dark:text-blue-300 mb-2 z-10
     print:text-2xl print:mt-4 break-after-avoid-page;
 }
 
 .resume-page__prose-content {
-  @apply [&_p]:!m-0 [&_p]:!mb-2 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0 print:text-sm;
+  @apply prose prose-blue dark:prose-invert print:prose-sm max-w-screen-lg;
+}
+
+#skills :is(.stats__group-title, .stats__title) {
+  stroke-width: 10;
+  @apply dark:stroke-blue-500 stroke-blue-200;
 }
 
 @media print {

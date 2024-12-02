@@ -19,9 +19,13 @@ defineProps<{
 </script>
 
 <template>
-  <DCard>
-    <DCardTitle class="break-inside-avoid-page break-after-avoid-page">
-      {{ timenote.title }}
+  <DCard dense>
+    <DCardTitle
+      class="break-inside-avoid-page break-after-avoid-page not-prose"
+    >
+      <span class="dark:text-black text-white print:text-black">
+        {{ timenote.title }}
+      </span>
       <template #extra>
         <Component
           :is="timenote.place.link ? 'a' : 'span'"
@@ -55,7 +59,7 @@ defineProps<{
       </span>
     </p>
     <ContentRenderer
-      class="print:text-sm break-inside-avoid-page"
+      class="prose prose-blue dark:prose-invert print:prose-sm max-w-screen-lg break-inside-avoid-page"
       :value="timenote"
     />
   </DCard>
