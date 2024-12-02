@@ -1,5 +1,11 @@
 # @d0rich/dog
 
+## 1.1.0
+
+### Minor Changes
+
+- dec5c1e: Update dependencies
+
 ## 1.0.0
 
 ### Major Changes

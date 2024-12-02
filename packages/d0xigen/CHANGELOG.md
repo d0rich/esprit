@@ -1,5 +1,17 @@
 # d0xigen
 
+## 0.6.0
+
+### Minor Changes
+
+- dec5c1e: Update dependencies
+
+### Patch Changes
+
+- Updated dependencies [dec5c1e]
+  - @d0rich/nuxt-content-mermaid@0.4.0
+  - @d0rich/nuxt-design-system@0.10.0
+
 ## 0.5.3
 
 ### Patch Changes

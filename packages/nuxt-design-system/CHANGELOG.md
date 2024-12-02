@@ -1,5 +1,16 @@
 # @d0rich/nuxt-design-system
 
+## 0.10.0
+
+### Minor Changes
+
+- dec5c1e: Update dependencies
+
+### Patch Changes
+
+- Updated dependencies [dec5c1e]
+  - @d0rich/esprit-design@0.4.0
+
 ## 0.9.3
 
 ### Patch Changes

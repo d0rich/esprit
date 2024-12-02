@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.4.0
+
+### Minor Changes
+
+- dec5c1e: Update dependencies
+
 ## 0.3.7
 
 ### Patch Changes
