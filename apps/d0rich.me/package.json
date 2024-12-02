@@ -11,8 +11,8 @@
   "devDependencies": {
     "@nuxt-themes/typography": "^1.0.1",
     "@types/dateformat": "^5.0.2",
-    "@vueuse/core": "^10.1.0",
-    "nuxt": "^3.12.1"
+    "@vueuse/core": "^12.0.0",
+    "nuxt": "^3.14.1592"
   },
   "dependencies": {
     "@d0rich/nuxt-content-mermaid": "*",

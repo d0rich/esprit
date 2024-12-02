@@ -6,7 +6,7 @@
     "packages/*",
     "utils/*"
   ],
-  "packageManager": "npm@10.8.1",
+  "packageManager": "npm@10.9.1",
   "scripts": {
     "prepare:all": "turbo run prepare",
     "generate:all": "turbo run generate",
@@ -14,25 +14,25 @@
     "dev:d0rich.me": "turbo run d0rich.me#dev",
     "dev:design.d0rich.me": "turbo run design.d0rich.me#dev",
     "dev:d0xigen.d0rich.me": "turbo run d0xigen.d0rich.me#dev",
-    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:js": "eslint .",
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore . --fix",
+    "lintfix": "prettier --write --list-different . && eslint . --fix",
     "changes": "changeset",
     "release": "turbo run test && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.5",
+    "@changesets/cli": "^2.27.10",
     "@nuxt/content": "^2.12.1",
-    "@nuxt/eslint-config": "^0.3.13",
-    "@nuxthq/studio": "^2.0.0",
-    "eslint": "^8.57.0",
+    "@nuxt/eslint-config": "^0.7.2",
+    "@nuxthq/studio": "^2.2.1",
+    "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1",
-    "eslint-plugin-prettier": "^5.1",
-    "prettier": "^3.3.2",
+    "eslint-plugin-prettier": "^5.2",
+    "prettier": "^3.4.1",
     "ts-node": "^10.9.2",
-    "turbo": "^2.0.3",
-    "typescript": "^5.4.5",
-    "vue-tsc": "^2.0.21"
+    "turbo": "^2.3.3",
+    "typescript": "^5.6.3",
+    "vue-tsc": "^2.1.10"
   }
 }

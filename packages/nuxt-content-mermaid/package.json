@@ -23,10 +23,10 @@
     "typecheck": "nuxi typecheck"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.12.1",
-    "@nuxtjs/color-mode": "^3.4.1",
+    "@nuxt/content": "^2.13.4",
+    "@nuxtjs/color-mode": "^3.5.2",
     "@types/dateformat": "^5.0.2",
     "@types/mermaid": "^9.2.0",
-    "nuxt": "^3.12.1"
+    "nuxt": "^3.14.1592"
   }
 }

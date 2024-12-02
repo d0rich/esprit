@@ -13,7 +13,7 @@ export const useTransitionAnimationWorkaround = () => {
       window.addEventListener('error', (event) => {
         if (messages.includes(event.message)) {
           event.preventDefault()
-          /* eslint-disable no-console */
+
           console.warn(
             'Rerendering layout because of https://github.com/vuejs/core/issues/5513'
           )

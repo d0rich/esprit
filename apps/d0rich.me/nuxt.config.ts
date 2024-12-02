@@ -5,28 +5,35 @@ export default defineNuxtConfig({
     '@nuxt-themes/typography',
     '@d0rich/nuxt-design-system'
   ],
+
   app: {
     pageTransition: {
       name: 'section',
       mode: 'out-in'
     }
   },
+
   css: ['assets/css/theme.css'],
+
   imports: {
     dirs: ['composables/*/index.{ts,js,mjs,mts}']
   },
+
   runtimeConfig: {
     public: {
       isDev: process.env.NODE_ENV === 'development',
       isProd: process.env.NODE_ENV === 'production'
     }
   },
+
   modules: ['@nuxthq/studio', '@nuxt/content'],
+
   nitro: {
     prerender: {
       routes: ['/', '/sitemap.xml', '/api/resume/list.json']
     }
   },
+
   content: {
     highlight: {
       theme: 'one-dark-pro'
@@ -39,5 +46,7 @@ export default defineNuxtConfig({
         }
       }
     }
-  }
+  },
+
+  compatibilityDate: '2024-12-02'
 })
