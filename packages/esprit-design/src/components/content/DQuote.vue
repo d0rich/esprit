@@ -12,7 +12,7 @@ defineProps({
 <template>
   <DWrapShape
     tag="blockquote"
-    class="d-blockquote not-prose"
+    class="d-blockquote"
     :class="{
       'd-blockquote--left': direction === 'left',
       'd-blockquote--right': direction === 'right'
