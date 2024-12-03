@@ -1,5 +1,17 @@
 # d0xigen
 
+## 1.1.0
+
+### Minor Changes
+
+- ec2ec22: Optimize images
+
+### Patch Changes
+
+- Updated dependencies [ec2ec22]
+- Updated dependencies [ec2ec22]
+  - @d0rich/nuxt-design-system@0.12.0
+
 ## 1.0.0
 
 ### Major Changes
