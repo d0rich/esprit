@@ -3,6 +3,13 @@ const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss/colors')} */
 const colors = require('tailwindcss/colors')
 
+const deprecatedTailwindColors = [
+  'lightBlue',
+  'warmGray',
+  'trueGray',
+  'coolGray',
+  'blueGray'
+]
 const X_OFFSET_VAR = '--tw-ss-x-offset'
 const Y_OFFSET_VAR = '--tw-ss-y-offset'
 const COLOR_VAR = '--tw-ss-color'
@@ -47,8 +54,14 @@ function generateDirections() {
 
 function generateColors(themeColors) {
   const result = {}
+  const filteredTailwindColors = {}
+  for (const colorKey in colors) {
+    if (!deprecatedTailwindColors.includes(colorKey)) {
+      filteredTailwindColors[colorKey] = colors[colorKey]
+    }
+  }
   const localColors = {
-    ...colors,
+    ...filteredTailwindColors,
     ...themeColors
   }
   for (const colorKey in localColors) {
