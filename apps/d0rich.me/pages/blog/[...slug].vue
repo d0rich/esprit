@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Disqus } from 'vue-disqus'
 import type { MarkdownParsedContent } from '@nuxt/content'
+import { getLinkToPaginatedPage } from '@d0rich/esprit-design'
 import { addTrailingSlash } from '@/utils/seo'
 import { dateToDayMonthYear } from '@/utils/date'
 
