@@ -58,7 +58,7 @@ onMounted(() => {
 
 <style scoped>
 #skills {
-  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-fixed bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/skills.webp')] bg-cover bg-fixed bg-center;
 }
 
 #skills h1 {
