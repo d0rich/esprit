@@ -30,6 +30,11 @@ export default defineNuxtConfig({
     }
   },
 
+  colorMode: {
+    preference: 'system',
+    fallback: 'dark'
+  },
+
   content: {
     highlight: {
       theme: {
