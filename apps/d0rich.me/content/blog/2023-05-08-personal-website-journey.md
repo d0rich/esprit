@@ -5,7 +5,7 @@ tags:
   - Frontend
   - Backend
   - Architecture
-image: /blog/2023-05-08/v4-intro.png
+image: /blog/2023-05-08/v4-intro.jpg
 ---
 
 # Personal website building journey
@@ -22,7 +22,7 @@ My first acquaintance with web technologies.
 
 At that moment, I was immersed in creating video and believed that I needed a site with a presentation of myself as a specialist in development and video creation at the same time. A site where the user could see examples of my work, see the prices for my services, get acquainted with my work pipeline and send a request for cooperation. Support for different languages was also planned.
 
-![](/blog/2023-05-08/v1-loading.png)
+![](/blog/2023-05-08/v1-loading.jpg)
 
 The idea was good and interesting, but I stumbled upon a lack of experience with the technologies used. At first I created static pages, then I transferred everything to a single page application. Maintainability only suffered from this.
 
@@ -215,7 +215,7 @@ At the moment of this realization, I was already familiar with Nuxt.js and it wa
 
 Also, I finished Persona 5 Royal PC port. It really inspired me to build UI like in this game. It was the final reason to recreate whole website using new technology.
 
-![](/blog/2023-05-08/v4-intro.png)
+![](/blog/2023-05-08/v4-intro.jpg)
 
 | Technology used | Purpose |
 | --- | --- |

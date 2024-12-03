@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent } from '@nuxt/content'
 import type { MaskType } from '@d0rich/nuxt-design-system/types'
 import * as sectionsAnimations from '~~/utils/homepage/sections'
 
@@ -45,7 +45,7 @@ onBeforeUnmount(() => disconnectObserver.value())
   <DWrapBackground
     id="sitemap"
     tag="section"
-    class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
+    class="bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-center"
     overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
   >
     <template #svg>
@@ -115,6 +115,7 @@ onBeforeUnmount(() => disconnectObserver.value())
           :ref="
             (el: ComponentPublicInstance) => {
               sectionsMasks[index] = el
+              return undefined
             }
           "
           :mask="doc.mask"

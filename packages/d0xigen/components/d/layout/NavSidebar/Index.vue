@@ -42,7 +42,7 @@ const { data: navigation } = await useAsyncData('navigation', () =>
 
 <style scoped>
 .background-container {
-  background-image: url(../../../../assets/img/it-office.png);
+  background-image: url(../../../../assets/img/it-office.webp);
   @apply h-full relative px-3 pt-20 isolate z-10
          bg-cover bg-center;
 }

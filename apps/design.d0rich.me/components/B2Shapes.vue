@@ -1,6 +1,6 @@
 <template>
   <DWrapBackground
-    class="font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-fixed bg-center"
+    class="font-dialog bg-[url('~/assets/img/bg/skills.webp')] bg-cover bg-fixed bg-center"
     overlay-class="backdrop-saturate-50 bg-opacity-90"
     :overlay-style="{
       background:

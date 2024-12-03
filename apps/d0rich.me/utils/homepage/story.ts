@@ -1,4 +1,9 @@
-import { LineEdge } from '@d0rich/nuxt-design-system/types'
+import {
+  type LineEdge,
+  applyLinePerPointAnimation,
+  applyStaticPoints,
+  getAbsoluteBoundingsGetters
+} from '@d0rich/esprit-design'
 
 export function applyProgressAnimation(
   containerRef: Ref<Element | null>,
