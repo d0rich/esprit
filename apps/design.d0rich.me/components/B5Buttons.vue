@@ -1,6 +1,6 @@
 <template>
   <DWrapBackground
-    class="font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-fixed bg-center overflow-hidden"
+    class="font-dialog bg-[url('~/assets/img/bg/timeline.webp')] bg-cover bg-fixed bg-center overflow-hidden"
     overlay-class="backdrop-saturate-50 bg-opacity-80 bg-yellow-900"
   >
     <div class="py-20 px-5 max-w-screen-lg mx-auto">

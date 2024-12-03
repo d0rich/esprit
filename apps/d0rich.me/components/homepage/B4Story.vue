@@ -108,6 +108,7 @@ onMounted(() => {
           :ref="
             (el: ComponentPublicInstance) => {
               cards[index] = el
+              return undefined
             }
           "
           mode="homepage-story"
@@ -128,7 +129,7 @@ onMounted(() => {
 
 <style>
 #story {
-  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-fixed bg-cover bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/timeline.webp')] bg-fixed bg-cover bg-center;
 }
 
 #story .story__bg-overlay {
