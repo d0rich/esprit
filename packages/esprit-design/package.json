@@ -10,9 +10,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/esprit-design.js",
-      "require": "./dist/esprit-design.umd.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/esprit-design.umd.cjs"
     },
     "./style.css": "./dist/style.css",
     "./tailwind.config": "./tailwind.config.js",
