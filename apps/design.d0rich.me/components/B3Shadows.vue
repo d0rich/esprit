@@ -1,6 +1,6 @@
 <template>
   <DWrapBackground
-    class="font-dialog bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-fixed bg-center dark text-white"
+    class="font-dialog bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-fixed bg-center dark text-white"
     overlay-class="backdrop-saturate-50 bg-opacity-80 bg-black"
   >
     <div class="py-20 px-5 max-w-screen-lg mx-auto">
