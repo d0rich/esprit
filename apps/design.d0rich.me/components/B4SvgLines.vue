@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LineEdge } from '@d0rich/nuxt-design-system/types'
-import { applyLinePerPointAnimation } from '@d0rich/nuxt-design-system/utils/esprit-design-utils'
+import { applyLinePerPointAnimation } from '@d0rich/esprit-design'
 
 type ScrollTrigger = gsap.TweenVars['scrollTrigger']
 
