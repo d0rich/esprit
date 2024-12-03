@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LineEdge } from '@d0rich/nuxt-design-system/types'
+import { applyLinePerPointAnimation } from '@d0rich/nuxt-design-system/utils/esprit-design-utils'
 
 type ScrollTrigger = gsap.TweenVars['scrollTrigger']
 
@@ -57,7 +58,7 @@ onMounted(() => {
 
 <template>
   <DWrapBackground
-    class="font-dialog bg-[url('~/assets/img/bg/it-office.png')] bg-cover bg-fixed bg-center overflow-hidden"
+    class="font-dialog bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-fixed bg-center overflow-hidden"
     overlay-class="backdrop-saturate-50 bg-opacity-80 bg-green-900"
   >
     <template #svg>

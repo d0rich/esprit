@@ -9,7 +9,7 @@ import {
   getAbsoluteBoundings,
   getAbsoluteBoundingsGetters,
   getLinkToPaginatedPage
-} from '@d0rich/esprit-design/src/utils/index'
+} from '@d0rich/esprit-design'
 
 export {
   applyLinePerPointAnimation,

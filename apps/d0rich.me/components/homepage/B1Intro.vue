@@ -100,6 +100,7 @@ onMounted(() => {
           :ref="
             (el: ComponentPublicInstance) => {
               textContainer = el
+              return undefined
             }
           "
           class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]"
@@ -115,7 +116,7 @@ onMounted(() => {
       <DWrapBackground
         dots
         :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
-        class="bg-[url('~/assets/img/bg/it-office.png')] bg-cover bg-center"
+        class="bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-center"
         overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
       >
         <template #svg>
@@ -171,6 +172,7 @@ onMounted(() => {
                 :ref="
                   (el: ComponentPublicInstance) => {
                     socials[index] = el
+                    return undefined
                   }
                 "
                 class="absolute -top-1/3 left-1/2"
