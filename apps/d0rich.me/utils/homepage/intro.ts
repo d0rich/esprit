@@ -1,4 +1,5 @@
-import { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+import { applyLinePerPointAnimation } from '@d0rich/esprit-design'
 
 type ScrollTrigger = Parameters<typeof gsap.to>[2]['scrollTrigger']
 

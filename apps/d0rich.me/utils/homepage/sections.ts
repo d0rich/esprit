@@ -1,6 +1,10 @@
 import { gsap } from 'gsap/all'
-import { LineEdge } from '@d0rich/nuxt-design-system/types'
-import { ComponentPublicInstance } from 'nuxt/dist/app/compat/capi'
+import type { ComponentPublicInstance } from 'vue'
+import {
+  type LineEdge,
+  applyLinePerPointAnimation,
+  getAbsoluteBoundingsGetters
+} from '@d0rich/esprit-design'
 
 export function applyLineAnimation(
   svgRef: Ref<SVGSVGElement | null>,
