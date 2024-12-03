@@ -1,5 +1,12 @@
 # @d0rich/esprit-design
 
+## 0.4.2
+
+### Patch Changes
+
+- ec2ec22: Refactor exports definitions in package.json
+- ec2ec22: Filter out deprecated Tailwind colors in shadows plugin
+
 ## 0.4.1
 
 ### Patch Changes

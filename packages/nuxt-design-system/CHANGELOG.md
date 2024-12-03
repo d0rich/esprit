@@ -1,5 +1,18 @@
 # @d0rich/nuxt-design-system
 
+## 0.12.0
+
+### Minor Changes
+
+- ec2ec22: Remove esprit-design-utils reexeport
+- ec2ec22: Optimize images
+
+### Patch Changes
+
+- Updated dependencies [ec2ec22]
+- Updated dependencies [ec2ec22]
+  - @d0rich/esprit-design@0.4.2
+
 ## 0.11.0
 
 ### Minor Changes
