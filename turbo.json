@@ -10,7 +10,7 @@
     },
     "generate": {
       "dependsOn": ["@d0rich/esprit-design#build", "^generate"],
-      "outputs": ["dist", ".output/public"]
+      "outputs": [".output/public"]
     },
     "build": {
       "dependsOn": ["prepare"],
