@@ -1,5 +1,11 @@
 # d0xigen
 
+## 1.1.2
+
+### Patch Changes
+
+- ed30ca6: Export theme config from nuxt.config
+
 ## 1.1.1
 
 ### Patch Changes
