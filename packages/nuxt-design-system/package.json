@@ -38,8 +38,5 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@tailwindcss/typography": "^0.5.15",
     "nuxt-icon": "^0.6.10"
-  },
-  "bundledDependencies": [
-    "@d0rich/esprit-design"
-  ]
+  }
 }
