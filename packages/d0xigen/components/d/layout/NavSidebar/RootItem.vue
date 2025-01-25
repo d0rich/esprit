@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
 export default {
   name: 'DLayoutNavSidebarRootItem'
 }
@@ -6,7 +7,7 @@ export default {
 
 <script setup lang="ts">
 const props = defineProps<{
-  navItem: DNavItem
+  navItem: ContentNavigationItem
   parentPath?: string
 }>()
 
@@ -15,7 +16,7 @@ const route = useRoute()
 const { showContentTree } = useDocsLayoutState()
 const showChildren = ref(false)
 const isActive = computed(() => {
-  const path = props.navItem._path
+  const path = props.navItem.path
   if (path === '/') return route.path === '/'
   return route.path.startsWith(path)
 })
@@ -44,7 +45,7 @@ function onClick() {
   <li class="py-1">
     <div>
       <DBtn
-        :to="haveChildren ? undefined : navItem._path"
+        :to="haveChildren ? undefined : navItem.path"
         highlight="composite-list-item"
         color-class="bg-neutral-300 dark:bg-black"
         no-rotate
@@ -60,9 +61,9 @@ function onClick() {
       <ul v-show="haveChildren && showChildren" class="pl-8">
         <DLayoutNavSidebarItem
           v-for="child in navItem.children"
-          :key="child._path"
+          :key="child.path"
           :nav-item="child"
-          :parent-path="navItem._path"
+          :parent-path="navItem.path"
         />
       </ul>
     </div>

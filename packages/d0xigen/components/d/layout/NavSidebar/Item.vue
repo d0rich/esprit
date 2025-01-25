@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { ContentNavigationItem } from '@nuxt/content'
 export default {
   name: 'DLayoutNavSidebarItem'
 }
@@ -6,7 +7,7 @@ export default {
 
 <script setup lang="ts">
 defineProps<{
-  navItem: DNavItem
+  navItem: ContentNavigationItem
   parentPath?: string
 }>()
 
@@ -16,7 +17,7 @@ const { showContentTree } = useDocsLayoutState()
 <template>
   <li class="items-start py-1 transition-colors">
     <DBtn
-      :to="navItem._path"
+      :to="navItem.path"
       highlight="composite-list-item"
       color-class="bg-neutral-300 dark:bg-black"
       no-rotate

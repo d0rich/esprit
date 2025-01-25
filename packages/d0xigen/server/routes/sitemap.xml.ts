@@ -1,16 +1,16 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
-import { serverQueryContent } from '#content/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
   // Fetch all documents
-  const docs = await serverQueryContent(event).find()
+  const docs = await queryCollection('content').all()
+  console.log(docs)
   const sitemap = new SitemapStream({
     hostname: useAppConfig().d0xigen.url
   })
 
   for (const doc of docs) {
     sitemap.write({
-      url: doc._path,
+      url: doc.path,
       changefreq: 'monthly'
     })
   }

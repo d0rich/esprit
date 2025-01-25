@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { TocLink } from '@nuxt/content/dist/runtime/types'
+import type { TocLink } from '@nuxt/content'
 
 export default defineComponent({
   name: 'DLayoutTableOfContentsItem',

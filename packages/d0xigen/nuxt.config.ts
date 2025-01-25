@@ -47,18 +47,21 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/content'],
   content: {
-    documentDriven: true,
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'one-dark-pro'
-      }
-    },
-    markdown: {
-      remarkPlugins: ['remark-simple-plantuml'],
-      rehypePlugins: {
-        'rehype-external-links': {
-          target: '_blank'
+    build: {
+      markdown: {
+        remarkPlugins: {
+          'remark-simple-plantuml': {}
+        },
+        rehypePlugins: {
+          'rehype-external-links': {
+            target: '_blank'
+          }
+        },
+        highlight: {
+          theme: {
+            default: 'github-light',
+            dark: 'one-dark-pro'
+          }
         }
       }
     }
