@@ -1,7 +1,7 @@
 import type { RobotsTxtOptions } from './server/routes/robots.txt'
 import type { DeepPartial } from './utils/DeepPartial'
 
-export interface D0xigenConfig {
+interface ThemeConfig {
   /**
    * Title of the website to be displayed in the browser tab and for SEO
    */
@@ -107,8 +107,8 @@ export interface D0xigenConfig {
 
 declare module 'nuxt/schema' {
   interface AppConfigInput {
-    d0xigen?: DeepPartial<D0xigenConfig>
+    d0xigen?: DeepPartial<ThemeConfig>
   }
 }
 
-export {}
+export type D0xigenConfig = DeepPartial<ThemeConfig>
