@@ -6,7 +6,7 @@
     "packages/*",
     "utils/*"
   ],
-  "packageManager": "npm@10.9.1",
+  "packageManager": "npm@11.0.0",
   "scripts": {
     "prepare:all": "turbo run prepare",
     "generate:all": "turbo run generate",
@@ -22,17 +22,17 @@
     "release": "turbo run test && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.10",
-    "@nuxt/content": "^2.12.1",
-    "@nuxt/eslint-config": "^0.7.2",
+    "@changesets/cli": "^2.27.12",
+    "@nuxt/content": "^3.0.0",
+    "@nuxt/eslint-config": "^0.7.5",
     "@nuxthq/studio": "^2.2.1",
-    "eslint": "^9.16.0",
-    "eslint-config-prettier": "^9.1",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0",
     "eslint-plugin-prettier": "^5.2",
-    "prettier": "^3.4.1",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
-    "turbo": "^2.3.3",
-    "typescript": "^5.6.3",
-    "vue-tsc": "^2.1.10"
+    "turbo": "^2.3.4",
+    "typescript": "^5.7.3",
+    "vue-tsc": "^2.2.0"
   }
 }
