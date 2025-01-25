@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.4.3
+
+### Patch Changes
+
+- e4e26d7: Process external link case in link component calculation
+
 ## 0.4.2
 
 ### Patch Changes
