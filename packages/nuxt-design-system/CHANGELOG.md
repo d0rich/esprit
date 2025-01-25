@@ -1,5 +1,11 @@
 # @d0rich/nuxt-design-system
 
+## 0.12.1
+
+### Patch Changes
+
+- 0000bfb: Remove bundledDependencies from package.json
+
 ## 0.12.0
 
 ### Minor Changes

@@ -1,5 +1,14 @@
 # d0xigen
 
+## 1.1.1
+
+### Patch Changes
+
+- 0000bfb: Make @nuxt/content non-dev dependency
+- 0000bfb: extract ThemeConfig to index.d.ts
+- Updated dependencies [0000bfb]
+  - @d0rich/nuxt-design-system@0.12.1
+
 ## 1.1.0
 
 ### Minor Changes
