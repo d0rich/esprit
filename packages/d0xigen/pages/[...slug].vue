@@ -52,7 +52,12 @@ onMounted(() => {
     />
     <DAsyncSafeMeta v-else-if="error" title="Page not found" />
     <NuxtLayout name="docs">
-      <ContentRenderer v-if="doc && doc.extension === 'md'" :value="doc">
+      <template v-if="doc && doc.extension === 'md'">
+        <ContentRenderer
+          tag="article"
+          class="prose prose-green dark:prose-invert d-article"
+          :value="doc"
+        />
         <nav class="d-next-prev-nav">
           <DLayoutSurroundDocCard
             v-if="doc.before"
@@ -65,7 +70,7 @@ onMounted(() => {
             direction="after"
           />
         </nav>
-      </ContentRenderer>
+      </template>
       <DError404 v-else-if="error" class="mt-[20vh]" />
     </NuxtLayout>
   </div>

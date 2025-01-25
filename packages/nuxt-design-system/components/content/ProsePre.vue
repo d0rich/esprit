@@ -9,7 +9,6 @@ withDefaults(
     filename?: string
     meta?: string
     highlights?: number[]
-    style?: string | object
   }>(),
   {
     code: '',
@@ -31,7 +30,7 @@ const hovered = ref(false)
       {{ filename }}
     </span>
 
-    <pre :class="$props.class" :style="style" :data-language="language">
+    <pre class="shiki" :data-language="language">
         <slot />
     </pre>
     <ProseCodeCopyButton :show="hovered" :content="code" class="copy-button" />
