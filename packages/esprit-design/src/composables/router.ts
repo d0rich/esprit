@@ -46,7 +46,6 @@ export function useLink(props: LinkProps) {
   })
 
   if (isLink.value) {
-
     if (isExternalLink.value) {
       return {
         isLink,
