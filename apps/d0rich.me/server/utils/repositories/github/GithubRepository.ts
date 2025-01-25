@@ -82,9 +82,9 @@ export class GithubRepository {
     })
   }
 
-  private async getMyGithubReposWithPages() {
+  async getMyGithubReposWithPages() {
     const repos = await this.getMyGithubRepos()
-    return repos.data.filter((repo) => repo.has_pages)
+    return repos.data.filter((repo) => repo.homepage)
   }
 
   private initCaching(octokit: Octokit) {

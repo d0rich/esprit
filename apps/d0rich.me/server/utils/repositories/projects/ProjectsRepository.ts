@@ -48,27 +48,25 @@ export class ProjectsRepository {
   }
 
   private async parseProjects() {
-    const pages = await GithubRepository.getMyGithubReposPagesMeta()
+    const pages = await GithubRepository.getMyGithubReposWithPages()
     const netlifySites = await NetlifyRepository.getNetlifySites()
     const allSitesUrls = Array.from(
       new Set(
         [
           ...netlifySites.map((site) => site.url),
-          ...pages.map((page) => page.html_url || '')
+          ...pages.map((page) => page.homepage || '')
         ].map((url) => withTrailingSlash(normalizeURL(url)))
       )
     )
-    const d0xigenProjectsPromises = allSitesUrls
-      .map(async (url) => {
-        try {
-          return await $fetch<D0xigenProjectMeta>(
-            joinURL(url, '_d0rich/meta.json')
-          )
-        } catch (e) {
-          return undefined
-        }
-      })
-      .filter((project) => typeof project === 'object')
+    const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
+      try {
+        return await $fetch<D0xigenProjectMeta>(
+          joinURL(url, '_d0rich/meta.json')
+        )
+      } catch (e) {
+        return undefined
+      }
+    })
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
     return d0xigenProjectsWithEmpty.filter(
       (project) => !!project
