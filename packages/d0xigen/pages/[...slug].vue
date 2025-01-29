@@ -1,8 +1,9 @@
 <script lang="ts">
-import type { ParsedContent } from '@nuxt/content'
+import type { ContentCollectionItem } from '@nuxt/content'
 
-interface DocPage extends ParsedContent {
-  description?: string
+interface DocPage extends ContentCollectionItem {
+  before?: ContentCollectionItem
+  after?: ContentCollectionItem
 }
 
 export default {
@@ -16,15 +17,14 @@ const { tableOfContents } = useDocsLayoutState()
 const { data: doc, error } = useAsyncData<DocPage>(
   'page-data' + route.path,
   async () => {
-    const docPromise = queryContent(route.path).findOne()
-    const surroundPromise = queryContent()
-      .only(['_path', 'title', 'description'])
-      // Thrailing slash is removed
-      // '/' is provided for the home page
-      .findSurround(route.path.replace(/\/$/, '') || '/', {
-        before: 1,
-        after: 1
-      })
+    const docPromise = queryCollection('content').path(route.path).first()
+    const surroundPromise = queryCollectionItemSurroundings(
+      'content',
+      route.path.replace(/\/$/, '') || '/',
+      {
+        fields: ['title', 'description', 'path']
+      }
+    )
     const [doc, surround] = await Promise.all([docPromise, surroundPromise])
     return {
       ...doc,
@@ -52,8 +52,8 @@ onMounted(() => {
     />
     <DAsyncSafeMeta v-else-if="error" title="Page not found" />
     <NuxtLayout name="docs">
-      <ContentRenderer v-if="doc && doc._type === 'markdown'" :value="doc">
-        <ContentRendererMarkdown
+      <template v-if="doc && doc.extension === 'md'">
+        <ContentRenderer
           tag="article"
           class="prose prose-green dark:prose-invert d-article"
           :value="doc"
@@ -70,7 +70,7 @@ onMounted(() => {
             direction="after"
           />
         </nav>
-      </ContentRenderer>
+      </template>
       <DError404 v-else-if="error" class="mt-[20vh]" />
     </NuxtLayout>
   </div>

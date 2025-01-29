@@ -1,4 +1,4 @@
-import type { Toc, TocLink } from '@nuxt/content/dist/runtime/types'
+import type { Toc, TocLink } from '@nuxt/content'
 
 export const useDocsLayoutState = () => ({
   showContentTree: useState('layout/docs/showContentTree', () => false),
