@@ -12,11 +12,7 @@ defineProps<{
     class="prose prose-blue dark:prose-invert print:prose-sm max-w-screen-lg"
   >
     <ul>
-      <li
-        v-for="cert in cerificates"
-        :key="cert._id"
-        class="break-inside-avoid"
-      >
+      <li v-for="cert in cerificates" :key="cert.id" class="break-inside-avoid">
         {{ cert.title }}
         (<NuxtLink
           class="resume-sertificates-card__place"
@@ -29,11 +25,7 @@ defineProps<{
             cert.daterange.end ? dateToMonthYear(cert.daterange.end) : 'Present'
           }} </time
         >):
-        <ContentRendererMarkdown
-          tag="span"
-          :value="cert"
-          :components="{ p: 'span' }"
-        />
+        <ContentRenderer tag="span" :value="cert" />
       </li>
     </ul>
   </DCard>

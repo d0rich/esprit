@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxthq/studio', '@nuxt/content'],
+  modules: ['@nuxt/content'],
 
   nitro: {
     prerender: {

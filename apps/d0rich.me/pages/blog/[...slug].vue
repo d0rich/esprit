@@ -1,49 +1,41 @@
 <script setup lang="ts">
+// @ts-ignore
 import { Disqus } from 'vue-disqus'
-import type { MarkdownParsedContent } from '@nuxt/content'
 import { getLinkToPaginatedPage } from '@d0rich/esprit-design'
 import { addTrailingSlash } from '@/utils/seo'
 import { dateToDayMonthYear } from '@/utils/date'
 
-interface Document extends MarkdownParsedContent {
-  date?: string
-  image?: string
-}
-
 const slug = clearSlug(useRoute().params.slug as string[])
-const { itemsOnPage, filter } = useBlogNavigationConfig()
+const { itemsOnPage } = useBlogNavigationConfig()
 const pagePath = ['/blog', ...slug].join('/')
 
 const { data: doc } = useAsyncData(pagePath, async () => {
-  const docPromise = queryContent<Document>('blog', ...slug).findOne()
-  const surroundPromise = queryContent<Document>()
-    .only(['_path', 'title', 'description'])
-    .where({
-      ...filter,
-      _path: /^\/blog/
-    })
-    .findSurround(pagePath, {
-      before: 1,
-      after: 1
-    })
+  // TODO: Check if drafts are allowed
+  const docPromise = queryCollection('blog').path(pagePath).first()
+  // TODO: Check if order is correct
+  const surroundPromise = queryCollectionItemSurroundings('blog', pagePath, {
+    fields: ['title', 'description', 'path']
+  })
   const [doc, surround] = await Promise.all([docPromise, surroundPromise])
   return {
     ...doc,
-    before: surround[0] as Document,
-    after: surround[1] as Document
+    before: surround[0],
+    after: surround[1]
   }
 })
 
 const { data: position } = useAsyncData(
   ['blog', ...slug, 'position'].join('/'),
   () =>
-    queryContent('/blog')
-      .only('_path')
-      .where({
-        ...filter,
-        date: { $gte: Number(doc.value?.date) }
-      })
-      .find(),
+    queryCollection('blog')
+      .select('path')
+      .where('draft', '=', 0)
+      .orWhere((query) =>
+        query
+          .where('date', '<', doc.value?.date)
+          .where('date', '=', doc.value?.date)
+      )
+      .all(),
   {
     server: true,
     transform: (result) => result.length,
@@ -111,7 +103,7 @@ const docDate = computed(() => {
     <ClientOnly>
       <Disqus
         class="blog-fonts max-w-screen-md mx-auto px-3 mt-32"
-        :identifier="doc._path"
+        :identifier="doc.path"
         :url="`https://d0rich.me${pagePath}`"
       />
     </ClientOnly>

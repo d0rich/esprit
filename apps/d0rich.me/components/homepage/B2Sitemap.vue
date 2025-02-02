@@ -1,17 +1,7 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
-import type { MaskType } from '@d0rich/nuxt-design-system/types'
 import * as sectionsAnimations from '~~/utils/homepage/sections'
 
-interface SectionsParsedContent extends ParsedContent {
-  title: string
-  link: string
-  mask: MaskType
-}
-
-const { data } = useAsyncData(() =>
-  queryContent<SectionsParsedContent>('/homepage/sections').find()
-)
+const { data } = useAsyncData(() => queryCollection('home_sections').all())
 
 const sectionsLineColor = computed(() => {
   if (currentSection.value === 'portfolio') return 'fill-red-700'
@@ -103,7 +93,7 @@ onBeforeUnmount(() => disconnectObserver.value())
     <div class="w-full max-w-6xl mx-auto overflow-hidden">
       <div
         v-for="(doc, index) in data"
-        :key="doc._id"
+        :key="doc.id"
         :ref="
           (el) => {
             sections[index] = el as Element
