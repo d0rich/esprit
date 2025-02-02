@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as skillsAnimations from '~~/utils/homepage/skills'
 
-const { data } = useAsyncData(() => queryContent('/homepage/skills').find())
+const { data } = useAsyncData(() => queryCollection('home_skills').all())
 
 const skillsGroups = ref<ComponentPublicInstance[]>([])
 
@@ -33,7 +33,7 @@ onMounted(() => {
     <div class="max-w-7xl mx-auto px-3">
       <ContentRenderer
         v-for="(doc, index) in data"
-        :key="doc._id"
+        :key="doc.id"
         :ref="
           (el) => {
             skillsGroups[index] = el as ComponentPublicInstance

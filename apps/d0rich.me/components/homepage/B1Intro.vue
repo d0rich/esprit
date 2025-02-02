@@ -5,7 +5,7 @@ import type {
 } from '@d0rich/nuxt-design-system/types'
 import * as introAnimations from '~~/utils/homepage/intro'
 
-const { data } = useAsyncData(() => queryContent('/homepage/intro').findOne())
+const { data } = useAsyncData(() => queryCollection('home_intro').first())
 
 const currentPose = ref<CharacterPose>('idle')
 

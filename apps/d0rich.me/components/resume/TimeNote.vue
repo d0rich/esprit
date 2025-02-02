@@ -1,17 +1,8 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
+import type { ResumeWorkExperienceCollectionItem } from '@nuxt/content'
 import { dateToMonthYear, formatYearMonthDateDiff } from '~/utils/date'
 
-export interface TimeNote extends ParsedContent {
-  place: {
-    title: string
-    link?: string
-  }
-  daterange: {
-    start: string
-    end?: string
-  }
-}
+export interface TimeNote extends ResumeWorkExperienceCollectionItem {}
 
 defineProps<{
   timenote: TimeNote

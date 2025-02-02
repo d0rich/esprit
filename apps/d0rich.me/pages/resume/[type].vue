@@ -23,14 +23,11 @@ const printResumeLink = computed(() => {
 
 const { data: resumeList } = useAsyncData(
   'resume/all',
-  () =>
-    queryContent('/resume/leads')
-      .only(['_path' as const, 'title' as const])
-      .find(),
+  () => queryCollection('resume').select('path', 'title').all(),
   {
     transform: (results) =>
       results.map((r) => {
-        if (r._path) r._path = r._path.replace('/resume/leads', '/resume')
+        if (r.path) r.path = r.path.replace('/resume/leads', '/resume')
         return r
       })
   }
@@ -62,9 +59,9 @@ const { data: resumeList } = useAsyncData(
       <nav class="flex flex-wrap print:hidden gap-4 md:gap-8">
         <DBtn
           v-for="resume in resumeList"
-          :key="resume._path"
+          :key="resume.path"
           class="max-w-[9rem] text-center"
-          :to="addTrailingSlash(resume._path)"
+          :to="addTrailingSlash(resume.path)"
         >
           {{ resume.title }}
         </DBtn>
@@ -130,7 +127,7 @@ const { data: resumeList } = useAsyncData(
             >
               <ContentRenderer
                 v-for="skillset in data.skills"
-                :key="skillset._id"
+                :key="skillset.id"
                 :value="skillset"
                 class="break-inside-avoid"
               />
@@ -142,7 +139,7 @@ const { data: resumeList } = useAsyncData(
             <h2 class="resume-page__section-title">Work Experience</h2>
             <ResumeTimeNote
               v-for="workPlace in data.work"
-              :key="workPlace._id"
+              :key="workPlace.id"
               class="my-10 print:my-8 resume-page__prose-content"
               :timenote="workPlace"
             />
@@ -161,7 +158,7 @@ const { data: resumeList } = useAsyncData(
             <h2 class="resume-page__section-title">Education</h2>
             <ResumeTimeNote
               v-for="eduPlace in data.education"
-              :key="eduPlace._id"
+              :key="eduPlace.id"
               class="my-3 print:my-8 resume-page__prose-content"
               :timenote="eduPlace"
             />
