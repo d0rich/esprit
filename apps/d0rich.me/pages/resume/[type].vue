@@ -11,12 +11,18 @@ usePrintSetup()
 const smallPrintStats = true
 
 const resumeType = computed(() => useRoute().params.type as string)
+const requestFetch = useRequestFetch()
 
-const { data, error } = useFetch<ResumeData>('/api/resume/data', {
-  server: true,
-  query: { resumeType: resumeType.value }
-})
-
+const { data, error } = useAsyncData<ResumeData>(
+  '/api/resume/data',
+  () =>
+    requestFetch<ResumeData>('/api/resume/data', {
+      query: { resumeType: resumeType.value }
+    }),
+  {
+    server: true
+  }
+)
 const printResumeLink = computed(() => {
   const specialization = data.value?.lead.title?.replaceAll(' ', '_')
   return `https://cdn.d0rich.me/resume/Nikolai_Dorofeev-${specialization}.pdf`
