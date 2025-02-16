@@ -14,7 +14,7 @@ const resumeType = computed(() => useRoute().params.type as string)
 const requestFetch = useRequestFetch()
 
 const { data, error } = useAsyncData<ResumeData>(
-  '/api/resume/data',
+  `/api/resume/data/${resumeType.value}`,
   () =>
     requestFetch<ResumeData>('/api/resume/data', {
       query: { resumeType: resumeType.value }
