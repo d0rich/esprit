@@ -49,30 +49,27 @@ export class ProjectsRepository {
   }
 
   private async parseProjects() {
-    const pages = await GithubRepository.getMyGithubReposPagesMeta()
-    const cloudflareDomains =
-      await CloudflareRepository.getCloudflarePagesDomains()
+    const pages = await GithubRepository.getMyGithubReposWithPages()
+    const cloudflareDomains = await CloudflareRepository.getCloudflarePagesDomains()
     const netlifySites = await NetlifyRepository.getNetlifySites()
     const allSitesUrls = Array.from(
       new Set(
         [
           ...cloudflareDomains.map((domain) => `https://${domain}`),
           ...netlifySites.map((site) => site.url),
-          ...pages.map((page) => page.html_url || '')
+          ...pages.map((page) => page.homepage || '')
         ].map((url) => withTrailingSlash(normalizeURL(url)))
       )
     )
-    const d0xigenProjectsPromises = allSitesUrls
-      .map(async (url) => {
-        try {
-          return await $fetch<D0xigenProjectMeta>(
-            joinURL(url, '_d0rich/meta.json')
-          )
-        } catch (e) {
-          return undefined
-        }
-      })
-      .filter((project) => typeof project === 'object')
+    const d0xigenProjectsPromises = allSitesUrls.map(async (url) => {
+      try {
+        return await $fetch<D0xigenProjectMeta>(
+          joinURL(url, '_d0rich/meta.json')
+        )
+      } catch (e) {
+        return undefined
+      }
+    })
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
     const d0xigenProjects = d0xigenProjectsWithEmpty.filter(
       (project) => !!project

@@ -46,6 +46,15 @@ export function useLink(props: LinkProps) {
   })
 
   if (isLink.value) {
+    if (isExternalLink.value) {
+      return {
+        isLink,
+        isExternalLink,
+        linkComponent: 'a',
+        propsToProvide
+      }
+    }
+
     if (typeof NuxtLink !== 'undefined') {
       return {
         isLink,
