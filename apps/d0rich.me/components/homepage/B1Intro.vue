@@ -94,7 +94,7 @@ onMounted(() => {
               background = el as Element
             }
           "
-          class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2]"
+          id="intro-background"
         />
         <DWrapShape
           :ref="
@@ -195,6 +195,12 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+#intro-background {
+  @apply absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2];
+}
+</style>
 
 <style>
 .intro-shape {

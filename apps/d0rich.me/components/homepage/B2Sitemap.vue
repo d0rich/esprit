@@ -35,7 +35,6 @@ onBeforeUnmount(() => disconnectObserver.value())
   <DWrapBackground
     id="sitemap"
     tag="section"
-    class="bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-center"
     overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
   >
     <template #svg>
@@ -129,6 +128,10 @@ onBeforeUnmount(() => disconnectObserver.value())
 </template>
 
 <style>
+#sitemap {
+  @apply bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-center;
+}
+
 #sitemap h1 {
   @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
 }
