@@ -1,6 +1,6 @@
 {
   "name": "@d0rich/nuxt-content-mermaid",
-  "version": "0.4.1",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },

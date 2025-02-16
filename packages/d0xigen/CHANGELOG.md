@@ -1,5 +1,21 @@
 # d0xigen
 
+## 2.0.0
+
+### Major Changes
+
+- 387d1d2: Migrate API to @nuxt/content v3
+
+### Minor Changes
+
+- 387d1d2: Remove nuxt-content-mermaid
+
+### Patch Changes
+
+- Updated dependencies [387d1d2]
+- Updated dependencies [387d1d2]
+  - @d0rich/nuxt-design-system@1.0.0
+
 ## 1.1.2
 
 ### Patch Changes
