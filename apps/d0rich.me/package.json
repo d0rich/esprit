@@ -14,7 +14,6 @@
     "nuxt": "^3.15.3"
   },
   "dependencies": {
-    "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "dateformat": "^5.0.3",
     "gsap": "^3.12.7",

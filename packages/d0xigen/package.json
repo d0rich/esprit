@@ -31,7 +31,6 @@
     "@types/dateformat": "^5.0.3"
   },
   "dependencies": {
-    "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "@nuxt/content": "^3.1.1",
     "@vueuse/core": "^12.7.0",

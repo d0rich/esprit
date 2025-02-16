@@ -1,11 +1,12 @@
 import type { FileBeforeParseHook } from '@nuxt/content'
 
-export default defineNitroPlugin((nitroApp) => {
-  nitroApp.hooks.hook(
+export default defineNuxtPlugin((nuxtApp) => {
+  console.log('mermaid.content.ts')
+  nuxtApp.hooks.hook(
     // @ts-ignore
     'content:file:beforeParse',
     (ctx: FileBeforeParseHook) => {
-      console.log('content:file:beforeParse')
+      console.log('content:file:beforeParse', ctx)
       if (!useAppConfig().contentMermaid.enabled) return
 
       if (ctx.file.extension === 'md') {
