@@ -74,8 +74,13 @@ export class ProjectsRepository {
       })
       .filter((project) => typeof project === 'object')
     const d0xigenProjectsWithEmpty = await Promise.all(d0xigenProjectsPromises)
-    return d0xigenProjectsWithEmpty.filter(
+    const d0xigenProjects = d0xigenProjectsWithEmpty.filter(
       (project) => !!project
     ) as D0xigenProjectMeta[]
+    const projectsMap = new Map<string, D0xigenProjectMeta>()
+    for (const project of d0xigenProjects) {
+      projectsMap.set(project.url, project)
+    }
+    return projectsMap.values()
   }
 }
