@@ -11,7 +11,7 @@ const { itemsOnPage } = useBlogNavigationConfig()
 
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
-  () => queryCollection('blog').select('path').where('draft', '=', 0).count(),
+  () => queryCollection('blog').where('draft', '=', 0).count('path'),
   {
     server: true,
     transform: (articlesCount) => Math.ceil(articlesCount / itemsOnPage)
