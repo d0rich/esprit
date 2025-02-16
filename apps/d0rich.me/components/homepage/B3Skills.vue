@@ -50,8 +50,8 @@ onMounted(() => {
 
 <style>
 #skills .skills__bg-overlay {
-  background: var(--d-card-x-ray--action__white),
-    rgb(14 116 144 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--action__white), rgb(14 116 144 / var(--tw-bg-opacity));
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 </style>
@@ -62,8 +62,8 @@ onMounted(() => {
 }
 
 #skills h1 {
-  background: var(--d-card-x-ray--action__color),
-    rgb(255 255 255 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--action__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -136,14 +136,14 @@ onMounted(() => {
 }
 
 #story .story__bg-overlay {
-  background: var(--d-card-x-ray--idle__white),
-    rgb(202 138 4 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--idle__white), rgb(202 138 4 / var(--tw-bg-opacity));
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 
 #story h1 {
-  background: var(--d-card-x-ray--idle__color),
-    rgb(255 255 255 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--idle__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
