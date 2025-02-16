@@ -5,6 +5,6 @@ console.log('ENVIRONMENT_VARIABLES', process.env)
 
 export const GithubRepository = new GithubRepositorySource(
   new Octokit({
-    auth: process.env.GITHUB_TOKEN
+    auth: process.env.NUXT_PUBLIC_GITHUB_TOKEN
   })
 )
