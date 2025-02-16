@@ -50,7 +50,8 @@ export class ProjectsRepository {
 
   private async parseProjects() {
     const pages = await GithubRepository.getMyGithubReposWithPages()
-    const cloudflareDomains = await CloudflareRepository.getCloudflarePagesDomains()
+    const cloudflareDomains =
+      await CloudflareRepository.getCloudflarePagesDomains()
     const netlifySites = await NetlifyRepository.getNetlifySites()
     const allSitesUrls = Array.from(
       new Set(
