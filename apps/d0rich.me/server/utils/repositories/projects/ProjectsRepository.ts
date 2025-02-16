@@ -2,6 +2,7 @@ import { normalizeURL, withTrailingSlash, joinURL } from 'ufo'
 import type { D0xigenProjectMeta } from '../../types'
 import { GithubRepository } from '../github'
 import { NetlifyRepository } from '../netlify'
+import { CloudflareRepository } from '../cloudflare'
 
 export class ProjectsRepository {
   async getProjects() {
@@ -49,10 +50,13 @@ export class ProjectsRepository {
 
   private async parseProjects() {
     const pages = await GithubRepository.getMyGithubReposPagesMeta()
+    const cloudflareDomains =
+      await CloudflareRepository.getCloudflarePagesDomains()
     const netlifySites = await NetlifyRepository.getNetlifySites()
     const allSitesUrls = Array.from(
       new Set(
         [
+          ...cloudflareDomains.map((domain) => `https://${domain}`),
           ...netlifySites.map((site) => site.url),
           ...pages.map((page) => page.html_url || '')
         ].map((url) => withTrailingSlash(normalizeURL(url)))
