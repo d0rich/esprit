@@ -8,9 +8,9 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const { data } = useAsyncData(`/projects/pages/${currentPage.value}`, () =>
-  $fetch(`/api/projects/${currentPage.value}`)
-)
+const { data } = useFetch(`/api/projects/${currentPage.value}`, {
+  server: true
+})
 </script>
 
 <template>

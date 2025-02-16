@@ -13,6 +13,7 @@ const smallPrintStats = true
 const resumeType = computed(() => useRoute().params.type as string)
 
 const { data, error } = useFetch<ResumeData>('/api/resume/data', {
+  server: true,
   query: { resumeType: resumeType.value }
 })
 
