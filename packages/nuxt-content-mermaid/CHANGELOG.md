@@ -1,5 +1,11 @@
 # @d0rich/nuxt-content-mermaid
 
+## 1.0.0
+
+### Major Changes
+
+- 387d1d2: Update hook API to @nuxt/content v3
+
 ## 0.4.1
 
 ### Patch Changes

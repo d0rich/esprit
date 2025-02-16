@@ -1,6 +1,6 @@
 {
   "name": "d0xigen",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "publishConfig": {
     "access": "public"
   },

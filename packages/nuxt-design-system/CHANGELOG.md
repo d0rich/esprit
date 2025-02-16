@@ -1,5 +1,15 @@
 # @d0rich/nuxt-design-system
 
+## 1.0.0
+
+### Major Changes
+
+- 387d1d2: Update prose components to comply with @nuxt/content v3 changes
+
+### Minor Changes
+
+- 387d1d2: Migrate to @nuxt/content v3
+
 ## 0.12.1
 
 ### Patch Changes
