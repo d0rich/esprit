@@ -116,7 +116,7 @@ onMounted(() => {
       <DWrapBackground
         dots
         :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
-        class="bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-center"
+        id="intro-background-secondary"
         overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
       >
         <template #svg>
@@ -199,6 +199,9 @@ onMounted(() => {
 <style scoped>
 #intro-background {
   @apply absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2];
+}
+#intro-background-secondary {
+  @apply bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-center;
 }
 </style>
 
