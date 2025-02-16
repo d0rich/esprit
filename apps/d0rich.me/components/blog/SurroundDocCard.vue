@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { MarkdownParsedContent } from '@nuxt/content'
+import type { BlogCollectionItem } from '@nuxt/content'
 export default {
   name: 'DLayoutSurroundDocCard'
 }
@@ -7,14 +7,14 @@ export default {
 
 <script setup lang="ts">
 defineProps<{
-  doc: MarkdownParsedContent
+  doc: BlogCollectionItem
   direction: 'before' | 'after'
 }>()
 </script>
 
 <template>
   <NuxtLink
-    :to="addTrailingSlash(doc._path)"
+    :to="addTrailingSlash(doc.path)"
     class="transition-transform hover:scale-90"
   >
     <DCard dense>

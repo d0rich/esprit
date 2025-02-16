@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { QueryBuilderParams } from '@nuxt/content'
-import type { BlogContent } from '@/components/blog/Tile.vue'
-
 definePageMeta({
   path: '/blog/:page(\\d+)?'
 })
@@ -10,25 +7,31 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const { itemsOnPage, filter } = useBlogNavigationConfig()
+const { itemsOnPage } = useBlogNavigationConfig()
 
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
-  () => queryContent<BlogContent>('/blog/').only('_path').where(filter).find(),
+  () => queryCollection('blog').where('draft', '=', 0).count('path'),
   {
     server: true,
-    transform: (articles) => Math.ceil(articles.length / itemsOnPage)
+    transform: (articlesCount) => Math.ceil(articlesCount / itemsOnPage)
   }
 )
 
-const blogQuery: QueryBuilderParams = {
-  path: '/blog',
-  without: ['excerpt', 'body'],
-  where: filter,
-  limit: itemsOnPage,
-  skip: (currentPage.value - 1) * itemsOnPage,
-  sort: [{ date: -1 }]
-}
+const { data: blogPosts } = useAsyncData(
+  `blog/pages/${currentPage.value}`,
+  () =>
+    queryCollection('blog')
+      .select('title', 'description', 'date', 'path', 'image', 'tags')
+      .where('draft', '=', 0)
+      .limit(itemsOnPage)
+      .skip((currentPage.value - 1) * itemsOnPage)
+      .order('date', 'DESC')
+      .all(),
+  {
+    server: true
+  }
+)
 </script>
 
 <template>
@@ -67,16 +70,11 @@ const blogQuery: QueryBuilderParams = {
       <nav
         class="max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 mx-auto gap-6 px-2 md:px-6"
       >
-        <ContentList
-          v-slot="{ list }: { list: BlogContent[] }"
-          :query="blogQuery"
-        >
-          <BlogTile
-            v-for="article in list"
-            :key="article._path"
-            :article="article"
-          />
-        </ContentList>
+        <BlogTile
+          v-for="article in blogPosts"
+          :key="article.path"
+          :article="article"
+        />
       </nav>
       <DPagination
         v-if="pagesCount > 1"

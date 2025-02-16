@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, withDefaults } from 'vue'
+import { ref } from 'vue'
 import { useClipboard, onClickOutside } from '@vueuse/core'
 
 const props = withDefaults(

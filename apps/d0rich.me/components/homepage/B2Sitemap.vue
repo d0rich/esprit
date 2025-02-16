@@ -1,17 +1,7 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
-import type { MaskType } from '@d0rich/nuxt-design-system/types'
 import * as sectionsAnimations from '~~/utils/homepage/sections'
 
-interface SectionsParsedContent extends ParsedContent {
-  title: string
-  link: string
-  mask: MaskType
-}
-
-const { data } = useAsyncData(() =>
-  queryContent<SectionsParsedContent>('/homepage/sections').find()
-)
+const { data } = useAsyncData(() => queryCollection('home_sections').all())
 
 const sectionsLineColor = computed(() => {
   if (currentSection.value === 'portfolio') return 'fill-red-700'
@@ -45,7 +35,6 @@ onBeforeUnmount(() => disconnectObserver.value())
   <DWrapBackground
     id="sitemap"
     tag="section"
-    class="bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-center"
     overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
   >
     <template #svg>
@@ -103,7 +92,7 @@ onBeforeUnmount(() => disconnectObserver.value())
     <div class="w-full max-w-6xl mx-auto overflow-hidden">
       <div
         v-for="(doc, index) in data"
-        :key="doc._id"
+        :key="doc.id"
         :ref="
           (el) => {
             sections[index] = el as Element
@@ -139,6 +128,10 @@ onBeforeUnmount(() => disconnectObserver.value())
 </template>
 
 <style>
+#sitemap {
+  @apply bg-[url('~/assets/img/bg/hightech-city.webp')] bg-cover bg-center;
+}
+
 #sitemap h1 {
   @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as skillsAnimations from '~~/utils/homepage/skills'
 
-const { data } = useAsyncData(() => queryContent('/homepage/skills').find())
+const { data } = useAsyncData(() => queryCollection('home_skills').all())
 
 const skillsGroups = ref<ComponentPublicInstance[]>([])
 
@@ -33,7 +33,7 @@ onMounted(() => {
     <div class="max-w-7xl mx-auto px-3">
       <ContentRenderer
         v-for="(doc, index) in data"
-        :key="doc._id"
+        :key="doc.id"
         :ref="
           (el) => {
             skillsGroups[index] = el as ComponentPublicInstance
@@ -50,8 +50,8 @@ onMounted(() => {
 
 <style>
 #skills .skills__bg-overlay {
-  background: var(--d-card-x-ray--action__white),
-    rgb(14 116 144 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--action__white), rgb(14 116 144 / var(--tw-bg-opacity));
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 </style>
@@ -62,8 +62,8 @@ onMounted(() => {
 }
 
 #skills h1 {
-  background: var(--d-card-x-ray--action__color),
-    rgb(255 255 255 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--action__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

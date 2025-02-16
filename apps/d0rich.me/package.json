@@ -9,17 +9,16 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@types/dateformat": "^5.0.2",
-    "@vueuse/core": "^12.0.0",
-    "nuxt": "^3.14.1592"
+    "@types/dateformat": "^5.0.3",
+    "@vueuse/core": "^12.5.0",
+    "nuxt": "^3.15.3"
   },
   "dependencies": {
-    "@d0rich/nuxt-content-mermaid": "*",
     "@d0rich/nuxt-design-system": "*",
     "dateformat": "^5.0.3",
-    "gsap": "^3.12.5",
+    "gsap": "^3.12.7",
     "mobile-detect": "^1.4.5",
-    "octokit": "^4.0.2",
+    "octokit": "^4.1.0",
     "rehype-external-links": "^3.0.0",
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
     "sitemap": "^8.0.0",

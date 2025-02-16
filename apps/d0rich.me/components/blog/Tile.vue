@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content'
-
-export interface BlogContent extends ParsedContent {
-  image?: string
-  date?: Date
-  tags?: string[]
-}
+import type { BlogCollectionItem } from '@nuxt/content'
 
 defineProps<{
-  article: BlogContent
+  article: Pick<
+    BlogCollectionItem,
+    'title' | 'description' | 'tags' | 'path' | 'image' | 'date'
+  >
 }>()
 </script>
 
@@ -24,7 +21,7 @@ defineProps<{
       </div>
     </template>
     <NuxtLink
-      :to="addTrailingSlash(article._path)"
+      :to="addTrailingSlash(article.path)"
       class="block"
       style="padding: var(--shape-card--dense__padding)"
     >

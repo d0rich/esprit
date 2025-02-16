@@ -2,10 +2,13 @@
 import * as storyAnimations from '~~/utils/homepage/story'
 
 const { data } = useAsyncData('homepage', async () => {
-  const introPromise = queryContent('/homepage/story/intro').findOne()
-  const blocksPromise = queryContent('/homepage/story/blocks')
-    .sort({ date: -1 })
-    .find()
+  const introPromise = queryCollection('home_story')
+    .path('/homepage/story/intro')
+    .first()
+  const blocksPromise = queryCollection('home_story')
+    .where('path', 'LIKE', '/homepage/story/blocks/%')
+    .order('date', 'DESC')
+    .all()
   const [intro, blocks] = await Promise.all([introPromise, blocksPromise])
   return { intro, blocks }
 })
@@ -104,7 +107,7 @@ onMounted(() => {
       <div class="story-blocks__cards">
         <DCard
           v-for="(doc, index) in data.blocks"
-          :key="doc._id"
+          :key="doc.id"
           :ref="
             (el: ComponentPublicInstance) => {
               cards[index] = el
@@ -133,14 +136,14 @@ onMounted(() => {
 }
 
 #story .story__bg-overlay {
-  background: var(--d-card-x-ray--idle__white),
-    rgb(202 138 4 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--idle__white), rgb(202 138 4 / var(--tw-bg-opacity));
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 
 #story h1 {
-  background: var(--d-card-x-ray--idle__color),
-    rgb(255 255 255 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--idle__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

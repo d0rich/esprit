@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxthq/studio', '@nuxt/content'],
+  modules: ['@nuxt/content'],
 
   nitro: {
     prerender: {
@@ -36,17 +36,21 @@ export default defineNuxtConfig({
   },
 
   content: {
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'one-dark-pro'
-      }
-    },
-    markdown: {
-      remarkPlugins: ['remark-simple-plantuml'],
-      rehypePlugins: {
-        'rehype-external-links': {
-          target: '_blank'
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: 'github-light',
+            dark: 'one-dark-pro'
+          }
+        },
+        remarkPlugins: {
+          'remark-simple-plantuml': {}
+        },
+        rehypePlugins: {
+          'rehype-external-links': {
+            target: '_blank'
+          }
         }
       }
     }

@@ -72,8 +72,8 @@
 
 <style scoped>
 h1 {
-  background: var(--d-card-x-ray--action__color),
-    rgb(255 255 255 / var(--tw-bg-opacity));
+  background:
+    var(--d-card-x-ray--action__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

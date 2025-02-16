@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ContentCollectionItem } from '@nuxt/content'
 export default {
   name: 'DLayoutSurroundDocCard'
 }
@@ -7,14 +7,14 @@ export default {
 
 <script setup lang="ts">
 defineProps<{
-  doc: ParsedContent
+  doc: ContentCollectionItem
   direction: 'before' | 'after'
 }>()
 </script>
 
 <template>
   <NuxtLink
-    :to="doc._path"
+    :to="doc.path"
     class="d-next-prev-card"
     :class="{
       next: direction === 'after',

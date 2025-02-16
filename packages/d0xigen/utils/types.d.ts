@@ -1,4 +1,4 @@
-import type { NavItem } from '@nuxt/content/dist/runtime/types'
+import type { ContentNavigationItem } from '@nuxt/content'
 
 declare global {
   interface DNavItem extends NavItem {}

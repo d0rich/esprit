@@ -5,7 +5,7 @@ import type {
 } from '@d0rich/nuxt-design-system/types'
 import * as introAnimations from '~~/utils/homepage/intro'
 
-const { data } = useAsyncData(() => queryContent('/homepage/intro').findOne())
+const { data } = useAsyncData(() => queryCollection('home_intro').first())
 
 const currentPose = ref<CharacterPose>('idle')
 
@@ -94,7 +94,7 @@ onMounted(() => {
               background = el as Element
             }
           "
-          class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2]"
+          id="intro-background"
         />
         <DWrapShape
           :ref="
@@ -116,7 +116,7 @@ onMounted(() => {
       <DWrapBackground
         dots
         :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
-        class="bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-center"
+        id="intro-background-secondary"
         overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
       >
         <template #svg>
@@ -195,6 +195,15 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+#intro-background {
+  @apply absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2];
+}
+#intro-background-secondary {
+  @apply bg-[url('~/assets/img/bg/it-office.webp')] bg-cover bg-center;
+}
+</style>
 
 <style>
 .intro-shape {

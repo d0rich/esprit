@@ -5,11 +5,16 @@ definePageMeta({
 })
 
 const route = useRoute()
+const requestFetch = useRequestFetch()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const { data } = useAsyncData(`/projects/pages/${currentPage.value}`, () =>
-  $fetch(`/api/projects/${currentPage.value}`)
+const { data } = useAsyncData(
+  `/api/projects/${currentPage.value}`,
+  () => requestFetch(`/api/projects/${currentPage.value}`),
+  {
+    server: true
+  }
 )
 </script>
 
