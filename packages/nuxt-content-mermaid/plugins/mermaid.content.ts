@@ -1,7 +1,6 @@
 import type { FileBeforeParseHook } from '@nuxt/content'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  console.log('mermaid.content.ts')
   nuxtApp.hooks.hook(
     // @ts-ignore
     'content:file:beforeParse',
