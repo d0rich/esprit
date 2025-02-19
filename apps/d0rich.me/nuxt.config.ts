@@ -39,7 +39,23 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          langs: ['python', 'py'],
+          langs: [
+            'python',
+            'py',
+            'typescript',
+            'ts',
+            'javascript',
+            'js',
+            'bash',
+            'sh',
+            'yaml',
+            'yml',
+            'json',
+            'html',
+            'css',
+            'scss',
+            'sql'
+          ],
           theme: {
             default: 'github-light',
             dark: 'one-dark-pro'
