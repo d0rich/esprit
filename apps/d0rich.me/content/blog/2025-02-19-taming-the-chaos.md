@@ -1,7 +1,7 @@
 ---
 description: How I built a toolkit for a custom file format. Which difficulties I faced and how I solved them.
 date: 2025-02-19
-image: /blog/2025-02-19/1_star_wars_meme.jpg
+image: /blog/2025-02-19/5_true_super_csv_layout.png
 tags:
   - FileFormats
   - BestPractices
