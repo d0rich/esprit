@@ -1,3 +1,0 @@
-- English: Upper-Intermediate
-- French: Intermediate
-- Russian: Native
