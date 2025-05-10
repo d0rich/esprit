@@ -6,9 +6,6 @@ export default defineEventHandler(async (event) => {
   const blogDocs = await queryCollection(event, 'blog')
     .where('draft', '=', 0)
     .all()
-  const resumeDocs = await queryCollection(event, 'resume')
-    .where('draft', '=', 0)
-    .all()
   const sitemap = new SitemapStream({
     hostname: 'https://d0rich.me'
   })
@@ -30,15 +27,6 @@ export default defineEventHandler(async (event) => {
     }
     sitemap.write({
       url: addTrailingSlash(doc.path),
-      changefreq: 'monthly'
-    })
-  }
-  for (const doc of resumeDocs) {
-    if (typeof doc.path === 'undefined') {
-      continue
-    }
-    sitemap.write({
-      url: addTrailingSlash(doc.path.replace('/resume/leads', '/resume')),
       changefreq: 'monthly'
     })
   }
