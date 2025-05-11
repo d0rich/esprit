@@ -4,7 +4,7 @@ import { Disqus } from 'vue-disqus'
 import { withTrailingSlash } from 'ufo'
 import { computed } from 'vue'
 import { ClientOnly } from '#components'
-import { useRoute, useAsyncData } from '#app'
+import { useRoute, useAsyncData } from '#imports'
 import { queryCollection, queryCollectionItemSurroundings } from '#imports'
 
 import { getLinkToPaginatedPage } from '@d0rich/esprit-design'

@@ -1,4 +1,4 @@
-import { defineNuxtRouteMiddleware } from '#app'
+import { defineNuxtRouteMiddleware } from '#imports'
 
 export default defineNuxtRouteMiddleware((to, from) => {
   // If first page in session

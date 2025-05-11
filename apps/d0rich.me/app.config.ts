@@ -1,4 +1,4 @@
-import { defineAppConfig } from '#app'
+import { defineAppConfig } from '#imports'
 
 export default defineAppConfig({
   contentMermaid: {

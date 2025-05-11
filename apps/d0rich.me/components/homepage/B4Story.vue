@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, type ComponentPublicInstance } from 'vue'
-import { useAsyncData } from '#app'
+import { useAsyncData } from '#imports'
 import { queryCollection } from '#imports'
 import { dateToMonthYear } from '~~/utils/date'
 

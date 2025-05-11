@@ -6,7 +6,7 @@ import {
   computed,
   type ComponentPublicInstance
 } from 'vue'
-import { useAsyncData } from '#app'
+import { useAsyncData } from '#imports'
 import { queryCollection } from '#imports'
 import { withTrailingSlash } from 'ufo'
 

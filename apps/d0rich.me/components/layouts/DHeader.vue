@@ -30,7 +30,7 @@ import {
   onBeforeMount,
   onBeforeUnmount
 } from 'vue'
-import { useRoute } from '#app'
+import { useRoute } from '#imports'
 import { useLayoutState } from '~/composables/state'
 
 import DShape from '@d0rich/nuxt-design-system/components/d/wrap/Shape.vue'

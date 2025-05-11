@@ -1,5 +1,5 @@
 import { watch } from 'vue'
-import { useState, useHead } from '#app'
+import { useState, useHead } from '#imports'
 
 export const useFaviconState = () => ({
   animation: useState(() => false)
