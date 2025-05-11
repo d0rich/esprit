@@ -1,5 +1,14 @@
 # d0xigen
 
+## 2.0.1
+
+### Patch Changes
+
+- 1ca300f: Turn on autoimports by default
+- 1ca300f: Explicit server imports
+- Updated dependencies [1ca300f]
+  - @d0rich/nuxt-design-system@1.0.1
+
 ## 2.0.0
 
 ### Major Changes
