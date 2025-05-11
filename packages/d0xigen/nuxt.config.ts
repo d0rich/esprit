@@ -17,6 +17,9 @@ export default defineNuxtConfig({
       mode: 'out-in'
     }
   },
+  imports: {
+    autoImport: true
+  },
   nitro: {
     prerender: {
       routes: [

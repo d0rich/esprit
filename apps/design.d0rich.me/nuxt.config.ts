@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
   extends: ['@d0rich/nuxt-design-system'],
 
+  imports: {
+    autoImport: true
+  },
+
   colorMode: {
     preference: 'light'
   },
