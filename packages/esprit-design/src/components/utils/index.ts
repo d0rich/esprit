@@ -4,4 +4,4 @@ import DWrapFocusHighlight, {
 import DWrapBackground from './DWrapBackground.vue'
 import DWrapShape from './DWrapShape.vue'
 
-export { DWrapFocusHighlight, HighlightVariant, DWrapBackground, DWrapShape }
+export { DWrapFocusHighlight, type HighlightVariant, DWrapBackground, DWrapShape }
