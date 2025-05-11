@@ -1,3 +1,6 @@
+import { defineEventHandler } from 'h3'
+import { useAppConfig } from '#imports'
+
 export default defineEventHandler((event) => {
   const appConfig = useAppConfig()
   setResponseHeader(event, 'Content-Type', 'text/plain')

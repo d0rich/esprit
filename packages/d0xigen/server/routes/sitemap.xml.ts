@@ -1,3 +1,4 @@
+import { defineEventHandler } from 'h3'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
 export default defineEventHandler(async (event) => {
