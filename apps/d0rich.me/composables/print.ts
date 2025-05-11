@@ -1,4 +1,4 @@
-import { useColorMode } from '@vueuse/core'
+import { useColorMode } from '#imports'
 import { onBeforeMount, onBeforeUnmount } from 'vue'
 
 export function usePrintSetup() {

@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-icon'
   ],
+  imports: {
+    autoImport: false
+  },
   components: {
     dirs: [
       {

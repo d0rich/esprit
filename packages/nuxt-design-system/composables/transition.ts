@@ -1,3 +1,5 @@
+import { ref } from 'vue'
+
 export const useTransitionAnimationWorkaround = () => {
   // TODO: Remove when https://github.com/vuejs/core/issues/5513 fixed
   const key = ref(0)
