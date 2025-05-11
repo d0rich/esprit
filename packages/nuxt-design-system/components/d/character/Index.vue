@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { CSSProperties } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import idle from '../../../assets/img/character/idle.webp'
 import idleColor from '../../../assets/img/character/idle-color.webp'
 import idleOutline from '../../../assets/img/character/idle-outline.webp'

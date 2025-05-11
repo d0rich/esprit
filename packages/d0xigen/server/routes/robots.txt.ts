@@ -1,3 +1,5 @@
+import { defineEventHandler } from 'h3'
+
 const keysToTemplates = {
   UserAgent: (input: string) => `User-agent: ${input}`,
   CrawlDelay: (input: string) => `Crawl-delay: ${input}`,

@@ -1,5 +1,5 @@
 import { gsap } from 'gsap/all'
-import type { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance, Ref } from 'vue'
 import {
   type LineEdge,
   applyLinePerPointAnimation,

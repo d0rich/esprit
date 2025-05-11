@@ -1,1 +1,1 @@
-export type { HighlightVariant } from '@d0rich/esprit-design/src/components/utils'
+export type { HighlightVariant } from '@d0rich/esprit-design/src/components/utils/index.js'

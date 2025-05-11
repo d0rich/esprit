@@ -17,7 +17,6 @@
     "@d0rich/nuxt-design-system": "*",
     "dateformat": "^5.0.3",
     "gsap": "^3.12.7",
-    "mobile-detect": "^1.4.5",
     "octokit": "^4.1.0",
     "rehype-external-links": "^3.0.0",
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",

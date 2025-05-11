@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ref, onMounted, type ComponentPublicInstance } from 'vue'
+import { useAsyncData } from '#imports'
+import { queryCollection } from '#imports'
+
 import type {
   CharacterPose,
   ActionFanItem

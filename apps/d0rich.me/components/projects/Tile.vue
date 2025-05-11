@@ -1,4 +1,7 @@
 <script lang="ts">
+import { withTrailingSlash } from 'ufo'
+import { dateToDayMonthYear } from '~~/utils/date'
+
 import type { D0xigenProjectMeta } from '~~/server/utils/types'
 export default {
   name: 'ProjectsTile'
@@ -20,7 +23,7 @@ defineProps<{
   >
     <div class="project-tile__frame--top" />
     <div class="project-tile__frame--bottom" />
-    <NuxtLink :to="addTrailingSlash(project.url)">
+    <NuxtLink :to="withTrailingSlash(project.url)">
       <div class="project-tile__link">
         <div class="project-tile__link__image-wrapper">
           <div

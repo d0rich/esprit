@@ -1,5 +1,7 @@
+import { queryCollection } from '#imports'
+import { defineEventHandler } from 'h3'
 import { SitemapStream, streamToPromise } from 'sitemap'
-import { addTrailingSlash } from '~/utils/seo'
+import { withTrailingSlash } from 'ufo'
 
 export default defineEventHandler(async (event) => {
   // Fetch all documents
@@ -26,7 +28,7 @@ export default defineEventHandler(async (event) => {
       continue
     }
     sitemap.write({
-      url: addTrailingSlash(doc.path),
+      url: withTrailingSlash(doc.path),
       changefreq: 'monthly'
     })
   }

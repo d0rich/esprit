@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useColorMode } from '#imports'
+
 const colorMode = useColorMode()
 const modes = ref([
   { name: 'system', icon: 'ic:sharp-monitor' },

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import { useAsyncData, useRequestFetch } from '#imports'
+import { definePageMeta } from '#imports'
+
 definePageMeta({
   path: '/projects/:page(\\d+)?',
   colorMode: 'dark'

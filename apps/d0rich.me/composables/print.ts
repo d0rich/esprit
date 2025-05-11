@@ -1,3 +1,6 @@
+import { useColorMode } from '#imports'
+import { onBeforeMount, onBeforeUnmount } from 'vue'
+
 export function usePrintSetup() {
   const colorMode = useColorMode()
   let colorBeforePrint = colorMode.value

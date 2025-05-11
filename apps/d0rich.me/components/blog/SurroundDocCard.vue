@@ -1,5 +1,7 @@
 <script lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
+import { withTrailingSlash } from 'ufo'
+
 export default {
   name: 'DLayoutSurroundDocCard'
 }
@@ -14,7 +16,7 @@ defineProps<{
 
 <template>
   <NuxtLink
-    :to="addTrailingSlash(doc.path)"
+    :to="withTrailingSlash(doc.path)"
     class="transition-transform hover:scale-90"
   >
     <DCard dense>
