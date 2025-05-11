@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 
+import { withTrailingSlash } from 'ufo'
+import { dateToDayMonthYear } from '@/utils/date'
+
 defineProps<{
   article: Pick<
     BlogCollectionItem,
@@ -21,7 +24,7 @@ defineProps<{
       </div>
     </template>
     <NuxtLink
-      :to="addTrailingSlash(article.path)"
+      :to="withTrailingSlash(article.path)"
       class="block"
       style="padding: var(--shape-card--dense__padding)"
     >

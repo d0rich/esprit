@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { onMounted, ref, type ComponentPublicInstance } from 'vue'
+import { useAsyncData } from '#app'
+import { queryCollection } from '#imports'
+
 import * as skillsAnimations from '~~/utils/homepage/skills'
 
 const { data } = useAsyncData(() => queryCollection('home_skills').all())

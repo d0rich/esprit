@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import {
+  onMounted,
+  onBeforeUnmount,
+  ref,
+  computed,
+  type ComponentPublicInstance
+} from 'vue'
+import { useAsyncData } from '#app'
+import { queryCollection } from '#imports'
+import { withTrailingSlash } from 'ufo'
+
 import * as sectionsAnimations from '~~/utils/homepage/sections'
 
 const { data } = useAsyncData(() => queryCollection('home_sections').all())
@@ -116,7 +127,7 @@ onBeforeUnmount(() => disconnectObserver.value())
           class="section-description__text"
         >
           <DBigBangButton
-            :to="addTrailingSlash(doc.link)"
+            :to="withTrailingSlash(doc.link)"
             :text="doc.title"
             class="underline"
           />

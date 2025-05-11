@@ -1,9 +1,16 @@
 <script setup lang="ts">
 // @ts-ignore
 import { Disqus } from 'vue-disqus'
+import { withTrailingSlash } from 'ufo'
+import { computed } from 'vue'
+import { ClientOnly } from '#components'
+import { useRoute, useAsyncData } from '#app'
+import { queryCollection, queryCollectionItemSurroundings } from '#imports'
+
 import { getLinkToPaginatedPage } from '@d0rich/esprit-design'
-import { addTrailingSlash } from '@/utils/seo'
-import { dateToDayMonthYear } from '@/utils/date'
+import { dateToDayMonthYear } from '~/utils/date'
+import { clearSlug } from '~/utils/router'
+import { useBlogNavigationConfig } from '~/composables/navigation'
 
 const slug = clearSlug(useRoute().params.slug as string[])
 const { itemsOnPage } = useBlogNavigationConfig()
@@ -72,7 +79,7 @@ const docDate = computed(() => {
     </Head>
     <div class="blog-article mb-3">
       <nav class="mb-10">
-        <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
+        <DBigBangButton text="< Back" :to="withTrailingSlash(linkToBlog)" />
       </nav>
       <time v-if="docDate" :datetime="docDate.toISOString()">
         {{ dateToDayMonthYear(doc.date) }}
@@ -98,7 +105,7 @@ const docDate = computed(() => {
       />
     </nav>
     <nav class="blog-article blog-fonts my-10">
-      <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
+      <DBigBangButton text="< Back" :to="withTrailingSlash(linkToBlog)" />
     </nav>
     <ClientOnly>
       <Disqus

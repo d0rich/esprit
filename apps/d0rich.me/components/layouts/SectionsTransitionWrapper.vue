@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from '#app'
+
 const route = useRoute()
 const currentBarVariation = computed(() => {
   if (route.path.startsWith('/projects'))

@@ -1,3 +1,6 @@
+import { watch } from 'vue'
+import { useState, useHead } from '#app'
+
 export const useFaviconState = () => ({
   animation: useState(() => false)
 })
@@ -12,7 +15,7 @@ export const useFaviconAnimation = () => {
   ]
   const head = useHead({})
   let currentFaviconFrame = 0
-  let process: NodeJS.Timer | undefined
+  let process: NodeJS.Timeout | null = null
   function initAnimation() {
     process = setInterval(() => {
       currentFaviconFrame += 1
@@ -33,7 +36,7 @@ export const useFaviconAnimation = () => {
     if (newValue) {
       initAnimation()
     } else {
-      clearInterval(process)
+      clearInterval(process as NodeJS.Timeout)
     }
   })
   animation.value = true

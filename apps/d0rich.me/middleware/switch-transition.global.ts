@@ -1,3 +1,5 @@
+import { defineNuxtRouteMiddleware } from '#app'
+
 export default defineNuxtRouteMiddleware((to, from) => {
   // If first page in session
   if (to.fullPath === from.fullPath) return

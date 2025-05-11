@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute, onNuxtReady, useHead, useSeoMeta } from '#app'
+import { useTransitionAnimationWorkaround } from '@d0rich/nuxt-design-system/composables/transition'
+import { useFaviconAnimation } from '~/composables/favicon'
+
 const { key } = useTransitionAnimationWorkaround()
 const route = useRoute()
 

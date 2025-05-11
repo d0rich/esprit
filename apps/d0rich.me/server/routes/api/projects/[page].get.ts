@@ -1,3 +1,4 @@
+import { defineEventHandler, getRouterParam } from 'h3'
 import { useProjectsNavigationConfig } from '~~/composables/navigation'
 import { ProjectsRepository } from '~~/server/utils/repositories/projects'
 

@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import { useAsyncData } from '#app'
+import { definePageMeta, queryCollection } from '#imports'
+
+import { useBlogNavigationConfig } from '~/composables/navigation'
+
 definePageMeta({
   path: '/blog/:page(\\d+)?'
 })

@@ -1,4 +1,4 @@
-import { ComponentPublicInstance } from 'nuxt/dist/app/compat/capi'
+import type { ComponentPublicInstance, Ref } from 'vue'
 
 export function applyContentRevealAnimation(
   skillsGroupsRefs: Ref<ComponentPublicInstance[]>

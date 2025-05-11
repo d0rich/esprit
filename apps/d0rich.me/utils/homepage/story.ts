@@ -1,3 +1,4 @@
+import type { ComponentPublicInstance, Ref } from 'vue'
 import {
   type LineEdge,
   applyLinePerPointAnimation,

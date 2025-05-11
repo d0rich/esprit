@@ -1,5 +1,4 @@
 export const useBlogNavigationConfig = () => {
-  const config = useRuntimeConfig()
   return {
     itemsOnPage: 6
   }
