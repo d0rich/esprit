@@ -1,5 +1,13 @@
 # @d0rich/nuxt-design-system
 
+## 1.0.1
+
+### Patch Changes
+
+- 1ca300f: Use explicit imports
+- Updated dependencies [1ca300f]
+  - @d0rich/esprit-design@0.4.4
+
 ## 1.0.0
 
 ### Major Changes

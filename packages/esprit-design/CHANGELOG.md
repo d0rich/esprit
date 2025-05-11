@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 0.4.4
+
+### Patch Changes
+
+- 1ca300f: Update type declaration
+
 ## 0.4.3
 
 ### Patch Changes
