@@ -104,3 +104,20 @@
     </g>
   </svg>
 </template>
+
+<style scoped>
+#DLetter {
+  transform-origin: 50% 50%;
+  rotate: -45deg;
+  scale: 1.75;
+  animation: 4s cubic-bezier(0.020, 0.730, 1.000, 0.190) 0s infinite normal forwards running dletter;
+}
+@keyframes dletter {
+  0%, 15% {
+    translate: -3000px 3000px;
+  }
+  100%, 85% {
+    translate: 3000px -3000px;
+  }
+}
+</style>
