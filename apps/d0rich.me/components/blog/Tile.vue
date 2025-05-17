@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
+import { DWrapShape, DChip, NuxtLink } from '#components'
 
 import { withTrailingSlash } from 'ufo'
 import { dateToDayMonthYear } from '@/utils/date'

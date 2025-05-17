@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
-import { useAsyncData, useRequestFetch } from '#imports'
-import { definePageMeta } from '#imports'
+import { useAsyncData, useRequestFetch, definePageMeta } from '#imports'
+import { DMask, DPagination } from '#components'
+import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
+import ProjectsTile from '~/components/projects/Tile.vue'
 
 definePageMeta({
   path: '/projects/:page(\\d+)?',

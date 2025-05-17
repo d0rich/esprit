@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { joinURL } from 'ufo'
+import { Head, Title, Meta, Link } from '#components'
 
 const props = defineProps<{
   title?: string
