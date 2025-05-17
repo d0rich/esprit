@@ -10,6 +10,7 @@ const currentBarVariation = computed(() => {
     return 'sections-transition-wrapper__bar--blog'
   if (route.path.startsWith('/resume'))
     return 'sections-transition-wrapper__bar--resume'
+  return ''
 })
 </script>
 

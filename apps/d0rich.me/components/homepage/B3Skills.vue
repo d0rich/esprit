@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref, type ComponentPublicInstance } from 'vue'
-import { useAsyncData } from '#imports'
-import { queryCollection } from '#imports'
+import { useAsyncData, queryCollection } from '#imports'
+import {
+  DWrapBackground,
+  DAnimationHypnosis,
+  ContentRenderer
+} from '#components'
 
 import * as skillsAnimations from '~~/utils/homepage/skills'
 

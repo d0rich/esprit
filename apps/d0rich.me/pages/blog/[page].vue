@@ -3,7 +3,10 @@ import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import { useAsyncData } from '#imports'
 import { definePageMeta, queryCollection } from '#imports'
+import { DMask, DPagination } from '#components'
 
+import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
+import BlogTile from '~/components/blog/Tile.vue'
 import { useBlogNavigationConfig } from '~/composables/navigation'
 
 definePageMeta({

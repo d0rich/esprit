@@ -6,6 +6,11 @@ import { computed } from 'vue'
 import { ClientOnly } from '#components'
 import { useRoute, useAsyncData } from '#imports'
 import { queryCollection, queryCollectionItemSurroundings } from '#imports'
+import { Head, Meta, DBigBangButton, ContentRenderer } from '#components'
+
+import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
+import BlogSurroundDocCard from '~/components/blog/SurroundDocCard.vue'
+import Error404 from '~/components/Error404.vue'
 
 import { getLinkToPaginatedPage } from '@d0rich/esprit-design'
 import { dateToDayMonthYear } from '~/utils/date'

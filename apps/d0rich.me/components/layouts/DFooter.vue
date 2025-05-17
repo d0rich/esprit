@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquote.vue'
+import { DWrapShape, DAnimationFloatingLetter, DBtn, Icon } from '#components'
 </script>
 
 <template>

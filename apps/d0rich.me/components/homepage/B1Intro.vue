@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import { ref, onMounted, type ComponentPublicInstance } from 'vue'
-import { useAsyncData } from '#imports'
-import { queryCollection } from '#imports'
+import { useAsyncData, queryCollection } from '#imports'
 
 import type {
   CharacterPose,
   ActionFanItem
 } from '@d0rich/nuxt-design-system/types'
 import * as introAnimations from '~~/utils/homepage/intro'
+import {
+  DWrapBackground,
+  DWrapShape,
+  DAnimationAccordion,
+  DAnimationHypnosis,
+  DCharacter,
+  DActionsFan,
+  DBtn,
+  ContentRenderer,
+  Icon
+} from '#components'
 
 const { data } = useAsyncData(() => queryCollection('home_intro').first())
 
@@ -93,12 +103,12 @@ onMounted(() => {
         class="relative w-screen max-w-full h-screen"
       >
         <div
+          id="intro-background"
           :ref="
             (el) => {
               background = el as Element
             }
           "
-          id="intro-background"
         />
         <DWrapShape
           :ref="
@@ -118,9 +128,9 @@ onMounted(() => {
         </DWrapShape>
       </div>
       <DWrapBackground
+        id="intro-background-secondary"
         dots
         :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
-        id="intro-background-secondary"
         overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
       >
         <template #svg>

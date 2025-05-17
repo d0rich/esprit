@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 import { withTrailingSlash } from 'ufo'
+import { DCard, DCardTitle, Icon, NuxtLink } from '#components'
 
 export default {
   name: 'DLayoutSurroundDocCard'

@@ -15,6 +15,11 @@ export default defineNuxtConfig({
     autoImport: false
   },
 
+  components: {
+    global: false,
+    dirs: []
+  },
+
   runtimeConfig: {
     public: {
       isDev: process.env.NODE_ENV === 'development',

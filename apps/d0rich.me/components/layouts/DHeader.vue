@@ -33,14 +33,14 @@ import {
 import { useRoute } from '#imports'
 import { useLayoutState } from '~/composables/state'
 
-import DShape from '@d0rich/nuxt-design-system/components/d/wrap/Shape.vue'
-import DThemeSwitch from '@d0rich/nuxt-design-system/components/d/ThemeSwitch.vue'
+import { DBtn, DWrapShape as DShape, DThemeSwitch } from '#components'
 
 export default defineComponent({
   name: 'DHeader',
   components: {
     DShape,
-    DThemeSwitch
+    DThemeSwitch,
+    DBtn
   },
   setup() {
     const { showHeader } = useLayoutState()

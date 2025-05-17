@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { DCharacter, DBigBangButton } from '#components'
+import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
+</script>
+
 <template>
   <section class="flex justify-evenly items-center flex-wrap gap-4">
     <AsyncSafeSeoWithOg title="Error 404" />

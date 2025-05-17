@@ -6,8 +6,14 @@ import {
   computed,
   type ComponentPublicInstance
 } from 'vue'
-import { useAsyncData } from '#imports'
-import { queryCollection } from '#imports'
+import { useAsyncData, queryCollection } from '#imports'
+import {
+  DWrapBackground,
+  DAnimationFloatingLetter,
+  DMask,
+  DBigBangButton,
+  ContentRenderer
+} from '#components'
 import { withTrailingSlash } from 'ufo'
 
 import * as sectionsAnimations from '~~/utils/homepage/sections'

@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref, type ComponentPublicInstance } from 'vue'
-import { useAsyncData } from '#imports'
-import { queryCollection } from '#imports'
+import { useAsyncData, queryCollection } from '#imports'
+import {
+  DWrapBackground,
+  DWrapShape,
+  DCard,
+  DCardTitle,
+  DAnimationSpinner,
+  ContentRenderer
+} from '#components'
 import { dateToMonthYear } from '~~/utils/date'
-
 import * as storyAnimations from '~~/utils/homepage/story'
 
 const { data } = useAsyncData('homepage', async () => {

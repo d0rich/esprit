@@ -1,5 +1,6 @@
 <script lang="ts">
 import { withTrailingSlash } from 'ufo'
+import { NuxtLink, DWrapShape, DChip, Icon } from '#components'
 import { dateToDayMonthYear } from '~~/utils/date'
 
 import type { D0xigenProjectMeta } from '~~/server/utils/types'

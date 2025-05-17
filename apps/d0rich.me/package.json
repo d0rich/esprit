@@ -1,9 +1,11 @@
 {
   "name": "d0rich.me",
   "private": true,
+  "type": "module",
   "scripts": {
     "prepare": "nuxt prepare",
     "dev": "nuxt dev",
+    "lint": "eslint .",
     "typecheck": "nuxi typecheck",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
