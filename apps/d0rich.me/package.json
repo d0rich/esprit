@@ -1,6 +1,7 @@
 {
   "name": "d0rich.me",
   "private": true,
+  "type": "module",
   "scripts": {
     "prepare": "nuxt prepare",
     "dev": "nuxt dev",
