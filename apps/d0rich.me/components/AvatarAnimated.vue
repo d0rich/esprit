@@ -2,18 +2,19 @@
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/"
     width="100%" height="100%" viewBox="0 0 2253 2253" version="1.1" xml:space="preserve"
     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <rect id="WebsiteAnimation" x="0.019" y="0.111" width="2250" height="2250" style="fill:#c9c9c9;" />
     <clipPath id="_clip1">
       <rect x="0.019" y="0.111" width="2250" height="2250" />
+    </clipPath>
+    <clipPath id="FrameInnerClip">
+      <path id="FrameInner"
+        d="M139.616,1908.51l325.834,176.308l995.358,46.866l647.205,-131.673l-22.317,-631.583l-107.124,-1010.98l-281.2,-160.685l-941.795,-44.635l-622.657,15.622l120.514,901.625l-113.818,839.135Z"
+        style="fill:#c9c9c9;stroke:#000;stroke-width:2.08px;" />
     </clipPath>
     <g clip-path="url(#_clip1)">
       <path id="FrameOuter"
         d="M64.01,100.452l142.997,959.071l-152.859,865.383l404.338,199.703l1018.24,69.034l697.731,-189.842l-73.964,-835.797l-46.845,-801.28l-347.632,-236.686l-949.209,-22.189l-692.799,-7.397Z"
         style="fill:#fff;stroke:#000;stroke-width:2.08px;" />
-      <path id="FrameInner"
-        d="M139.616,1908.51l325.834,176.308l995.358,46.866l647.205,-131.673l-22.317,-631.583l-107.124,-1010.98l-281.2,-160.685l-941.795,-44.635l-622.657,15.622l120.514,901.625l-113.818,839.135Z"
-        style="fill:#c9c9c9;stroke:#000;stroke-width:2.08px;" />
-      <g id="InFrameContent">
+      <g id="InFrameContent" clip-path="url(#FrameInnerClip)">
         <rect id="InFrameBG" x="106.241" y="108.357" width="2036.69" height="2036.69" style="fill:#4eb161;" />
         <path id="DLetter"
           d="M564.552,223.223l751.209,-0c297.776,-0 515.187,89.671 652.232,269.014c135.353,181.034 172.575,415.364 111.666,702.989c-59.217,275.782 -171.729,483.041 -337.537,621.778c-170.883,142.12 -419.594,213.18 -746.133,213.18l-814.655,0l383.218,-1806.96Zm1007.53,926.321c33.839,-164.115 22.418,-288.471 -34.261,-373.066c-56.679,-84.596 -151.003,-126.894 -282.972,-126.894l-274.09,0l-200.491,954.239l271.551,-0c282.55,-0 455.971,-151.426 520.263,-454.279Z"
