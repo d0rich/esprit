@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
+    "prepare": {
+      "outputs": [".nuxt"]
+    },
+    "lint": {},
+    "generate": {
+      "dependsOn": ["@d0rich/esprit-design#build", "lint"],
+      "outputs": [".output/public"]
+    },
+    "typecheck": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

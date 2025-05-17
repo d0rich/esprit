@@ -17,12 +17,12 @@
       "outputs": ["dist"]
     },
     "typecheck": {},
+    "lint": {},
     "test": {},
     "dev": {
       "cache": false,
       "persistent": true
     },
-    "d0rich.me#dev": {},
     "d0xigen.d0rich.me#dev": {},
     "design.d0rich.me#dev": {},
     "dog.d0rich.me#dev": {},
