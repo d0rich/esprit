@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { definePageMeta } from '#imports'
 import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
-import IntroSection from '~/components/homepage/B1Intro.vue'
+import IntroSection from '~/components/homepage/IntroSection/index.vue'
 import HomepageB2Sitemap from '~/components/homepage/old/B2Sitemap.vue'
 import HomepageB3Skills from '~/components/homepage/old/B3Skills.vue'
 import HomepageB4Story from '~/components/homepage/old/B4Story.vue'
