@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "@d0rich/esprit-design": "*",
+    "@nuxt/icon": "^1.13.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
-    "@tailwindcss/typography": "^0.5.15",
-    "nuxt-icon": "^0.6.10"
+    "@tailwindcss/typography": "^0.5.15"
   }
 }

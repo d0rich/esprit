@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    'nuxt-icon'
+    '@nuxt/icon'
   ],
   imports: {
     autoImport: false
