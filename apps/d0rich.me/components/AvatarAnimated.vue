@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import type { CSSProperties } from 'vue'
+withDefaults(
+  defineProps<{
+    frame?: boolean,
+    bgStyle?: CSSProperties
+  }>(),
+  {
+    frame: true
+  }
+)
+</script>
+
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +36,7 @@
       <path
         id="FrameInner"
         d="M139.616,1908.51l325.834,176.308l995.358,46.866l647.205,-131.673l-22.317,-631.583l-107.124,-1010.98l-281.2,-160.685l-941.795,-44.635l-622.657,15.622l120.514,901.625l-113.818,839.135Z"
-        style="fill: #c9c9c9; stroke: #000; stroke-width: 2.08px"
+        style="fill: #c9c9c9;"
       />
     </clipPath>
     <mask id="AvatarStrokeReveal">
@@ -32,8 +45,9 @@
     <g clip-path="url(#_clip1)">
       <path
         id="FrameOuter"
+        v-if="frame"
         d="M64.01,100.452l142.997,959.071l-152.859,865.383l404.338,199.703l1018.24,69.034l697.731,-189.842l-73.964,-835.797l-46.845,-801.28l-347.632,-236.686l-949.209,-22.189l-692.799,-7.397Z"
-        style="fill: #fff; stroke: #000; stroke-width: 2.08px"
+        style="fill: #fff;"
       />
       <g id="InFrameContent" clip-path="url(#FrameInnerClip)">
         <rect
@@ -43,6 +57,7 @@
           width="2036.69"
           height="2036.69"
           style="fill: #4eb161"
+          :style="bgStyle"
         />
         <path
           id="DLetter"
