@@ -33,8 +33,8 @@ import { ProseCode } from '#components'
           <Languages />
         </p>
         <p class="text-balance text-center sm:text-left">
-          I'm a <strong>student</strong> and a
-          <strong>software engineer</strong> with a passion for
+          I'm a <strong>software engineer</strong> and a
+          <strong>student</strong> with a passion for
         </p>
         <p class="text-balance text-center sm:text-left h-[2em]">
           <Passions />
