@@ -27,7 +27,7 @@ const socialLinks = [
 <template>
   <div class="flex justify-center sm:justify-start items-center gap-6">
     <!-- To use d-cip class -->
-    <DChip v-if="false" />
+    <DChip v-show="false" />
     <DWrapShape
       v-for="(socialLink, index) in socialLinks"
       :key="index"
