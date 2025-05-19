@@ -50,8 +50,8 @@ import { ProseCode } from '#components'
   display: flex;
   flex-direction: row;
   column-gap: 1rem;
-  min-height: 100dvh;
   min-height: 100vh;
+  min-height: 100svh;
   background: radial-gradient(#22c55e, #15803d);
 }
 .intro-bw-section {
