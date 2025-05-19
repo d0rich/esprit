@@ -43,7 +43,8 @@ export default defineNuxtConfig({
   icon: {
     serverBundle: {
       collections: ['mdi']
-    }
+    },
+    class: 'inline-block'
   },
 
   content: {
