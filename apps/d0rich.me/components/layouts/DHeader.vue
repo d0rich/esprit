@@ -12,9 +12,9 @@
         <div
           class="w-full h-16 flex justify-evenly items-center overflow-visible"
         >
-          <DBtn to="/"> Dorich </DBtn>
-          <DBtn to="/projects/"> Projects </DBtn>
+          <DBtn to="/"> d0rich </DBtn>
           <DBtn to="/blog/"> Blog </DBtn>
+          <DBtn to="/projects/"> Projects </DBtn>
           <DThemeSwitch v-if="isThemeSwitchVisible" />
         </div>
       </DShape>
