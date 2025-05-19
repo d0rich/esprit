@@ -3,7 +3,7 @@ import AvatarAnimated from '../../AvatarAnimated.vue'
 import Languages from './Languages.vue'
 import SocialLinks from './SocialLinks.vue'
 import Passions from './Passions.vue'
-import { ProseCode } from '#components'
+import { ProseCode, Icon } from '#components'
 </script>
 
 <template>
@@ -40,7 +40,19 @@ import { ProseCode } from '#components'
           <Passions />
         </p>
       </div>
-      <SocialLinks class="pb-5 mt-2" />
+      <address class="mt-4">
+        <p class="text-center sm:text-left">
+          <Icon
+            name="mdi:map-marker"
+            class="inline-block"
+            aria-hidden="true"
+            focusable="false"
+          />
+          <span class="sr-only">Location:</span>
+          Tbilisi, Georgia
+        </p>
+        <SocialLinks class="pb-5 mt-3" />
+      </address>
     </div>
   </section>
 </template>
