@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     preference: 'dark'
   },
   googleFonts: {
+    display: 'swap',
     families: {
       Roboto: true,
       'Roboto Slab': true,
