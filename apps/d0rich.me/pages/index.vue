@@ -4,7 +4,7 @@ import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
 import IntroSection from '~/components/homepage/IntroSection/index.vue'
 import HomepageB2Sitemap from '~/components/homepage/old/B2Sitemap.vue'
 import HomepageB3Skills from '~/components/homepage/old/B3Skills.vue'
-import HomepageB4Story from '~/components/homepage/old/B4Story.vue'
+import StorySection from '~/components/homepage/StorySection.vue'
 
 definePageMeta({
   colorMode: 'dark'
@@ -19,6 +19,6 @@ definePageMeta({
     <HomepageB2Sitemap />
     <!-- Block about skills -->
     <HomepageB3Skills />
-    <HomepageB4Story />
+    <StorySection />
   </div>
 </template>

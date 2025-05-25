@@ -3,7 +3,6 @@ import { onMounted, ref, type ComponentPublicInstance } from 'vue'
 import { useAsyncData, queryCollection } from '#imports'
 import {
   DWrapBackground,
-  DWrapShape,
   DCard,
   DCardTitle,
   DAnimationSpinner,
@@ -12,17 +11,24 @@ import {
 import { dateToMonthYear } from '~~/utils/date'
 import * as storyAnimations from '~~/utils/homepage/story'
 
-const { data } = useAsyncData('homepage', async () => {
-  const introPromise = queryCollection('home_story')
-    .path('/homepage/story/intro')
-    .first()
-  const blocksPromise = queryCollection('home_story')
-    .where('path', 'LIKE', '/homepage/story/blocks/%')
-    .order('date', 'DESC')
-    .all()
-  const [intro, blocks] = await Promise.all([introPromise, blocksPromise])
-  return { intro, blocks }
-})
+const { data } = useAsyncData(
+  'homepage_story',
+  async () => {
+    return queryCollection('home_story')
+      .where('path', 'LIKE', '/homepage/story/%')
+      .order('date', 'DESC')
+      .all()
+  },
+  {
+    transform: (data) => {
+      return data.sort((a, b) => {
+        const dateA = a.date ? 0 : 1
+        const dateB = b.date ? 0 : 1
+        return dateB - dateA
+      })
+    }
+  }
+)
 
 const storyContainer = ref<Element | null>(null)
 const svg = ref<(SVGElement & SVGSVGElement) | null>(null)
@@ -37,17 +43,11 @@ onMounted(() => {
     line,
     linePlaceholder
   )
-  // applyContentRevealAnimation(cards)
 })
 </script>
 
 <template>
-  <DWrapBackground
-    v-if="data"
-    id="story"
-    tag="section"
-    overlay-class="story__bg-overlay"
-  >
+  <DWrapBackground v-if="data" id="story" tag="section">
     <template #svg>
       <div class="sticky top-[25vh] mt-28 w-full h-screen overflow-hidden">
         <div class="mx-auto max-w-3xl">
@@ -55,69 +55,28 @@ onMounted(() => {
         </div>
       </div>
     </template>
-    <div class="pt-20" />
+    <div class="pt-10" />
     <h1>Story</h1>
-    <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
-      <div class="flex items-center justify-center">
-        <img
-          src="~/assets/img/avatar-transparent-frame.webp"
-          class="character"
-          alt="Nikolai Dorofeev avatar"
-        />
-        <DWrapShape class="bubble-1" shape-class="bubble-1__shape">
-          <template #bg-overlay>
-            <div
-              class="absolute inset-0 bg-white"
-              style="clip-path: var(--shape-bubble--right__outline)"
-            />
-          </template>
-          <ContentRenderer
-            :value="data.intro"
-            tag="div"
-            class="bubble-1__text"
-          />
-        </DWrapShape>
-      </div>
-    </div>
-    <div
-      :ref="
-        (el) => {
-          storyContainer = el as Element
-        }
-      "
-      class="story-blocks"
-    >
+    <div :ref="(el) => (storyContainer = el as Element)" class="story-blocks">
       <svg
-        :ref="
-          (el) => {
-            svg = el as SVGElement & SVGSVGElement
-          }
-        "
+        :ref="(el) => (svg = el as SVGElement & SVGSVGElement)"
         height="100%"
         width="100%"
         class="story-progress"
         viewBox="0 0 10 100"
       >
         <polygon
-          :ref="
-            (el) => {
-              linePlaceholder = el as SVGPolygonElement
-            }
-          "
+          :ref="(el) => (linePlaceholder = el as SVGPolygonElement)"
           class="fill-black"
         />
         <polygon
-          :ref="
-            (el) => {
-              line = el as SVGPolygonElement
-            }
-          "
+          :ref="(el) => (line = el as SVGPolygonElement)"
           class="fill-white"
         />
       </svg>
       <div class="story-blocks__cards">
         <DCard
-          v-for="(doc, index) in data.blocks"
+          v-for="(doc, index) in data"
           :key="doc.id"
           :ref="
             (el: ComponentPublicInstance) => {
@@ -126,7 +85,6 @@ onMounted(() => {
             }
           "
           mode="homepage-story"
-          class="my-20"
         >
           <DCardTitle>
             <template #extra>
@@ -143,13 +101,9 @@ onMounted(() => {
 
 <style>
 #story {
-  @apply font-dialog bg-[url('~/assets/img/bg/timeline.webp')] bg-fixed bg-cover bg-center;
-}
-
-#story .story__bg-overlay {
   background:
-    var(--d-card-x-ray--idle__white), rgb(202 138 4 / var(--tw-bg-opacity));
-  @apply backdrop-saturate-50 bg-opacity-90;
+    var(--d-card-x-ray--idle__white), radial-gradient(#fde047, #ca8a04);
+  @apply font-dialog;
 }
 
 #story h1 {
@@ -194,7 +148,7 @@ onMounted(() => {
 #story .story-blocks__cards {
   padding-bottom: 60vh;
   overflow: hidden;
-  @apply pr-3;
+  @apply pr-3 grid grid-cols-1 gap-y-20;
 }
 
 #story .story-progress {
