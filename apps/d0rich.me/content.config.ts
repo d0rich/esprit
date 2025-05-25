@@ -1,19 +1,6 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 const tags = z.array(z.string()).optional()
-const place = z.object({
-  title: z.string(),
-  link: z.string().url()
-})
-const daterange = z.object({
-  start: z.string().date(),
-  end: z.string().date().optional()
-})
-const timeNote = z.object({
-  title: z.string(),
-  place,
-  daterange
-})
 
 export default defineContentConfig({
   collections: {
@@ -74,46 +61,6 @@ export default defineContentConfig({
         title: z.string(),
         date: z.string().date()
       })
-    }),
-    // Resume
-    resume: defineCollection({
-      source: 'resume/leads/**.md',
-      type: 'page',
-      schema: z.object({
-        title: z.string(),
-        tags,
-        projects: z.object({ tags }),
-        draft: z.boolean().optional().default(false)
-      })
-    }),
-    resume_common: defineCollection({
-      source: 'resume/*.md',
-      type: 'page',
-      schema: z.object({})
-    }),
-    resume_skills: defineCollection({
-      source: 'resume/skills/**.md',
-      type: 'page',
-      schema: z.object({
-        tags
-      })
-    }),
-    resume_work_experience: defineCollection({
-      source: 'resume/work/**.md',
-      type: 'page',
-      schema: timeNote.extend({
-        draft: z.boolean().optional().default(false)
-      })
-    }),
-    resume_education: defineCollection({
-      source: 'resume/education/**.md',
-      type: 'page',
-      schema: timeNote
-    }),
-    resume_certificates: defineCollection({
-      source: 'resume/certificates/**.md',
-      type: 'page',
-      schema: timeNote
     })
   }
 })
