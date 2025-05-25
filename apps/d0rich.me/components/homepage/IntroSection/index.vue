@@ -3,11 +3,17 @@ import AvatarAnimated from '../../AvatarAnimated.vue'
 import Languages from './Languages.vue'
 import SocialLinks from './SocialLinks.vue'
 import Passions from './Passions.vue'
-import { ProseCode, Icon } from '#components'
+import { ProseCode, Icon, Head, Link } from '#components'
 </script>
 
 <template>
   <section class="intro-main">
+    <Head>
+      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.1x.webp" />
+      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.25x.webp" />
+      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.5x.webp" />
+      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw.webp" />
+    </Head>
     <div class="intro-bw-section">
       <AvatarAnimated
         class="w-48"
