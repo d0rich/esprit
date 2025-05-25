@@ -27,7 +27,7 @@ const socialLinks = ref([
   {
     icon: 'ic:sharp-mail',
     alt: 'Email link',
-    link: 'mailto:n.dorofeev.pro@gmail.com'
+    link: 'mailto:contact@d0rich.me'
   },
   {
     icon: 'fa6-brands:linkedin',

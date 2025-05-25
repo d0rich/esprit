@@ -31,7 +31,7 @@ useHead({
         'Nikolai Dorofeev',
         'd0rich',
         'dorich2000@gmail.com',
-        'n.dorofeev.pro@gmail.com',
+        'contact@d0rich.me',
         'developer',
         'programmer',
         'software engineer',

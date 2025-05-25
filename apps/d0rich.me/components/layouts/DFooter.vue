@@ -22,7 +22,7 @@ import { DWrapShape, DAnimationFloatingLetter, DBtn, Icon } from '#components'
           <ul>
             <li>
               <DBtn
-                href="mailto:n.dorofeev.pro@gmail.com"
+                href="mailto:contact@d0rich.me"
                 target="_blank"
                 text-transform="none"
                 no-rotate
@@ -30,7 +30,7 @@ import { DWrapShape, DAnimationFloatingLetter, DBtn, Icon } from '#components'
               >
                 <div class="flex items-center gap-2">
                   <Icon name="ic:sharp-mail" class="text-xl" />
-                  n.dorofeev.pro@gmail.com
+                  contact@d0rich.me
                 </div>
               </DBtn>
             </li>
