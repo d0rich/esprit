@@ -1,56 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { queryCollection, useAsyncData } from '#imports'
 
-const passions = [
-  {
-    title: 'Digital Tinkering',
-    emoji: '🛠️'
-  },
-  {
-    title: 'Automating Tasks',
-    emoji: '🤖'
-  },
-  {
-    title: 'Creating Appealing Visuals',
-    emoji: '🎨'
-  },
-  {
-    title: 'Exploring New Technologies',
-    emoji: '🚀'
-  },
-  {
-    title: 'Building Things',
-    emoji: '🏗️'
-  },
-  {
-    title: 'Learning New Skills',
-    emoji: '📚'
-  },
-  {
-    title: 'Playing Video Games',
-    emoji: '🎮'
-  },
-  {
-    title: 'Learning New Languages',
-    emoji: '🗣️'
-  },
-  {
-    title: 'Videography',
-    emoji: '🎥'
-  },
-  {
-    title: 'Motion Design and Animation',
-    emoji: '🎞️'
-  },
-  {
-    title: 'Meditation and Mindfulness Practices',
-    emoji: '🧘‍♂️'
-  },
-  {
-    title: 'Jogging',
-    emoji: '🏃‍♂️'
-  }
-]
+const { data: passionsData } = await useAsyncData('passions', () =>
+  queryCollection('home_lists').where('name', '=', 'Passions').first()
+)
+
+const passions = passionsData.value?.items || []
 
 const currentPassion = ref(passions[0])
 function changePassion() {

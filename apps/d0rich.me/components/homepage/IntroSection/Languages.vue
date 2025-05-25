@@ -1,25 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { queryCollection, useAsyncData } from '#imports'
 
-const languages = [
-  {
-    name: 'English',
-    emoji: '🇬🇧'
-  },
-  {
-    name: 'français',
-    emoji: '🇫🇷'
-  },
-  {
-    name: 'русский',
-    emoji: '🇷🇺'
-  }
-]
+const { data: languagesData } = await useAsyncData('languages', () =>
+  queryCollection('home_lists').where('name', '=', 'Languages').first()
+)
+
+const languages = languagesData.value?.items || []
 
 const currentLanguage = ref(languages[0])
 function changeLanguage() {
   const currentIndex = languages.findIndex(
-    (lang) => lang.name === currentLanguage.value.name
+    (lang) => lang.title === currentLanguage.value.title
   )
   const nextIndex = (currentIndex + 1) % languages.length
   currentLanguage.value = languages[nextIndex]
@@ -45,8 +37,8 @@ onBeforeUnmount(() => {
 
     <!-- Visual dynamic content (hidden from screen readers) -->
     <Transition name="slide-fade" mode="out-in">
-      <strong :key="currentLanguage.name" class="font-bold" aria-hidden="true">
-        {{ currentLanguage.name }} <span>{{ currentLanguage.emoji }}</span>
+      <strong :key="currentLanguage.title" class="font-bold" aria-hidden="true">
+        {{ currentLanguage.title }} <span>{{ currentLanguage.emoji }}</span>
       </strong>
     </Transition>
 

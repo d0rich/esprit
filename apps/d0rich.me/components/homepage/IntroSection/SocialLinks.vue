@@ -1,27 +1,12 @@
 <script setup lang="ts">
 import { Icon, DBtn, DChip, DWrapShape } from '#components'
-const socialLinks = [
-  {
-    icon: 'ic:sharp-mail',
-    alt: 'Email link',
-    link: 'mailto:n.dorofeev.pro@gmail.com'
-  },
-  {
-    icon: 'fa6-brands:linkedin',
-    alt: 'Linkedin link',
-    link: 'https://www.linkedin.com/in/d0rich/'
-  },
-  {
-    icon: 'fa6-brands:github',
-    alt: 'Github link',
-    link: 'https://github.com/d0rich'
-  },
-  {
-    icon: 'fa6-brands:telegram',
-    alt: 'Telegram link',
-    link: 'https://d0rich.t.me/'
-  }
-]
+import { queryCollection, useAsyncData } from '#imports'
+
+const { data: socialData } = await useAsyncData('socialLinks', () =>
+  queryCollection('home_lists').where('name', '=', 'Social Links').first()
+)
+
+const socialLinks = socialData.value?.items || []
 </script>
 
 <template>
@@ -38,9 +23,13 @@ const socialLinks = [
         :href="socialLink.link"
         target="_blank"
         no-passive-highlight
-        :aria-label="socialLink.alt"
+        :aria-label="socialLink.title"
       >
-        <Icon :name="socialLink.icon" class="m-[0.4em]" />
+        <Icon
+          v-if="socialLink.icon"
+          :name="socialLink.icon"
+          class="m-[0.4em]"
+        />
       </DBtn>
     </DWrapShape>
   </div>

@@ -29,6 +29,21 @@ export default defineContentConfig({
       })
     }),
     // Home page
+    home_lists: defineCollection({
+      source: 'homepage/lists/**.yaml',
+      type: 'data',
+      schema: z.object({
+        name: z.string(),
+        items: z
+          .object({
+            title: z.string(),
+            icon: z.string().optional(),
+            link: z.string().url().optional(),
+            emoji: z.string().optional()
+          })
+          .array()
+      })
+    }),
     home_intro: defineCollection({
       source: 'homepage/intro.md',
       type: 'page',

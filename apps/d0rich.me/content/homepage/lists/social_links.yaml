@@ -1,0 +1,14 @@
+name: Social Links
+items:
+  - icon: ic:sharp-mail
+    title: Email link
+    link: mailto:n.dorofeev.pro@gmail.com
+  - icon: fa6-brands:linkedin
+    title: Linkedin link
+    link: https://www.linkedin.com/in/d0rich/
+  - icon: fa6-brands:github
+    title: Github link
+    link: https://github.com/d0rich
+  - icon: fa6-brands:telegram
+    title: Telegram link
+    link: https://d0rich.t.me/
