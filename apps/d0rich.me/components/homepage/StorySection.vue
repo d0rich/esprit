@@ -2,12 +2,12 @@
 import { useAsyncData, queryCollection } from '#imports'
 import {
   DWrapBackground,
-  DCard,
-  DCardTitle,
   DAnimationSpinner,
   ContentRenderer
 } from '#components'
 import { dateToMonthYear } from '~~/utils/date'
+import DCard from '~/components/content/DCard.vue'
+import DCardTitle from '~/components/content/DCardTitle.vue'
 
 const { data } = useAsyncData(
   'homepage_story',
