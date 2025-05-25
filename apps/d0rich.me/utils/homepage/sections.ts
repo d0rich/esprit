@@ -1,4 +1,4 @@
-import { gsap } from 'gsap/all'
+import { gsap } from 'gsap'
 import type { ComponentPublicInstance, Ref } from 'vue'
 import {
   type LineEdge,

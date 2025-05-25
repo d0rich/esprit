@@ -23,7 +23,6 @@ onMounted(() => {
     id="skills"
     tag="section"
     class="overflow-hidden"
-    overlay-class="skills__bg-overlay"
   >
     <template #svg>
       <div class="relative w-full h-full max-w-3xl mx-auto">
@@ -56,17 +55,10 @@ onMounted(() => {
   </DWrapBackground>
 </template>
 
-<style>
-#skills .skills__bg-overlay {
-  background:
-    var(--d-card-x-ray--action__white), rgb(14 116 144 / var(--tw-bg-opacity));
-  @apply backdrop-saturate-50 bg-opacity-90;
-}
-</style>
-
 <style scoped>
 #skills {
-  @apply font-dialog bg-[url('~/assets/img/bg/skills.webp')] bg-cover bg-fixed bg-center;
+  background: var(--d-card-x-ray--action__white), radial-gradient(#22d3ee, #0e7490);
+  @apply font-dialog;
 }
 
 #skills h1 {
