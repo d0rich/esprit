@@ -35,8 +35,26 @@ const headersToHighlight = useTocObserver(root as Ref<HTMLElement>)
 
 <style scoped>
 .background-container {
-  background-image: url(../../../../assets/img/d-bw.webp);
+  background-image: url('~/assets/img/d-bw@0.1x.webp');
   @apply h-full relative px-4 pt-20 pb-10 isolate
          bg-cover bg-center;
+}
+
+@media screen and (min-width: 321px) {
+  .background-container {
+    background-image: url('~/assets/img/bg/d-bw@0.25x.webp');
+  }
+}
+
+@media screen and (min-width: 641px) {
+  .background-container {
+    background-image: url('~/assets/img/bg/d-bw@0.5x.webp');
+  }
+}
+
+@media screen and (min-width: 1081px) {
+  .background-container {
+    background-image: url('~/assets/img/bg/d-bw.webp');
+  }
 }
 </style>

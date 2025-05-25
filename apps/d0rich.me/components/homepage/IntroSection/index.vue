@@ -73,13 +73,31 @@ import { ProseCode, Icon } from '#components'
   width: 35%;
   min-width: 16rem;
   inset: 0;
-  background-image: url('~/assets/img/bg/d-bw.webp');
+  background-image: url('~/assets/img/bg/d-bw@0.1x.webp');
   background-size: cover;
   background-position: center;
   clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 100%, 0 100%);
 }
 .intro-text {
   @apply text-3xl;
+}
+
+@media screen and (min-width: 321px) {
+  .intro-bw-section {
+    background-image: url('~/assets/img/bg/d-bw@0.25x.webp');
+  }
+}
+
+@media screen and (min-width: 641px) {
+  .intro-bw-section {
+    background-image: url('~/assets/img/bg/d-bw@0.5x.webp');
+  }
+}
+
+@media screen and (min-width: 1081px) {
+  .intro-bw-section {
+    background-image: url('~/assets/img/bg/d-bw.webp');
+  }
 }
 
 @media screen and (max-width: 640px) {
