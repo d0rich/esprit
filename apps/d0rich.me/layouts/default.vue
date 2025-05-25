@@ -28,6 +28,7 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
 .section-leave-active,
 .section-enter-active {
   transition: all var(--page-transition-length);
+  @apply motion-reduce:transition-none;
 }
 .section-enter-from {
   transform: translateX(-100%);
