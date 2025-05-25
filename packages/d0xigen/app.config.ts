@@ -1,4 +1,7 @@
 export default defineAppConfig({
+  icon: {
+    mode: 'svg'
+  },
   d0xigen: {
     title: 'd0xigen',
     description: 'My awesome docs',
