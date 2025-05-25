@@ -138,4 +138,13 @@ export default defineComponent({
   transform: rotate(-150deg);
   opacity: 0;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .header-leave-active,
+  .header-enter-active,
+  .header-leave-active .d-shape__bg-filter,
+  .header-enter-active .d-shape__bg-filter {
+    transition: none;
+  }
+}
 </style>

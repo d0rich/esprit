@@ -111,4 +111,10 @@ defineProps({
     transform: rotate(-360deg);
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .d-animation-spinner__blade,
+  .d-animation-spinner__spinner {
+    animation-play-state: paused;
+  }
+}
 </style>

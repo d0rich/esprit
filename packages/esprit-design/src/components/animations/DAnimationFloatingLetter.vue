@@ -55,4 +55,10 @@ defineProps({
     transform: translate(0, 0);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .d-animation-floating-letter {
+    animation-play-state: paused;
+  }
+}
 </style>

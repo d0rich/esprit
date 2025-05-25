@@ -157,6 +157,12 @@ const progressBarPoints =
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  #story .story-progress {
+    display: block;
+  }
+}
+
 /* Automatically generated */
 @keyframes pogress-bar-scroll {
   0% {

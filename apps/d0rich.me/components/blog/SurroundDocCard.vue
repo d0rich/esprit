@@ -18,7 +18,7 @@ defineProps<{
 <template>
   <NuxtLink
     :to="withTrailingSlash(doc.path)"
-    class="transition-transform hover:scale-90"
+    class="transition-transform hover:scale-90 motion-reduce:transition-none"
   >
     <DCard dense>
       <DCardTitle

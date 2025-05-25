@@ -57,7 +57,7 @@ defineProps<{
 
 <style>
 .blog-tile {
-  @apply scale-90 hover:scale-100 transition-transform;
+  @apply scale-90 hover:scale-100 transition-transform motion-reduce:transition-none;
 }
 
 .blog-tile__shape {
@@ -68,7 +68,7 @@ defineProps<{
 .blog-tile__image {
   @apply absolute object-cover h-full
          translate-x-2/3 translate-y-2/3 -rotate-45
-         transition-all;
+         transition-all motion-reduce:transition-none;
 }
 
 .blog-tile:hover .blog-tile__image {
