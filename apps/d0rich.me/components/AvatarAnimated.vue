@@ -194,4 +194,10 @@ withDefaults(
     translate: 3000px -3000px;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  #DLetter {
+    scale: 1.35;
+    animation: none;
+  }
+}
 </style>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { queryCollection, useAsyncData } from '#imports'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 const { data: passionsData } = await useAsyncData('passions', () =>
   queryCollection('home_lists').where('name', '=', 'Passions').first()
 )
 
+const prefersReducedMotion = usePreferredReducedMotion()
 const passions = passionsData.value?.items || []
 
 const currentPassion = ref(passions[0])
@@ -25,6 +27,16 @@ const printedText = ref(currentPassionText())
 let intervalId: NodeJS.Timeout | undefined = undefined
 function printText() {
   const text = currentPassionText()
+  const onPrinted = () => {
+    intervalId = setTimeout(() => {
+      clearText()
+    }, 1000)
+  }
+  if (prefersReducedMotion.value === 'reduce') {
+    printedText.value = text
+    onPrinted()
+    return
+  }
   const symbols = Intl?.Segmenter
     ? [
         ...new Intl.Segmenter('en', { granularity: 'grapheme' }).segment(text)
@@ -38,14 +50,18 @@ function printText() {
       index++
     } else {
       clearInterval(intervalId)
-      intervalId = setTimeout(() => {
-        clearText()
-      }, 1000)
+      onPrinted()
     }
   }, 100)
 }
 function clearText() {
   const text = printedText.value
+  if (prefersReducedMotion.value === 'reduce') {
+    printedText.value = ''
+    changePassion()
+    printText()
+    return
+  }
   const symbols = Intl?.Segmenter
     ? [
         ...new Intl.Segmenter('en', { granularity: 'grapheme' }).segment(text)
@@ -101,6 +117,11 @@ onBeforeUnmount(() => {
   }
   50% {
     opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    display: none;
   }
 }
 </style>

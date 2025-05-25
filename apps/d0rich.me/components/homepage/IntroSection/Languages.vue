@@ -57,6 +57,13 @@ onBeforeUnmount(() => {
   transition: all 0.3s ease-out;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: none;
+  }
+}
+
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   opacity: 0;
