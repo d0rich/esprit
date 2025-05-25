@@ -19,11 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <DWrapBackground
-    id="skills"
-    tag="section"
-    class="overflow-hidden"
-  >
+  <DWrapBackground id="skills" tag="section" class="overflow-hidden">
     <template #svg>
       <div class="relative w-full h-full max-w-3xl mx-auto">
         <DAnimationHypnosis
@@ -57,7 +53,8 @@ onMounted(() => {
 
 <style scoped>
 #skills {
-  background: var(--d-card-x-ray--action__white), radial-gradient(#22d3ee, #0e7490);
+  background:
+    var(--d-card-x-ray--action__white), radial-gradient(#22d3ee, #0e7490);
   @apply font-dialog;
 }
 
