@@ -77,8 +77,7 @@ import { ProseCode, Icon, Head, Link } from '#components'
   min-width: 16rem;
   inset: 0;
   background-image:
-    url('~/assets/img/bg/d-bw.svg'),
-    radial-gradient(#000, #fff);
+    url('~/assets/img/bg/d-bw.svg'), radial-gradient(#000, #fff);
   background-size: cover;
   background-position: center;
   clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 100%, 0 100%);

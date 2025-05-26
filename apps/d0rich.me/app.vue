@@ -7,7 +7,14 @@ import {
   useSeoMeta,
   useTransitionAnimationWorkaround
 } from '#imports'
-import { NuxtLayout, NuxtPage, DBigBangButtonAnimation } from '#components'
+import {
+  NuxtLayout,
+  NuxtPage,
+  DBigBangButtonAnimation,
+  Head,
+  Link,
+  NoScript
+} from '#components'
 import { useFaviconAnimation } from '~/composables/favicon'
 
 const { key } = useTransitionAnimationWorkaround()
@@ -26,6 +33,9 @@ const mostUsedEmojis =
   '🩲🩳👙👛👜👝🛍🎒👞👟🥾🥿👠👡🩰👢👑👒🎩🎓🧢⛑📿💄💍💎🕶🥽🥼🧵🧶'
 
 const emojiSubset = '🇬🇧🇫🇷🇷🇺' + '🛠️🎨🚀🏗️📚🎮🗣️🎥🎞️🧘‍♂️🏃‍♂️' + mostUsedEmojis
+const emojiFontLink =
+  'https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap&text=' +
+  encodeURIComponent(emojiSubset)
 
 onNuxtReady(() => {
   useFaviconAnimation()
@@ -57,23 +67,6 @@ useHead({
       ].join(', ')
     }
   ],
-  link: [
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com'
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossorigin: 'anonymous'
-    },
-    {
-      rel: 'stylesheet',
-      href:
-        'https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap&text=' +
-        encodeURIComponent(emojiSubset)
-    }
-  ],
   htmlAttrs: {
     lang: 'en'
   }
@@ -97,6 +90,19 @@ useSeoMeta({
 </script>
 
 <template>
+  <Head>
+    <Link rel="preconnect" href="https://fonts.googleapis.com" />
+    <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <Link
+      rel="stylesheet"
+      :href="emojiFontLink"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <NoScript>
+      <Link rel="stylesheet" :href="emojiFontLink" />
+    </NoScript>
+  </Head>
   <NuxtLayout>
     <NuxtPage :key="key" />
   </NuxtLayout>
