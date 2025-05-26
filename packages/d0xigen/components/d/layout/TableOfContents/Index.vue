@@ -45,19 +45,19 @@ const headersToHighlight = useTocObserver(root as Ref<HTMLElement>)
 
 @media screen and (min-width: 321px) {
   .background-container {
-    --main-bg-image: url('~/assets/img/bg/d-bw@0.25x.webp');
+    --main-bg-image: url('~/assets/img/d-bw@0.25x.webp');
   }
 }
 
 @media screen and (min-width: 641px) {
   .background-container {
-    --main-bg-image: url('~/assets/img/bg/d-bw@0.5x.webp');
+    --main-bg-image: url('~/assets/img/d-bw@0.5x.webp');
   }
 }
 
 @media screen and (min-width: 1081px) {
   .background-container {
-    --main-bg-image: url('~/assets/img/bg/d-bw.webp');
+    --main-bg-image: url('~/assets/img/d-bw.webp');
   }
 }
 </style>
