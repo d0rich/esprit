@@ -85,11 +85,7 @@ onBeforeUnmount(() => {
     <div class="pt-20" />
     <h1>Professional</h1>
     <div class="max-w-7xl mx-auto px-3">
-      <div class="skills-group">
-        <DStats
-          :titles="['Front-End', 'Back-End', 'Web3', 'Design', 'Needs']"
-          :values="[5, 5, 3, 4, 5]"
-        />
+      <div>
         <DCard mode="homepage-skills">
           <DCardTitle>Background</DCardTitle>
           <div class="text-xl font-semibold">
@@ -122,6 +118,10 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </DCard>
+        <DStats
+          :titles="['Front-End', 'Back-End', 'Web3', 'Design', 'Needs']"
+          :values="[5, 5, 3, 4, 5]"
+        />
       </div>
     </div>
     <div style="height: 20vh" />
