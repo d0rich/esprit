@@ -9,7 +9,12 @@ import { ProseCode, Icon, Head, Link } from '#components'
 <template>
   <section class="intro-main">
     <Head>
-      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw.svg" />
+      <Link
+        rel="prefetch"
+        as="image"
+        type="image/svg+xml"
+        href="~/assets/img/bg/d-bw.svg"
+      />
     </Head>
     <div class="intro-bw-section">
       <AvatarAnimated
