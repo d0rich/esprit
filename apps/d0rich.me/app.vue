@@ -94,7 +94,7 @@ useSeoMeta({
     <Link rel="preconnect" href="https://fonts.googleapis.com" />
     <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <Link
-      rel="stylesheet"
+      rel="preload"
       :href="emojiFontLink"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
