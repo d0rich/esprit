@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
                   class="rotate-item"
                   tabindex="-1"
                 >
-                  <span>{{ technology.title }}</span>
+                  <span>{{ technology.title }}{{ ' ' }}</span>
                   <Icon
                     :name="technology.icon!"
                     :aria-label="technology.title"
