@@ -2,6 +2,7 @@
 import { onMounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useAsyncData, queryCollection } from '#imports'
 import { DWrapBackground, DAnimationHypnosis, Icon } from '#components'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 import DStats from '~/components/content/DStats.vue'
 import DCard from '~/components/content/DCard.vue'
@@ -30,6 +31,8 @@ const { data: technologiesData } = await useAsyncData(
 if (!technologiesData.value) {
   throw new Error('Technologies data not found')
 }
+
+const prefersReducedMotion = usePreferredReducedMotion()
 
 const technologies = technologiesData.value.items
 const currentTechnologyIndex = ref(0)
@@ -60,6 +63,14 @@ function switchTechnology() {
 
 let intervalId: ReturnType<typeof setInterval>
 onMounted(() => {
+  if (prefersReducedMotion.value === 'reduce') {
+    intervalId = setInterval(() => {
+      for (let i = 0; i < 4; i++) {
+        switchTechnology()
+      }
+    }, 2000)
+    return
+  }
   intervalId = setInterval(switchTechnology, 300)
 })
 onBeforeUnmount(() => {
@@ -85,8 +96,12 @@ onBeforeUnmount(() => {
             I worked with a vide range of technologies
             <div class="grid grid-cols-[auto_1fr] gap-x-10 items-center">
               <div>such as:</div>
-              <div class="my-20 relative">
-                <div
+              <ul
+                class="my-16 relative h-[1.5em]"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <li
                   v-for="technology in [
                     nextTechnology,
                     currentTechnology,
@@ -95,11 +110,15 @@ onBeforeUnmount(() => {
                   ]"
                   :key="technology.title"
                   class="rotate-item"
+                  tabindex="-1"
                 >
-                  {{ technology.title }}
-                  <Icon :name="technology.icon!" />
-                </div>
-              </div>
+                  <span>{{ technology.title }}</span>
+                  <Icon
+                    :name="technology.icon!"
+                    :aria-label="technology.title"
+                  />
+                </li>
+              </ul>
             </div>
           </div>
         </DCard>
@@ -185,6 +204,13 @@ onBeforeUnmount(() => {
   rotate: 24deg;
   opacity: 0;
   animation: rotate-leave var(--animation-length) var(--animation-ease) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotate-item:nth-child(n) {
+    transition: none;
+    animation: none;
+  }
 }
 
 @keyframes rotate-enter {
