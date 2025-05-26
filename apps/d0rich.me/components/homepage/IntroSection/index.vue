@@ -9,10 +9,7 @@ import { ProseCode, Icon, Head, Link } from '#components'
 <template>
   <section class="intro-main">
     <Head>
-      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.1x.webp" />
-      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.25x.webp" />
-      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw@0.5x.webp" />
-      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw.webp" />
+      <Link rel="preload" as="image" href="~/assets/img/bg/d-bw.svg" />
     </Head>
     <div class="intro-bw-section">
       <AvatarAnimated
@@ -79,9 +76,8 @@ import { ProseCode, Icon, Head, Link } from '#components'
   width: 35%;
   min-width: 16rem;
   inset: 0;
-  --main-bg-image: url('~/assets/img/bg/d-bw@0.1x.webp');
   background-image:
-    var(--main-bg-image), url('~/assets/img/bg/d-bw@0.1x.webp'),
+    url('~/assets/img/bg/d-bw.svg'),
     radial-gradient(#000, #fff);
   background-size: cover;
   background-position: center;
@@ -89,24 +85,6 @@ import { ProseCode, Icon, Head, Link } from '#components'
 }
 .intro-text {
   @apply text-3xl;
-}
-
-@media screen and (min-width: 321px) {
-  .intro-bw-section {
-    --main-bg-image: url('~/assets/img/bg/d-bw@0.25x.webp');
-  }
-}
-
-@media screen and (min-width: 641px) {
-  .intro-bw-section {
-    --main-bg-image: url('~/assets/img/bg/d-bw@0.5x.webp');
-  }
-}
-
-@media screen and (min-width: 1081px) {
-  .intro-bw-section {
-    --main-bg-image: url('~/assets/img/bg/d-bw.webp');
-  }
 }
 
 @media screen and (max-width: 640px) {
