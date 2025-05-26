@@ -22,11 +22,6 @@ export default defineAppConfig({
     og: {
       image: '/og/image.jpg'
     },
-    features: {
-      gtag: {
-        id: 'G-XXXXXXXXXX'
-      }
-    },
     d0richIndex: {
       tags: []
     }

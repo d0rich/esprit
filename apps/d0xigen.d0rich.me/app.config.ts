@@ -21,11 +21,6 @@ export default defineAppConfig({
         'd0rich'
       ]
     },
-    features: {
-      gtag: {
-        id: 'G-VF1B9L1E6V'
-      }
-    },
     d0richIndex: {
       complexity: 3,
       tags: ['docs', 'front-end', 'ssg']
