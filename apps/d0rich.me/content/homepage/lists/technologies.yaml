@@ -1,0 +1,105 @@
+name: Technologies
+items:
+  - title: Python
+    icon: logos:python
+  - title: Flask
+    icon: logos:flask
+  - title: Pandas
+    icon: logos:pandas-icon
+
+  - title: JavaScript
+    icon: logos:javascript
+  - title: TypeScript
+    icon: logos:typescript-icon
+  - title: React
+    icon: logos:react
+  - title: Next.js
+    icon: vscode-icons:file-type-light-next
+  - title: Vue.js
+    icon: logos:vue
+  - title: Gridsome
+    icon: vscode-icons:file-type-gridsome
+  - title: Nuxt.js
+    icon: vscode-icons:file-type-nuxt
+
+  - title: HTML5
+    icon: logos:html-5
+  - title: CSS3
+    icon: logos:css-3
+  - title: SASS
+    icon: logos:sass
+  - title: Tailwind CSS
+    icon: vscode-icons:file-type-tailwind
+  - title: Bootstrap
+    icon: logos:bootstrap
+
+  - title: Node.js
+    icon: logos:nodejs-icon-alt
+  - title: Express.js
+    icon: logos:express
+  - title: Fastify
+    icon: logos:fastify-icon
+  - title: NestJS
+    icon: logos:nestjs
+
+  - title: PHP
+    icon: logos:php
+  - title: Laravel
+    icon: logos:laravel
+
+  - title: C++
+    icon: logos:c-plusplus
+  - title: C#
+    icon: logos:c-sharp
+  - title: ASP.NET MVC
+    icon: logos:c-sharp
+  - title: Java
+    icon: logos:java
+  - title: Kotlin
+    icon: logos:kotlin-icon
+  - title: Rust
+    icon: logos:rust
+
+  - title: SQLite
+    icon: logos:sqlite
+  - title: PostgreSQL
+    icon: logos:postgresql
+  - title: MongoDB
+    icon: logos:mongodb-icon
+  - title: MySQL
+    icon: logos:mysql-icon
+  - title: GraphQL
+    icon: logos:graphql
+
+  - title: Firebase
+    icon: logos:firebase
+  - title: Supabase
+    icon: logos:supabase-icon
+  - title: Docker
+    icon: logos:docker-icon
+  - title: Kubernetes
+    icon: logos:kubernetes
+
+  - title: Git
+    icon: logos:git-icon
+
+  - title: GitHub Actions
+    icon: logos:github-actions
+  - title: GitLab CI
+    icon: logos:gitlab
+  - title: Jenkins
+    icon: logos:jenkins
+  - title: Google Cloud
+    icon: logos:google-cloud
+
+  - title: RESTful APIs
+    icon: vscode-icons:file-type-rest
+  - title: WebSockets
+    icon: logos:socket-io
+  - title: gRPC
+    icon: logos:grpc
+
+  - title: React Native
+    icon: logos:react
+  - title: Flutter
+    icon: logos:flutter
