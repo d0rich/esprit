@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useAsyncData, queryCollection } from '#imports'
-import { DWrapBackground, DAnimationHypnosis, Icon } from '#components'
+import { Icon } from '#components'
 import { usePreferredReducedMotion } from '@vueuse/core'
 
-import DStats from '~/components/content/DStats.vue'
 import DCard from '~/components/content/DCard.vue'
 import DCardTitle from '~/components/content/DCardTitle.vue'
 
@@ -79,105 +78,47 @@ onBeforeUnmount(() => {
   }
 })
 </script>
-
 <template>
-  <DWrapBackground id="skills" tag="section" class="overflow-hidden">
-    <div class="pt-20" />
-    <h1>Professional</h1>
-    <div class="max-w-7xl mx-auto px-3">
-      <div>
-        <DCard mode="homepage-skills">
-          <DCardTitle>Background</DCardTitle>
-          <div class="text-xl font-semibold">
-            I worked with a vide range of technologies
-            <div class="grid grid-cols-[auto_1fr] gap-x-10 items-center">
-              <div>such as:</div>
-              <ul
-                class="my-16 relative h-[1.5em]"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                <li
-                  v-for="technology in [
-                    nextTechnology,
-                    currentTechnology,
-                    prevTechnology,
-                    disappearingTechnology
-                  ]"
-                  :key="technology.title"
-                  class="rotate-item"
-                  tabindex="-1"
-                >
-                  <span>{{ technology.title }}{{ ' ' }}</span>
-                  <Icon
-                    :name="technology.icon!"
-                    :aria-label="technology.title"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </DCard>
-        <DStats
-          :titles="['Front-End', 'Back-End', 'Web3', 'Design', 'Needs']"
-          :values="[5, 5, 3, 4, 5]"
-        />
+  <DCard mode="homepage-skills">
+    <DCardTitle>Background</DCardTitle>
+    <div class="text-xl">
+      It is hard to list all the technologies I have worked with.
+      <div class="grid grid-cols-[auto_1fr] gap-x-10 mt-5 items-center">
+        <div>For example:</div>
+        <ul
+          class="my-16 relative h-[1.5em]"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <li
+            v-for="technology in [
+              nextTechnology,
+              currentTechnology,
+              prevTechnology,
+              disappearingTechnology
+            ]"
+            :key="technology.title"
+            class="rotate-item"
+            tabindex="-1"
+          >
+            <span>{{ technology.title }}{{ ' ' }}</span>
+            <Icon :name="technology.icon!" :aria-label="technology.title" />
+          </li>
+        </ul>
       </div>
+      <p class="text-balance">
+        This experience makes me truly technology-agnostic professional,
+        allowing to focus on the main goal -
+        <strong>delivering the best products</strong>.
+      </p>
     </div>
-    <div style="height: 20vh" />
-
-    <template #svg>
-      <div class="relative w-full h-full max-w-3xl mx-auto">
-        <DAnimationHypnosis
-          class="absolute inset-0 mx-auto right-2/3 top-28 w-80 -rotate-12"
-        />
-        <DAnimationHypnosis
-          class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
-        />
-        <DAnimationHypnosis class="absolute -left-40 bottom-5 w-96" />
-      </div>
-    </template>
-  </DWrapBackground>
+  </DCard>
 </template>
 
 <style scoped>
-#skills {
-  background:
-    var(--d-card-x-ray--action__white), radial-gradient(#22d3ee, #0e7490);
-  @apply font-dialog;
-}
-
-#skills h1 {
-  background:
-    var(--d-card-x-ray--action__color), rgb(255 255 255 / var(--tw-bg-opacity));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
-}
-
-#skills .skills-group {
-  @apply flex flex-col-reverse items-center md:flex-row
-         mb-36;
-}
-
-#skills .skills-group:nth-child(2n) {
-  @apply md:flex-row-reverse;
-}
-
-#skills .skills-group > :nth-child(1) {
-  @apply md:w-1/3;
-}
-
-#skills .skills-group > :nth-child(2) {
-  @apply md:w-2/3;
-}
-</style>
-
-<style scoped>
-/* slide-fade transition */
 .rotate-item {
   top: 0;
+  white-space: nowrap;
   transform-origin: -6em 50%;
   translate: 0;
   --animation-length: 0.3s;
@@ -218,8 +159,10 @@ onBeforeUnmount(() => {
     opacity: 0;
     rotate: -24deg;
   }
-  to {
+  50% {
     opacity: 1;
+  }
+  to {
     rotate: -12deg;
   }
 }
@@ -247,8 +190,10 @@ onBeforeUnmount(() => {
     opacity: 1;
     rotate: 12deg;
   }
-  to {
+  50% {
     opacity: 0;
+  }
+  to {
     rotate: 24deg;
   }
 }

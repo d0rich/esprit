@@ -2,7 +2,7 @@
 import { definePageMeta } from '#imports'
 import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
 import IntroSection from '~/components/homepage/IntroSection/index.vue'
-import SkillsSection from '~/components/homepage/SkillsSection.vue'
+import SkillsSection from '~/components/homepage/SkillsSection/Index.vue'
 import StorySection from '~/components/homepage/StorySection.vue'
 
 definePageMeta({

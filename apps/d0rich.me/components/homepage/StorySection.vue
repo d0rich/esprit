@@ -91,30 +91,6 @@ const progressBarPoints =
   @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
 }
 
-#story .character {
-  @apply sm:h-96 sm:w-96 max-w-sm h-auto md:max-w-lg
-         -ml-20 sm:ml-[unset] transition-all;
-}
-
-#story .bubble-1 {
-  @apply max-w-md w-2/3
-    -ml-40 sm:-ml-20
-    sm:text-lg;
-}
-
-#story .bubble-1__shape {
-  @apply bg-black bg-opacity-90;
-  clip-path: var(--shape-bubble--right);
-}
-
-#story .bubble-1__text {
-  padding: var(--shape-bubble--right__padding);
-  @apply font-semibold;
-}
-
-#story .bubble-1__text > p {
-  @apply mb-3;
-}
 #story .story-blocks {
   grid-template-columns: auto 1fr;
   column-gap: clamp(1rem, 5vw, 3rem);
