@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useAsyncData, queryCollection } from '#imports'
-import {
-  DWrapBackground,
-  DAnimationHypnosis,
-  ContentRenderer,
-  Icon
-} from '#components'
+import { DWrapBackground, DAnimationHypnosis, Icon } from '#components'
 
 import DStats from '~/components/content/DStats.vue'
 import DCard from '~/components/content/DCard.vue'
@@ -77,29 +72,34 @@ onBeforeUnmount(() => {
 <template>
   <DWrapBackground id="skills" tag="section" class="overflow-hidden">
     <div class="pt-20" />
-    <h1>Skills</h1>
+    <h1>Professional</h1>
     <div class="max-w-7xl mx-auto px-3">
       <div class="skills-group">
         <DStats
           :titles="['Front-End', 'Back-End', 'Web3', 'Design', 'Needs']"
           :values="[5, 5, 3, 4, 5]"
         />
-        <DCard mode="homepage-skills" class="text-xl">
-          <DCardTitle>Professional</DCardTitle>
-          I worked with a vide range of technologies, such as:
-          <div class="my-10 relative">
-            <div
-              v-for="technology in [
-                nextTechnology,
-                currentTechnology,
-                prevTechnology,
-                disappearingTechnology
-              ]"
-              :key="technology.title"
-              class="rotate-item"
-            >
-              {{ technology.title }}
-              <Icon :name="technology.icon!" />
+        <DCard mode="homepage-skills">
+          <DCardTitle>Background</DCardTitle>
+          <div class="text-xl font-semibold">
+            I worked with a vide range of technologies
+            <div class="grid grid-cols-[auto_1fr] gap-x-10 items-center">
+              <div>such as:</div>
+              <div class="my-20 relative">
+                <div
+                  v-for="technology in [
+                    nextTechnology,
+                    currentTechnology,
+                    prevTechnology,
+                    disappearingTechnology
+                  ]"
+                  :key="technology.title"
+                  class="rotate-item"
+                >
+                  {{ technology.title }}
+                  <Icon :name="technology.icon!" />
+                </div>
+              </div>
             </div>
           </div>
         </DCard>

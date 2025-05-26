@@ -52,7 +52,7 @@ items:
   - title: C#
     icon: logos:c-sharp
   - title: ASP.NET MVC
-    icon: logos:c-sharp
+    icon: vscode-icons:file-type-asp
   - title: Java
     icon: logos:java
   - title: Kotlin
