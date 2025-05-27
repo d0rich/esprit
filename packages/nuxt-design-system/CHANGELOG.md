@@ -1,5 +1,21 @@
 # @d0rich/nuxt-design-system
 
+## 1.1.0
+
+### Minor Changes
+
+- 44d2094: Remove gsap ScrollTrigger plugin
+- 44d2094: Fix @nuxtjs/tailwindcss version on 6.12
+- 44d2094: Update @nuxt/icon module
+- 44d2094: Remove emoji font
+- 44d2094: Load Google fonts with font-display: swap
+
+### Patch Changes
+
+- Updated dependencies [44d2094]
+- Updated dependencies [44d2094]
+  - @d0rich/esprit-design@0.5.0
+
 ## 1.0.1
 
 ### Patch Changes
