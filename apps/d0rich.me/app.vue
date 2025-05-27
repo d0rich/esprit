@@ -45,7 +45,7 @@ onNuxtReady(() => {
 useHead({
   titleTemplate(title: string | undefined) {
     if (title) return `${title} • d0rich`
-    else return 'd0rich: dream developer'
+    else return 'd0rich: Digital Artisan'
   },
   meta: [
     {
@@ -85,7 +85,7 @@ useSeoMeta({
   twitterSite: '@d0rich',
   twitterCreator: '@d0rich',
   twitterImage: 'https://d0rich.me/og/image.jpg',
-  twitterTitle: 'd0rich: dream developer',
+  twitterTitle: 'd0rich: Digital Artisan',
   twitterDescription: description
 })
 </script>
