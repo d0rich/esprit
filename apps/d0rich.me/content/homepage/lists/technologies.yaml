@@ -70,6 +70,11 @@ items:
     icon: logos:mysql-icon
   - title: GraphQL
     icon: logos:graphql
+  - title: Vector Databases
+    icon: flat-color-icons:search
+
+  - title: Hugging Face
+    icon: logos:hugging-face-icon
 
   - title: Firebase
     icon: logos:firebase
@@ -79,6 +84,8 @@ items:
     icon: logos:docker-icon
   - title: Kubernetes
     icon: logos:kubernetes
+  - title: Cloudflare
+    icon: logos:cloudflare-icon
 
   - title: Git
     icon: logos:git-icon

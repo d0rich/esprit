@@ -4,27 +4,30 @@ import { DWrapBackground, DAnimationHypnosis, Icon } from '#components'
 import DStats from '~/components/content/DStats.vue'
 import DCard from '~/components/content/DCard.vue'
 import DCardTitle from '~/components/content/DCardTitle.vue'
-import BackgroundCard from './BackgroundCard.vue'
+import TechnologiesCard from './TechnologiesCard.vue'
+import ProfessionalStats from './ProfessionalStats.vue'
+import FocusCard from './FocusCard.vue'
+import MotivationCard from './MotivationCard.vue'
+import VideoCard from './VideoCard.vue'
 </script>
 
 <template>
   <DWrapBackground id="skills" tag="section">
     <div class="pt-20" />
-    <h1>Professional</h1>
+    <h1>Essence</h1>
     <div
       class="max-w-7xl mx-auto px-3 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center gap-5"
     >
-      <BackgroundCard class="max-w-xl background-card" />
-      <DStats
-        class="max-w-sm min-w-96"
-        :titles="['Front-End', 'Back-End', 'Web3', 'Design', 'Needs']"
-        :values="[5, 5, 3, 4, 5]"
-      />
+      <FocusCard class="max-w-xl focus-card" />
+      <MotivationCard class="max-w-xl motivation-card" />
+      <TechnologiesCard class="max-w-xl technologies-card" />
+      <ProfessionalStats class="max-w-sm min-w-96 professional-stats" />
+      <VideoCard class="max-w-xl video-card" />
     </div>
     <div style="height: 20vh" />
 
     <template #svg>
-      <div class="relative w-full h-full max-w-3xl mx-auto">
+      <div class="relative w-full h-full max-w-3xl mx-auto" aria-hidden="true">
         <DAnimationHypnosis
           class="absolute inset-0 mx-auto right-2/3 top-28 w-80 -rotate-12"
         />
@@ -54,30 +57,31 @@ import BackgroundCard from './BackgroundCard.vue'
   @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
 }
 
-#skills .skills-group {
-  @apply flex flex-col-reverse items-center md:flex-row
-         mb-36;
-}
-
-#skills .skills-group:nth-child(2n) {
-  @apply md:flex-row-reverse;
-}
-
-#skills .skills-group > :nth-child(1) {
-  @apply md:w-1/3;
-}
-
-#skills .skills-group > :nth-child(2) {
-  @apply md:w-2/3;
+@media (min-width: 768px) {
+  #skills .video-card {
+    /* Make it 2 columns */
+    grid-column: 1 / span 2;
+  }
 }
 </style>
 
 <style>
 @supports (animation-timeline: view()) {
-  #skills .background-card {
-    position: relative;
-    animation: slide-right linear both;
-    animation-timeline: view(y 80% 40%);
+  @media (prefers-reduced-motion: no-preference) {
+    #skills .focus-card,
+    #skills .technologies-card,
+    #skills .video-card {
+      position: relative;
+      animation: slide-left ease-in-out both;
+      animation-timeline: view(y 95% 0);
+    }
+
+    #skills .motivation-card,
+    #skills .professional-stats {
+      position: relative;
+      animation: slide-right ease-in-out both;
+      animation-timeline: view(y 95% 0);
+    }
   }
 }
 

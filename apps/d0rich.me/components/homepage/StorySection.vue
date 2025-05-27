@@ -36,7 +36,10 @@ const progressBarPoints =
 <template>
   <DWrapBackground v-if="data" id="story" tag="section">
     <template #svg>
-      <div class="sticky top-[25vh] mt-28 w-full h-screen overflow-hidden">
+      <div
+        class="sticky top-[25vh] mt-28 w-full h-screen overflow-hidden"
+        aria-hidden="true"
+      >
         <div class="mx-auto max-w-3xl">
           <DAnimationSpinner class="h-[50vh] -ml-[20vh]" />
         </div>
@@ -50,6 +53,8 @@ const progressBarPoints =
         width="100%"
         class="story-progress"
         viewBox="0 0 10 100"
+        role="progressbar"
+        aria-label="Story Reading Progress"
       >
         <polygon
           class="fill-black progress-bar__background"
