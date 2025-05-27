@@ -1,5 +1,23 @@
 # d0xigen
 
+## 2.1.0
+
+### Minor Changes
+
+- 44d2094: Remove GTAG support
+- 44d2094: Enhance motion-reduce transitions
+- 44d2094: Dynamic ToC background image quality
+
+### Patch Changes
+
+- 44d2094: Remove background image from navigation
+- Updated dependencies [44d2094]
+- Updated dependencies [44d2094]
+- Updated dependencies [44d2094]
+- Updated dependencies [44d2094]
+- Updated dependencies [44d2094]
+  - @d0rich/nuxt-design-system@1.1.0
+
 ## 2.0.1
 
 ### Patch Changes

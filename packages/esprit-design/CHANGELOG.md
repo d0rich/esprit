@@ -1,5 +1,12 @@
 # @d0rich/esprit-design
 
+## 0.5.0
+
+### Minor Changes
+
+- 44d2094: Add fallback fonts for dialog fonts
+- 44d2094: Handle prefers reduced motion
+
 ## 0.4.4
 
 ### Patch Changes
