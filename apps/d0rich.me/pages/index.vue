@@ -4,6 +4,7 @@ import AsyncSafeSeoWithOg from '~/components/AsyncSafeSeoWithOg.vue'
 import IntroSection from '~/components/homepage/IntroSection/index.vue'
 import SkillsSection from '~/components/homepage/SkillsSection/Index.vue'
 import StorySection from '~/components/homepage/StorySection.vue'
+import ContentSection from '~/components/homepage/ContentSection/Index.vue'
 
 definePageMeta({
   colorMode: 'dark'
@@ -14,6 +15,7 @@ definePageMeta({
   <div class="-mt-20">
     <AsyncSafeSeoWithOg og-title="Homepage" />
     <IntroSection />
+    <ContentSection />
     <!-- Block about skills -->
     <SkillsSection />
     <StorySection />

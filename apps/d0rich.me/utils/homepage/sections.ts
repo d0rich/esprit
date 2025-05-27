@@ -2,9 +2,27 @@ import { gsap } from 'gsap'
 import type { ComponentPublicInstance, Ref } from 'vue'
 import {
   type LineEdge,
+  type Coords,
+  generatePolygonLineKeyframes,
   applyLinePerPointAnimation,
   getAbsoluteBoundingsGetters
 } from '@d0rich/esprit-design'
+
+const line: LineEdge[] = [
+  { left: { x: 10, y: 0 }, right: { x: 13, y: 0 } },
+  { left: { x: 87, y: 4 }, right: { x: 90, y: 1 } },
+  { left: { x: 83, y: 16 }, right: { x: 87, y: 10 } },
+  { left: { x: 97, y: 6 }, right: { x: 94, y: 7 } },
+  { left: { x: 43, y: 8 }, right: { x: 50, y: 9 } },
+  { left: { x: 45, y: 67 }, right: { x: 57, y: 49 } },
+  { left: { x: 90, y: 40 }, right: { x: 85, y: 38 } },
+  { left: { x: 83, y: 23 }, right: { x: 72, y: 14 } },
+  { left: { x: 95, y: 28 }, right: { x: 98, y: 25 } },
+  { left: { x: 97, y: 93 }, right: { x: 99, y: 99 } },
+  { left: { x: 40, y: 76 }, right: { x: 30, y: 75 } },
+  { left: { x: 80, y: 60 }, right: { x: 95, y: 50 } },
+  { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
+]
 
 export function applyLineAnimation(
   svgRef: Ref<SVGSVGElement | null>,
@@ -117,3 +135,29 @@ export function applyContentRevealAnimation(
     })
   }
 }
+
+function generateClipPath(polygon: Coords[], xMin = 0, yMin = 0) {
+  return polygon
+    .map((point) => `${point.x - xMin}px ${point.y - yMin}px`)
+    .join(', ')
+}
+function generatePolygonPoints(polygon: Coords[]) {
+  return polygon.map((point) => `${point.x} ${point.y}`).join(' ')
+}
+const keyframes = generatePolygonLineKeyframes(line)
+  .map((polygon) => generateClipPath(polygon))
+  .map((polygonString, i, arr) => {
+    const currentKeyframe = (i / (arr.length - 1)) * 100
+    const roundedKeyframe = Number(currentKeyframe.toFixed(5))
+    return `
+  ${roundedKeyframe}% {
+    clip-path: polygon(${polygonString});
+  }`
+  })
+  .join('\n')
+
+console.log(
+  'polygon: ',
+  generatePolygonPoints(generatePolygonLineKeyframes(line).at(-1)!)
+)
+console.log('Keyframes:', keyframes)
