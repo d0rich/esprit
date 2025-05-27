@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <DWrapBackground id="sitemap" tag="section" class="contain-layout">
+  <DWrapBackground id="content-latest" tag="section" class="contain-layout">
     <template #svg>
       <div class="absolute inset-0" aria-hidden="true">
         <DAnimationFloatingLetter
@@ -99,7 +99,9 @@ onBeforeUnmount(() => {
       </svg>
     </template>
     <div class="pt-10" />
-    <h1>Content</h1>
+    <a href="#content-latest">
+      <h1>Content</h1>
+    </a>
     <div class="w-full mx-auto">
       <LatestPosts ref="blogNode" class="pb-20" />
       <LatestProjects ref="projectsNode" class="pb-10" />
@@ -108,11 +110,11 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-#sitemap {
+#content-latest {
   background: radial-gradient(#262626, #171717);
 }
 
-#sitemap h1 {
+#content-latest h1 {
   @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
 }
 

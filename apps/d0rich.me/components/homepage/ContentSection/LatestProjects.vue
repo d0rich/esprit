@@ -14,11 +14,13 @@ const { data: projects } = useAsyncData(
 </script>
 
 <template>
-  <section class="max-w-7xl mx-auto px-2 md:px-6">
+  <section id="latest-projects" class="max-w-7xl mx-auto px-2 md:px-6">
     <div class="flex justify-between items-end gap-x-8 mb-10">
-      <h2 class="text-5xl font-serif">
-        Latest Project<span class="hidden md:inline">s</span>
-      </h2>
+      <a href="#latest-projects">
+        <h2 class="text-5xl font-serif">
+          Latest Project<span class="hidden md:inline">s</span>
+        </h2>
+      </a>
       <DBigBangButton
         class="text-4xl font-bold"
         text="projects>"

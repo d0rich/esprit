@@ -9,9 +9,12 @@ import VideoCard from './VideoCard.vue'
 </script>
 
 <template>
-  <DWrapBackground id="skills" tag="section">
+  <DWrapBackground id="essence" tag="section">
     <div class="pt-10" />
-    <h1>Essence</h1>
+    <a href="#essence">
+      <h1>Essence</h1>
+    </a>
+
     <div
       class="max-w-7xl mx-auto px-3 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center gap-5"
     >
@@ -38,14 +41,14 @@ import VideoCard from './VideoCard.vue'
 </template>
 
 <style scoped>
-#skills {
+#essence {
   background:
     var(--d-card-x-ray--action__white), radial-gradient(#22d3ee, #0e7490);
   contain: layout;
   @apply font-dialog;
 }
 
-#skills h1 {
+#essence h1 {
   background:
     var(--d-card-x-ray--action__color), rgb(255 255 255 / var(--tw-bg-opacity));
   -webkit-background-clip: text;
@@ -55,7 +58,7 @@ import VideoCard from './VideoCard.vue'
 }
 
 @media (min-width: 768px) {
-  #skills .video-card {
+  #essence .video-card {
     /* Make it 2 columns */
     grid-column: 1 / span 2;
   }
@@ -65,16 +68,16 @@ import VideoCard from './VideoCard.vue'
 <style>
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    #skills .focus-card,
-    #skills .technologies-card,
-    #skills .video-card {
+    #essence .focus-card,
+    #essence .technologies-card,
+    #essence .video-card {
       position: relative;
       animation: slide-left ease-in-out both;
       animation-timeline: view(y 95% 0);
     }
 
-    #skills .motivation-card,
-    #skills .professional-stats {
+    #essence .motivation-card,
+    #essence .professional-stats {
       position: relative;
       animation: slide-right ease-in-out both;
       animation-timeline: view(y 95% 0);

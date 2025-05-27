@@ -28,6 +28,13 @@ const { data } = useAsyncData(
   }
 )
 
+function titleToId(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 // Automatically generated
 const progressBarPoints =
   '7 0 9 13 7 20 7 30 6 40 8 50 6 60 9 73 6 85 8 90 7 100 0 100 3 92 2 80 4 70 1 64 3 47 0 36 2 30 1 20 3 10 2 0'
@@ -46,7 +53,9 @@ const progressBarPoints =
       </div>
     </template>
     <div class="pt-10" />
-    <h1>Story</h1>
+    <a href="#story">
+      <h1>Story</h1>
+    </a>
     <div class="story-blocks">
       <svg
         height="100%"
@@ -66,12 +75,19 @@ const progressBarPoints =
         />
       </svg>
       <div class="story-blocks__cards">
-        <DCard v-for="doc in data" :key="doc.id" mode="homepage-story">
+        <DCard
+          v-for="doc in data"
+          :id="`story-${titleToId(doc.title)}`"
+          :key="doc.id"
+          mode="homepage-story"
+        >
           <DCardTitle>
             <template #extra>
               {{ dateToMonthYear(doc.date) }}
             </template>
-            {{ doc.title }}
+            <a :href="`#story-${titleToId(doc.title)}`">
+              {{ doc.title }}
+            </a>
           </DCardTitle>
           <ContentRenderer :value="doc" />
         </DCard>

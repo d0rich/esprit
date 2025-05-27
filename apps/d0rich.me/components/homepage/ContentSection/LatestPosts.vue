@@ -19,11 +19,13 @@ const { data: blogPosts } = await useAsyncData(
 </script>
 
 <template>
-  <section class="max-w-7xl mx-auto px-2 md:px-6">
+  <section id="latest-posts" class="max-w-7xl mx-auto px-2 md:px-6">
     <div class="flex justify-between items-end gap-x-8">
-      <h2 class="text-5xl font-serif">
-        Latest Post<span class="hidden md:inline">s</span>
-      </h2>
+      <a href="#latest-posts">
+        <h2 class="text-5xl font-serif">
+          Latest Post<span class="hidden md:inline">s</span>
+        </h2>
+      </a>
       <DBigBangButton class="text-4xl font-bold" text="blog>" to="/blog/" />
     </div>
     <nav class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
