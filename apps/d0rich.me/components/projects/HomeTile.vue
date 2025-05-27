@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { D0xigenProjectMeta } from '~~/server/utils/types'
-import { DChip } from '#components'
+import { DChip, Icon } from '#components'
 
-import { withTrailingSlash } from 'ufo'
 import { dateToDayMonthYear } from '@/utils/date'
 
 import SharedTile from '~/components/shared/Tile.vue'

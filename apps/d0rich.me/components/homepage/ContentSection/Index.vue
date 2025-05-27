@@ -101,8 +101,8 @@ onBeforeUnmount(() => {
     <div class="pt-10" />
     <h1>Content</h1>
     <div class="w-full mx-auto">
-      <LatestPosts class="pb-20" ref="blogNode" />
-      <LatestProjects class="pb-10" ref="projectsNode" />
+      <LatestPosts ref="blogNode" class="pb-20" />
+      <LatestProjects ref="projectsNode" class="pb-10" />
     </div>
   </DWrapBackground>
 </template>

@@ -28,11 +28,11 @@ const { data: projects } = useAsyncData(
     <nav class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <ProjectTile
         v-for="(project, i) in projects"
+        :key="project.url"
         :class="{
           'hidden md:block': i === 1,
           'hidden lg:block': i === 2
         }"
-        :key="project.url"
         :project="project"
       />
     </nav>

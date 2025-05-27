@@ -29,11 +29,11 @@ const { data: blogPosts } = await useAsyncData(
     <nav class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <BlogTile
         v-for="(article, i) in blogPosts"
+        :key="article.path"
         :class="{
           'hidden md:block': i === 1,
           'hidden lg:block': i === 2
         }"
-        :key="article.path"
         :article="article"
       />
     </nav>
