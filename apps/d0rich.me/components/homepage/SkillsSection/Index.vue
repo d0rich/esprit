@@ -24,16 +24,14 @@ import BackgroundCard from './BackgroundCard.vue'
     <div style="height: 20vh" />
 
     <template #svg>
-      <div class="w-full h-full overflow-hidden">
-        <div class="relative w-full h-full max-w-3xl mx-auto">
-          <DAnimationHypnosis
-            class="absolute inset-0 mx-auto right-2/3 top-28 w-80 -rotate-12"
-          />
-          <DAnimationHypnosis
-            class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
-          />
-          <DAnimationHypnosis class="absolute -left-40 bottom-5 w-96" />
-        </div>
+      <div class="relative w-full h-full max-w-3xl mx-auto">
+        <DAnimationHypnosis
+          class="absolute inset-0 mx-auto right-2/3 top-28 w-80 -rotate-12"
+        />
+        <DAnimationHypnosis
+          class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
+        />
+        <DAnimationHypnosis class="absolute -left-40 bottom-5 w-96" />
       </div>
     </template>
   </DWrapBackground>
