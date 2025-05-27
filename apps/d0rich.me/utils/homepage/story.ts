@@ -1,10 +1,26 @@
 import type { ComponentPublicInstance, Ref } from 'vue'
 import {
   type LineEdge,
+  type Coords,
   applyLinePerPointAnimation,
   applyStaticPoints,
-  getAbsoluteBoundingsGetters
+  getAbsoluteBoundingsGetters,
+  generatePolygonLineKeyframes
 } from '@d0rich/esprit-design'
+
+const line: LineEdge[] = [
+  { left: { x: 2, y: 0 }, right: { x: 7, y: 0 } },
+  { left: { x: 3, y: 10 }, right: { x: 9, y: 13 } },
+  { left: { x: 1, y: 20 }, right: { x: 7, y: 20 } },
+  { left: { x: 2, y: 30 }, right: { x: 7, y: 30 } },
+  { left: { x: 0, y: 36 }, right: { x: 6, y: 40 } },
+  { left: { x: 3, y: 47 }, right: { x: 8, y: 50 } },
+  { left: { x: 1, y: 64 }, right: { x: 6, y: 60 } },
+  { left: { x: 4, y: 70 }, right: { x: 9, y: 73 } },
+  { left: { x: 2, y: 80 }, right: { x: 6, y: 85 } },
+  { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
+  { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } }
+]
 
 export function applyProgressAnimation(
   containerRef: Ref<Element | null>,
@@ -18,19 +34,6 @@ export function applyProgressAnimation(
     barPolygonRef.value
   ]
   if (!svgNode || !thumbNode || !barNode) return
-  const line: LineEdge[] = [
-    { left: { x: 2, y: 0 }, right: { x: 7, y: 0 } },
-    { left: { x: 3, y: 10 }, right: { x: 9, y: 13 } },
-    { left: { x: 1, y: 20 }, right: { x: 7, y: 20 } },
-    { left: { x: 2, y: 30 }, right: { x: 7, y: 30 } },
-    { left: { x: 0, y: 36 }, right: { x: 6, y: 40 } },
-    { left: { x: 3, y: 47 }, right: { x: 8, y: 50 } },
-    { left: { x: 1, y: 64 }, right: { x: 6, y: 60 } },
-    { left: { x: 4, y: 70 }, right: { x: 9, y: 73 } },
-    { left: { x: 2, y: 80 }, right: { x: 6, y: 85 } },
-    { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
-    { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } }
-  ]
 
   // Scroll background from last frame
   applyStaticPoints(line, svgNode, barNode)
@@ -67,3 +70,28 @@ export function applyContentRevealAnimation(
     })
   }
 }
+
+// TODO: Move all these functions to external toolkit
+function generateClipPath(polygon: Coords[]) {
+  return polygon.map((point) => `${point.x}px ${point.y}px`).join(', ')
+}
+function generatePolygonPoints(polygon: Coords[]) {
+  return polygon.map((point) => `${point.x} ${point.y}`).join(' ')
+}
+const keyframes = generatePolygonLineKeyframes(line)
+  .map((polygon) => generateClipPath(polygon))
+  .map((polygonString, i, arr) => {
+    const currentKeyframe = (i / (arr.length - 1)) * 100
+    const roundedKeyframe = Number(currentKeyframe.toFixed(5))
+    return `
+  ${roundedKeyframe}% {
+    clip-path: polygon(${polygonString});
+  }`
+  })
+  .join('\n')
+
+console.log(
+  'polygon: ',
+  generatePolygonPoints(generatePolygonLineKeyframes(line).at(-1)!)
+)
+console.log('Keyframes:', keyframes)

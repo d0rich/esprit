@@ -38,6 +38,6 @@ defineProps<{
 
 <style scoped>
 .d-next-prev-card {
-  @apply transition-transform hover:scale-90;
+  @apply transition-transform hover:scale-90 motion-reduce:transition-none;
 }
 </style>

@@ -10,14 +10,22 @@ module.exports = {
       serif: [
         '"Roboto Slab"',
         '"Noto Color Emoji"',
-        ...defaultTheme.fontFamily.sans
+        ...defaultTheme.fontFamily.serif
       ],
       mono: [
         '"JetBrains Mono"',
         '"Noto Color Emoji"',
         ...defaultTheme.fontFamily.mono
       ],
-      dialog: ['Arsenal', '"Noto Color Emoji"']
+      dialog: [
+        'Arsenal',
+        '"Noto Color Emoji"',
+        '"Segoe UI"',
+        '"San Francisco"',
+        'Roboto',
+        'Arial',
+        'sans-serif'
+      ]
     },
     extend: {
       screens: {

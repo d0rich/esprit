@@ -1,6 +1,7 @@
 <script lang="ts">
 import gsap from 'gsap'
 import { watch, computed } from 'vue'
+import { usePreferredReducedMotion } from '@vueuse/core'
 import { useDBigBangButtonUtils } from '../../composables/big-bang-button-utils'
 
 export default {
@@ -9,6 +10,7 @@ export default {
 </script>
 
 <script setup lang="ts">
+const preferredMotion = usePreferredReducedMotion()
 const paths = {
   first: 'M 0 0 C -489.471 -116.5 -526.692 -193.268 -563.913 -311.911',
   last: 'M 0 0 C 317.761 171.963 466.645 199.879 680.666 171.963',
@@ -38,6 +40,10 @@ function pathFromIndex(i: number) {
 }
 
 function onEnter(el: Element, done: () => void) {
+  if (preferredMotion.value === 'reduce') {
+    done()
+    return
+  }
   gsap.fromTo(
     el,
     {
@@ -56,6 +62,10 @@ function onEnter(el: Element, done: () => void) {
 }
 
 function onLeave(el: Element, done: () => void) {
+  if (preferredMotion.value === 'reduce') {
+    done()
+    return
+  }
   const index = +gsap.getProperty(el, 'i')
   gsap.to(el, {
     motionPath: {

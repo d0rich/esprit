@@ -38,7 +38,7 @@ const currentBarVariation = computed(() => {
   background-attachment: fixed;
   clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
   transition: color 0.2s ease;
-  @apply bg-green-500 w-full h-full top-0;
+  @apply bg-green-500 w-full h-full top-0 motion-reduce:hidden;
 }
 
 .sections-transition-wrapper__bar--projects {
@@ -62,12 +62,14 @@ const currentBarVariation = computed(() => {
 #default-layout:has(.section-enter-active, .section-leave-active)
   .sections-transition-wrapper {
   display: block;
+  @apply motion-reduce:hidden;
 }
 
 /* bar */
 #default-layout:has(.section-enter-active, .section-leave-active)
   .sections-transition-wrapper__bar {
   transition: all var(--page-transition-length) linear;
+  @apply motion-reduce:transition-none;
 }
 
 #default-layout:has(.section-leave-from) .sections-transition-wrapper__bar {

@@ -1,25 +1,28 @@
 <template>
-  <Transition name="header">
-    <header v-if="show">
-      <DShape
-        class="print:hidden"
-        :filter-class="`${shadowColor} header__shape-filter`"
-        shape-class="dark:bg-black bg-white"
-        :shape-style="{
-          clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
-        }"
+  <header
+    :class="{
+      'header-hidden': !show,
+      'header-shown': show
+    }"
+  >
+    <DShape
+      class="print:hidden"
+      :filter-class="`${shadowColor} header__shape-filter`"
+      shape-class="dark:bg-black bg-white"
+      :shape-style="{
+        clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
+      }"
+    >
+      <div
+        class="w-full h-16 flex justify-evenly items-center overflow-visible"
       >
-        <div
-          class="w-full h-16 flex justify-evenly items-center overflow-visible"
-        >
-          <DBtn to="/"> Dorich </DBtn>
-          <DBtn to="/projects/"> Projects </DBtn>
-          <DBtn to="/blog/"> Blog </DBtn>
-          <DThemeSwitch v-if="isThemeSwitchVisible" />
-        </div>
-      </DShape>
-    </header>
-  </Transition>
+        <DBtn to="/"> d0rich </DBtn>
+        <DBtn to="/projects/"> Projects </DBtn>
+        <DBtn to="/blog/"> Blog </DBtn>
+        <DThemeSwitch v-if="isThemeSwitchVisible" />
+      </div>
+    </DShape>
+  </header>
 </template>
 
 <script lang="ts">
@@ -100,42 +103,81 @@ export default defineComponent({
   @apply sharp-shadow ss-b-2 ss-r-3;
 }
 
-.header-enter-from .d-shape__bg-filter {
-  @apply ss-b-5 ss-l-5;
+@keyframes header-shape-enter {
+  from {
+    @apply ss-b-5 ss-l-5;
+  }
+  to {
+    @apply ss-b-2 ss-r-3;
+  }
 }
 
-.header-enter-to .d-shape__bg-filter {
+@keyframes header-shape-leave {
+  from {
+    @apply ss-b-2 ss-r-3;
+  }
+  to {
+    @apply ss-b-5 ss-r-3;
+  }
+}
+
+.header-hidden:has(:focus) .d-shape__bg-filter {
+  animation: none;
   @apply ss-b-2 ss-r-3;
 }
 
-.header-leave-to .d-shape__bg-filter {
-  @apply ss-b-5 ss-r-3;
+.header-shown .d-shape__bg-filter {
+  animation: header-shape-enter 0.5s ease-out forwards;
 }
 
-.header-enter-active .d-shape__bg-filter {
-  transition: all 0.5s ease-out;
+.header-hidden .d-shape__bg-filter {
+  animation: header-shape-leave 0.5s ease-in forwards;
 }
 
-.header-leave-active .d-shape__bg-filter {
-  transition: all 0.5s ease-in;
+@keyframes header-leave {
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 
-.header-leave-to {
-  transform: translateY(-100%);
-  opacity: 0;
+@keyframes header-enter {
+  from {
+    transform: rotate(-150deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
 }
 
-.header-enter-active {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.header-shown {
+  animation: header-enter 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   transform-origin: right;
 }
 
-.header-leave-active {
-  transition: 0.5s cubic-bezier(1, 0, 0.2, 0.4);
+.header-hidden {
+  animation: header-leave 0.5s cubic-bezier(1, 0, 0.2, 0.4) forwards;
 }
 
-.header-enter-from {
-  transform: rotate(-150deg);
-  opacity: 0;
+.header-hidden:has(:focus) {
+  animation: none;
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  transform-origin: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-hidden,
+  .header-hidden:has(:focus),
+  .header-shown,
+  .header-hidden .d-shape__bg-filter,
+  .header-hidden:has(:focus) .d-shape__bg-filter,
+  .header-shown .d-shape__bg-filter {
+    animation: none;
+    transition: none;
+  }
 }
 </style>

@@ -73,20 +73,6 @@ interface ThemeConfig {
     image: string
   }
   /**
-   * Additional features
-   */
-  features?: {
-    /**
-     * Google Analytics
-     */
-    gtag?: {
-      /**
-       * Google Analytics ID
-       */
-      id?: string
-    }
-  }
-  /**
    * d0rich Index options
    */
   d0richIndex?: {

@@ -99,4 +99,10 @@ defineProps({
     transform: var(--hypnosis-section-min-posion);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .d-animation-hypnosis > .d-animation-hypnosis__section {
+    animation-play-state: paused;
+  }
+}
 </style>

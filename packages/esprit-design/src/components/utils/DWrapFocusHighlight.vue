@@ -180,6 +180,19 @@ const currentComponent = computed(() => {
     transform: skew(-40deg) rotate(-6deg) scaleX(0.8);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .d-focus-hl > :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
+    transition: none;
+  }
+
+  .d-focus-hl:hover
+    > :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile),
+  .d-focusable:focus
+    :is(.d-focus-hl__hl--negative-tile, .d-focus-hl__hl--tile) {
+    animation-play-state: paused;
+  }
+}
 </style>
 
 <!-- list-item -->
@@ -258,6 +271,18 @@ const currentComponent = computed(() => {
   }
   50% {
     clip-path: polygon(1em 10%, 0% 90%, 100% 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d-focus-hl
+    > :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {
+    transition: none;
+  }
+
+  :is(.d-focus-hl:hover, .d-focusable:focus)
+    :is(.d-focus-hl__hl--list-item, .d-focus-hl__hl--negative-list-item) {
+    animation-play-state: paused;
   }
 }
 </style>

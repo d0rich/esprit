@@ -50,7 +50,7 @@ function onClick(event: MouseEvent) {
 }
 
 .big-bang-button:hover > span {
-  @apply inline-block transition-all;
+  @apply inline-block transition-all motion-reduce:transition-none;
 }
 
 .big-bang-button:hover > span:nth-of-type(4n + 1) {

@@ -24,7 +24,6 @@
     "remark-simple-plantuml": "npm:@akebifiky/remark-simple-plantuml@^1.0.2",
     "sitemap": "^8.0.0",
     "unist-util-visit": "^5.0.0",
-    "vue-disqus": "^5.1.0",
-    "vue-gtag": "^2.0.1"
+    "vue-disqus": "^5.1.0"
   }
 }

@@ -1,7 +1,9 @@
 <script lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 import { withTrailingSlash } from 'ufo'
-import { DCard, DCardTitle, Icon, NuxtLink } from '#components'
+import { Icon, NuxtLink } from '#components'
+import DCard from '~/components/content/DCard.vue'
+import DCardTitle from '~/components/content/DCardTitle.vue'
 
 export default {
   name: 'DLayoutSurroundDocCard'
@@ -18,7 +20,7 @@ defineProps<{
 <template>
   <NuxtLink
     :to="withTrailingSlash(doc.path)"
-    class="transition-transform hover:scale-90"
+    class="transition-transform hover:scale-90 motion-reduce:transition-none"
   >
     <DCard dense>
       <DCardTitle

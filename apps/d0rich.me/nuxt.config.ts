@@ -40,6 +40,13 @@ export default defineNuxtConfig({
     fallback: 'dark'
   },
 
+  icon: {
+    serverBundle: {
+      collections: ['mdi']
+    },
+    class: 'inline-block'
+  },
+
   content: {
     build: {
       markdown: {

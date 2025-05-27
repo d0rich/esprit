@@ -7,13 +7,36 @@ import {
   useSeoMeta,
   useTransitionAnimationWorkaround
 } from '#imports'
-import { NuxtLayout, NuxtPage, DBigBangButtonAnimation } from '#components'
+import {
+  NuxtLayout,
+  NuxtPage,
+  DBigBangButtonAnimation,
+  Head,
+  Link,
+  NoScript
+} from '#components'
 import { useFaviconAnimation } from '~/composables/favicon'
 
 const { key } = useTransitionAnimationWorkaround()
 const route = useRoute()
 
 const description = 'Small web portal of an experienced IT specialist.'
+
+const mostUsedEmojis =
+  '😂❤️🤣👍😭🙏😘🥰😍😊😅😎' +
+  '💕💔💖💗💙💚💛💜💓💞💘💝💟💌💋😘😚😙😗😶😐😑😬🙄😏😒😞😔' +
+  '😟😕🙃🤑😲😮😯😳😱😨😰😢😥😪😓🤤😴😷🤒🤕🤢🤧😵🤯🤠😎🤓🧐' +
+  '😕😟😔😞😢😭😤😠😡🤬🤯😳🥺😬😰😱😨😧😦😮😯😲😵😶😐😑😒🙄' +
+  '😏😣😖😫😩🥱😤😠😡🤬😈👿💀☠️👻👽👾🤖🎃😺😸😹😻😼😽🙀😿😾' +
+  '👐🙌👏🙏🤝👍👎👊✊🤛🤜🤞✌️🤘🤟👌🤏👈👉👆👇☝️✋🤚🖐🖖👋🤙' +
+  '💪🖕✍️🤳💅💍💄💋👄👅👂👃👁👀🧠🦴🦷🗣👤👥🧥👚👕👖👔👗👘🥻🩱' +
+  '🩲🩳👙👛👜👝🛍🎒👞👟🥾🥿👠👡🩰👢👑👒🎩🎓🧢⛑📿💄💍💎🕶🥽🥼🧵🧶'
+
+const emojiSubset =
+  '🇬🇧🇫🇷🇷🇺' + '🛠️🎨🚀🏗️📚🎮🗣️🎥🎞️🧘‍♂️🏃‍♂️' + '🌍🤹‍♂️🎬' + '🐶🌬📓' + mostUsedEmojis
+const emojiFontLink =
+  'https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap&text=' +
+  encodeURIComponent(emojiSubset)
 
 onNuxtReady(() => {
   useFaviconAnimation()
@@ -22,7 +45,7 @@ onNuxtReady(() => {
 useHead({
   titleTemplate(title: string | undefined) {
     if (title) return `${title} • d0rich`
-    else return 'd0rich: dream developer'
+    else return 'd0rich: Digital Artisan'
   },
   meta: [
     {
@@ -31,7 +54,7 @@ useHead({
         'Nikolai Dorofeev',
         'd0rich',
         'dorich2000@gmail.com',
-        'n.dorofeev.pro@gmail.com',
+        'contact@d0rich.me',
         'developer',
         'programmer',
         'software engineer',
@@ -62,12 +85,25 @@ useSeoMeta({
   twitterSite: '@d0rich',
   twitterCreator: '@d0rich',
   twitterImage: 'https://d0rich.me/og/image.jpg',
-  twitterTitle: 'd0rich: dream developer',
+  twitterTitle: 'd0rich: Digital Artisan',
   twitterDescription: description
 })
 </script>
 
 <template>
+  <Head>
+    <Link rel="preconnect" href="https://fonts.googleapis.com" />
+    <Link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <Link
+      rel="preload"
+      :href="emojiFontLink"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <NoScript>
+      <Link rel="stylesheet" :href="emojiFontLink" />
+    </NoScript>
+  </Head>
   <NuxtLayout>
     <NuxtPage :key="key" />
   </NuxtLayout>

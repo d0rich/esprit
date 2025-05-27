@@ -1,4 +1,7 @@
 export default defineAppConfig({
+  icon: {
+    mode: 'svg'
+  },
   d0xigen: {
     title: 'd0xigen',
     description: 'My awesome docs',
@@ -18,11 +21,6 @@ export default defineAppConfig({
     },
     og: {
       image: '/og/image.jpg'
-    },
-    features: {
-      gtag: {
-        id: 'G-XXXXXXXXXX'
-      }
     },
     d0richIndex: {
       tags: []

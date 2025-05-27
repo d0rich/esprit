@@ -7,7 +7,7 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
 <template>
   <div id="default-layout">
     <div class="fixed w-screen z-50">
-      <DHeader class="mx-auto max-w-md sm:max-w-xl" />
+      <DHeader class="mx-auto max-w-md sm:max-w-md" />
     </div>
     <main class="pt-20 print:pt-0 min-h-[calc(100vh_-_200px)]">
       <slot />
@@ -28,6 +28,7 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
 .section-leave-active,
 .section-enter-active {
   transition: all var(--page-transition-length);
+  @apply motion-reduce:transition-none;
 }
 .section-enter-from {
   transform: translateX(-100%);

@@ -100,4 +100,10 @@ defineProps({
     transform: var(--accordion-section-min-posion);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .d-animation-accordion > .d-animation-accordion__section {
+    animation-play-state: paused;
+  }
+}
 </style>

@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    'nuxt-icon'
+    '@nuxt/icon'
   ],
   imports: {
     autoImport: false
@@ -29,12 +29,12 @@ export default defineNuxtConfig({
     preference: 'dark'
   },
   googleFonts: {
+    display: 'swap',
     families: {
       Roboto: true,
       'Roboto Slab': true,
       'JetBrains Mono': true,
-      Arsenal: true,
-      'Noto Color Emoji': true
+      Arsenal: true
     },
     preload: true
   }

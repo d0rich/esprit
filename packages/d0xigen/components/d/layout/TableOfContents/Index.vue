@@ -35,7 +35,8 @@ const headersToHighlight = useTocObserver(root as Ref<HTMLElement>)
 
 <style scoped>
 .background-container {
-  background-image: url(../../../../assets/img/d-bw.webp);
+  background-image:
+    url('../../../../assets/img/d-bw.svg'), radial-gradient(#000, #fff);
   @apply h-full relative px-4 pt-20 pb-10 isolate
          bg-cover bg-center;
 }
