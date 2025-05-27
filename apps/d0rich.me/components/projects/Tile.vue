@@ -10,9 +10,17 @@ export default {
 </script>
 
 <script setup lang="ts">
-defineProps<{
-  project: D0xigenProjectMeta
-}>()
+withDefaults(
+  defineProps<{
+    project: D0xigenProjectMeta
+    frame?: boolean
+    dense?: boolean
+  }>(),
+  {
+    frame: true,
+    dense: false
+  }
+)
 </script>
 
 <template>
@@ -22,8 +30,10 @@ defineProps<{
       '--page-bg-color': 'rgb(23 23 23 / var(--tw-bg-opacity))'
     }"
   >
-    <div class="project-tile__frame--top" />
-    <div class="project-tile__frame--bottom" />
+    <template v-if="frame">
+      <div class="project-tile__frame--top" />
+      <div class="project-tile__frame--bottom" />
+    </template>
     <NuxtLink :to="withTrailingSlash(project.url)">
       <div class="project-tile__link">
         <div class="project-tile__link__image-wrapper">
@@ -33,56 +43,73 @@ defineProps<{
           />
         </div>
         <div class="project-tile__link-image-overlay" />
-        <div style="height: 5rem; pointer-events: none" />
-        <div class="max-w-2xl mx-auto px-3">
-          <DWrapShape
-            shape-class="bg-black bg-opacity-90"
-            shape-style="clip-path: var(--shape-card);"
-          >
-            <div style="padding: var(--shape-card-padding)">
-              <div class="text-right">
-                Last updated:
-                <time class="font-bold">{{
-                  dateToDayMonthYear(project.last_updated)
-                }}</time>
+        <div
+          :class="{
+            'py-20': !dense,
+            'py-5': dense
+          }"
+        >
+          <div class="max-w-2xl mx-auto px-3">
+            <DWrapShape
+              shape-class="bg-black bg-opacity-90"
+              :shape-style="{
+                clipPath: dense
+                  ? 'var(--shape-card--dense)'
+                  : 'var(--shape-card)'
+              }"
+            >
+              <div
+                class="flex flex-col"
+                :style="{
+                  padding: dense
+                    ? 'var(--shape-card--dense__padding)'
+                    : 'var(--shape-card-padding)'
+                }"
+              >
+                <h2 class="text-3xl font-bold text-red-200 mb-2 order-2">
+                  {{ project.title }}
+                </h2>
+
+                <p class="my-2 order-3">
+                  {{ project.description }}
+                </p>
+
+                <div class="text-right order-1">
+                  Last updated:
+                  <time class="font-bold">{{
+                    dateToDayMonthYear(project.last_updated)
+                  }}</time>
+                </div>
+
+                <p class="order-4">
+                  Complexity:
+                  <Icon
+                    v-for="num in project.complexity"
+                    :key="num"
+                    class="text-red-200"
+                    name="ic:sharp-star"
+                  />
+                  <Icon
+                    v-for="num in 5 - (project.complexity || 0)"
+                    :key="num"
+                    class="text-red-200"
+                    name="ic:sharp-star-outline"
+                  />
+                </p>
+
+                <div class="text-right mt-3 -mr-5 order-5">
+                  <DChip
+                    v-for="tag in project.tags"
+                    :key="tag"
+                    class="project-tile__link__tag"
+                  >
+                    #{{ tag }}
+                  </DChip>
+                </div>
               </div>
-              <h2 class="text-3xl font-bold text-red-200 mb-2">
-                {{ project.title }}
-              </h2>
-
-              <p class="my-2">
-                {{ project.description }}
-              </p>
-
-              <p>
-                Complexity:
-                <Icon
-                  v-for="num in project.complexity"
-                  :key="num"
-                  class="text-red-200"
-                  name="ic:sharp-star"
-                />
-                <Icon
-                  v-for="num in 5 - (project.complexity || 0)"
-                  :key="num"
-                  class="text-red-200"
-                  name="ic:sharp-star-outline"
-                />
-              </p>
-
-              <div class="text-right mt-3 -mr-5">
-                <DChip
-                  v-for="tag in project.tags"
-                  :key="tag"
-                  class="project-tile__link__tag"
-                >
-                  #{{ tag }}
-                </DChip>
-              </div>
-            </div>
-          </DWrapShape>
+            </DWrapShape>
+          </div>
         </div>
-        <div style="height: 5rem; pointer-events: none" />
       </div>
     </NuxtLink>
   </div>
@@ -126,7 +153,8 @@ defineProps<{
   @apply bg-cover bg-center;
 }
 
-.project-tile__link:hover .project-tile__link__image {
+.project-tile__link:hover .project-tile__link__image,
+.project-tile:has(:focus) .project-tile__link__image {
   width: 120%;
   height: 120%;
   transform: translate(-10%, -10%) rotate(-2deg);

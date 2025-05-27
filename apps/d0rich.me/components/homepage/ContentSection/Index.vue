@@ -1,17 +1,52 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import {
-  DWrapBackground,
-  DAnimationFloatingLetter
-} from '#components'
+import { ref, computed, useTemplateRef, onMounted, onBeforeUnmount } from 'vue'
+import { DWrapBackground, DAnimationFloatingLetter } from '#components'
 
-const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
+import LatestPosts from './LatestPosts.vue'
+import LatestProjects from './LatestProjects.vue'
+
+const projectsNode = useTemplateRef('projectsNode')
+const blogNode = useTemplateRef('blogNode')
+const isProjectsVisible = ref(false)
+const isBlogVisible = ref(false)
+
+const currentSection = computed<'projects' | 'blog' | null>(() => {
+  if (isProjectsVisible.value) return 'projects'
+  if (isBlogVisible.value) return 'blog'
+  return null
+})
 
 const sectionsLineColor = computed(() => {
-  if (currentSection.value === 'portfolio') return 'fill-red-700'
+  if (currentSection.value === 'projects') return 'fill-red-700'
   if (currentSection.value === 'blog') return 'fill-cyan-700'
-  if (currentSection.value === 'resume') return 'fill-blue-700'
   return 'fill-green-700'
+})
+
+let observer: IntersectionObserver
+
+onMounted(() => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.target === projectsNode.value?.$el) {
+          isProjectsVisible.value = entry.isIntersecting
+        } else if (entry.target === blogNode.value?.$el) {
+          isBlogVisible.value = entry.isIntersecting
+        }
+      }
+    },
+    {
+      rootMargin: '0% 0% -33% 0%',
+      threshold: 0
+    }
+  )
+  if (blogNode.value?.$el) observer.observe(blogNode.value.$el)
+  if (projectsNode.value?.$el) observer.observe(projectsNode.value.$el)
+})
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
+  }
 })
 </script>
 
@@ -47,7 +82,7 @@ const sectionsLineColor = computed(() => {
       <svg
         height="100%"
         width="100%"
-        class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
+        class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2"
         viewBox="70 0 10 100"
         preserveAspectRatio="xMidYMin"
         aria-hidden="true"
@@ -63,15 +98,18 @@ const sectionsLineColor = computed(() => {
         />
       </svg>
     </template>
-    <div class="pt-20" />
+    <div class="pt-10" />
     <h1>Content</h1>
-    <div class="w-full h-screen max-w-6xl mx-auto"></div>
+    <div class="w-full mx-auto">
+      <LatestPosts class="pb-20" ref="blogNode" />
+      <LatestProjects class="pb-10" ref="projectsNode" />
+    </div>
   </DWrapBackground>
 </template>
 
 <style>
 #sitemap {
-  @apply bg-neutral-900;
+  background: radial-gradient(#262626, #171717);
 }
 
 #sitemap h1 {

@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { DWrapBackground, DAnimationHypnosis, Icon } from '#components'
 
-import DStats from '~/components/content/DStats.vue'
-import DCard from '~/components/content/DCard.vue'
-import DCardTitle from '~/components/content/DCardTitle.vue'
 import TechnologiesCard from './TechnologiesCard.vue'
 import ProfessionalStats from './ProfessionalStats.vue'
 import FocusCard from './FocusCard.vue'
@@ -13,7 +10,7 @@ import VideoCard from './VideoCard.vue'
 
 <template>
   <DWrapBackground id="skills" tag="section">
-    <div class="pt-20" />
+    <div class="pt-10" />
     <h1>Essence</h1>
     <div
       class="max-w-7xl mx-auto px-3 grid grid-cols-1 md:grid-cols-2 items-center justify-items-center gap-5"
