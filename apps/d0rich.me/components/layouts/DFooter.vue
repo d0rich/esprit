@@ -6,7 +6,7 @@ import { DWrapShape, DAnimationFloatingLetter, DBtn, Icon } from '#components'
 <template>
   <DWrapShape
     tag="footer"
-    class="w-full -mt-[1rem] print:hidden"
+    class="w-full -mt-[1rem] print:hidden contain-layout"
     shape-class="bg-white dark:bg-black"
     :shape-style="{
       clipPath: 'polygon(0 0, 100% 1rem, 100% 100%, 0 100%)'
