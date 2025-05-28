@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
+import type { StyleValue } from 'vue'
 withDefaults(
   defineProps<{
     frame?: boolean
-    bgStyle?: CSSProperties
+    bgStyle?: StyleValue
   }>(),
   {
-    frame: true,
-    bgStyle: undefined
+    frame: true
   }
 )
 </script>
