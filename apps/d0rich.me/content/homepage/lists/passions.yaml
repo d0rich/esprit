@@ -1,7 +1,7 @@
 name: Passions
 items:
   - title: Digital Tinkering
-    emoji: '🛠️'
+    emoji: '⚙️'
   - title: Automating Tasks
     emoji: '🤖'
   - title: Creating Appealing Visuals
@@ -10,17 +10,13 @@ items:
     emoji: '🚀'
   - title: Building Things
     emoji: '🏗️'
-  - title: Learning New Skills
-    emoji: '📚'
   - title: Playing Video Games
     emoji: '🎮'
-  - title: Learning New Languages
-    emoji: '🗣️'
   - title: Videography
     emoji: '🎥'
   - title: Motion Design and Animation
-    emoji: '🎞️'
-  - title: Meditation and Mindfulness Practices
-    emoji: '🧘‍♂️'
-  - title: Jogging
-    emoji: '🏃‍♂️'
+    emoji: '🪄'
+  - title: Learning About AI
+    emoji: '🧬'
+  - title: Reverse Engineering
+    emoji: '🧪'
