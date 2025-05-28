@@ -5,8 +5,10 @@ import DCardTitle from '~/components/content/DCardTitle.vue'
 </script>
 
 <template>
-  <DCard mode="homepage-skills" dense>
-    <DCardTitle>Motivation</DCardTitle>
+  <DCard id="motivation" mode="homepage-skills" dense>
+    <DCardTitle>
+      <a href="#motivation"> Motivation </a>
+    </DCardTitle>
     <div class="text-xl text-black">
       I have 2 main motivations burning inside me:
       <ul class="list-disc pl-5">

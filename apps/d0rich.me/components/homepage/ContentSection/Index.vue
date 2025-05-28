@@ -99,9 +99,6 @@ onBeforeUnmount(() => {
       </svg>
     </template>
     <div class="pt-10" />
-    <a href="#content-latest">
-      <h1>Content</h1>
-    </a>
     <div class="w-full mx-auto">
       <LatestPosts ref="blogNode" class="pb-20" />
       <LatestProjects ref="projectsNode" class="pb-10" />

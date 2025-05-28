@@ -5,8 +5,10 @@ import DCardTitle from '~/components/content/DCardTitle.vue'
 </script>
 
 <template>
-  <DCard mode="homepage-skills">
-    <DCardTitle>Videos</DCardTitle>
+  <DCard id="videos" mode="homepage-skills">
+    <DCardTitle>
+      <a href="#videos"> Videos </a>
+    </DCardTitle>
     <div class="text-xl">
       <p class="mb-2">
         🎬 <strong

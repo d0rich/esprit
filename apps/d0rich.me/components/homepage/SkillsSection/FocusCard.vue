@@ -5,8 +5,10 @@ import DCardTitle from '~/components/content/DCardTitle.vue'
 </script>
 
 <template>
-  <DCard mode="homepage-skills" dense>
-    <DCardTitle>Focus</DCardTitle>
+  <DCard id="focus" mode="homepage-skills" dense>
+    <DCardTitle>
+      <a href="#focus"> Focus </a>
+    </DCardTitle>
     <div class="text-xl text-black">
       🚀 Currently focusing on the following technologies:
       <ul class="list-disc pl-5">

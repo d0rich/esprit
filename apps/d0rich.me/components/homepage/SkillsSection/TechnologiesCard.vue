@@ -79,8 +79,10 @@ onBeforeUnmount(() => {
 })
 </script>
 <template>
-  <DCard mode="homepage-skills">
-    <DCardTitle>Technologies</DCardTitle>
+  <DCard id="technologies" mode="homepage-skills">
+    <DCardTitle>
+      <a href="#technologies"> Technologies </a>
+    </DCardTitle>
     <div class="text-xl">
       It is hard to list all the technologies I have worked with 🤓.
       <div class="grid grid-cols-[auto_1fr] gap-x-10 mt-5 items-center">
