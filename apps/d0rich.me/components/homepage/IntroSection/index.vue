@@ -57,7 +57,7 @@ import { ProseCode, Icon, Head, Link } from '#components'
             focusable="false"
           />
           <span class="sr-only">Location:</span>
-          Tbilisi, Georgia
+          Grenoble, France
         </p>
         <SocialLinks class="pb-5 mt-3" />
       </address>
