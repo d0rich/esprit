@@ -10,6 +10,18 @@ export type GithubExternalRepo = Omit<
 
 export const externalRepos: GithubExternalRepo[] = [
   {
+    owner: 'exactpro',
+    repo: 'test2text',
+    tags: ['AI', 'NLP', 'embeddings', 'front-end', 'back-end'],
+    complexity: 4
+  },
+  {
+    owner: 'exactpro',
+    repo: 'tabbyset',
+    tags: ['utilities', 'data-tools', 'csv', 'custom-file-format'],
+    complexity: 3
+  },
+  {
     owner: 'alefmanvladimir',
     repo: 'BigFiles',
     tags: ['web3', 'TON', 'storage', 'front-end', 'back-end'],
