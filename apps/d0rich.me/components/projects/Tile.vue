@@ -34,7 +34,11 @@ withDefaults(
       <div class="project-tile__frame--top" />
       <div class="project-tile__frame--bottom" />
     </template>
-    <NuxtLink :to="withTrailingSlash(project.url)">
+    <NuxtLink
+      :to="withTrailingSlash(project.url)"
+      :external="true"
+      target="_blank"
+    >
       <div class="project-tile__link">
         <div class="project-tile__link__image-wrapper">
           <div
