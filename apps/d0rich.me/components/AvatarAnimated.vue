@@ -53,6 +53,7 @@ withDefaults(
             width="2036.69"
             height="2036.69"
             style="fill: #22c55e"
+            :style="bgStyle"
           />
           <path
             id="DLetter"
