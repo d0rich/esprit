@@ -73,6 +73,7 @@ export default defineConfig({
       formats: ['es'],
       cssFileName: 'style.tailwind'
     },
+    minify: false,
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
