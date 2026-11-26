@@ -1,5 +1,11 @@
 # @d0rich/esprit-design
 
+## 1.0.0
+
+### Major Changes
+
+- 109c135: Proper compilation
+
 ## 0.5.0
 
 ### Minor Changes
