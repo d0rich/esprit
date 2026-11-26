@@ -23,6 +23,21 @@
     "./dist/style.pure.css": "./dist/style.pure.css",
     "./dist/esprit-design.css": "./dist/style.css",
     "./tailwind.config": "./tailwind.config.js",
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js",
+      "default": "./dist/components/index.js"
+    },
+    "./composables": {
+      "types": "./dist/composables/index.d.ts",
+      "import": "./dist/composables/index.js",
+      "default": "./dist/composables/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js",
+      "default": "./dist/utils/index.js"
+    },
     "./components/*": "./dist/components/*",
     "./composables/*": "./dist/composables/*",
     "./utils/*": "./dist/utils/*",

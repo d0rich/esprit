@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import { resolve } from 'path'
-import { defineConfig, splitVendorChunkPlugin, type Plugin } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import dts from 'vite-plugin-dts'
 import vue from '@vitejs/plugin-vue'
 import postcss from 'postcss'
@@ -56,7 +56,6 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    splitVendorChunkPlugin(),
     dts({
       insertTypesEntry: true
     }),
@@ -64,8 +63,12 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      // src/indext.ts is where we have exported the component(s)
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        'components/index': resolve(__dirname, 'src/components/index.ts'),
+        'composables/index': resolve(__dirname, 'src/composables/index.ts'),
+        'utils/index': resolve(__dirname, 'src/utils/index.ts')
+      },
       name: 'EspritDesign',
       formats: ['es'],
       cssFileName: 'style.tailwind'
