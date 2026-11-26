@@ -5,15 +5,16 @@
     "access": "public"
   },
   "type": "module",
-  "main": "./dist/esprit-design.umd.cjs",
-  "module": "./dist/esprit-design.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/esprit-design.js",
-      "require": "./dist/esprit-design.umd.cjs"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
+    "./dist/esprit-design.js": "./dist/index.js",
     "./style.css": "./dist/style.css",
     "./style.tailwind.css": "./dist/style.tailwind.css",
     "./style.pure.css": "./dist/style.pure.css",
@@ -22,6 +23,10 @@
     "./dist/style.pure.css": "./dist/style.pure.css",
     "./dist/esprit-design.css": "./dist/style.css",
     "./tailwind.config": "./tailwind.config.js",
+    "./components/*": "./dist/components/*",
+    "./composables/*": "./dist/composables/*",
+    "./utils/*": "./dist/utils/*",
+    "./dist/*": "./dist/*",
     "./src/": "./src/"
   },
   "scripts": {
