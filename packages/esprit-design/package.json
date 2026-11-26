@@ -15,6 +15,8 @@
       "require": "./dist/esprit-design.umd.cjs"
     },
     "./style.css": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css",
+    "./dist/esprit-design.css": "./dist/style.css",
     "./tailwind.config": "./tailwind.config.js",
     "./src/": "./src/"
   },

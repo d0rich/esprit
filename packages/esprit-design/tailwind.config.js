@@ -3,7 +3,10 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: {
+    relative: true,
+    files: ['./src/**/*.{vue,js,ts,jsx,tsx}']
+  },
   theme: {
     fontFamily: {
       sans: ['Roboto', '"Noto Color Emoji"', ...defaultTheme.fontFamily.sans],
